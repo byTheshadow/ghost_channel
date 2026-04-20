@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - GHOST CHANNEL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #f0f0f0;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 1;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' /%3E%3C/svg%3E");
+        }
+
+        .spotlight {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 999;
+            mix-blend-mode: screen;
+        }
+
+        nav {
+            position: relative;
+            z-index: 100;
+            background: rgba(20, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #cc0000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #cc0000;
+            text-shadow: 0 0 10px #cc0000;
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #cc0000;
+            text-shadow: 0 0 10px #cc0000;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .about-card {
+            background: rgba(20, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border: 2px solid #cc0000;
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(204, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #cc0000;
+            text-shadow: 0 0 20px #cc0000;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .profile {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: center;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(145deg, #cc0000, #ff1a1a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            box-shadow: 0 0 30px rgba(204, 0, 0, 0.5);
+        }
+
+        .info {
+            flex: 1;
+        }
+
+        .info h2 {
+            font-size: 32px;
+            color: #f0f0f0;
+            margin-bottom: 10px;
+        }
+
+        .info p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #cccccc;
+        }
+
+        .section {
+            margin-top: 40px;
+        }
+
+        .section h3 {
+            font-size: 24px;
+            color: #cc0000;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #cc0000;
+            padding-bottom: 10px;
+        }
+
+        .section p, .section ul {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #cccccc;
+        }
+
+        .section ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .section ul li::before {
+            content: '▸ ';
+            color: #cc0000;
+            font-weight: bold;
+        }
+
+        .ghost-follower {
+            position: fixed;
+            bottom: 20px;
+            font-size: 30px;
+            pointer-events: none;
+            z-index: 998;
+            transition: left 0.5s ease;
+        }
+
+        @media (max-width: 768px) {
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .about-card {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="spotlight" id="spotlight"></div>
+    <div class="ghost-follower" id="ghostFollower">👻</div>
+
+    <nav>
+        <div class="logo">GHOST://CHANNEL</div>
+        <ul class="nav-links">
+            <li><a href="main.html">HOME</a></li>
+            <li><a href="about.html">ABOUT ME</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="about-card">
+            <h1>ABOUT ME</h1>
+            
+            <div class="profile">
+                <div class="avatar">👤</div>
+                <div class="info">
+                    <h2>SHADOW 玉元一</h2>
+                    <p>一个沉浸在暗黑美学中的创作者<br>
+                    摇滚乐爱好者 | 角色卡设计师 | 主题美化师</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>关于这个空间</h3>
+                <p>GHOST CHANNEL 是我的个人创作展示空间，这里收录了我所有的作品和创意。从角色卡设计到主题美化，从预设分享到插件开发，这里是我表达自我的地方。</p>
+            </div>
+
+            <div class="section">
+                <h3>我的创作领域</h3>
+                <ul>
+                    <li>角色卡设计 - 独特的人物设定与故事</li>
+                    <li>主题美化 - 暗黑风格的视觉设计</li>
+                    <li>预设分享 - 精心调校的配置方案</li>
+                    <li>插件开发 - 实用的功能扩展</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>设计理念</h3>
+                <p>我追求暗黑、神秘、带有一丝摇滚叛逆感的美学风格。每一个作品都融入了我对音乐、艺术和亚文化的理解。这不仅仅是设计，更是一种态度的表达。</p>
+            </div>
+
+            <div class="section">
+                <h3>联系方式</h3>
+                <p>如果你对我的作品感兴趣，或者想要交流合作，欢迎通过以下方式联系我：</p>
+                <ul>
+                    <li>GitHub: [你的GitHub用户名]</li>
+                    <li>Email: [你的邮箱]</li>
+                    <li>其他社交平台: [待补充]</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const spotlight = document.getElementById('spotlight');
+        document.addEventListener('mousemove', (e) => {
+            spotlight.style.left = (e.clientX - 150) + 'px';
+            spotlight.style.top = (e.clientY - 150) + 'px';
+        });
+
+        const ghost = document.getElementById('ghostFollower');
+        document.addEventListener('mousemove', (e) => {
+            ghost.style.left = (e.clientX - 15) + 'px';
+        });
+    </script>
+</body>
+</html>
