@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 NOT FOUND - Ghost Channel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #030000;
+            --grid-color: rgba(255, 0, 60, 0.2);
+            --tv-border: #1a1a1a;
+            --blood-red: #ff003c;
+            --dark-red: #480415;
+            --pure-black: #000000;
+            --pure-white: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            overflow: hidden;
+            font-family: 'Press Start 2P', monospace;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ==================== 哥特网格背景 ==================== */
+        .cyber-grid {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(var(--grid-color) 2px, transparent 2px),
+                linear-gradient(90deg, var(--grid-color) 2px, transparent 2px);
+            background-size: 50px 50px;
+            transform: perspective(600px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+            animation: gridMove 4s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: perspective(600px) rotateX(60deg) translateY(0) translateZ(-200px);
+            }
+            100% {
+                transform: perspective(600px) rotateX(60deg) translateY(50px) translateZ(-200px);
+            }
+        }
+
+        /* 暗角 */
+        .vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, transparent 30%, #000000 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* ==================== 老式电视机 ==================== */
+        .tv-set {
+            position: relative;
+            width: 0px;
+            height: 0px;
+            background: var(--pure-black);
+            border: 0px solid var(--tv-border);
+            border-radius: 20px;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(255, 0, 60, 0.5);
+            animation: 
+                tvTurnOn 1.5s 0.5s cubic-bezier(0.8, 0, 0.2, 1) forwards,
+                tvZoomIn 2s 2.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+        }
+
+        /* CRT 扫描线 */
+        .tv-set::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @keyframes tvTurnOn {
+            0% {
+                width: 0px;
+                height: 2px;
+                border-width: 0;
+                background: var(--pure-white);
+                box-shadow: 0 0 100px #fff;
+            }
+            50% {
+                width: 300px;
+                height: 2px;
+                border-width: 5px;
+                background: var(--pure-white);
+                box-shadow: 0 0 50px #fff;
+            }
+            100% {
+                width: 320px;
+                height: 240px;
+                border-width: 20px;
+                background: #0a0505;
+                box-shadow: 0 0 30px var(--blood-red);
+            }
+        }
+
+        @keyframes tvZoomIn {
+            0% {
+                width: 320px;
+                height: 240px;
+                border-width: 20px;
+                border-radius: 20px;
+            }
+            100% {
+                width: 100vw;
+                height: 100vh;
+                border-width: 0px;
+                border-radius: 0px;
+            }
+        }
+
+        /* ==================== 像素画剧场 ==================== */
+        .story-stage {
+            position: absolute;
+            width: 320px;
+            height: 240px;
+            opacity: 0;
+            animation: stageReveal 0.1s 1.5s forwards;
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 50px;
+            transform-origin: center;
+        }
+
+        @keyframes stageReveal {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* 地板线 */
+        .floor {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--dark-red);
+        }
+
+        /* 小幽灵（纯 CSS 像素画） */
+        .pixel-ghost {
+            position: absolute;
+            left: -50px;
+            bottom: 42px;
+            width: 4px;
+            height: 4px;
+            background: transparent;
+            box-shadow:
+                8px -28px #fff, 12px -28px #fff, 16px -28px #fff, 20px -28px #fff,
+                4px -24px #fff, 8px -24px #fff, 12px -24px #fff, 16px -24px #fff, 20px -24px #fff, 24px -24px #fff,
+                0px -20px #fff, 4px -20px #fff, 8px -20px var(--blood-red), 12px -20px #fff, 16px -20px #fff, 20px -20px var(--blood-red), 24px -20px #fff, 28px -20px #fff,
+                0px -16px #fff, 4px -16px #fff, 8px -16px #fff, 12px -16px #fff, 16px -16px #fff, 20px -16px #fff, 24px -16px #fff, 28px -16px #fff,
+                0px -12px #fff, 4px -12px #fff, 8px -12px #fff, 12px -12px #fff, 16px -12px #fff, 20px -12px #fff, 24px -12px #fff, 28px -12px #fff,
+                0px -8px #fff, 4px -8px #fff, 12px -8px #fff, 16px -8px #fff, 24px -8px #fff, 28px -8px #fff,
+                0px -4px #fff, 8px -4px #fff, 20px -4px #fff, 28px -4px #fff;
+            animation: ghostWalk 2s 4.5s steps(10) forwards, ghostFloat 1s 6.5s infinite alternate;
+        }
+
+        /* 小恶魔 */
+        .pixel-demon {
+            position: absolute;
+            right: 60px;
+            bottom: 42px;
+            width: 4px;
+            height: 4px;
+            background: transparent;
+            box-shadow:
+                4px -24px var(--blood-red), 20px -24px var(--blood-red),
+                4px -20px var(--blood-red), 8px -20px var(--dark-red), 16px -20px var(--dark-red), 20px -20px var(--blood-red),
+                0px -16px var(--dark-red), 4px -16px var(--dark-red), 8px -16px var(--dark-red), 12px -16px var(--dark-red), 16px -16px var(--dark-red), 20px -16px var(--dark-red), 24px -16px var(--dark-red),
+                0px -12px var(--dark-red), 4px -12px var(--pure-black), 8px -12px var(--dark-red), 12px -12px var(--dark-red), 16px -12px var(--dark-red), 20px -12px var(--pure-black), 24px -12px var(--dark-red),
+                0px -8px var(--dark-red), 4px -8px var(--dark-red), 8px -8px var(--dark-red), 12px -8px var(--dark-red), 16px -8px var(--dark-red), 20px -8px var(--dark-red), 24px -8px var(--dark-red),
+                4px -4px var(--dark-red), 8px -4px var(--dark-red), 12px -4px var(--dark-red), 16px -4px var(--dark-red), 20px -4px var(--dark-red);
+            animation: demonReject 1s 8.5s forwards;
+        }
+
+        /* 情书 */
+        .pixel-letter {
+            position: absolute;
+            left: 110px;
+            bottom: 55px;
+            width: 3px;
+            height: 3px;
+            background: transparent;
+            opacity: 0;
+            box-shadow:
+                0 0 #fff, 3px 0 #fff, 6px 0 #fff, 9px 0 #fff, 12px 0 #fff,
+                0 -3px #fff, 3px -3px #fff, 6px -3px var(--blood-red), 9px -3px #fff, 12px -3px #fff,
+                0 -6px #fff, 3px -6px #fff, 6px -6px #fff, 9px -6px #fff, 12px -6px #fff;
+            animation: letterShow 0.5s 7s forwards, letterDrop 0.5s 9.5s forwards;
+        }
+
+        /* 动画关键帧 */
+        @keyframes ghostWalk {
+            to {
+                left: 80px;
+            }
+        }
+
+        @keyframes ghostFloat {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-3px);
+            }
+        }
+
+        @keyframes letterShow {
+            to {
+                opacity: 1;
+                left: 120px;
+            }
+        }
+
+        @keyframes demonReject {
+            0% {
+                transform: scaleX(1) translateX(0);
+            }
+            50% {
+                transform: scaleX(-1) translateX(10px);
+                filter: grayscale(100%) brightness(0.3);
+            }
+            100% {
+                transform: scaleX(-1) translateX(30px);
+                filter: grayscale(100%) brightness(0.2);
+            }
+        }
+
+        @keyframes letterDrop {
+            0% {
+                bottom: 55px;
+                transform: rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                bottom: 42px;
+                transform: rotate(45deg);
+                opacity: 0.5;
+                filter: grayscale(100%);
+            }
+        }
+
+        /* ==================== 黑暗降临 ==================== */
+        .blackout {
+            position: absolute;
+            inset: 0;
+            background: var(--pure-black);
+            z-index: 20;
+            opacity: 0;
+            pointer-events: none;
+            animation: worldDark 1s 10.5s forwards;
+        }
+
+        @keyframes worldDark {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ==================== 404 文字 ==================== */
+        .text-404-container {
+            position: absolute;
+            z-index: 30;
+            opacity: 0;
+            animation: textAppear 0.5s 11.5s forwards;
+            pointer-events: auto;
+            text-align: center;
+        }
+
+        .text-404 {
+            font-size: clamp(32px, 6vw, 80px);
+            color: var(--blood-red);
+            text-shadow: 4px 4px 0px var(--dark-red);
+            letter-spacing: 5px;
+            position: relative;
+            mix-blend-mode: difference;
+        }
+
+        /* 故障效果 */
+        .text-404::before,
+        .text-404::after {
+            content: "404 NOT FOUND";
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.8;
+            mix-blend-mode: difference;
+        }
+
+        .text-404::before {
+            color: #0ff;
+            z-index: -1;
+            animation: glitch-anim 3s 12s infinite alternate-reverse;
+        }
+
+        .text-404::after {
+            color: #f0f;
+            z-index: -2;
+            animation: glitch-anim 2s 12s infinite alternate-reverse;
+        }
+
+        @keyframes textAppear {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        .sub-text {
+            color: var(--pure-white);
+            margin-top: 20px;
+            font-size: clamp(10px, 1.5vw, 16px);
+            opacity: 0.5;
+            mix-blend-mode: difference;
+        }
+
+        /* 返回按钮 */
+        .back-btn {
+            margin-top: 40px;
+            padding: 12px 24px;
+            background: transparent;
+            border: 2px solid var(--blood-red);
+            color: var(--blood-red);
+            font-family: 'Press Start 2P', monospace;
+            font-size: clamp(8px, 1vw, 12px);
+            cursor: none;
+            transition: all 0.3s;
+            mix-blend-mode: difference;
+            opacity: 0;
+            animation: btnAppear 0.5s 12.5s forwards;
+        }
+
+        @keyframes btnAppear {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .back-btn:hover {
+            background: var(--blood-red);
+            color: var(--pure-black);
+            box-shadow: 0 0 20px var(--blood-red);
+            transform: scale(1.05);
+        }
+
+        /* ==================== 自定义光标 ==================== */
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--pure-white);
+            border: 2px solid #0ff;
+            mix-blend-mode: difference;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+            clip-path: polygon(
+                40% 0, 60% 0, 60% 40%, 100% 40%, 100% 60%, 
+                60% 60%, 60% 100%, 40% 100%, 40% 60%, 
+                0 60%, 0 40%, 40% 40%
+            );
+        }
+
+        body.hover-active .custom-cursor {
+            width: 80px;
+            height: 80px;
+            clip-path: circle(50% at 50% 50%);
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .cyber-grid {
+                background-size: 30px 30px;
+            }
+
+            .text-404 {
+                letter-spacing: 2px;
+            }
+
+            .back-btn {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 哥特网格背景 -->
+    <div class="cyber-grid"></div>
+    <div class="vignette"></div>
+
+    <!-- 复古电视与动画剧场 -->
+    <div class="tv-set">
+        <div class="story-stage">
+            <div class="floor"></div>
+            <div class="pixel-ghost"></div>
+            <div class="pixel-letter"></div>
+            <div class="pixel-demon"></div>
+        </div>
+    </div>
+
+    <!-- 黑暗降临 -->
+    <div class="blackout"></div>
+
+    <!-- 404 文字 -->
+    <div class="text-404-container" id="text-box">
+        <h1 class="text-404">404 NOT FOUND</h1>
+        <p class="sub-text">THE SIGNAL WAS REJECTED.</p>
+        <button class="back-btn" id="backBtn" onclick="goHome()">
+            [ RETURN TO CHANNEL ]
+        </button>
+    </div>
+
+    <!-- 自定义反色光标 -->
+    <div class="custom-cursor" id="cursor"></div>
+
+    <script>
+        // 光标跟随
+        const cursor = document.getElementById('cursor');
+        const textBox = document.getElementById('text-box');
+        const backBtn = document.getElementById('backBtn');
+
+        document.addEventListener('mousemove', (e) => {
+            requestAnimationFrame(() => {
+                cursor.style.left = `${e.clientX}px`;
+                cursor.style.top = `${e.clientY}px`;
+            });
+        });
+
+        // 悬停交互
+        textBox.addEventListener('mouseenter', () => {
+            document.body.classList.add('hover-active');
+        });
+
+        textBox.addEventListener('mouseleave', () => {
+            document.body.classList.remove('hover-active');
+        });
+
+        backBtn.addEventListener('mouseenter', () => {
+            document.body.classList.add('hover-active');
+        });
+
+        backBtn.addEventListener('mouseleave', () => {
+            document.body.classList.remove('hover-active');
+        });
+
+        // 返回主页
+        function goHome() {
+            // 淡出效果
+            document.body.style.transition = 'opacity 0.5s';
+            document.body.style.opacity = '0';
+            
+            setTimeout(() => {
+                // 根据你的项目结构调整路径
+                // 如果 404.html 在根目录，用 'home.html'
+                // 如果在 pages 文件夹，用 '../home.html'
+                window.location.href = 'home.html';
+            }, 500);
+        }
+
+        // 键盘快捷键：按 ESC 返回
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                goHome();
+            }
+        });
+
+        // 移动端触摸支持（没有光标）
+        if ('ontouchstart' in window) {
+            cursor.style.display = 'none';
+            document.body.style.cursor = 'auto';
+        }
+    </script>
+</body>
+</html>
