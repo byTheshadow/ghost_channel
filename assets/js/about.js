@@ -87,10 +87,6 @@ const promptSection = document.getElementById('promptSection');
 const responseSection = document.getElementById('responseSection');
 const typewriterOutput = document.getElementById('typewriterOutput');
 const backBtn = document.getElementById('backBtn');
-const skipBtn = document.getElementById('skipBtn');
-
-let isTyping = false;
-let typewriterTimeout = null;
 
 // About Me 内容
 const aboutContent = `
@@ -138,10 +134,7 @@ function startAnalysis() {
         promptSection.style.display = 'none';
         responseSection.style.display = 'block';
         startTypewriter();
-        setTimeout(() => {
-            responseSection.classList.add('visible');
-            skipBtn.classList.add('visible');
-        }, 50);
+        setTimeout(() => responseSection.classList.add('visible'), 50);
     }, 500);
 }
 
@@ -149,12 +142,11 @@ function startAnalysis() {
 function startTypewriter() {
     let charIndex = 0;
     let currentHtml = '';
-    isTyping = true;
     
     typewriterOutput.innerHTML = '';
     
     const type = () => {
-        if (charIndex < aboutContent.length && isTyping) {
+        if (charIndex < aboutContent.length) {
             const char = aboutContent[charIndex];
             
             // 处理HTML标签
@@ -169,36 +161,18 @@ function startTypewriter() {
             typewriterOutput.innerHTML = currentHtml + '<span class="typewriter-cursor"></span>';
             
             charIndex++;
-            typewriterTimeout = setTimeout(type, 18); // 打字速度
+            setTimeout(type, 18); // 打字速度
         } else {
-            // 打字完成
-            isTyping = false;
             typewriterOutput.innerHTML = currentHtml;
-            skipBtn.classList.remove('visible'); // 隐藏SKIP按钮
         }
     };
     
     type();
 }
 
-// SKIP按钮 - 立即显示全部内容
-skipBtn.addEventListener('click', () => {
-    if (isTyping) {
-        isTyping = false;
-        clearTimeout(typewriterTimeout);
-        typewriterOutput.innerHTML = aboutContent;
-        skipBtn.classList.remove('visible');
-    }
-});
-
 // 返回按钮
 backBtn.addEventListener('click', () => {
-    // 停止打字机
-    isTyping = false;
-    clearTimeout(typewriterTimeout);
-    
     responseSection.classList.remove('visible');
-    skipBtn.classList.remove('visible');
     
     setTimeout(() => {
         responseSection.style.display = 'none';
@@ -207,4 +181,5 @@ backBtn.addEventListener('click', () => {
         typewriterOutput.innerHTML = ''; // 清空内容
     }, 600);
 });
+
 
