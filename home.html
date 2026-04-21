@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Risque&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/home.css">
 </head>
@@ -16,44 +16,74 @@
     <div class="crt-overlay"></div>
     <div class="vignette"></div>
 
-    <!-- 代码矩阵背景 -->
+    <!-- ★ 导航栏 -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <span class="nav-ghost-icon"></span>
+            <span class="nav-title">GHOST_CHANNEL</span>
+        </div>
+        <div class="nav-links">
+            <a href="home.html" class="nav-link active" data-text="HOME">HOME</a>
+            <a href="pages/about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="pages/characters.html" class="nav-link" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="pages/gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="pages/presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="pages/plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="pages/links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- 移动端侧边菜单 -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="home.html" class="mobile-link active">HOME</a>
+        <a href="pages/about.html" class="mobile-link">ABOUT</a>
+        <a href="pages/characters.html" class="mobile-link">CHARACTERS</a>
+        <a href="pages/gallery.html" class="mobile-link">GALLERY</a>
+        <a href="pages/presets.html" class="mobile-link">PRESETS</a>
+        <a href="pages/plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="pages/links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <!-- ★ 代码矩阵背景（铺满全屏，初始即可见） -->
     <div id="matrix-bg"></div>
 
     <!-- 主场景容器 -->
     <div class="scene" id="scene-container">
         <!-- 车票 -->
         <div class="ticket" id="main-ticket">
-            <!-- 左侧：音波动画区 -->
             <div class="ticket-half left-half">
                 <canvas id="waveCanvas" width="280" height="320"></canvas>
             </div>
-            
-            <!-- 右侧：车票信息 -->
             <div class="ticket-half right-half">
                 <div class="ticket-header">
                     <h1 class="gothic-title">GHOST CHANNEL</h1>
-                    <p class="ticket-id">TICKET #404</p>
+                    <p class="ticket-id">TICKET #<span id="ticketNum">404</span></p>
                 </div>
-                
                 <div class="ticket-info">
                     <div class="info-row">
-                        <span class="label">FROM:</span>
-                        <span class="value" id="randomFrom">SOMEWHERE</span>
+                        <span class="label">FROM</span>
+                        <span class="value" id="randomFrom">REALITY</span>
                     </div>
                     <div class="info-row">
-                        <span class="label">TO:</span>
+                        <span class="label">TO</span>
                         <span class="value glow-text">THE MIDDLE OF NOWHERE</span>
                     </div>
                     <div class="info-row">
-                        <span class="label">DATE:</span>
-                        <span class="value" id="currentDate">2024.XX.XX</span>
+                        <span class="label">DATE</span>
+                        <span class="value" id="currentDate">----.--.--</span>
                     </div>
                     <div class="info-row">
-                        <span class="label">STATUS:</span>
-                        <span class="value status-blink">VALID</span>
+                        <span class="label">PASSENGER</span>
+                        <span class="value">YOU (maybe)</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">STATUS</span>
+                        <span class="value status-blink">ONE WAY</span>
                     </div>
                 </div>
-
                 <div class="ticket-footer">
                     <p class="hint">[ CLICK TO TEAR ]</p>
                     <p class="sub-hint">no refunds · no returns · no escape</p>
@@ -64,18 +94,13 @@
         <!-- 打印机 -->
         <div class="printer-machine" id="printer">
             <div class="printer-body">
-                <!-- 打印机顶部装饰 -->
                 <div class="printer-top">
                     <div class="led-indicator" id="printer-led"></div>
                     <div class="brand-label">GHOST PRINT v1.0</div>
                 </div>
-                
-                <!-- 打印机主体 -->
                 <div class="printer-main">
                     <div class="printer-slot"></div>
                 </div>
-                
-                <!-- 出纸口 -->
                 <div class="paper-output">
                     <div class="thermal-paper" id="paper">
                         <div class="paper-content">
