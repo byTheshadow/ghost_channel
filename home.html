@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - Main</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+</head>
+<body>
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!-- 代码矩阵背景 -->
+    <div id="matrix-bg"></div>
+
+    <!-- 主场景容器 -->
+    <div class="scene" id="scene-container">
+        <!-- 车票 -->
+        <div class="ticket" id="main-ticket">
+            <!-- 左侧：音波动画区 -->
+            <div class="ticket-half left-half">
+                <canvas id="waveCanvas" width="280" height="320"></canvas>
+            </div>
+            
+            <!-- 右侧：车票信息 -->
+            <div class="ticket-half right-half">
+                <div class="ticket-header">
+                    <h1 class="gothic-title">GHOST CHANNEL</h1>
+                    <p class="ticket-id">TICKET #404</p>
+                </div>
+                
+                <div class="ticket-info">
+                    <div class="info-row">
+                        <span class="label">FROM:</span>
+                        <span class="value" id="randomFrom">SOMEWHERE</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">TO:</span>
+                        <span class="value glow-text">THE MIDDLE OF NOWHERE</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">DATE:</span>
+                        <span class="value" id="currentDate">2024.XX.XX</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">STATUS:</span>
+                        <span class="value status-blink">VALID</span>
+                    </div>
+                </div>
+
+                <div class="ticket-footer">
+                    <p class="hint">[ CLICK TO TEAR ]</p>
+                    <p class="sub-hint">no refunds · no returns · no escape</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 打印机 -->
+        <div class="printer-machine" id="printer">
+            <div class="printer-body">
+                <!-- 打印机顶部装饰 -->
+                <div class="printer-top">
+                    <div class="led-indicator" id="printer-led"></div>
+                    <div class="brand-label">GHOST PRINT v1.0</div>
+                </div>
+                
+                <!-- 打印机主体 -->
+                <div class="printer-main">
+                    <div class="printer-slot"></div>
+                </div>
+                
+                <!-- 出纸口 -->
+                <div class="paper-output">
+                    <div class="thermal-paper" id="paper">
+                        <div class="paper-content">
+                            <pre id="printContent"></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/home.js"></script>
+</body>
+</html>
