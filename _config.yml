@@ -1,0 +1,7 @@
+# GitHub Pages 配置
+title: Ghost Channel
+description: The middle of nowhere
+theme: jekyll-theme-minimal
+
+# 自定义 404 页面
+permalink: pretty
