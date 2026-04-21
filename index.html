@@ -3,285 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ghost_channel</title>
-
-    <!-- 中文字体 -->
+    <title>Ghost Channel - Loading...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-        @import url("https://fontsapi.zeoseven.com/689/main/result.css");
-        @import url("https://fontsapi.zeoseven.com/914/main/result.css");
-        @import url("https://fontsapi.zeoseven.com/44/main/result.css");
-        @import url("https://fontsapi.zeoseven.com/993/main/result.css");
+        :root {
+            --bg-color: #140f17;
+            --red-main: #730c1e;
+            --red-dark: #210207;
+            --white: #f0f0f0;
+            --font-pixel: 'Press Start 2P', cursive;
+            
+            /* 经典吃豆人幽灵 - 帧1 (外侧触手朝下) */
+            --ghost-run-f1: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><path d="M4 0h6v1h2v1h1v1h1v8h-1v1h-2v1h-2v-1h-2v1h-2v-1h-2v1H2v-1H0v-8h1V2h1V1h2V0z" fill="%23730c1e"/><path d="M2 3h3v5H2zM8 3h3v5H8z" fill="white"/><path d="M4 5h2v2H4zM10 5h2v2H10z" fill="%23140f17"/></svg>');
+            /* 经典吃豆人幽灵 - 帧2 (内侧触手朝下) */
+            --ghost-run-f2: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><path d="M4 0h6v1h2v1h1v1h1v8h-2v1h-2v1h-2v-1h-2v1h-2v-1h-2v1H0v-9h1V2h1V1h2V0z" fill="%23730c1e"/><path d="M2 3h3v5H2zM8 3h3v5H8z" fill="white"/><path d="M4 5h2v2H4zM10 5h2v2H10z" fill="%23140f17"/></svg>');
+            
+            /* 迎宾幽灵 - 帧1 (带小手，正视前方) */
+            --ghost-welcome-f1: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 14"><path d="M6 0h6v1h2v1h1v1h1v8h-1v1h-2v1h-2v-1h-2v1h-2v-1h-2v1H4v-1H2v-8h1V2h1V1h2V0z M0 6h2v2H0zM16 6h2v2H16z" fill="%23730c1e"/><path d="M4 3h3v5H4zM11 3h3v5H11z" fill="white"/><path d="M5 5h1v2H5zM12 5h1v2H12z" fill="%23140f17"/></svg>');
+            /* 迎宾幽灵 - 帧2 (手举起挥动) */
+            --ghost-welcome-f2: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 14"><path d="M6 0h6v1h2v1h1v1h1v8h-2v1h-2v1h-2v-1h-2v1h-2v-1h-2v1H2v-9h1V2h1V1h2V0z M0 4h2v2H0zM16 4h2v2H16z" fill="%23730c1e"/><path d="M4 3h3v5H4zM11 3h3v5H11z" fill="white"/><path d="M5 5h1v2H5zM12 5h1v2H12z" fill="%23140f17"/></svg>');
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body, html {
+            width: 100%; height: 100%;
+            background-color: var(--bg-color);
+            overflow: hidden;
+            font-family: var(--font-pixel);
+            color: var(--white);
+        }
+
+        /* --- CRT扫描线与屏幕暗角 --- */
+        .crt-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none; z-index: 999;
+        }
+        .vignette {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, transparent 50%, #000 120%);
+            pointer-events: none; z-index: 998;
+        }
+
+        /* --- SKIP 按钮 --- */
+        .skip-btn {
+            position: absolute; top: 20px; right: 20px; z-index: 1000;
+            padding: 10px 15px; background: transparent; 
+            border: 2px solid var(--red-main); color: var(--red-main); 
+            font-family: var(--font-pixel); font-size: 12px;
+            cursor: pointer; text-transform: uppercase; transition: all 0.2s;
+        }
+        .skip-btn:hover {
+            background: var(--red-main); color: var(--bg-color);
+            box-shadow: 0 0 15px var(--red-main);
+        }
+
+        /* ================= 阶段 1 & 2 (0-6s) ================= */
+        .scene-1 {
+            position: absolute; width: 100%; height: 100%;
+            animation: hide-scene 0s linear 6s forwards;
+        }
+        @keyframes hide-scene { to { display: none; opacity: 0; visibility: hidden; } }
+
+        .grid {
+            position: absolute; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(var(--red-dark) 1px, transparent 1px),
+                linear-gradient(90deg, var(--red-dark) 1px, transparent 1px);
+            background-size: 40px 40px; opacity: 0;
+            animation: grid-fade 3s ease-in forwards;
+        }
+        @keyframes grid-fade { to { opacity: 0.4; } }
+
+        /* 纯正像素豆豆 */
+        .pellet {
+            position: absolute; top: 50%; width: 10px; height: 10px;
+            background: var(--white); transform: translateY(-50%);
+            box-shadow: 0 0 10px rgba(255,255,255,0.8);
+            animation: pellet-eat 0.1s forwards;
+        }
+        @keyframes pellet-eat { to { opacity: 0; transform: translateY(-50%) scale(0); } }
+
+        /* 跑动幽灵：包含触手蠕动动画 */
+        .ghost-runner {
+            position: absolute; top: 50%; left: -15vw;
+            width: 80px; height: 80px; transform: translateY(-50%);
+            background-image: var(--ghost-run-f1);
+            background-size: contain; background-repeat: no-repeat;
+            image-rendering: pixelated;
+            animation: 
+                ghost-move 6s linear forwards,
+                ghost-chomp 0.3s steps(1) infinite;
+        }
+        @keyframes ghost-move { 100% { left: 110vw; } }
+        @keyframes ghost-chomp {
+            0%, 100% { background-image: var(--ghost-run-f1); }
+            50% { background-image: var(--ghost-run-f2); }
+        }
+
+        /* ================= 阶段 3 (6-8s) 崩坏 ================= */
+        .scene-2 {
+            position: absolute; width: 100%; height: 100%;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden;
+            animation: show-scene-2 2s linear 6s forwards;
+        }
+        .error-text {
+            font-size: 48px; color: var(--red-main);
+            text-shadow: 4px 4px 0px var(--red-dark);
+            animation: glitch 0.2s infinite;
+        }
+        @keyframes show-scene-2 {
+            0% { opacity: 1; visibility: visible; background: var(--white); }
+            5% { background: transparent; }
+            95% { opacity: 1; visibility: visible; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+        @keyframes glitch {
+            0% { transform: translate(0) }
+            20% { transform: translate(-4px, 4px) }
+            40% { transform: translate(-4px, -4px) }
+            60% { transform: translate(4px, 4px) }
+            80% { transform: translate(4px, -4px) }
+            100% { transform: translate(0) }
+        }
+
+        /* ================= 阶段 4 & 5 (8-13s) 气泡与迎宾 ================= */
+        .scene-3 {
+            position: absolute; width: 100%; height: 100%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden;
+            animation: show-scene-3 5s linear 8s forwards;
+        }
+        @keyframes show-scene-3 { 0%, 100% { opacity: 1; visibility: visible; } }
+
+        .pixel-bubble {
+            position: absolute; padding: 20px 30px;
+            background: var(--bg-color); border: 4px solid var(--white);
+            color: var(--white); font-size: 14px; line-height: 1.5;
+            box-shadow: 8px 8px 0px var(--red-dark); text-align: center;
+        }
+        .pixel-bubble::after {
+            content: ''; position: absolute; bottom: -16px; left: 50%;
+            transform: translateX(-50%); width: 16px; height: 16px; 
+            background: var(--bg-color);
+            border-right: 4px solid var(--white); border-bottom: 4px solid var(--white);
+        }
+
+        /* 气泡1 */
+        .bubble-1 {
+            opacity: 0; transform: scale(0);
+            animation: 
+                bubble-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 8s forwards,
+                bubble-shake 1.5s ease-in-out 8.5s forwards,
+                bubble-shatter 0.2s linear 10s forwards;
+        }
+        @keyframes bubble-pop { to { opacity: 1; transform: scale(1); } }
+        @keyframes bubble-shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px) rotate(-2deg); }
+            20%, 40%, 60%, 80% { transform: translateX(5px) rotate(2deg); }
+        }
+        @keyframes bubble-shatter {
+            to { opacity: 0; transform: scale(1.2) translateY(-20px); filter: blur(5px); }
+        }
+
+        /* 气泡2 */
+        .bubble-2 {
+            top: 25%; opacity: 0;
+            border-color: var(--red-main); color: var(--red-main);
+            box-shadow: 8px 8px 0px var(--red-dark);
+            animation: bubble-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 10.2s forwards;
+        }
+        .bubble-2 .sub-text {
+            display: block; margin-top: 15px; font-size: 10px; color: var(--white); opacity: 0.7;
+        }
+        .bubble-2::after { border-color: var(--red-main); }
+
+        /* 迎宾幽灵：带有挥手和弹跳动画 */
+        .ghost-welcomer {
+            position: absolute; top: 50%;
+            width: 100px; height: 100px;
+            background-image: var(--ghost-welcome-f1);
+            background-size: contain; background-repeat: no-repeat;
+            image-rendering: pixelated; opacity: 0;
+            animation: 
+                welcome-appear 0.5s ease-out 10.5s forwards,
+                ghost-wave 0.6s steps(1) infinite 10.5s;
+        }
+        @keyframes welcome-appear {
+            0% { opacity: 0; transform: translateY(50px) scale(0.5); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes ghost-wave {
+            0%, 100% { background-image: var(--ghost-welcome-f1); transform: translateY(0); }
+            50% { background-image: var(--ghost-welcome-f2); transform: translateY(-10px); }
+        }
+
+        /* 最终过渡 */
+        .final-transition {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-color); opacity: 0; visibility: hidden;
+            z-index: 9999; pointer-events: none;
+            animation: final-fade 1s ease-in 13s forwards;
+        }
+        @keyframes final-fade {
+            0% { opacity: 0; visibility: visible; pointer-events: all; }
+            100% { opacity: 1; visibility: visible; pointer-events: all; }
+        }
     </style>
-
-    <!-- 英文字体 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Risque&family=Underdog&family=UnifrakturCook:wght@700&family=Manufacturing+Consent&family=Press+Start+2P&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="assets/css/global.css">
-    <link rel="stylesheet" href="assets/css/animations.css">
-    <link rel="stylesheet" href="assets/css/components.css">
 </head>
 <body>
 
-    <!-- ==================== 噪点叠加层 ==================== -->
-    <div class="noise-overlay" aria-hidden="true"></div>
-    <!-- 扫描线 -->
-    <div class="scanlines" aria-hidden="true"></div>
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+    <button class="skip-btn" onclick="skipIntro()">Skip >></button>
 
-    <!-- ==================== 开屏动画层 ==================== -->
-    <div id="intro-screen">
-        <!-- SKIP按钮 -->
-        <button id="skip-btn" onclick="skipIntro()">[ SKIP ]</button>
-
-        <!-- 8bit网格背景 -->
-        <canvas id="grid-canvas"></canvas>
-
-        <!-- 幽灵场景 -->
-        <div id="ghost-scene">
-            <!-- 幽灵 -->
-            <div id="ghost">
-                <svg viewBox="0 0 32 36" width="64" height="72" class="ghost-svg">
-                    <!-- 幽灵身体 -->
-                    <rect x="10" y="2" width="12" height="2" fill="currentColor"/>
-                    <rect x="8" y="4" width="2" height="2" fill="currentColor"/>
-                    <rect x="22" y="4" width="2" height="2" fill="currentColor"/>
-                    <rect x="6" y="6" width="2" height="2" fill="currentColor"/>
-                    <rect x="24" y="6" width="2" height="2" fill="currentColor"/>
-                    <rect x="4" y="8" width="2" height="2" fill="currentColor"/>
-                    <rect x="26" y="8" width="2" height="2" fill="currentColor"/>
-                    <rect x="4" y="10" width="24" height="2" fill="currentColor"/>
-                    <rect x="4" y="12" width="24" height="2" fill="currentColor"/>
-                    <!-- 眼睛 -->
-                    <rect x="10" y="10" width="4" height="4" fill="#140f17"/>
-                    <rect x="18" y="10" width="4" height="4" fill="#140f17"/>
-                    <rect x="12" y="12" width="2" height="2" fill="#fff"/>
-                    <rect x="20" y="12" width="2" height="2" fill="#fff"/>
-                    <!-- 身体延续 -->
-                    <rect x="4" y="14" width="24" height="2" fill="currentColor"/>
-                    <rect x="4" y="16" width="24" height="2" fill="currentColor"/>
-                    <rect x="4" y="18" width="24" height="2" fill="currentColor"/>
-                    <rect x="4" y="20" width="24" height="2" fill="currentColor"/>
-                    <rect x="4" y="22" width="24" height="2" fill="currentColor"/>
-                    <rect x="4" y="24" width="24" height="2" fill="currentColor"/>
-                    <rect x="4" y="26" width="24" height="2" fill="currentColor"/>
-                    <!-- 底部波浪 -->
-                    <rect x="4" y="28" width="4" height="2" fill="currentColor"/>
-                    <rect x="12" y="28" width="4" height="2" fill="currentColor"/>
-                    <rect x="20" y="28" width="4" height="2" fill="currentColor"/>
-                    <rect x="4" y="30" width="2" height="2" fill="currentColor"/>
-                    <rect x="14" y="30" width="2" height="2" fill="currentColor"/>
-                    <rect x="22" y="30" width="2" height="2" fill="currentColor"/>
-                </svg>
-            </div>
-
-            <!-- 豆豆 -->
-            <div id="dots-track">
-                <span class="pac-dot" style="--i:0"></span>
-                <span class="pac-dot" style="--i:1"></span>
-                <span class="pac-dot" style="--i:2"></span>
-                <span class="pac-dot" style="--i:3"></span>
-                <span class="pac-dot" style="--i:4"></span>
-                <span class="pac-dot" style="--i:5"></span>
-                <span class="pac-dot" style="--i:6"></span>
-                <span class="pac-dot" style="--i:7"></span>
-            </div>
-        </div>
-
-        <!-- 404 文字 -->
-        <div id="glitch-404" class="hidden">
-            <span data-text="404 NOT FOUND">404 NOT FOUND</span>
-        </div>
-
-        <!-- 气泡框 -->
-        <div id="bubble-1" class="speech-bubble hidden">
-            <span>wait... really?</span>
-        </div>
-        <div id="bubble-2" class="speech-bubble hidden">
-            <span>.....welcome to ghost_channel!!</span>
-        </div>
-
-        <!-- 幽灵欢迎动作 -->
-        <div id="ghost-welcome" class="hidden">
-            <svg viewBox="0 0 48 52" width="96" height="104" class="ghost-svg welcome-ghost">
-                <!-- 更大的幽灵 带手 -->
-                <rect x="16" y="2" width="16" height="2" fill="currentColor"/>
-                <rect x="12" y="4" width="4" height="2" fill="currentColor"/>
-                <rect x="32" y="4" width="4" height="2" fill="currentColor"/>
-                <rect x="10" y="6" width="2" height="2" fill="currentColor"/>
-                <rect x="36" y="6" width="2" height="2" fill="currentColor"/>
-                <rect x="8" y="8" width="2" height="2" fill="currentColor"/>
-                <rect x="38" y="8" width="2" height="2" fill="currentColor"/>
-                <rect x="8" y="10" width="32" height="2" fill="currentColor"/>
-                <rect x="8" y="12" width="32" height="2" fill="currentColor"/>
-                <!-- 眼睛 -->
-                <rect x="14" y="12" width="6" height="6" fill="#140f17"/>
-                <rect x="26" y="12" width="6" height="6" fill="#140f17"/>
-                <rect x="16" y="14" width="4" height="2" fill="#fff"/>
-                <rect x="28" y="14" width="4" height="2" fill="#fff"/>
-                <!-- 嘴巴（微笑） -->
-                <rect x="18" y="22" width="2" height="2" fill="#140f17"/>
-                <rect x="20" y="24" width="8" height="2" fill="#140f17"/>
-                <rect x="28" y="22" width="2" height="2" fill="#140f17"/>
-                <!-- 身体 -->
-                <rect x="8" y="14" width="32" height="2" fill="currentColor"/>
-                <rect x="8" y="16" width="32" height="2" fill="currentColor"/>
-                <rect x="8" y="18" width="32" height="2" fill="currentColor"/>
-                <rect x="8" y="20" width="32" height="2" fill="currentColor"/>
-                <rect x="8" y="22" width="10" height="2" fill="currentColor"/>
-                <rect x="30" y="22" width="10" height="2" fill="currentColor"/>
-                <rect x="8" y="24" width="12" height="2" fill="currentColor"/>
-                <rect x="28" y="24" width="12" height="2" fill="currentColor"/>
-                <rect x="8" y="26" width="32" height="2" fill="currentColor"/>
-                <rect x="8" y="28" width="32" height="2" fill="currentColor"/>
-                <rect x="8" y="30" width="32" height="2" fill="currentColor"/>
-                <rect x="8" y="32" width="32" height="2" fill="currentColor"/>
-                <rect x="8" y="34" width="32" height="2" fill="currentColor"/>
-                <rect x="8" y="36" width="32" height="2" fill="currentColor"/>
-                <!-- 底部波浪 -->
-                <rect x="8" y="38" width="6" height="2" fill="currentColor"/>
-                <rect x="18" y="38" width="6" height="2" fill="currentColor"/>
-                <rect x="28" y="38" width="6" height="2" fill="currentColor"/>
-                <!-- 左手挥动 -->
-                <rect x="2" y="16" width="6" height="2" fill="currentColor" class="ghost-hand-l"/>
-                <rect x="0" y="14" width="4" height="2" fill="currentColor" class="ghost-hand-l"/>
-                <!-- 右手挥动 -->
-                <rect x="40" y="16" width="6" height="2" fill="currentColor" class="ghost-hand-r"/>
-                <rect x="44" y="14" width="4" height="2" fill="currentColor" class="ghost-hand-r"/>
-            </svg>
-        </div>
+    <!-- 阶段 1 & 2 -->
+    <div class="scene-1">
+        <div class="grid"></div>
+        <div class="pellet" style="left: 20vw; animation-delay: 1.5s;"></div>
+        <div class="pellet" style="left: 40vw; animation-delay: 2.5s;"></div>
+        <div class="pellet" style="left: 60vw; animation-delay: 3.5s;"></div>
+        <div class="pellet" style="left: 80vw; animation-delay: 4.5s;"></div>
+        <div class="pellet" style="left: 100vw; animation-delay: 5.5s;"></div>
+        <div class="ghost-runner"></div>
     </div>
 
-    <!-- ==================== 主界面层 ==================== -->
-    <div id="main-screen" class="hidden">
-
-        <!-- 聚光灯跟随层 -->
-        <div id="spotlight"></div>
-
-        <!-- 乐谱背景 -->
-        <div id="music-bg" aria-hidden="true">
-            <svg id="staff-lines" width="100%" height="100%"></svg>
-            <!-- 漂浮音符 -->
-            <div class="floating-note" style="--x:10%;--y:20%;--delay:0s;--dur:6s">&#9835;</div>
-            <div class="floating-note" style="--x:80%;--y:15%;--delay:1s;--dur:7s">&#9833;</div>
-            <div class="floating-note" style="--x:25%;--y:70%;--delay:2s;--dur:5s">&#9834;</div>
-            <div class="floating-note" style="--x:65%;--y:60%;--delay:0.5s;--dur:8s">&#9835;</div>
-            <div class="floating-note" style="--x:45%;--y:85%;--delay:3s;--dur:6s">&#9833;</div>
-            <div class="floating-note" style="--x:90%;--y:40%;--delay:1.5s;--dur:7s">&#9834;</div>
-            <div class="floating-note" style="--x:5%;--y:50%;--delay:2.5s;--dur:5s">&#9835;</div>
-            <div class="floating-note" style="--x:70%;--y:80%;--delay:0.8s;--dur:9s">&#9839;</div>
-        </div>
-
-        <!-- 导航 -->
-        <nav id="main-nav">
-            <div class="nav-inner glass-panel">
-                <a href="#" class="nav-logo" data-text="G_C">G_C</a>
-                <div class="nav-links">
-                    <a href="pages/about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
-                    <a href="pages/characters.html" class="nav-link" data-text="CHARACTERS">CHARACTERS</a>
-                    <a href="pages/gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
-                    <a href="pages/presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
-                    <a href="pages/plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
-                    <a href="pages/links.html" class="nav-link" data-text="LINKS">LINKS</a>
-                </div>
-                <button id="nav-toggle" class="nav-hamburger" aria-label="Toggle menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </nav>
-
-        <!-- 打印机区域 -->
-        <main id="printer-section">
-            <div class="printer-wrapper">
-                <!-- 打印机机身 -->
-                <div class="printer-body">
-                    <div class="printer-top">
-                        <div class="printer-ridge"></div>
-                        <div class="printer-ridge"></div>
-                        <div class="printer-ridge"></div>
-                        <div class="printer-slot"></div>
-                        <div class="printer-led">
-                            <span class="led led-green blink"></span>
-                            <span class="led led-red"></span>
-                        </div>
-                    </div>
-                    <div class="printer-front">
-                        <div class="printer-output-slot"></div>
-                        <div class="printer-label">GHOST_CHANNEL <span class="label-model">MK-II</span></div>
-                    </div>
-                </div>
-
-                <!-- 打印输出的纸张 -->
-                <div class="paper-container">
-                    <div class="paper" id="printer-paper">
-                        <div class="paper-edge-holes">
-                            <span></span><span></span><span></span><span></span><span></span>
-                            <span></span><span></span><span></span><span></span><span></span>
-                            <span></span><span></span><span></span><span></span><span></span>
-                        </div>
-                        <div class="paper-content" id="paper-content">
-                            <!-- 打字机逐行填充 -->
-                        </div>
-                        <div class="paper-edge-holes right">
-                            <span></span><span></span><span></span><span></span><span></span>
-                            <span></span><span></span><span></span><span></span><span></span>
-                            <span></span><span></span><span></span><span></span><span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 左侧散落音符装饰 -->
-            <div class="deco-left">
-                <div class="deco-note">&#9835;</div>
-                <div class="deco-note">&#9834;</div>
-                <div class="deco-note">&#9833;</div>
-            </div>
-            <!-- 右侧乐谱片段 -->
-            <div class="deco-right">
-                <div class="sheet-scrap glass-panel">
-                    <div class="mini-staff">
-                        <span class="staff-line"></span>
-                        <span class="staff-line"></span>
-                        <span class="staff-line"></span>
-                        <span class="staff-line"></span>
-                        <span class="staff-line"></span>
-                        <span class="mini-note" style="left:15%;top:30%">&#9834;</span>
-                        <span class="mini-note" style="left:35%;top:50%">&#9835;</span>
-                        <span class="mini-note" style="left:55%;top:20%">&#9833;</span>
-                        <span class="mini-note" style="left:75%;top:60%">&#9834;</span>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <!-- 底部小幽灵 -->
-        <div id="footer-ghost">
-            <svg viewBox="0 0 32 36" width="28" height="32" class="ghost-svg mini">
-                <rect x="10" y="2" width="12" height="2" fill="currentColor"/>
-                <rect x="8" y="4" width="2" height="2" fill="currentColor"/>
-                <rect x="22" y="4" width="2" height="2" fill="currentColor"/>
-                <rect x="6" y="6" width="2" height="2" fill="currentColor"/>
-                <rect x="24" y="6" width="2" height="2" fill="currentColor"/>
-                <rect x="4" y="8" width="24" height="2" fill="currentColor"/>
-                <rect x="4" y="10" width="24" height="2" fill="currentColor"/>
-                <rect x="10" y="10" width="4" height="4" fill="#140f17"/>
-                <rect x="18" y="10" width="4" height="4" fill="#140f17"/>
-                <rect x="12" y="12" width="2" height="2" fill="#fff"/>
-                <rect x="20" y="12" width="2" height="2" fill="#fff"/>
-                <rect x="4" y="12" width="24" height="16" fill="currentColor"/>
-                <rect x="4" y="28" width="4" height="2" fill="currentColor"/>
-                <rect x="12" y="28" width="4" height="2" fill="currentColor"/>
-                <rect x="20" y="28" width="4" height="2" fill="currentColor"/>
-            </svg>
-            <span class="footer-text">ghost_channel © 2025 shadow玉元一</span>
-        </div>
+    <!-- 阶段 3: 404 崩坏 -->
+    <div class="scene-2">
+        <div class="error-text">404 NOT FOUND</div>
     </div>
 
-    <!-- ==================== Scripts ==================== -->
-    <script src="assets/js/intro.js"></script>
-    <script src="assets/js/spotlight.js"></script>
-    <script src="assets/js/printer.js"></script>
+    <!-- 阶段 4 & 5: 对话与欢迎 -->
+    <div class="scene-3">
+        <div class="pixel-bubble bubble-1">wait... really?</div>
+        <div class="pixel-bubble bubble-2">
+            .....welcome to ghost_channel!!
+            <span class="sub-text">The middle of no where</span>
+        </div>
+        <div class="ghost-welcomer"></div>
+    </div>
+
+    <!-- 最终过渡层 -->
+    <div class="final-transition"></div>
+
+    <script>
+        // 自动跳转到主页
+        setTimeout(() => {
+            window.location.href = 'home.html';
+        }, 14000);
+
+        // SKIP按钮功能
+        function skipIntro() {
+            window.location.href = 'home.html';
+        }
+    </script>
+
 </body>
 </html>
+
 
