@@ -180,4 +180,40 @@ body, html {
     opacity: 1;
     right: -210px;
 }
+/* ========== 幽灵图标样式 ========== */
+.ghost-icon,
+.nav-ghost-icon {
+    width: 28px;
+    height: 28px;
+    background-image: var(--ghost-welcome-f1);
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 8px #ff003c);
+    display: inline-block;
+    animation: ghost-idle 1s steps(2) infinite;
+}
+
+@keyframes ghost-idle {
+    0% { background-image: var(--ghost-welcome-f1); }
+    50% { background-image: var(--ghost-welcome-f2); }
+}
+
+/* 幽灵图标弹跳动画 */
+.nav-ghost-icon {
+    transition: transform 0.3s ease;
+}
+
+.nav-brand:hover .nav-ghost-icon,
+.nav-left:hover .ghost-icon {
+    animation: ghost-bounce 0.6s ease, ghost-idle 1s steps(2) infinite;
+}
+
+@keyframes ghost-bounce {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-8px); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(-4px); }
+}
+
 
