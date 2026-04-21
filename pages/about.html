@@ -21,7 +21,7 @@
     <!-- 屏幕暗角 -->
     <div class="vignette"></div>
 
-    <!-- 导航栏（复用home.html的样式） -->
+    <!-- 导航栏 -->
     <nav class="navbar" id="navbar">
         <div class="nav-content">
             <div class="nav-left">
@@ -29,13 +29,13 @@
                 <span class="nav-title">GHOST_CHANNEL</span>
             </div>
             <div class="nav-links">
-                <a href="../home.html" class="nav-link">HOME</a>
-                <a href="about.html" class="nav-link active">ABOUT</a>
-                <a href="characters.html" class="nav-link">CHARACTERS</a>
-                <a href="gallery.html" class="nav-link">GALLERY</a>
-                <a href="presets.html" class="nav-link">PRESETS</a>
-                <a href="plugins.html" class="nav-link">PLUGINS</a>
-                <a href="links.html" class="nav-link">LINKS</a>
+                <a href="../home.html" class="nav-link" data-ghost-text="👻 回到起点...">HOME</a>
+                <a href="about.html" class="nav-link active" data-ghost-text="📁 你在这里！">ABOUT</a>
+                <a href="characters.html" class="nav-link" data-ghost-text="🎭 角色们在等你">CHARACTERS</a>
+                <a href="gallery.html" class="nav-link" data-ghost-text="🖼️ 美化作品集">GALLERY</a>
+                <a href="presets.html" class="nav-link" data-ghost-text="⚙️ 预设仓库">PRESETS</a>
+                <a href="plugins.html" class="nav-link" data-ghost-text="🔌 骨与血插件">PLUGINS</a>
+                <a href="links.html" class="nav-link" data-ghost-text="🔗 通往别处">LINKS</a>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -47,13 +47,13 @@
 
     <!-- 移动端侧边栏 -->
     <div class="sidebar" id="sidebar">
-        <a href="../home.html">HOME</a>
-        <a href="about.html" class="active">ABOUT</a>
-        <a href="characters.html">CHARACTERS</a>
-        <a href="gallery.html">GALLERY</a>
-        <a href="presets.html">PRESETS</a>
-        <a href="plugins.html">PLUGINS</a>
-        <a href="links.html">LINKS</a>
+        <a href="../home.html" data-ghost-text="👻 回到起点">HOME</a>
+        <a href="about.html" class="active" data-ghost-text="📁 当前页面">ABOUT</a>
+        <a href="characters.html" data-ghost-text="🎭 角色卡">CHARACTERS</a>
+        <a href="gallery.html" data-ghost-text="🖼️ 美化">GALLERY</a>
+        <a href="presets.html" data-ghost-text="⚙️ 预设">PRESETS</a>
+        <a href="plugins.html" data-ghost-text="🔌 插件">PLUGINS</a>
+        <a href="links.html" data-ghost-text="🔗 链接">LINKS</a>
     </div>
 
     <!-- 代码矩阵背景 -->
@@ -71,6 +71,7 @@
             <div class="prompt-card">
                 <!-- 水雾效果层 -->
                 <div class="fog-layer"></div>
+                <div class="fog-layer fog-layer-2"></div>
                 
                 <div class="card-header">
                     <span class="pixel-text">QUERY_SYSTEM</span>
@@ -92,6 +93,10 @@
         <!-- 阶段二：AI回复界面 -->
         <div class="response-section" id="responseSection">
             <div class="response-card">
+                <!-- 水雾效果层 -->
+                <div class="fog-layer"></div>
+                <div class="fog-layer fog-layer-2"></div>
+                
                 <div class="card-top">
                     <span class="archives-title">◈ SHADOW ARCHIVES ◈</span>
                     <div class="scan-line"></div>
@@ -105,6 +110,9 @@
                     <button class="return-btn" id="backBtn">
                         <span>← RETURN</span>
                     </button>
+                    <button class="skip-btn" id="skipBtn">
+                        <span>SKIP ⏭</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -114,4 +122,5 @@
     <script src="../assets/js/about.js"></script>
 </body>
 </html>
+
 
