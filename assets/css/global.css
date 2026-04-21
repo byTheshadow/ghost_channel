@@ -1,144 +1,85 @@
-/* ============================================
-   GLOBAL.CSS — ghost_channel 全局样式系统
-   ============================================ */
-
-/* ---------- CSS Variables ---------- */
 :root {
-    --bg-deep:      #140f17;
-    --bg-dark-red:  #210207;
-    --mid-red:      #480415;
-    --bright-red:   #730c1e;
-    --accent-red:   #a51130;
-    --blood-red:    #c2185b;
-
-    --glass-bg:     rgba(20, 15, 23, 0.65);
-    --glass-border: rgba(115, 12, 30, 0.35);
-    --glass-glow:   rgba(115, 12, 30, 0.15);
-
-    --text-primary:   rgba(255,255,255,0.85);
-    --text-secondary: rgba(255,255,255,0.55);
-    --text-dim:       rgba(255,255,255,0.25);
-    --text-ghost:     rgba(255,255,255,0.08);
-
-    --font-pixel:    'Press Start 2P', 'ChangBanDianSong 12', monospace;
-    --font-printer:  'Planschrift', 'Courier New', monospace;
-    --font-handwrite:'undefined', 'cursive';
-    --font-body:     'LXGW Bright', 'Georgia', serif;
-    --font-gothic:   'UnifrakturCook', 'Manufacturing Consent', serif;
-    --font-quirky:   'Mountains of Christmas', 'Risque', cursive;
-    --font-cute:     'Underdog', sans-serif;
-
-    --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
-    --ease-in-out:    cubic-bezier(0.65, 0, 0.35, 1);
+    /* 主色调 */
+    --bg-main: #140f17;
+    --bg-darker: #050000;
+    --red-dark: #210207;
+    --red-mid: #480415;
+    --red-bright: #730c1e;
+    --red-neon: #ff003c;
+    --white: #f0f0f0;
+    
+    /* 字体 */
+    --font-pixel: 'Press Start 2P', cursive;
+    
+    /* 幽灵 SVG 数据 */
+    --ghost-run-f1: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><path d="M4 0h6v1h2v1h1v1h1v8h-1v1h-2v1h-2v-1h-2v1h-2v-1h-2v1H2v-1H0v-8h1V2h1V1h2V0z" fill="%23ff003c"/><path d="M2 3h3v5H2zM8 3h3v5H8z" fill="white"/><path d="M4 5h2v2H4zM10 5h2v2H10z" fill="%23050000"/></svg>');
+    --ghost-run-f2: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><path d="M4 0h6v1h2v1h1v1h1v8h-2v1h-2v1h-2v-1h-2v1h-2v-1h-2v1H0v-9h1V2h1V1h2V0z" fill="%23ff003c"/><path d="M2 3h3v5H2zM8 3h3v5H8z" fill="white"/><path d="M4 5h2v2H4zM10 5h2v2H10z" fill="%23050000"/></svg>');
+    --ghost-welcome-f1: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 14"><path d="M6 0h6v1h2v1h1v1h1v8h-1v1h-2v1h-2v-1h-2v1h-2v-1h-2v1H4v-1H2v-8h1V2h1V1h2V0z M0 6h2v2H0zM16 6h2v2H16z" fill="%23ff003c"/><path d="M4 3h3v5H4zM11 3h3v5H11z" fill="white"/><path d="M5 5h1v2H5zM12 5h1v2H12z" fill="%23050000"/></svg>');
+    --ghost-welcome-f2: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 14"><path d="M6 0h6v1h2v1h1v1h1v8h-2v1h-2v1h-2v-1h-2v1h-2v-1h-2v1H2v-9h1V2h1V1h2V0z M0 4h2v2H0zM16 4h2v2H16z" fill="%23ff003c"/><path d="M4 3h3v5H4zM11 3h3v5H11z" fill="white"/><path d="M5 5h1v2H5zM12 5h1v2H12z" fill="%23050000"/></svg>');
 }
 
-/* ---------- Reset ---------- */
-*, *::before, *::after {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html {
-    font-size: 16px;
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
+body, html {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-darker);
+    overflow: hidden;
+    font-family: var(--font-pixel);
+    color: var(--white);
 }
 
-body {
-    background: var(--bg-deep);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-}
-
-a {
-    color: var(--bright-red);
-    text-decoration: none;
-    transition: color 0.3s;
-}
-a:hover {
-    color: var(--accent-red);
-}
-
-::selection {
-    background: var(--mid-red);
-    color: #fff;
-}
-
-/* ---------- Scrollbar ---------- */
-::-webkit-scrollbar {
-    width: 6px;
-}
-::-webkit-scrollbar-track {
-    background: var(--bg-deep);
-}
-::-webkit-scrollbar-thumb {
-    background: var(--mid-red);
-    border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: var(--bright-red);
-}
-
-/* ---------- 噪点叠加层 ---------- */
-.noise-overlay {
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.06;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    animation: grain 0.5s steps(1) infinite;
-}
-
-/* ---------- 扫描线 ---------- */
-.scanlines {
+/* CRT 扫描线效果 */
+.crt-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background: 
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 3px 100%;
     pointer-events: none;
-    z-index: 9998;
-    background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.08) 2px,
-        rgba(0,0,0,0.08) 4px
-    );
-    opacity: 0.4;
+    z-index: 999;
 }
 
-/* ---------- 通用隐藏 ---------- */
-.hidden {
-    display: none !important;
+/* 屏幕暗角 */
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 50%, #000 120%);
+    pointer-events: none;
+    z-index: 998;
 }
 
-/* ---------- 毛玻璃面板通用 ---------- */
-.glass-panel {
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-    box-shadow:
-        0 0 30px var(--glass-glow),
-        inset 0 0 30px rgba(0,0,0,0.2);
-}
-
-/* ---------- Utility ---------- */
-.pixel-text {
+/* SKIP 按钮 */
+.skip-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    padding: 10px 15px;
+    background: transparent;
+    border: 2px solid var(--red-neon);
+    color: var(--red-neon);
     font-family: var(--font-pixel);
-    letter-spacing: 0.05em;
+    font-size: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
 }
-.printer-text {
-    font-family: var(--font-printer);
-    letter-spacing: 0.08em;
+
+.skip-btn:hover {
+    background: var(--red-neon);
+    color: var(--bg-darker);
+    box-shadow: 0 0 15px var(--red-neon);
 }
+
