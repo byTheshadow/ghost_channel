@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Ghost Channel</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/about.css">
+</head>
+<body>
+    <!-- 噪点层 -->
+    <div class="noise-overlay"></div>
+    
+    <!-- CRT扫描线 -->
+    <div class="scanline"></div>
+    
+    <!-- 屏幕暗角 -->
+    <div class="vignette"></div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="nav-left">
+                <div class="ghost-icon"></div>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </div>
+            <div class="nav-links">
+                <a href="../home.html">HOME</a>
+                <a href="about.html" class="active">ABOUT</a>
+                <a href="characters.html">CHARACTERS</a>
+                <a href="gallery.html">GALLERY</a>
+                <a href="presets.html">PRESETS</a>
+                <a href="plugins.html">PLUGINS</a>
+                <a href="links.html">LINKS</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 移动端侧边栏 -->
+    <div class="sidebar" id="sidebar">
+        <a href="../home.html">HOME</a>
+        <a href="about.html" class="active">ABOUT</a>
+        <a href="characters.html">CHARACTERS</a>
+        <a href="gallery.html">GALLERY</a>
+        <a href="presets.html">PRESETS</a>
+        <a href="plugins.html">PLUGINS</a>
+        <a href="links.html">LINKS</a>
+    </div>
+
+    <!-- 代码矩阵背景 -->
+    <div class="code-matrix" id="codeMatrix"></div>
+
+    <!-- 自定义光标 -->
+    <div class="cursor-glow"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- 主容器 -->
+    <main class="main-container">
+        
+        <!-- 阶段一：AI提问界面 -->
+        <div class="prompt-section" id="promptSection">
+            <div class="terminal-header">
+                <span class="terminal-dot red"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot green"></span>
+                <span class="terminal-title">GHOST_TERMINAL_v1.0</span>
+            </div>
+            
+            <h1 class="prompt-title">
+                <span class="glitch" data-text="ANALYZE_SUBJECT:">ANALYZE_SUBJECT:</span>
+                <span class="subject-name">[shadow玉元一]</span>
+            </h1>
+            
+            <div class="input-wrapper">
+                <span class="prompt-symbol">▸</span>
+                <div class="input-text">
+                    <span class="pixel-icon">📁</span> 
+                    <span class="typing-text">shadow_archives.dat</span>
+                    <span class="file-size">// 1.2KB</span>
+                </div>
+                <button class="send-button" id="sendBtn">
+                    <span class="pixel-arrow">→</span>
+                </button>
+            </div>
+            
+            <div class="status-bar">
+                <span class="status-text">[ SYSTEM_READY ]</span>
+                <span class="status-blink">█</span>
+                <span class="status-info">Press ENTER to execute...</span>
+            </div>
+        </div>
+
+        <!-- 阶段二：AI回复界面 -->
+        <div class="response-section" id="responseSection">
+            <div class="response-header">
+                <span class="response-tag">◈ ARCHIVES_LOADED ◈</span>
+                <span class="loading-bar"></span>
+            </div>
+            
+            <div id="typewriterOutput" class="typewriter-content">
+                <!-- 打字机内容将在这里生成 -->
+            </div>
+
+            <div class="response-footer">
+                <button class="back-button" id="backBtn">
+                    <span class="pixel-arrow">←</span> RETURN
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="../assets/js/about.js"></script>
+</body>
+</html>
