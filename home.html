@@ -3,110 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghost Channel - Main</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Risque&display=swap" rel="stylesheet">
+    <title>Ghost Channel - Home</title>
+    <!-- 字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Creepster&display=swap" rel="stylesheet">
+    <!-- 样式 -->
     <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
     <link rel="stylesheet" href="assets/css/home.css">
 </head>
 <body>
-    <!-- CRT 效果层 -->
-    <div class="crt-overlay"></div>
+    <!-- CRT扫描线 -->
+    <div class="scanline"></div>
+    
+    <!-- 屏幕暗角 -->
     <div class="vignette"></div>
 
-<!-- ★ 导航栏 -->
-<nav class="ghost-nav" id="ghostNav">
-    <div class="nav-brand">
-        <span class="nav-ghost-icon"></span>
-        <span class="nav-title">GHOST_CHANNEL</span>
-    </div>
-    <div class="nav-links">
-        <a href="home.html" class="nav-link active" data-text="HOME" data-ghost-text="👻 你在这里！">HOME</a>
-        <a href="pages/about.html" class="nav-link" data-text="ABOUT" data-ghost-text="📁 档案存放处">ABOUT</a>
-        <a href="pages/characters.html" class="nav-link" data-text="CHARACTERS" data-ghost-text="🎭 角色们在等你">CHARACTERS</a>
-        <a href="pages/gallery.html" class="nav-link" data-text="GALLERY" data-ghost-text="🖼️ 美化作品集">GALLERY</a>
-        <a href="pages/presets.html" class="nav-link" data-text="PRESETS" data-ghost-text="⚙️ 预设仓库">PRESETS</a>
-        <a href="pages/plugins.html" class="nav-link" data-text="PLUGINS" data-ghost-text="🔌 骨与血插件">PLUGINS</a>
-        <a href="pages/links.html" class="nav-link" data-text="LINKS" data-ghost-text="🔗 通往别处">LINKS</a>
-    </div>
-    <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-</nav>
-
-<!-- 移动端侧边栏 -->
-<div class="sidebar" id="sidebar">
-    <a href="home.html" class="active" data-ghost-text="👻 当前页面">HOME</a>
-    <a href="pages/about.html" data-ghost-text="📁 档案">ABOUT</a>
-    <a href="pages/characters.html" data-ghost-text="🎭 角色">CHARACTERS</a>
-    <a href="pages/gallery.html" data-ghost-text="🖼️ 美化">GALLERY</a>
-    <a href="pages/presets.html" data-ghost-text="⚙️ 预设">PRESETS</a>
-    <a href="pages/plugins.html" data-ghost-text="🔌 插件">PLUGINS</a>
-    <a href="pages/links.html" data-ghost-text="🔗 链接">LINKS</a>
-</div>
-
-    <!-- ★ 代码矩阵背景（铺满全屏，初始即可见） -->
-    <div id="matrix-bg"></div>
-
-    <!-- 主场景容器 -->
-    <div class="scene" id="scene-container">
-        <!-- 车票 -->
-        <div class="ticket" id="main-ticket">
-            <div class="ticket-half left-half">
-                <canvas id="waveCanvas" width="280" height="320"></canvas>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="nav-left">
+                <div class="ghost-icon"></div>
+                <span class="nav-title">GHOST_CHANNEL</span>
             </div>
-            <div class="ticket-half right-half">
-                <div class="ticket-header">
-                    <h1 class="gothic-title">GHOST CHANNEL</h1>
-                    <p class="ticket-id">TICKET #<span id="ticketNum">404</span></p>
-                </div>
-                <div class="ticket-info">
-                    <div class="info-row">
-                        <span class="label">FROM</span>
-                        <span class="value" id="randomFrom">REALITY</span>
+            <div class="nav-links">
+                <a href="home.html" class="nav-link active">HOME</a>
+                <a href="pages/about.html" class="nav-link">ABOUT</a>
+                <a href="pages/characters.html" class="nav-link">CHARACTERS</a>
+                <a href="pages/gallery.html" class="nav-link">GALLERY</a>
+                <a href="pages/presets.html" class="nav-link">PRESETS</a>
+                <a href="pages/plugins.html" class="nav-link">PLUGINS</a>
+                <a href="pages/links.html" class="nav-link">LINKS</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 移动端侧边栏 -->
+    <div class="sidebar" id="sidebar">
+        <a href="home.html" class="active">HOME</a>
+        <a href="pages/about.html">ABOUT</a>
+        <a href="pages/characters.html">CHARACTERS</a>
+        <a href="pages/gallery.html">GALLERY</a>
+        <a href="pages/presets.html">PRESETS</a>
+        <a href="pages/plugins.html">PLUGINS</a>
+        <a href="pages/links.html">LINKS</a>
+    </div>
+
+    <!-- 车票阶段 -->
+    <div class="ticket-stage" id="ticketStage">
+        <div class="ticket-container">
+            <!-- 左侧：音波动画 -->
+            <div class="ticket-left">
+                <canvas id="waveCanvas"></canvas>
+            </div>
+
+            <!-- 右侧：车票 -->
+            <div class="ticket-right" id="ticketRight">
+                <div class="ticket" id="ticket">
+                    <div class="ticket-header">
+                        <span class="ticket-logo">🎫</span>
+                        <span class="ticket-title">GHOST EXPRESS</span>
                     </div>
-                    <div class="info-row">
-                        <span class="label">TO</span>
-                        <span class="value glow-text">THE MIDDLE OF NOWHERE</span>
+                    
+                    <div class="ticket-body">
+                        <div class="ticket-row">
+                            <span class="ticket-label">FROM:</span>
+                            <span class="ticket-value" id="ticketFrom">LOADING...</span>
+                        </div>
+                        <div class="ticket-row">
+                            <span class="ticket-label">TO:</span>
+                            <span class="ticket-value destination">THE MIDDLE OF NOWHERE</span>
+                        </div>
+                        <div class="ticket-row">
+                            <span class="ticket-label">DATE:</span>
+                            <span class="ticket-value" id="ticketDate">2026-04-21</span>
+                        </div>
+                        <div class="ticket-row">
+                            <span class="ticket-label">TIME:</span>
+                            <span class="ticket-value">23:59</span>
+                        </div>
                     </div>
-                    <div class="info-row">
-                        <span class="label">DATE</span>
-                        <span class="value" id="currentDate">----.--.--</span>
+
+                    <div class="ticket-footer">
+                        <span class="ticket-hint">CLICK TO BOARD →</span>
                     </div>
-                    <div class="info-row">
-                        <span class="label">PASSENGER</span>
-                        <span class="value">YOU (maybe)</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="label">STATUS</span>
-                        <span class="value status-blink">ONE WAY</span>
-                    </div>
-                </div>
-                <div class="ticket-footer">
-                    <p class="hint">[ CLICK TO TEAR ]</p>
-                    <p class="sub-hint">no refunds · no returns · no escape</p>
+
+                    <!-- 撕裂线 -->
+                    <div class="tear-line"></div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- 打印机 -->
-        <div class="printer-machine" id="printer">
+    <!-- 代码矩阵背景 -->
+    <div class="code-matrix" id="codeMatrix"></div>
+
+    <!-- 打印机阶段 -->
+    <div class="printer-stage" id="printerStage">
+        <div class="printer" id="printer">
+            <!-- 打印机主体 -->
             <div class="printer-body">
                 <div class="printer-top">
-                    <div class="led-indicator" id="printer-led"></div>
-                    <div class="brand-label">GHOST PRINT v1.0</div>
+                    <div class="printer-led"></div>
+                    <span class="printer-brand">GHOST PRINTER v1.0</span>
                 </div>
-                <div class="printer-main">
-                    <div class="printer-slot"></div>
-                </div>
-                <div class="paper-output">
-                    <div class="thermal-paper" id="paper">
-                        <div class="paper-content">
-                            <pre id="printContent"></pre>
+                
+                <!-- 纸张出口 -->
+                <div class="paper-slot">
+                    <div class="paper" id="paper">
+                        <div class="paper-content" id="paperContent">
+                            <!-- 打字机内容将在这里生成 -->
                         </div>
                     </div>
                 </div>
@@ -114,6 +124,10 @@
         </div>
     </div>
 
+    <!-- 通用导航栏脚本 -->
+    <script src="assets/js/navbar.js"></script>
+    <!-- 页面专属脚本 -->
     <script src="assets/js/home.js"></script>
 </body>
 </html>
+
