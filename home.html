@@ -16,36 +16,38 @@
     <div class="crt-overlay"></div>
     <div class="vignette"></div>
 
-    <!-- ★ 导航栏 -->
-    <nav class="ghost-nav" id="ghostNav">
-        <div class="nav-brand">
-            <span class="nav-ghost-icon"></span>
-            <span class="nav-title">GHOST_CHANNEL</span>
-        </div>
-        <div class="nav-links">
-            <a href="home.html" class="nav-link active" data-text="HOME">HOME</a>
-            <a href="pages/about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
-            <a href="pages/characters.html" class="nav-link" data-text="CHARACTERS">CHARACTERS</a>
-            <a href="pages/gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
-            <a href="pages/presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
-            <a href="pages/plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
-            <a href="pages/links.html" class="nav-link" data-text="LINKS">LINKS</a>
-        </div>
-        <button class="nav-burger" id="navBurger" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
-    </nav>
-
-    <!-- 移动端侧边菜单 -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="home.html" class="mobile-link active">HOME</a>
-        <a href="pages/about.html" class="mobile-link">ABOUT</a>
-        <a href="pages/characters.html" class="mobile-link">CHARACTERS</a>
-        <a href="pages/gallery.html" class="mobile-link">GALLERY</a>
-        <a href="pages/presets.html" class="mobile-link">PRESETS</a>
-        <a href="pages/plugins.html" class="mobile-link">PLUGINS</a>
-        <a href="pages/links.html" class="mobile-link">LINKS</a>
+<!-- ★ 导航栏 -->
+<nav class="ghost-nav" id="ghostNav">
+    <div class="nav-brand">
+        <span class="nav-ghost-icon"></span>
+        <span class="nav-title">GHOST_CHANNEL</span>
     </div>
+    <div class="nav-links">
+        <a href="home.html" class="nav-link active" data-text="HOME" data-ghost-text="👻 你在这里！">HOME</a>
+        <a href="pages/about.html" class="nav-link" data-text="ABOUT" data-ghost-text="📁 档案存放处">ABOUT</a>
+        <a href="pages/characters.html" class="nav-link" data-text="CHARACTERS" data-ghost-text="🎭 角色们在等你">CHARACTERS</a>
+        <a href="pages/gallery.html" class="nav-link" data-text="GALLERY" data-ghost-text="🖼️ 美化作品集">GALLERY</a>
+        <a href="pages/presets.html" class="nav-link" data-text="PRESETS" data-ghost-text="⚙️ 预设仓库">PRESETS</a>
+        <a href="pages/plugins.html" class="nav-link" data-text="PLUGINS" data-ghost-text="🔌 骨与血插件">PLUGINS</a>
+        <a href="pages/links.html" class="nav-link" data-text="LINKS" data-ghost-text="🔗 通往别处">LINKS</a>
+    </div>
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
+
+<!-- 移动端侧边栏 -->
+<div class="sidebar" id="sidebar">
+    <a href="home.html" class="active" data-ghost-text="👻 当前页面">HOME</a>
+    <a href="pages/about.html" data-ghost-text="📁 档案">ABOUT</a>
+    <a href="pages/characters.html" data-ghost-text="🎭 角色">CHARACTERS</a>
+    <a href="pages/gallery.html" data-ghost-text="🖼️ 美化">GALLERY</a>
+    <a href="pages/presets.html" data-ghost-text="⚙️ 预设">PRESETS</a>
+    <a href="pages/plugins.html" data-ghost-text="🔌 插件">PLUGINS</a>
+    <a href="pages/links.html" data-ghost-text="🔗 链接">LINKS</a>
+</div>
 
     <!-- ★ 代码矩阵背景（铺满全屏，初始即可见） -->
     <div id="matrix-bg"></div>
