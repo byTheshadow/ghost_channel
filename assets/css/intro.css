@@ -1,0 +1,155 @@
+/* ================= 阶段 1 & 2 (0-6s) ================= */
+.scene-1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: hide-scene 0s linear 6s forwards;
+}
+
+.grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(var(--red-dark) 1px, transparent 1px),
+        linear-gradient(90deg, var(--red-dark) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0;
+    animation: grid-fade 3s ease-in forwards;
+}
+
+/* 像素豆豆 */
+.pellet {
+    position: absolute;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    background: var(--white);
+    transform: translateY(-50%);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    animation: pellet-eat 0.1s forwards;
+}
+
+/* 跑动幽灵 */
+.ghost-runner {
+    position: absolute;
+    top: 50%;
+    left: -15vw;
+    width: 80px;
+    height: 80px;
+    transform: translateY(-50%);
+    background-image: var(--ghost-run-f1);
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    animation: 
+        ghost-move 6s linear forwards,
+        ghost-chomp 0.3s steps(1) infinite;
+}
+
+/* ================= 阶段 3 (6-8s) 崩坏 ================= */
+.scene-2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    animation: show-scene-2 2s linear 6s forwards;
+}
+
+.error-text {
+    font-size: 48px;
+    color: var(--red-neon);
+    text-shadow: 4px 4px 0px var(--red-dark);
+    animation: glitch 0.2s infinite;
+}
+
+/* ================= 阶段 4 & 5 (8-13s) 气泡与迎宾 ================= */
+.scene-3 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    animation: show-scene-3 5s linear 8s forwards;
+}
+
+.pixel-bubble {
+    position: absolute;
+    padding: 20px 30px;
+    background: var(--bg-darker);
+    border: 4px solid var(--white);
+    color: var(--white);
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 8px 8px 0px var(--red-dark);
+    text-align: center;
+}
+
+.pixel-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    background: var(--bg-darker);
+    border-right: 4px solid var(--white);
+    border-bottom: 4px solid var(--white);
+}
+
+/* 气泡1 */
+.bubble-1 {
+    opacity: 0;
+    transform: scale(0);
+    animation: 
+        bubble-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 8s forwards,
+        bubble-shake 1.5s ease-in-out 8.5s forwards,
+        bubble-shatter 0.2s linear 10s forwards;
+}
+
+/* 气泡2 */
+.bubble-2 {
+    top: 25%;
+    opacity: 0;
+    border-color: var(--red-neon);
+    color: var(--red-neon);
+    box-shadow: 8px 8px 0px var(--red-dark);
+    animation: bubble-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 10.2s forwards;
+}
+
+.bubble-2 .sub-text {
+    display: block;
+    margin-top: 15px;
+    font-size: 10px;
+    color: var(--white);
+    opacity: 0.7;
+}
+
+.bubble-2::after {
+    border-color: var(--red-neon);
+}
+
+/* 迎宾幽灵 */
+.ghost-welcomer {
+    position: absolute;
+    top: 50%;
+    width: 100px;
+    height: 100px;
+    background-image: var(--ghost-welcome-f1);
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    opacity: 0;
+    animation: 
+        welcome-appear 0.5s ease-out 10.5s forwards,
+        ghost-wave 0.6s steps(1) infinite 10.5s;
+}
