@@ -413,49 +413,67 @@ body {
 
 .pixel-cloud {
     position: absolute;
+    width: 120px;
+    height: 60px;
+    background-image: url('https://tc-new.z.wiki/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260422/Pe41/947X477/2026-04-22_105052.png/webp');
+    background-size: contain;
+    background-repeat: no-repeat;
     image-rendering: pixelated;
-    opacity: 0.3;
+    opacity: 0.4;
     animation: cloud-float linear infinite;
+    filter: brightness(1.2);
 }
 
-/* 云朵像素绘制 */
-.pixel-cloud::before {
-    content: '';
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: #fff;
-    box-shadow: 
-        /* 云朵形状 - 小云 */
-        4px 0 #fff, 8px 0 #fff, 12px 0 #fff,
-        0px 4px #fff, 4px 4px #fff, 8px 4px #fff, 12px 4px #fff, 16px 4px #fff,
-        4px 8px #fff, 8px 8px #fff, 12px 8px #fff;
+/* 大云朵 */
+.pixel-cloud.large {
+    width: 180px;
+    height: 90px;
+    opacity: 0.5;
 }
 
-.pixel-cloud.large::before {
-    box-shadow: 
-        /* 云朵形状 - 大云 */
-        8px 0 #fff, 12px 0 #fff, 16px 0 #fff, 20px 0 #fff,
-        4px 4px #fff, 8px 4px #fff, 12px 4px #fff, 16px 4px #fff, 20px 4px #fff, 24px 4px #fff,
-        0px 8px #fff, 4px 8px #fff, 8px 8px #fff, 12px 8px #fff, 16px 8px #fff, 20px 8px #fff, 24px 8px #fff, 28px 8px #fff,
-        4px 12px #fff, 8px 12px #fff, 12px 12px #fff, 16px 12px #fff, 20px 12px #fff, 24px 12px #fff;
+/* 小云朵 */
+.pixel-cloud.small {
+    width: 80px;
+    height: 40px;
+    opacity: 0.3;
 }
 
-.pixel-cloud.red::before {
-    background: rgba(255, 0, 60, 0.4);
-    box-shadow: 
-        4px 0 rgba(255, 0, 60, 0.4), 8px 0 rgba(255, 0, 60, 0.4), 12px 0 rgba(255, 0, 60, 0.4),
-        0px 4px rgba(255, 0, 60, 0.4), 4px 4px rgba(255, 0, 60, 0.4), 8px 4px rgba(255, 0, 60, 0.4), 
-        12px 4px rgba(255, 0, 60, 0.4), 16px 4px rgba(255, 0, 60, 0.4),
-        4px 8px rgba(255, 0, 60, 0.4), 8px 8px rgba(255, 0, 60, 0.4), 12px 8px rgba(255, 0, 60, 0.4);
+/* 红色调云朵 */
+.pixel-cloud.red {
+    filter: brightness(1.2) hue-rotate(-10deg) saturate(2);
+    opacity: 0.35;
+}
+
+/* 白色云朵 */
+.pixel-cloud.white {
+    filter: brightness(1.5);
+    opacity: 0.45;
 }
 
 @keyframes cloud-float {
     from {
-        transform: translateX(-100px);
+        transform: translateX(-200px);
     }
     to {
-        transform: translateX(calc(100vw + 100px));
+        transform: translateX(calc(100vw + 200px));
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .pixel-cloud {
+        width: 80px;
+        height: 40px;
+    }
+    
+    .pixel-cloud.large {
+        width: 120px;
+        height: 60px;
+    }
+    
+    .pixel-cloud.small {
+        width: 60px;
+        height: 30px;
     }
 }
 
