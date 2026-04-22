@@ -131,6 +131,182 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 
 async function showDecodingEffect(duration = 200) {
     let startTime = Date.now();
-    const chars = 'ABCDE
+    const chars = 'ABCDE*&^%$#@!<>?';
+    const decoderSpan = document.createElement('span');
+    decoderSpan.className = 'decoder-effect';
+    outputBox.appendChild(decoderSpan);
+    
+    while (Date.now() - startTime < duration) {
+        let randomText = '';
+        for (let i = 0; i < 20; i++) {
+            randomText += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        decoderSpan.textContent = `> DECRYPTING_... ${randomText}`;
+        await delay(30);
+    }
+    decoderSpan.remove();
+}
+
+function typeString(htmlString) {
+    return new Promise(resolve => {
+        let charIndex = 0;
+        let tagBuffer = '';
+        let inTag = false;
+        const tempContainer = document.createElement('div');
+        outputBox.appendChild(tempContainer);
+        
+        function type() {
+            if (!isTyping || charIndex >= htmlString.length) {
+                resolve();
+                return;
+            }
+            
+            let char = htmlString.charAt(charIndex);
+            
+            if (char === '<') inTag = true;
+            
+            if (inTag) {
+                tagBuffer += char;
+                if (char === '>') {
+                    inTag = false;
+                    tempContainer.innerHTML += tagBuffer;
+                    tagBuffer = '';
+                }
+            } else {
+                tempContainer.innerHTML += char;
+            }
+            
+            charIndex++;
+            typingTimer = setTimeout(type, Math.random() * 25 + 10);
+        }
+        
+        type();
+    });
+}
+
+async function runTypewriter() {
+    isTyping = true;
+    skipBtn.style.opacity = '1';
+    
+    for (const chunk of contentChunks) {
+        if (!isTyping) break;
+        await showDecodingEffect();
+        await typeString(chunk);
+        await delay(200);
+    }
+    
+    isTyping = false;
+    skipBtn.style.opacity = '0';
+    outputBox.innerHTML += '<span class="cursor"></span>';
+}
+
+skipBtn.addEventListener('click', () => {
+    if (isTyping) {
+        isTyping = false;
+        clearTimeout(typingTimer);
+        outputBox.innerHTML = contentChunks.join('') + '<span class="cursor"></span>';
+        skipBtn.style.opacity = '0';
+    }
+});
+
+// ========== 4. 粒子效果 ==========
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let mouse = { x: null, y: null, radius: 120 };
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initParticles();
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+window.addEventListener('mousemove', e => {
+    mouse.x = e.x;
+    mouse.y = e.y;
+});
+
+window.addEventListener('mouseout', () => {
+    mouse.x = undefined;
+    mouse.y = undefined;
+});
+
+class Particle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.baseSize = Math.random() * 2 + 1;
+        this.size = this.baseSize;
+        this.baseX = this.x;
+        this.baseY = this.y;
+        this.density = (Math.random() * 20) + 1;
+        this.baseColor = 'rgba(139, 0, 0, 0.6)';
+        this.activeColor = 'rgba(255, 42, 42, 0.9)';
+        this.color = this.baseColor;
+    }
+    
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+    }
+    
+    update() {
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < mouse.radius) {
+            this.size = this.baseSize + 2;
+            this.color = this.activeColor;
+            let forceDirectionX = dx / distance;
+            let forceDirectionY = dy / distance;
+            let force = (mouse.radius - distance) / mouse.radius;
+            let directionX = forceDirectionX * force * this.density;
+            let directionY = forceDirectionY * force * this.density;
+            this.x -= directionX;
+            this.y -= directionY;
+        } else {
+            if (this.size > this.baseSize) this.size -= 0.1;
+            this.color = this.baseColor;
+            if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 20;
+            if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 20;
+        }
+        
+        this.draw();
+    }
+}
+
+function initParticles() {
+    particles = [];
+    let numParticles = (canvas.width * canvas.height) / 9000;
+    for (let i = 0; i < numParticles; i++) {
+        particles.push(new Particle());
+    }
+}
+
+function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => p.update());
+    requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+
+// ========== 5. 导航栏交互 ==========
+const hamburger = document.getElementById('hamburger');
+const sidebar = document.getElementById('sidebar');
+
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        sidebar.classList.toggle('active');
+    });
+}
+
 
 
