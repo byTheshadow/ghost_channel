@@ -239,13 +239,56 @@ knobs.forEach(knob => {
 // ========== 滚动视差效果 ==========
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.console-decoration, .credits-decoration');
+    // 可以为拍立得添加视差效果
+    const polaroids = document.querySelectorAll('.polaroid-frame');
     
-    parallaxElements.forEach(el => {
-        const speed = 0.5;
-        el.style.transform = `translateY(${scrolled * speed}px)`;
+    polaroids.forEach((el, index) => {
+        const speed = 0.3 + (index * 0.1);
+        el.style.transform = `rotate(${index % 2 === 0 ? -3 : 2}deg) translateY(${scrolled * speed * 0.1}px)`;
     });
+    // ========== 拍立得交互效果 ==========
+const polaroids = document.querySelectorAll('.polaroid-frame');
+
+polaroids.forEach((polaroid, index) => {
+    // 点击放大效果
+    polaroid.addEventListener('click', () => {
+        polaroid.style.transition = 'all 0.3s ease';
+        polaroid.style.transform = 'rotate(0deg) scale(1.5)';
+        polaroid.style.zIndex = '1000';
+        
+        // 创建遮罩层
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            cursor: pointer;
+        `;
+        
+        document.body.appendChild(overlay);
+        
+        // 点击遮罩关闭
+        overlay.addEventListener('click', () => {
+            polaroid.style.transform = `rotate(${index % 2 === 0 ? -3 : 2}deg) scale(1)`;
+            polaroid.style.zIndex = '1';
+            overlay.remove();
+        });
+    });
+    
+    // 随机轻微晃动
+    setInterval(() => {
+        if (!polaroid.matches(':hover')) {
+            const randomRotate = (Math.random() - 0.5) * 2;
+            const baseRotate = index % 2 === 0 ? -3 : 2;
+            polaroid.style.transform = `rotate(${baseRotate + randomRotate}deg)`;
+        }
+    }, 3000 + Math.random() * 2000);
 });
+
 
 // ========== 页面可见性检测 ==========
 document.addEventListener('visibilitychange', () => {
