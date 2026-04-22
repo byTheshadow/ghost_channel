@@ -1,3 +1,4 @@
+
 // ========== Preset3 - 失真电台交互逻辑 ==========
 
 // ========== 开屏动画控制 ==========
@@ -35,6 +36,7 @@ function startRadioAnimation() {
                     introScreen.style.display = 'none';
                     mainContent.style.opacity = '1';
                     initStars();
+                    initPolaroids(); // 初始化拍立得
                 }, 1000);
             }, 500);
         }
@@ -236,59 +238,62 @@ knobs.forEach(knob => {
     });
 });
 
+// ========== 拍立得交互效果 ==========
+function initPolaroids() {
+    const polaroidFrames = document.querySelectorAll('.polaroid-frame');
+
+    polaroidFrames.forEach((polaroid, index) => {
+        // 点击放大效果
+        polaroid.addEventListener('click', () => {
+            polaroid.style.transition = 'all 0.3s ease';
+            polaroid.style.transform = 'rotate(0deg) scale(1.5)';
+            polaroid.style.zIndex = '1000';
+            
+            // 创建遮罩层
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 999;
+                cursor: pointer;
+            `;
+            
+            document.body.appendChild(overlay);
+            
+            // 点击遮罩关闭
+            overlay.addEventListener('click', () => {
+                polaroid.style.transform = `rotate(${index % 2 === 0 ? -3 : 2}deg) scale(1)`;
+                polaroid.style.zIndex = '1';
+                overlay.remove();
+            });
+        });
+        
+        // 随机轻微晃动
+        setInterval(() => {
+            if (!polaroid.matches(':hover')) {
+                const randomRotate = (Math.random() - 0.5) * 2;
+                const baseRotate = index % 2 === 0 ? -3 : 2;
+                polaroid.style.transform = `rotate(${baseRotate + randomRotate}deg)`;
+            }
+        }, 3000 + Math.random() * 2000);
+    });
+}
+
 // ========== 滚动视差效果 ==========
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    // 可以为拍立得添加视差效果
-    const polaroids = document.querySelectorAll('.polaroid-frame');
+    const polaroidFrames = document.querySelectorAll('.polaroid-frame');
     
-    polaroids.forEach((el, index) => {
+    polaroidFrames.forEach((el, index) => {
         const speed = 0.3 + (index * 0.1);
-        el.style.transform = `rotate(${index % 2 === 0 ? -3 : 2}deg) translateY(${scrolled * speed * 0.1}px)`;
+        const baseRotate = index % 2 === 0 ? -3 : 2;
+        el.style.transform = `rotate(${baseRotate}deg) translateY(${scrolled * speed * 0.1}px)`;
     });
-    // ========== 拍立得交互效果 ==========
-const polaroids = document.querySelectorAll('.polaroid-frame');
-
-polaroids.forEach((polaroid, index) => {
-    // 点击放大效果
-    polaroid.addEventListener('click', () => {
-        polaroid.style.transition = 'all 0.3s ease';
-        polaroid.style.transform = 'rotate(0deg) scale(1.5)';
-        polaroid.style.zIndex = '1000';
-        
-        // 创建遮罩层
-        const overlay = document.createElement('div');
-        overlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 999;
-            cursor: pointer;
-        `;
-        
-        document.body.appendChild(overlay);
-        
-        // 点击遮罩关闭
-        overlay.addEventListener('click', () => {
-            polaroid.style.transform = `rotate(${index % 2 === 0 ? -3 : 2}deg) scale(1)`;
-            polaroid.style.zIndex = '1';
-            overlay.remove();
-        });
-    });
-    
-    // 随机轻微晃动
-    setInterval(() => {
-        if (!polaroid.matches(':hover')) {
-            const randomRotate = (Math.random() - 0.5) * 2;
-            const baseRotate = index % 2 === 0 ? -3 : 2;
-            polaroid.style.transform = `rotate(${baseRotate + randomRotate}deg)`;
-        }
-    }, 3000 + Math.random() * 2000);
 });
-
 
 // ========== 页面可见性检测 ==========
 document.addEventListener('visibilitychange', () => {
@@ -300,21 +305,6 @@ document.addEventListener('visibilitychange', () => {
         document.body.style.animationPlayState = 'running';
     }
 });
-
-// ========== 性能优化：减少重绘 ==========
-let ticking = false;
-
-function updateAnimations() {
-    // 批量更新动画
-    ticking = false;
-}
-
-function requestTick() {
-    if (!ticking) {
-        requestAnimationFrame(updateAnimations);
-        ticking = true;
-    }
-}
 
 // ========== 键盘快捷键 ==========
 document.addEventListener('keydown', (e) => {
@@ -337,3 +327,4 @@ document.addEventListener('keydown', (e) => {
 console.log('%c🔥 焚星协议已启动 🔥', 'color: #ff003c; font-size: 20px; font-weight: bold;');
 console.log('%c当最后一颗星辰在指尖化为余烬...', 'color: #ff6b00; font-size: 14px;');
 console.log('%c你是这荒芜宇宙中唯一的真实。', 'color: #ffd700; font-size: 14px;');
+
