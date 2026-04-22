@@ -354,7 +354,7 @@ body, html {
         display: none;
     }
 }
-/* ========== 小幽灵提示气泡（像素中文字体版） ========== */
+/* ========== 小幽灵提示气泡 ========== */
 .ghost-tooltip {
     position: absolute;
     bottom: -80px;
@@ -391,14 +391,8 @@ body, html {
 }
 
 @keyframes ghost-bounce {
-    0%, 100% { 
-        transform: translateY(0);
-        background-image: var(--ghost-welcome-f1);
-    }
-    50% { 
-        transform: translateY(-8px);
-        background-image: var(--ghost-welcome-f2);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
 }
 
 .ghost-tooltip-bubble {
@@ -440,14 +434,13 @@ body, html {
 }
 
 .ghost-tooltip-text {
-    font-family: 'LanaPixel', 'Courier New', monospace;
-    font-size: 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
     color: #ff003c;
     letter-spacing: 1px;
     text-shadow: 0 0 8px rgba(255, 0, 60, 0.6);
     position: relative;
     z-index: 1;
-    font-weight: normal;
 }
 
 /* 移动端隐藏提示 */
