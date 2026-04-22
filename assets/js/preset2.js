@@ -104,6 +104,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ========== 扑克牌翻转效果 ==========
+    const pokerCards = document.querySelectorAll('.poker-card');
+    
+    pokerCards.forEach(card => {
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+        });
+    });
+
     // ========== 幸运观测图交互 ==========
     const versionNodes = document.querySelectorAll('.version-node');
     
@@ -118,20 +127,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ========== 人物卡片视差效果 ==========
-    const charCards = document.querySelectorAll('.char-card');
-    
+    // ========== 扑克牌视差效果 ==========
     document.addEventListener('mousemove', (e) => {
-        charCards.forEach((card, index) => {
+        pokerCards.forEach((card, index) => {
+            if (card.classList.contains('flipped')) return;
+            
             const rect = card.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
             
-            const deltaX = (e.clientX - centerX) / 50;
-            const deltaY = (e.clientY - centerY) / 50;
+            const deltaX = (e.clientX - centerX) / 80;
+            const deltaY = (e.clientY - centerY) / 80;
             
-            const rotation = index === 0 ? -3 : 2;
-            card.style.transform = `rotate(${rotation}deg) translate(${deltaX}px, ${deltaY}px)`;
+            const baseRotation = index === 0 ? -5 : 3;
+            card.style.transform = `rotate(${baseRotation + deltaX}deg) translate(${deltaX}px, ${deltaY}px)`;
         });
     });
 
@@ -143,12 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (bgNum) {
             bgNum.style.transform = `translateY(${scrolled * 0.3}px)`;
         }
-
-        // 人物卡片滚动效果
-        charCards.forEach((card, index) => {
-            const speed = index === 0 ? 0.1 : 0.15;
-            card.style.transform = `translateY(${scrolled * speed}px)`;
-        });
     });
 
     // ========== 导航栏交互 ==========
