@@ -113,3 +113,98 @@ window.addEventListener('resize', () => {
         }
     }, 250);
 });
+// ========== 像素云生成系统 ==========
+const pixelClouds = document.getElementById('pixelClouds');
+
+function createPixelCloud() {
+    if (!pixelClouds) return;
+    
+    const cloud = document.createElement('div');
+    cloud.className = 'pixel-cloud';
+    
+    // 随机大小
+    if (Math.random() > 0.6) {
+        cloud.classList.add('large');
+    }
+    
+    // 随机红色云
+    if (Math.random() > 0.8) {
+        cloud.classList.add('red');
+    }
+    
+    // 随机垂直位置
+    const topPosition = Math.random() * 60 + 10; // 10% - 70%
+    cloud.style.top = topPosition + '%';
+    
+    // 随机动画时长（速度）
+    const duration = Math.random() * 30 + 20; // 20-50秒
+    cloud.style.animationDuration = duration + 's';
+    
+    // 随机延迟
+    const delay = Math.random() * 10;
+    cloud.style.animationDelay = delay + 's';
+    
+    pixelClouds.appendChild(cloud);
+    
+    // 动画结束后移除
+    setTimeout(() => {
+        cloud.remove();
+    }, (duration + delay) * 1000);
+}
+
+// 初始化云朵
+function initClouds() {
+    // 创建初始云朵
+    for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+            createPixelCloud();
+        }, i * 2000);
+    }
+    
+    // 持续生成新云朵
+    setInterval(() => {
+        createPixelCloud();
+    }, 8000);
+}
+
+initClouds();
+
+// ========== 星星粒子爆发效果 ==========
+presetBlades.forEach((blade) => {
+    blade.addEventListener('mouseenter', (e) => {
+        createStarBurst(blade);
+    });
+});
+
+function createStarBurst(element) {
+    const rect = element.getBoundingClientRect();
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    // 创建8个星星粒子
+    for (let i = 0; i < 8; i++) {
+        const star = document.createElement('div');
+        star.className = 'star-particle';
+        
+        // 计算爆发方向
+        const angle = (Math.PI * 2 * i) / 8;
+        const distance = 50 + Math.random() * 30;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+        
+        star.style.setProperty('--tx', tx + 'px');
+        star.style.setProperty('--ty', ty + 'px');
+        star.style.left = centerX + 'px';
+        star.style.top = centerY + 'px';
+        
+        element.appendChild(star);
+        
+        // 动画结束后移除
+        setTimeout(() => {
+            star.remove();
+        }, 600);
+    }
+}
+
+
+const coinSound = new Audio('data:audio/wav;base64,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
