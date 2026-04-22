@@ -1,10 +1,36 @@
-/* preset2.css - 过载预设详情页样式 */
+/* assets/css/preset2.css - 完全重写，修复滚动和字体问题 */
+
+/* ========== 字体导入 ========== */
+@import url("https://fontsapi.zeoseven.com/863/main/result.css");
+@import url("https://fontsapi.zeoseven.com/978/main/result.css");
 
 /* ========== 全局变量 ========== */
 :root {
     --cyber-blue: #00f3ff;
     --cyber-purple: #b000ff;
     --cyber-green: #00ff88;
+    --font-pixel-cn: "BaDingShiWeiTi 16", "Press Start 2P", monospace;
+    --font-detail-cn: "XCDUANZHUANGSONG", serif;
+}
+
+/* ========== 彻底修复滚动问题 ========== */
+html {
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+}
+
+body {
+    overflow-y: visible !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    min-height: 100vh;
+}
+
+/* 覆盖 global.css 的设置 */
+body, html {
+    overflow: visible !important;
+    height: auto !important;
 }
 
 /* ========== 自定义光标 ========== */
@@ -52,6 +78,7 @@ body:hover #cursor {
     align-items: center;
     background: radial-gradient(circle at center, #1a0005 0%, var(--bg-darker) 100%);
     z-index: 5000;
+    transition: opacity 0.5s;
 }
 
 .terminal-window {
@@ -163,10 +190,11 @@ body:hover #cursor {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    transition: opacity 0.5s;
 }
 
 .overload-title {
-    font-family: 'Syne', sans-serif;
+    font-family: 'New Rocker', cursive;
     font-size: 20vw;
     font-weight: 900;
     line-height: 0.8;
@@ -195,7 +223,7 @@ body:hover #cursor {
     font-size: 35vw;
     font-weight: 900;
     color: rgba(255, 0, 60, 0.03);
-    font-family: 'Syne', sans-serif;
+    font-family: 'Manufacturing Consent', sans-serif;
     pointer-events: none;
     z-index: 0;
 }
@@ -246,7 +274,6 @@ body:hover #cursor {
 }
 
 .gothic-title {
-    font-family: 'UnifrakturMaguntia', serif;
     margin-bottom: 20px;
 }
 
@@ -256,6 +283,8 @@ body:hover #cursor {
     color: var(--red-neon);
     line-height: 0.9;
     filter: drop-shadow(3px 3px 0px rgba(255, 255, 255, 0.3));
+    font-family: var(--font-pixel-cn);
+    font-weight: normal;
 }
 
 .title-sub {
@@ -263,13 +292,15 @@ body:hover #cursor {
     font-size: 4vw;
     color: var(--white);
     margin-left: 20px;
+    font-family: 'New Rocker', cursive;
 }
 
 .subtitle {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font-pixel-cn);
     font-size: 2.5vw;
     margin-bottom: 50px;
     color: var(--white);
+    font-weight: normal;
 }
 
 .accent-text {
@@ -277,74 +308,149 @@ body:hover #cursor {
     text-shadow: 0 0 20px rgba(255, 0, 60, 0.6);
 }
 
-/* 人物形象展示 */
-.character-showcase {
+/* ========== 扑克牌翻转效果 ========== */
+.poker-showcase {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     margin-top: 50px;
+    perspective: 1000px;
 }
 
-.char-card {
-    position: relative;
+.poker-card {
     width: 300px;
-    height: 400px;
+    height: 420px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.poker-card[data-index="1"] {
+    transform: rotate(-5deg);
+}
+
+.poker-card[data-index="2"] {
+    transform: rotate(3deg);
+}
+
+.poker-card:hover {
+    transform: rotate(0deg) translateY(-10px);
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.poker-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border: 3px solid var(--red-neon);
+    border-radius: 15px;
     overflow: hidden;
-    border: 2px solid var(--red-neon);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.card-front {
     background: #000;
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.char-card[data-index="1"] {
-    transform: rotate(-3deg);
-}
-
-.char-card[data-index="2"] {
-    transform: rotate(2deg);
-}
-
-.char-card:hover {
-    transform: rotate(0deg) scale(1.05);
-    z-index: 10;
-    box-shadow: 0 0 40px rgba(255, 0, 60, 0.6);
-}
-
-.char-card img {
+.card-front img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(0.3) contrast(1.2);
+    filter: grayscale(0.2) contrast(1.1);
     transition: filter 0.3s;
 }
 
-.char-card:hover img {
+.poker-card:hover .card-front img {
     filter: grayscale(0) contrast(1);
 }
 
-.card-glitch {
+.card-label {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(255, 0, 60, 0.1) 50%, 
-        transparent 100%);
-    opacity: 0;
-    transition: opacity 0.3s;
+    right: 0;
+    padding: 15px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    font-family: var(--font-pixel);
+    font-size: 10px;
+    color: var(--red-neon);
+    text-align: center;
+    letter-spacing: 2px;
 }
 
-.char-card:hover .card-glitch {
-    opacity: 1;
-    animation: glitch-sweep 1s infinite;
+.card-back {
+    background: linear-gradient(135deg, #1a0005 0%, #050000 100%);
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@keyframes glitch-sweep {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+.card-pattern {
+    text-align: center;
+    position: relative;
 }
 
-/* 右侧：信息面板 */
+.pattern-text {
+    font-size: 120px;
+    color: var(--red-neon);
+    text-shadow: 0 0 30px rgba(255, 0, 60, 0.8);
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { 
+        text-shadow: 0 0 30px rgba(255, 0, 60, 0.8);
+        transform: scale(1);
+    }
+    50% { 
+        text-shadow: 0 0 50px rgba(255, 0, 60, 1);
+        transform: scale(1.05);
+    }
+}
+
+.pattern-title {
+    font-family: 'New Rocker', cursive;
+    font-size: 24px;
+    color: var(--white);
+    margin-top: 20px;
+    letter-spacing: 3px;
+}
+
+/* 扑克牌角标装饰 */
+.card-back::before,
+.card-back::after {
+    content: '⚡';
+    position: absolute;
+    font-size: 30px;
+    color: var(--red-neon);
+    opacity: 0.3;
+}
+
+.card-back::before {
+    top: 15px;
+    left: 15px;
+}
+
+.card-back::after {
+    bottom: 15px;
+    right: 15px;
+    transform: rotate(180deg);
+}
+
+/* ========== 右侧：信息面板 ========== */
 .info-panel {
     display: flex;
     flex-direction: column;
@@ -389,14 +495,13 @@ body:hover #cursor {
     padding: 10px 15px;
     background: rgba(255, 0, 60, 0.1);
     border: 1px solid rgba(255, 0, 60, 0.3);
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-pixel-cn);
     font-size: 12px;
     text-align: center;
     color: var(--white);
     transition: all 0.3s;
+    font-weight: normal;
 }
-
-/* assets/css/preset2.css - 继续 */
 
 .feature-tag:hover {
     background: rgba(255, 0, 60, 0.2);
@@ -407,20 +512,22 @@ body:hover #cursor {
 
 /* 描述文本 */
 .description-text {
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    line-height: 1.8;
+    font-family: var(--font-detail-cn);
+    font-size: 16px;
+    line-height: 2;
     color: rgba(255, 255, 255, 0.8);
+    font-weight: normal;
 }
 
 .description-text p {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .description-text .highlight {
     color: var(--red-neon);
-    font-weight: 700;
-    margin-top: 15px;
+    margin-top: 20px;
+    font-family: var(--font-pixel-cn);
+    font-weight: normal;
 }
 
 /* 使用指南列表 */
@@ -433,15 +540,16 @@ body:hover #cursor {
 .usage-item {
     display: flex;
     gap: 15px;
-    font-family: 'Courier New', monospace;
-    font-size: 13px;
-    line-height: 1.6;
+    font-family: var(--font-detail-cn);
+    font-size: 14px;
+    line-height: 1.8;
+    font-weight: normal;
 }
 
 .usage-item .step {
     color: var(--red-neon);
-    font-weight: 700;
     flex-shrink: 0;
+    font-family: var(--font-pixel);
 }
 
 .usage-item .text {
@@ -514,7 +622,9 @@ body:hover #cursor {
 .changelog-section {
     max-width: 1400px;
     margin: 100px auto;
-    padding: 0 40px;
+    padding: 0 40px 100px;
+    position: relative;
+    z-index: 1;
 }
 
 .section-title {
@@ -523,16 +633,17 @@ body:hover #cursor {
 }
 
 .section-title h2 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'New Rocker', cursive;
     font-size: 4vw;
     color: var(--red-neon);
     margin-bottom: 10px;
 }
 
-.section-title .subtitle {
-    font-family: 'Courier New', monospace;
+.section-title .subtitle-text {
+    font-family: var(--font-pixel-cn);
     font-size: 14px;
     color: rgba(255, 255, 255, 0.5);
+    font-weight: normal;
 }
 
 /* 幸运轮盘 */
@@ -609,6 +720,20 @@ body:hover #cursor {
     cursor: pointer;
     transition: all 0.3s;
     box-shadow: 0 0 20px rgba(255, 0, 60, 0.4);
+    position: relative;
+}
+
+.node-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: var(--red-neon);
+    border-radius: 50%;
+    transition: all 0.3s;
 }
 
 .version-node:hover .node-dot {
@@ -617,13 +742,17 @@ body:hover #cursor {
     box-shadow: 0 0 40px rgba(255, 0, 60, 0.8);
 }
 
+.version-node:hover .node-dot::after {
+    background: #000;
+}
+
 .node-content {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 300px;
-    background: rgba(20, 15, 23, 0.95);
+    width: 320px;
+    background: rgba(20, 15, 23, 0.98);
     border: 2px solid var(--red-neon);
     padding: 20px;
     opacity: 0;
@@ -631,6 +760,7 @@ body:hover #cursor {
     transition: opacity 0.3s;
     z-index: 100;
     backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(255, 0, 60, 0.5);
 }
 
 .version-node:hover .node-content {
@@ -662,16 +792,32 @@ body:hover #cursor {
 .node-details ul {
     list-style: none;
     padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.node-details ul::-webkit-scrollbar {
+    width: 4px;
+}
+
+.node-details ul::-webkit-scrollbar-track {
+    background: rgba(255, 0, 60, 0.1);
+}
+
+.node-details ul::-webkit-scrollbar-thumb {
+    background: var(--red-neon);
+    border-radius: 2px;
 }
 
 .node-details li {
-    font-family: 'Courier New', monospace;
-    font-size: 12px;
+    font-family: var(--font-detail-cn);
+    font-size: 13px;
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.8);
     padding-left: 15px;
     position: relative;
     margin-bottom: 8px;
+    font-weight: normal;
 }
 
 .node-details li::before {
@@ -684,15 +830,17 @@ body:hover #cursor {
 /* ========== 致谢区域 ========== */
 .credits-section {
     max-width: 1400px;
-    margin: 100px auto 50px;
+    margin: 0 auto 50px;
     padding: 60px 40px;
     background: rgba(20, 15, 23, 0.6);
     border: 1px solid rgba(255, 0, 60, 0.3);
     backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
 }
 
 .credits-title {
-    font-family: 'Syne', sans-serif;
+    font-family: 'New Rocker', cursive;
     font-size: 3vw;
     color: var(--red-neon);
     text-align: center;
@@ -709,10 +857,11 @@ body:hover #cursor {
     padding: 15px 20px;
     background: rgba(255, 0, 60, 0.05);
     border-left: 3px solid var(--red-neon);
-    font-family: 'Courier New', monospace;
-    font-size: 13px;
+    font-family: var(--font-detail-cn);
+    font-size: 14px;
     color: rgba(255, 255, 255, 0.8);
     transition: all 0.3s;
+    font-weight: normal;
 }
 
 .credit-item:hover {
@@ -747,6 +896,10 @@ body:hover #cursor {
     .version-node {
         transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-180px) rotate(calc(-1 * var(--angle)));
     }
+
+    .node-content {
+        width: 280px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -762,12 +915,12 @@ body:hover #cursor {
         font-size: 5vw;
     }
 
-    .character-showcase {
+    .poker-showcase {
         flex-direction: column;
         align-items: center;
     }
 
-    .char-card {
+    .poker-card {
         width: 100%;
         max-width: 300px;
     }
@@ -811,4 +964,5 @@ body:hover #cursor {
 body.shaking {
     animation: shake 0.1s infinite;
 }
+
 
