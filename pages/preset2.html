@@ -1,0 +1,336 @@
+<!-- preset2.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过载 is ONLINE - Ghost Channel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Syne:wght@800&family=JetBrains+Mono:wght@300;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/preset2.css">
+</head>
+<body>
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+    <div class="noise"></div>
+
+    <!-- 自定义光标 -->
+    <div id="cursor"></div>
+
+    <!-- ========== Phase 1: 赛博扫雷 ========== -->
+    <section id="stage-minesweeper">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span>SYSTEM_OVERLOAD_DETECTION</span>
+                <span class="close-btn">✕</span>
+            </div>
+            <div class="terminal-body">
+                <div class="ms-grid" id="grid"></div>
+                <p class="warning-text">
+                    <span class="blink">⚠</span> DO NOT CLICK THE RED ERROR <span class="blink">⚠</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Phase 2: 过载转场 ========== -->
+    <div id="overload-overlay">
+        <div class="overload-title" id="glitch-text">
+            <div class="title-line">过载</div>
+            <div class="title-line">ONLINE</div>
+        </div>
+    </div>
+
+    <!-- ========== Phase 3: 详情页 ========== -->
+    <section id="stage-portfolio">
+        <!-- 导航栏 -->
+        <nav class="navbar" id="navbar">
+            <div class="nav-content">
+                <div class="nav-left">
+                    <div class="ghost-icon"></div>
+                    <span class="nav-title">GHOST_CHANNEL</span>
+                </div>
+                <div class="nav-links">
+                    <a href="../home.html" class="nav-link" data-text="HOME">HOME</a>
+                    <a href="about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+                    <a href="characters.html" class="nav-link" data-text="CHARACTERS">CHARACTERS</a>
+                    <a href="gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+                    <a href="presets.html" class="nav-link active" data-text="PRESETS">PRESETS</a>
+                    <a href="plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+                    <a href="links.html" class="nav-link" data-text="LINKS">LINKS</a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 侧边栏 -->
+        <div class="sidebar" id="sidebar">
+            <a href="../home.html">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="characters.html">CHARACTERS</a>
+            <a href="gallery.html">GALLERY</a>
+            <a href="presets.html" class="active">PRESETS</a>
+            <a href="plugins.html">PLUGINS</a>
+            <a href="links.html">LINKS</a>
+        </div>
+
+        <!-- 背景装饰数字 -->
+        <div class="huge-number-bg">066</div>
+
+        <!-- 主内容区 -->
+        <div class="main-layout">
+            <!-- 左侧：标题与图片 -->
+            <div class="hero-section">
+                <div class="breadcrumb">
+                    <a href="presets.html">← BACK TO PRESETS</a>
+                </div>
+                
+                <div class="preset-badge">CLAUDE PRESET</div>
+                
+                <h1 class="gothic-title reveal-item">
+                    <span class="title-main">燃弥撒</span>
+                    <span class="title-sub">MEGADETH</span>
+                </h1>
+
+                <div class="subtitle reveal-item">
+                    <span class="accent-text">'过载'</span> is ONLINE
+                </div>
+
+                <!-- 人物形象展示 -->
+                <div class="character-showcase reveal-item">
+                    <div class="char-card" data-index="1">
+                        <img src="https://tc-new.z.wiki/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260422/Hrsk/1232X928/metro.ant_Japanese_light_illustration_Guoman_texture_Male_bas_ff29c323-9385-446f-b452-429b8042876f_2.png/webp" alt="过载角色">
+                        <div class="card-glitch"></div>
+                    </div>
+                    <div class="char-card" data-index="2">
+                        <img src="https://tc-new.z.wiki/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260422/PSFo/1232X928/metro.ant_2.5D_semi-realistic_anime_style_Japanese_light_illu_60dd2c24-c277-40c4-8f63-20963575245f_1.png/webp" alt="过载角色2">
+                        <div class="card-glitch"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧：信息面板 -->
+            <div class="info-panel">
+                <!-- 预设特色 -->
+                <div class="info-block reveal-item">
+                    <div class="block-header">
+                        <span class="icon">👻</span>
+                        <span class="label">// FEATURES</span>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-tag">女凝</div>
+                        <div class="feature-tag">去性别化脏话</div>
+                        <div class="feature-tag">父权转化</div>
+                        <div class="feature-tag">星座塑造</div>
+                        <div class="feature-tag">关系引力</div>
+                        <div class="feature-tag">COT思维链</div>
+                        <div class="feature-tag">防八股</div>
+                        <div class="feature-tag">12种文风</div>
+                    </div>
+                </div>
+
+                <!-- 预设简介 -->
+                <div class="info-block reveal-item">
+                    <div class="block-header">
+                        <span class="icon">🎧</span>
+                        <span class="label">// DESCRIPTION</span>
+                    </div>
+                    <div class="description-text">
+                        <p>狠抓人设，让角色有自己的生活，不回避阴暗面，描写细腻。</p>
+                        <p>女凝视角，去性别化脏话，独立自主角色不围绕user转。</p>
+                        <p class="highlight">超多美化 · 鲜活世界 · 去user中心化</p>
+                    </div>
+                </div>
+
+                <!-- 使用指南 -->
+                <div class="info-block reveal-item">
+                    <div class="block-header">
+                        <span class="icon">📖</span>
+                        <span class="label">// USAGE GUIDE</span>
+                    </div>
+                    <div class="usage-list">
+                        <div class="usage-item">
+                            <span class="step">1.</span>
+                            <span class="text">COT自动解析：酒馆顶部A图标 → 推理 → 自动解析 → 前缀"&lt;thinking&gt;" 后缀"&lt;/thinking&gt;"</span>
+                        </div>
+                        <div class="usage-item">
+                            <span class="step">2.</span>
+                            <span class="text">破限：默认破限失败可切换带emoji版本</span>
+                        </div>
+                        <div class="usage-item">
+                            <span class="step">3.</span>
+                            <span class="text">去八股：必须开【DEMO自检】，关掉【工具箱】和【禁词】</span>
+                        </div>
+                        <div class="usage-item">
+                            <span class="step">4.</span>
+                            <span class="text">摘要必开，伏笔可选</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 下载按钮 -->
+                <div class="download-section reveal-item">
+                    <a href="https://discord.com/channels/1379304008157499423/1467873964918440010/1467873964918440010" target="_blank" class="download-btn">
+                        <span class="btn-icon">⚡</span>
+                        <span class="btn-text">DOWNLOAD PRESET</span>
+                        <span class="btn-arrow">→</span>
+                    </a>
+                    <p class="version-info">Latest: v2.11 · 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 版本更新日志 - 幸运观测图风格 -->
+        <div class="changelog-section" id="changelog">
+            <div class="section-title reveal-item">
+                <h2>VERSION HISTORY</h2>
+                <p class="subtitle">// 幸运观测图</p>
+            </div>
+
+            <div class="fortune-wheel reveal-item">
+                <div class="wheel-center">
+                    <div class="center-icon">⚡</div>
+                    <div class="center-text">OVERLOAD</div>
+                </div>
+                
+                <div class="version-nodes">
+                    <!-- v2.11 -->
+                    <div class="version-node" data-version="2.11" style="--angle: 0deg;">
+                        <div class="node-dot"></div>
+                        <div class="node-content">
+                            <div class="node-header">
+                                <span class="version-num">v2.11</span>
+                                <span class="version-date">2026</span>
+                            </div>
+                            <div class="node-details">
+                                <ul>
+                                    <li>修改带emoji的破限条目</li>
+                                    <li>增加【自然语言】防机械化</li>
+                                    <li>新增【角色塑造】条目</li>
+                                    <li>新增7个普通文风+1个NSFW文风</li>
+                                    <li>新增【真实性爱】生理规则</li>
+                                    <li>调整底部顺序优化</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- v2.8 -->
+                    <div class="version-node" data-version="2.8" style="--angle: 72deg;">
+                        <div class="node-dot"></div>
+                        <div class="node-content">
+                            <div class="node-header">
+                                <span class="version-num">v2.8</span>
+                                <span class="version-date">2026</span>
+                            </div>
+                            <div class="node-details">
+                                <ul>
+                                    <li>加强【真实世界】/【允许阴暗面】/【性欲】[2]版本</li>
+                                    <li>增加【动物塑滤镜】和【增强角色能动性】</li>
+                                    <li>女凝条目加强，更性化的女性凝视</li>
+                                    <li>抢话条目加强</li>
+                                    <li>NSFW区域新增特殊标签</li>
+                                    <li>新增语言：甜言蜜语&粗俗</li>
+                                    <li>新增'灵感'：生活情趣和调教感官</li>
+                                    <li>新增雷点设置和安全词</li>
+                                    <li>新增结尾美化</li>
+                                    <li>新增防截断和思维链锁</li>
+                                    <li>增加双语声道</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- v2.0 -->
+                    <div class="version-node" data-version="2.0" style="--angle: 144deg;">
+                        <div class="node-dot"></div>
+                        <div class="node-content">
+                            <div class="node-header">
+                                <span class="version-num">v2.0</span>
+                                <span class="version-date">2025</span>
+                            </div>
+                            <div class="node-details">
+                                <ul>
+                                    <li>重构COT系统架构</li>
+                                    <li>新增主线/支线/通用思维链</li>
+                                    <li>实现鲜活世界（去user中心化）</li>
+                                    <li>引入安息日自检逻辑</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- v1.5 -->
+                    <div class="version-node" data-version="1.5" style="--angle: 216deg;">
+                        <div class="node-dot"></div>
+                        <div class="node-content">
+                            <div class="node-header">
+                                <span class="version-num">v1.5</span>
+                                <span class="version-date">2025</span>
+                            </div>
+                            <div class="node-details">
+                                <ul>
+                                    <li>优化女凝描写细节</li>
+                                    <li>完善去性别化脏话系统</li>
+                                    <li>新增父权转化机制</li>
+                                    <li>引入星座塑造系统</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- v1.0 -->
+                    <div class="version-node" data-version="1.0" style="--angle: 288deg;">
+                        <div class="node-dot"></div>
+                        <div class="node-content">
+                            <div class="node-header">
+                                <span class="version-num">v1.0</span>
+                                <span class="version-date">2024</span>
+                            </div>
+                            <div class="node-details">
+                                <ul>
+                                    <li>初始版本发布</li>
+                                    <li>基础人设抓取系统</li>
+                                    <li>角色独立性框架</li>
+                                    <li>基础美化系统</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 连接线 -->
+                <svg class="wheel-connections" viewBox="0 0 400 400">
+                    <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(255, 0, 60, 0.2)" stroke-width="1" stroke-dasharray="5,5"/>
+                    <circle cx="200" cy="200" r="180" fill="none" stroke="rgba(255, 0, 60, 0.1)" stroke-width="1"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- 致谢区域 -->
+        <div class="credits-section reveal-item">
+            <div class="credits-title">SPECIAL THANKS</div>
+            <div class="credits-grid">
+                <div class="credit-item">kkm老师 · 预设教程</div>
+                <div class="credit-item">汪叽吱吱老师 · 灰烬之桥框架</div>
+                <div class="credit-item">夜来风雨老师 · 防八股提示词</div>
+                <div class="credit-item">小回老师 · 中插HTML灵感</div>
+                <div class="credit-item">电波系老师 · 超级序言</div>
+                <div class="credit-item">柏柏老师 · 音乐播放器</div>
+                <div class="credit-item">吉歪歪老师 · 缄默法则</div>
+                <div class="credit-item">文风蒸馏器老师 · 文风制作</div>
+                <div class="credit-item">鹿鹿老师 · 心得分享</div>
+                <div class="credit-item">米粒 · 小诗宝</div>
+                <div class="credit-item">奇迹之夜的朋友们</div>
+                <div class="credit-item">匿名区的小狗们</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../assets/js/preset2.js"></script>
+</body>
+</html>
