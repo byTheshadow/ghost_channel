@@ -1,0 +1,401 @@
+/* ========== Presets 页面样式 ========== */
+
+/* 基础设置 */
+body {
+    background: linear-gradient(135deg, #0a0000 0%, #140f17 50%, #0a0000 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: 80px;
+    position: relative;
+}
+
+/* 代码矩阵背景 */
+.code-matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 50px);
+    gap: 5px;
+    padding: 20px;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.code-matrix .code-char {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    color: #1a0a0f;
+    text-align: center;
+    transition: all 0.3s ease;
+    word-break: break-all;
+}
+
+.code-matrix .code-char.glow {
+    color: #730c1e;
+    text-shadow: 0 0 10px #ff003c;
+    animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+
+/* 主容器 */
+.presets-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px 100px;
+}
+
+/* ========== 顶部标题区 ========== */
+.presets-header {
+    padding: 60px 0 80px;
+    text-align: center;
+    position: relative;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+}
+
+.main-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 3rem;
+    color: #ff003c;
+    text-shadow: 
+        4px 4px 0 #fff,
+        0 0 20px rgba(255, 0, 60, 0.6);
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    animation: title-glitch 3s infinite;
+}
+
+@keyframes title-glitch {
+    0%, 90%, 100% { transform: translate(0); }
+    92% { transform: translate(-2px, 2px); }
+    94% { transform: translate(2px, -2px); }
+    96% { transform: translate(-2px, -2px); }
+}
+
+.subtitle {
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.status-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #730c1e;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+}
+
+.status-text {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.status-indicator {
+    color: #00ff88;
+    text-shadow: 0 0 10px #00ff88;
+    font-weight: bold;
+}
+
+.blink-cursor {
+    color: #ff003c;
+    animation: cursor-blink 1s infinite;
+}
+
+@keyframes cursor-blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* ========== 骷髅头主角 ========== */
+.skull-player {
+    position: fixed;
+    bottom: 104px;
+    left: 50px;
+    width: 40px;
+    height: 44px;
+    z-index: 100;
+    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                bottom 0.3s ease-out;
+    pointer-events: none;
+}
+
+.skull-sprite {
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    box-shadow: 
+        /* 第一行 */
+        4px 0 #fff, 8px 0 #fff, 12px 0 #fff, 16px 0 #fff, 20px 0 #fff,
+        /* 第二行 */
+        0px 4px #fff, 4px 4px #fff, 8px 4px #fff, 12px 4px #fff, 16px 4px #fff, 20px 4px #fff, 24px 4px #fff,
+        /* 眼睛层 */
+        0px 8px #fff, 4px 8px #ff003c, 8px 8px #fff, 12px 8px #fff, 16px 8px #fff, 20px 8px #ff003c, 24px 8px #fff,
+        0px 12px #fff, 4px 12px #ff003c, 8px 12px #fff, 12px 12px #fff, 16px 12px #fff, 20px 12px #ff003c, 24px 12px #fff,
+        /* 鼻子层 */
+        0px 16px #fff, 4px 16px #fff, 8px 16px #fff, 12px 16px #ff003c, 16px 16px #fff, 20px 16px #fff, 24px 16px #fff,
+        /* 牙齿层 */
+        4px 20px #fff, 8px 20px #fff, 12px 20px #fff, 16px 20px #fff, 20px 20px #fff,
+        4px 24px #fff, 12px 24px #fff, 20px 24px #fff;
+    animation: skull-idle 0.5s infinite alternate;
+    image-rendering: pixelated;
+}
+
+@keyframes skull-idle {
+    from { transform: translateY(0); }
+    to { transform: translateY(-4px); }
+}
+
+.skull-player.skull-jump {
+    animation: skull-jump-anim 0.4s ease-out;
+}
+
+@keyframes skull-jump-anim {
+    0% { bottom: 104px; }
+    50% { bottom: 200px; }
+    100% { bottom: 104px; }
+}
+
+/* ========== 预设选择区 ========== */
+.presets-stage {
+    display: flex;
+    gap: 20px;
+    min-height: 450px;
+    position: relative;
+    margin-bottom: 100px;
+}
+
+.preset-blade {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(115, 12, 30, 0.4);
+    border-radius: 8px;
+    padding: 40px 30px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    transform: skewY(-2deg);
+}
+
+.preset-blade::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(115, 12, 30, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.preset-blade:hover {
+    flex: 1.3;
+    background: rgba(139, 0, 0, 0.3);
+    border-color: #ff003c;
+    box-shadow: 
+        0 0 30px rgba(255, 0, 60, 0.4),
+        inset 0 0 60px rgba(255, 0, 60, 0.1);
+    transform: skewY(0deg) translateY(-10px);
+}
+
+.preset-blade:hover::before {
+    opacity: 1;
+}
+
+.blade-content {
+    transform: skewY(2deg);
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+.preset-blade:hover .blade-content {
+    transform: skewY(0deg) translateY(-10px);
+}
+
+.preset-label {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #ff003c;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.preset-title {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+    transition: color 0.3s;
+}
+
+.preset-blade:hover .preset-title {
+    color: #ff003c;
+    text-shadow: 
+        2px 2px 0 #000,
+        0 0 15px rgba(255, 0, 60, 0.8);
+}
+
+.preset-subtitle {
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 20px;
+}
+
+.preset-tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 12px;
+    padding: 4px 10px;
+    background: rgba(115, 12, 30, 0.4);
+    border: 1px solid rgba(255, 0, 60, 0.3);
+    border-radius: 3px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s;
+}
+
+.preset-blade:hover .tag {
+    background: rgba(255, 0, 60, 0.2);
+    border-color: #ff003c;
+    color: #fff;
+}
+
+.enter-hint {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 1px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+}
+
+.preset-blade:hover .enter-hint {
+    opacity: 1;
+    transform: translateY(0);
+    color: #ff003c;
+}
+
+.blade-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 0, 60, 0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.preset-blade:hover .blade-glow {
+    opacity: 1;
+}
+
+/* ========== 地面 ========== */
+.stage-floor {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: #0a0000;
+    border-top: 4px solid #ff003c;
+    z-index: 50;
+}
+
+.floor-pattern {
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(90deg, rgba(255, 0, 60, 0.2) 2px, transparent 2px),
+        linear-gradient(0deg, rgba(255, 0, 60, 0.2) 2px, transparent 2px);
+    background-size: 40px 40px;
+    animation: floor-scroll 20s linear infinite;
+}
+
+@keyframes floor-scroll {
+    from { background-position: 0 0; }
+    to { background-position: 40px 0; }
+}
+
+/* ========== 响应式设计 ========== */
+@media (max-width: 1024px) {
+    .presets-stage {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .preset-blade {
+        transform: skewY(0deg);
+    }
+
+    .preset-blade:hover {
+        flex: 1;
+        transform: translateY(-5px);
+    }
+
+    .skull-player {
+        display: none;
+    }
+
+    .main-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .presets-container {
+        padding: 0 20px 100px;
+    }
+
+    .main-title {
+        font-size: 1.5rem;
+    }
+
+    .preset-title {
+        font-size: 1.4rem;
+    }
+
+    .preset-blade {
+        padding: 30px 20px;
+    }
+}
