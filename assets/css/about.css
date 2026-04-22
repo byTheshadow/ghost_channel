@@ -1,7 +1,6 @@
-/* ========== About Me 页面样式 (Enhanced Ver. - Display Fixed) ========== */
+/* ========== About Me 页面样式 (Reforged Ver.) ========== */
 
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@1,500&display=swap');
-@import url("https://fontsapi.zeoseven.com/316/main/result.css");
 
 /* 基础设置 */
 * { 
@@ -16,8 +15,10 @@ body {
     font-family: 'Courier Prime', monospace;
     overflow: hidden;
     height: 100vh;
-    width: 100vw;
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: none;
 }
 
 /* 自定义光标 */
@@ -64,29 +65,7 @@ body {
                 linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
     background-size: 100% 2px, 3px 100%;
     pointer-events: none;
-    z-index: 998;
-}
-
-.vignette {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, transparent 50%, #000 120%);
-    pointer-events: none;
-    z-index: 997;
-}
-
-/* 点线网络背景 */
-#network-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
+    z-index: 999;
 }
 
 /* 粒子画布 */
@@ -96,7 +75,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 15;
+    z-index: 1;
+    filter: blur(1px);
     pointer-events: none;
 }
 
@@ -125,8 +105,10 @@ body {
                 opacity 0.8s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-.popup-window.exploding {
-    pointer-events: none;
+.popup-window.cleanup {
+    opacity: 0 !important;
+    transform-origin: center;
+    transform: translate(-50%, -50%) scale(0) !important;
 }
 
 @keyframes fadeInPopup {
@@ -155,30 +137,30 @@ body {
 
 /* UI 容器 */
 .ui-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     z-index: 20;
     transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1),
                 transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 /* 界面 1: AI 提问区 */
 #screen-1 {
     opacity: 1;
-    pointer-events: auto;
+    transform: translateY(0);
+    z-index: 50;
 }
 
 #screen-1.hidden {
     opacity: 0;
-    transform: translate(-50%, -60%);
+    transform: translateY(-20px);
     pointer-events: none;
 }
 
 .ai-glass-box {
     width: 420px;
-    max-width: 90vw;
     padding: 15px 20px;
     background: rgba(15, 10, 10, 0.45);
     backdrop-filter: blur(25px) saturate(150%);
@@ -198,6 +180,7 @@ body {
     font-family: inherit;
     font-size: 14px;
     outline: none;
+    cursor: none;
 }
 
 .ai-input::placeholder {
@@ -211,12 +194,11 @@ body {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    cursor: pointer;
+    cursor: none;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
-    flex-shrink: 0;
 }
 
 .send-btn:hover {
@@ -227,21 +209,21 @@ body {
 
 /* 界面 2: About Me (档案区) */
 #screen-2 {
+    position: absolute;
     opacity: 0;
-    transform: translate(-50%, -45%) scale(0.95);
+    transform: scale(0.95) translateY(0px);
     pointer-events: none;
 }
 
 #screen-2.active {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1) translateY(0);
     pointer-events: auto;
 }
 
 .archive-box {
     width: 650px;
     max-width: 90vw;
-    max-height: 80vh;
     background: rgba(15, 10, 10, 0.45);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(139, 0, 0, 0.3);
@@ -249,7 +231,7 @@ body {
     padding: 40px;
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9);
     position: relative;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .archive-box .corner {
@@ -299,10 +281,9 @@ body {
     color: #666;
     padding: 3px 8px;
     font-size: 12px;
-    cursor: pointer;
+    cursor: none;
     transition: all 0.2s;
     z-index: 10;
-    opacity: 0;
 }
 
 .skip-btn:hover {
@@ -313,7 +294,7 @@ body {
 .typing-content {
     font-size: 14px;
     line-height: 1.8;
-    min-height: 300px;
+    min-height: 400px;
 }
 
 .typing-content h1 {
@@ -375,7 +356,7 @@ body {
     margin-inline: auto;
     position: relative;
     overflow: hidden;
-    cursor: pointer;
+    cursor: none;
 }
 
 .action-link:hover {
@@ -421,6 +402,10 @@ body {
 
 /* 响应式 */
 @media (max-width: 768px) {
+    body {
+        cursor: default;
+    }
+
     .custom-cursor {
         display: none;
     }
@@ -431,7 +416,6 @@ body {
 
     .archive-box {
         padding: 25px;
-        max-height: 70vh;
     }
 
     .typing-content {
