@@ -1,4 +1,6 @@
 /* ========== Presets 页面样式 ========== */
+/* 引入中文像素字体 */
+@import url("https://fontsapi.zeoseven.com/784/main/result.css");
 
 /* 基础设置 */
 body {
