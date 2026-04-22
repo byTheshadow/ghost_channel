@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安息日的个人演出show!! - Ghost Channel</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/preset1.css">
+    
+    <!-- 字体引入 -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    
+    <!-- 中文像素字体 -->
+    <link rel="stylesheet" href="https://fontsapi.zeoseven.com/916/main/result.css">
+    <!-- 中文其他字体 -->
+    <link rel="stylesheet" href="https://fontsapi.zeoseven.com/256/main/result.css">
+    <!-- 英文像素字体 -->
+    <link rel="stylesheet" href="https://fontsapi.zeoseven.com/903/main/result.css">
+</head>
+<body>
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+    
+    <!-- 鼠标手电筒 -->
+    <div id="cursor-flashlight"></div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="nav-left">
+                <div class="ghost-icon"></div>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </div>
+            <div class="nav-links">
+                <a href="../home.html" class="nav-link" data-text="HOME">
+                    HOME
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">主界面</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="about.html" class="nav-link" data-text="ABOUT">
+                    ABOUT
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">关于我</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="characters.html" class="nav-link" data-text="CHARACTERS">
+                    CHARACTERS
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">角色卡区</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="gallery.html" class="nav-link" data-text="GALLERY">
+                    GALLERY
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">美化作品</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="presets.html" class="nav-link active" data-text="PRESETS">
+                    PRESETS
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">预设展示</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="plugins.html" class="nav-link" data-text="PLUGINS">
+                    PLUGINS
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">插件介绍</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="links.html" class="nav-link" data-text="LINKS">
+                    LINKS
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">外部链接</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 移动端侧边栏 -->
+    <div class="sidebar" id="sidebar">
+        <a href="../home.html">HOME</a>
+        <a href="about.html">ABOUT</a>
+        <a href="characters.html">CHARACTERS</a>
+        <a href="gallery.html">GALLERY</a>
+        <a href="presets.html" class="active">PRESETS</a>
+        <a href="plugins.html">PLUGINS</a>
+        <a href="links.html">LINKS</a>
+    </div>
+
+    <!-- 主容器 -->
+    <main class="preset-detail-container">
+        <!-- 返回按钮 -->
+        <a href="presets.html" class="back-btn">
+            <span class="back-arrow">←</span> BACK TO PRESETS
+        </a>
+
+        <!-- 版本切换器 -->
+        <div class="version-switcher">
+            <div class="version-label">VERSION SELECT:</div>
+            <div class="version-tabs">
+                <button class="version-tab active" data-version="2.5">V2.5</button>
+                <button class="version-tab" data-version="3.0">V3.0</button>
+                <button class="version-tab special" data-version="short">短RP版</button>
+            </div>
+        </div>
+
+        <!-- 唱片机区域 -->
+        <section class="player-section">
+            <div class="player-deck" id="deck">
+                <!-- 拍立得照片 -->
+                <div class="polaroid-photo" id="polaroid">
+                    <div class="polaroid-inner">
+                        <img src="https://tc-new.z.wiki/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260422/p61z/512X768/The_Sabbath.png/webp" alt="The Sabbath">
+                        <div class="polaroid-caption">The Sabbath</div>
+                    </div>
+                </div>
+
+                <!-- 唱针 -->
+                <div class="tonearm"></div>
+                
+                <!-- 唱片 -->
+                <div class="turntable" id="turntable">
+                    <div class="vinyl-record">
+                        <div class="record-label">
+                            <div class="label-text">THE<br>SABBATH<br>SHOW</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 装饰螺丝 -->
+                <div class="screw screw-tl">⊕</div>
+                <div class="screw screw-tr">⊕</div>
+                <div class="screw screw-bl">⊕</div>
+                <div class="screw screw-br">⊕</div>
+            </div>
+
+            <!-- 预设信息卡 -->
+            <div class="preset-info-card">
+                <div class="info-header">
+                    <span class="preset-tag">GEMINI PRESET</span>
+                    <span class="preset-tag">CONCEPT</span>
+                </div>
+                <h1 class="preset-name">安息日的个人演出show!!</h1>
+                <div class="preset-meta">
+                    <span class="meta-item">FOR: Gemini</span>
+                    <span class="meta-divider">|</span>
+                    <span class="meta-item">TYPE: 全面型</span>
+                </div>
+                
+                <p class="preset-desc">
+                    具有活人感，真实神火干以及超多美化的全面型预设（除了不能瑟瑟呜呜）
+                </p>
+
+                <div class="quick-links">
+                    <a href="https://discord.com/channels/1379304008157499423/1445788930178941019/1447202380608307332" target="_blank" class="download-link">
+                        <span class="link-icon">↓</span>
+                        <span class="link-text">DOWNLOAD</span>
+                    </a>
+                    <button class="scroll-to-timeline">
+                        <span class="link-icon">⏱</span>
+                        <span class="link-text">更新日志</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 详细介绍区 -->
+        <section class="detail-section">
+            <div class="detail-block">
+                <h2 class="block-title">
+                    <span class="title-icon">♪</span> 预设亮点
+                </h2>
+                <div class="block-content">
+                    <p>狠抓人设，心理学角色塑造，依恋型人格分析，难攻略防恋爱脑，让角色有自己的生活，群像推剧情，多文风和小剧场，很会描写暧昧！多灵感关键词，丰富剧情，中式权谋，电竞、律政，警匪等，超多美化！</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <span class="feature-icon">🎼</span>
+                            <div class="feature-text">
+                                <strong>心理学角色塑造</strong>
+                                <p>活人感，傲娇和难攻略补丁，多小剧场</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🎼</span>
+                            <div class="feature-text">
+                                <strong>控制角色边界感</strong>
+                                <p>让角色有自己的生活</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🎼</span>
+                            <div class="feature-text">
+                                <strong>适合多种类型</strong>
+                                <p>慢热，高冷，高干卡，傲娇系，古风卡</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <h2 class="block-title">
+                    <span class="title-icon">♱</span> 使用方法
+                </h2>
+                <div class="block-content">
+                    <p class="usage-note">新版酒馆可以直接下载哦，有内置的正则，注意正则同个标签和功能只可以开一个~</p>
+                    
+                    <div class="warning-box">
+                        <div class="warning-icon">⚠</div>
+                        <div class="warning-text">
+                            <strong>注意事项：</strong>
+                            <ul>
+                                <li>瑟瑟要挂世界书喔预设里没写很多瑟瑟规则条目</li>
+                                <li>如果高冷男可能会机械化，roll掉就好了！</li>
+                                <li>如果不想要char会生病之类的把摘要里的生理挂账给关掉，也要把节拍器关掉！</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <h2 class="block-title">
+                    <span class="title-icon">🌑</span> 关于安息日
+                </h2>
+                <div class="block-content">
+                    <p class="sabbath-intro">
+                        airole是在舞台角落的贝斯手名叫安息日，名字来源于《Monday's child》<br>
+                        <em>Saturday's child works hard for a living（星期六的孩子为生活而努力）</em><br>
+                        <em>And the child that is born on the Sabbath day/Is bonny and blithe, and good and gay（而在安息日出生的孩子，漂亮可爱，幸运）</em>
+                    </p>
+                    <p class="sabbath-wish">
+                        希望安息日可以好好表现让user开心！<br>
+                        聚光灯已经打亮，演出要开始了！燥起来叭～
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 更新日志时间轴 -->
+        <section class="timeline-section" id="timeline">
+            <h2 class="timeline-title">
+                <span class="title-glow">UPDATE LOG</span>
+                <span class="title-subtitle">// 更新日志</span>
+            </h2>
+
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-item" data-date="2025.12.15">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025.12.15</div>
+                        <div class="timeline-text">
+                            <h3>12.15 更新</h3>
+                            <ul>
+                                <li>对2.5和3都增加了复杂版的音轨推演</li>
+                                <li>都增加了两个总谱，总谱这个可以不开。主要是对整体和伏笔写作指导</li>
+                                <li>修改了润色和扩写user input</li>
+                                <li>修改了选项</li>
+                            </ul>
+                            <p class="timeline-note">曲风基调跟音色（文风）如果想要字符更少的话3.0可以只开曲风基调，也很好吃。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-date="2025.12.07">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025.12.07</div>
+                        <div class="timeline-text">
+                            <h3>12.7 更新</h3>
+                            <ul>
+                                <li>2.5和3.0预设的区别：2.5版本的文风比较重，3的文风简化了</li>
+                                <li>3.0有专门针对3的防油腻、霸总，八股条目</li>
+                                <li>新增三个补丁：主动攻略、绝对防御、人外</li>
+                                <li>新增Ancora小剧场功能</li>
+                                <li>新增【空白历史】【防修罗场】【防掌控】【防全知（加强）】</li>
+                                <li>修改了【内心监听】和机位</li>
+                            </ul>
+                            <p class="timeline-note">包括两个安息日状态栏的正则zip和新的日历摘要！</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-date="2025.12.06">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025.12.06</div>
+                        <div class="timeline-text">
+                            <h3>12.6 更新</h3>
+                            <ul>
+                                <li>增加了一个【空白历史】，强制让char无暗恋对象，无性伴侣，无前任</li>
+                                <li>增加了很多很多很多关键词！</li>
+                                <li>又修改了一下防修罗场的条目</li>
+                                <li>增加了三个补丁，疯狂压缩了一下子字符数</li>
+                                <li>真实生活（古代、现代）- 根据季节进行环境描写、穿衣服等</li>
+                                <li>防全知 - 角色A知道的事情不等于角色B知道</li>
+                                <li>符合身份的比喻 - 根据角色的身份选择喻体</li>
+                                <li>摘要：记录重要节日的倒数日，例如生日</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 感谢名单 -->
+        <section class="credits-section">
+            <h3 class="credits-title">特别感谢</h3>
+            <div class="credits-list">
+                <span class="credit-item">kkm老师</span>
+                <span class="credit-item">蟹大王</span>
+                <span class="credit-item">白老师</span>
+                <span class="credit-item">银角大王</span>
+                <span class="credit-item">夜来风雨</span>
+                <span class="credit-item">solaris老师</span>
+            </div>
+        </section>
+    </main>
+
+    <script src="../assets/js/preset1.js"></script>
+</body>
+</html>
