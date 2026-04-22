@@ -3,25 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me - Ghost Channel</title>
+    <title>Shadow Archives | Ghost Channel</title>
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/about.css">
-    <!-- 像素字体 -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <!-- 哥特字体 -->
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 噪点层 -->
-    <div class="noise-overlay"></div>
-    
-    <!-- CRT扫描线 -->
-    <div class="scanline"></div>
-    
-    <!-- 屏幕暗角 -->
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
     <div class="vignette"></div>
 
-    <!-- 导航栏（复用home.html的样式） -->
+    <!-- 自定义光标 -->
+    <div class="custom-cursor"></div>
+
+    <!-- 导航栏 -->
     <nav class="navbar" id="navbar">
         <div class="nav-content">
             <div class="nav-left">
@@ -29,13 +25,83 @@
                 <span class="nav-title">GHOST_CHANNEL</span>
             </div>
             <div class="nav-links">
-                <a href="../home.html" class="nav-link">HOME</a>
-                <a href="about.html" class="nav-link active">ABOUT</a>
-                <a href="characters.html" class="nav-link">CHARACTERS</a>
-                <a href="gallery.html" class="nav-link">GALLERY</a>
-                <a href="presets.html" class="nav-link">PRESETS</a>
-                <a href="plugins.html" class="nav-link">PLUGINS</a>
-                <a href="links.html" class="nav-link">LINKS</a>
+                <a href="../home.html" class="nav-link" data-text="HOME">
+                    HOME
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">主界面</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="about.html" class="nav-link active" data-text="ABOUT">
+                    ABOUT
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">关于我</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="characters.html" class="nav-link" data-text="CHARACTERS">
+                    CHARACTERS
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">角色卡区</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="gallery.html" class="nav-link" data-text="GALLERY">
+                    GALLERY
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">美化作品</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="presets.html" class="nav-link" data-text="PRESETS">
+                    PRESETS
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">预设展示</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="plugins.html" class="nav-link" data-text="PLUGINS">
+                    PLUGINS
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">插件介绍</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="links.html" class="nav-link" data-text="LINKS">
+                    LINKS
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">外部链接</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -56,60 +122,34 @@
         <a href="links.html">LINKS</a>
     </div>
 
-    <!-- 代码矩阵背景 -->
-    <div class="code-matrix" id="codeMatrix"></div>
+    <!-- 粒子画布 -->
+    <canvas id="particle-canvas"></canvas>
 
-    <!-- 自定义光标 -->
-    <div class="cursor-glow"></div>
-    <div class="cursor-dot"></div>
+    <!-- 混沌弹窗容器 -->
+    <div id="popup-container"></div>
 
-    <!-- 主容器 -->
-    <main class="main-container">
-        
-        <!-- 阶段一：AI提问界面 -->
-        <div class="prompt-section" id="promptSection">
-            <div class="prompt-card">
-                <!-- 水雾效果层 -->
-                <div class="fog-layer"></div>
-                
-                <div class="card-header">
-                    <span class="pixel-text">QUERY_SYSTEM</span>
-                    <div class="led-indicator"></div>
-                </div>
-                
-                <div class="query-input">
-                    <span class="prompt-symbol">▸</span>
-                    <span class="query-text">shadow_archives.dat</span>
-                </div>
-                
-                <button class="execute-btn" id="sendBtn">
-                    <span class="btn-text">EXECUTE</span>
-                    <span class="btn-arrow">→</span>
-                </button>
-            </div>
+    <!-- 界面 1: AI 提问区 -->
+    <div class="ui-container" id="screen-1">
+        <div class="ai-glass-box">
+            <input type="text" class="ai-input" id="ai-input" placeholder="Initiate connection with Archives..." autocomplete="off">
+            <button class="send-btn" id="send-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
         </div>
+    </div>
 
-        <!-- 阶段二：AI回复界面 -->
-        <div class="response-section" id="responseSection">
-            <div class="response-card">
-                <div class="card-top">
-                    <span class="archives-title">◈ SHADOW ARCHIVES ◈</span>
-                    <div class="scan-line"></div>
-                </div>
-                
-                <div id="typewriterOutput" class="archives-content">
-                    <!-- 打字机内容 -->
-                </div>
-
-                <div class="card-bottom">
-                    <button class="return-btn" id="backBtn">
-                        <span>← RETURN</span>
-                    </button>
-                </div>
-            </div>
+    <!-- 界面 2: About Me (档案区) -->
+    <div class="ui-container" id="screen-2">
+        <div class="archive-box">
+            <div class="corner top-left"></div>
+            <div class="corner bottom-right"></div>
+            <button class="skip-btn" id="skip-btn">SKIP >></button>
+            <div class="typing-content" id="output-text"></div>
         </div>
-
-    </main>
+    </div>
 
     <script src="../assets/js/about.js"></script>
 </body>
