@@ -23,6 +23,12 @@
 
     <!-- ========== Phase 1: 赛博扫雷 ========== -->
     <section id="stage-minesweeper">
+        <!-- 光敏性癫痫警告 -->
+        <div class="epilepsy-warning">
+            <span class="warning-icon">⚠️</span>
+            <span class="warning-text">光敏性癫痫警告 / PHOTOSENSITIVE SEIZURE WARNING</span>
+        </div>
+
         <div class="terminal-window">
             <div class="terminal-header">
                 <span>SYSTEM_OVERLOAD_DETECTION</span>
@@ -33,6 +39,18 @@
                 <p class="warning-text">
                     <span class="blink">⚠</span> DO NOT CLICK THE RED ERROR <span class="blink">⚠</span>
                 </p>
+                
+                <!-- 控制按钮 -->
+                <div class="minesweeper-controls">
+                    <button class="control-btn back-btn" id="backBtn">
+                        <span class="btn-icon">←</span>
+                        <span class="btn-label">BACK TO PRESETS</span>
+                    </button>
+                    <button class="control-btn skip-btn" id="skipBtn">
+                        <span class="btn-icon">⚡</span>
+                        <span class="btn-label">SKIP</span>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -426,4 +444,5 @@
     <script src="../assets/js/preset2.js"></script>
 </body>
 </html>
+
 
