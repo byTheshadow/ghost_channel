@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../assets/css/about.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+    <!-- 像素中文字体 -->
+    <link rel="stylesheet" href="https://fontsapi.zeoseven.com/316/main/result.css">
 </head>
 <body>
     <!-- CRT 效果层 -->
@@ -17,102 +19,98 @@
     <!-- 自定义光标 -->
     <div class="custom-cursor"></div>
 
-    <!-- 导航栏 -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-content">
-            <div class="nav-left">
-                <div class="ghost-icon"></div>
-                <span class="nav-title">GHOST_CHANNEL</span>
-            </div>
-            <div class="nav-links">
-                <a href="../home.html" class="nav-link" data-text="HOME">
-                    HOME
-                    <div class="ghost-tooltip">
-                        <div class="ghost-tooltip-inner">
-                            <div class="ghost-tooltip-sprite"></div>
-                            <div class="ghost-tooltip-bubble">
-                                <span class="ghost-tooltip-text">主界面</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="about.html" class="nav-link active" data-text="ABOUT">
-                    ABOUT
-                    <div class="ghost-tooltip">
-                        <div class="ghost-tooltip-inner">
-                            <div class="ghost-tooltip-sprite"></div>
-                            <div class="ghost-tooltip-bubble">
-                                <span class="ghost-tooltip-text">关于我</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="characters.html" class="nav-link" data-text="CHARACTERS">
-                    CHARACTERS
-                    <div class="ghost-tooltip">
-                        <div class="ghost-tooltip-inner">
-                            <div class="ghost-tooltip-sprite"></div>
-                            <div class="ghost-tooltip-bubble">
-                                <span class="ghost-tooltip-text">角色卡区</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="gallery.html" class="nav-link" data-text="GALLERY">
-                    GALLERY
-                    <div class="ghost-tooltip">
-                        <div class="ghost-tooltip-inner">
-                            <div class="ghost-tooltip-sprite"></div>
-                            <div class="ghost-tooltip-bubble">
-                                <span class="ghost-tooltip-text">美化作品</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="presets.html" class="nav-link" data-text="PRESETS">
-                    PRESETS
-                    <div class="ghost-tooltip">
-                        <div class="ghost-tooltip-inner">
-                            <div class="ghost-tooltip-sprite"></div>
-                            <div class="ghost-tooltip-bubble">
-                                <span class="ghost-tooltip-text">预设展示</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="plugins.html" class="nav-link" data-text="PLUGINS">
-                    PLUGINS
-                    <div class="ghost-tooltip">
-                        <div class="ghost-tooltip-inner">
-                            <div class="ghost-tooltip-sprite"></div>
-                            <div class="ghost-tooltip-bubble">
-                                <span class="ghost-tooltip-text">插件介绍</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="links.html" class="nav-link" data-text="LINKS">
-                    LINKS
-                    <div class="ghost-tooltip">
-                        <div class="ghost-tooltip-inner">
-                            <div class="ghost-tooltip-sprite"></div>
-                            <div class="ghost-tooltip-bubble">
-                                <span class="ghost-tooltip-text">外部链接</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+    <!-- 导航栏（统一 home.html 风格） -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <span class="nav-ghost-icon"></span>
+            <span class="nav-title">GHOST_CHANNEL</span>
         </div>
+        <div class="nav-links">
+            <a href="../home.html" class="nav-link" data-text="HOME">
+                HOME
+                <div class="ghost-tooltip">
+                    <div class="ghost-tooltip-inner">
+                        <div class="ghost-tooltip-sprite"></div>
+                        <div class="ghost-tooltip-bubble">
+                            <span class="ghost-tooltip-text">主界面</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="about.html" class="nav-link active" data-text="ABOUT">
+                ABOUT
+                <div class="ghost-tooltip">
+                    <div class="ghost-tooltip-inner">
+                        <div class="ghost-tooltip-sprite"></div>
+                        <div class="ghost-tooltip-bubble">
+                            <span class="ghost-tooltip-text">关于我</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="characters.html" class="nav-link" data-text="CHARACTERS">
+                CHARACTERS
+                <div class="ghost-tooltip">
+                    <div class="ghost-tooltip-inner">
+                        <div class="ghost-tooltip-sprite"></div>
+                        <div class="ghost-tooltip-bubble">
+                            <span class="ghost-tooltip-text">角色卡区</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="gallery.html" class="nav-link" data-text="GALLERY">
+                GALLERY
+                <div class="ghost-tooltip">
+                    <div class="ghost-tooltip-inner">
+                        <div class="ghost-tooltip-sprite"></div>
+                        <div class="ghost-tooltip-bubble">
+                            <span class="ghost-tooltip-text">美化作品</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="presets.html" class="nav-link" data-text="PRESETS">
+                PRESETS
+                <div class="ghost-tooltip">
+                    <div class="ghost-tooltip-inner">
+                        <div class="ghost-tooltip-sprite"></div>
+                        <div class="ghost-tooltip-bubble">
+                            <span class="ghost-tooltip-text">预设展示</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="plugins.html" class="nav-link" data-text="PLUGINS">
+                PLUGINS
+                <div class="ghost-tooltip">
+                    <div class="ghost-tooltip-inner">
+                        <div class="ghost-tooltip-sprite"></div>
+                        <div class="ghost-tooltip-bubble">
+                            <span class="ghost-tooltip-text">插件介绍</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="links.html" class="nav-link" data-text="LINKS">
+                LINKS
+                <div class="ghost-tooltip">
+                    <div class="ghost-tooltip-inner">
+                        <div class="ghost-tooltip-sprite"></div>
+                        <div class="ghost-tooltip-bubble">
+                            <span class="ghost-tooltip-text">外部链接</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
 
-    <!-- 移动端侧边栏 -->
-    <div class="sidebar" id="sidebar">
+    <!-- 移动端侧边菜单 -->
+    <div class="mobile-menu" id="mobileMenu">
         <a href="../home.html">HOME</a>
         <a href="about.html" class="active">ABOUT</a>
         <a href="characters.html">CHARACTERS</a>
@@ -122,7 +120,10 @@
         <a href="links.html">LINKS</a>
     </div>
 
-    <!-- 粒子画布 -->
+    <!-- 点线网络背景 -->
+    <canvas id="network-canvas"></canvas>
+
+    <!-- 粒子画布（用于消散效果） -->
     <canvas id="particle-canvas"></canvas>
 
     <!-- 混沌弹窗容器 -->
@@ -154,6 +155,7 @@
     <script src="../assets/js/about.js"></script>
 </body>
 </html>
+
 
 
 
