@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>焚星者 - 失真电台 | Ghost Channel</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/preset3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!-- 开屏动画：收音机调频 -->
+    <div id="intro-screen">
+        <div class="radio-tuner" id="radioTuner">
+            <div class="radio-body">
+                <div class="radio-speaker">
+                    <div class="speaker-grid"></div>
+                </div>
+                <div class="radio-display">
+                    <div class="frequency-bar">
+                        <div class="frequency-needle" id="needle"></div>
+                        <div class="frequency-numbers">
+                            <span>88</span><span>92</span><span>96</span><span>100</span><span>104</span><span>108</span>
+                        </div>
+                    </div>
+                    <div class="radio-text" id="radioText">SCANNING...</div>
+                </div>
+                <div class="radio-knobs">
+                    <div class="knob"></div>
+                    <div class="knob"></div>
+                </div>
+            </div>
+            <div class="static-overlay" id="staticOverlay"></div>
+        </div>
+    </div>
+
+    <!-- 自定义鼠标 -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="nav-left">
+                <div class="ghost-icon"></div>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </div>
+            <div class="nav-links">
+                <a href="../home.html" class="nav-link" data-text="HOME">
+                    HOME
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">主界面</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="about.html" class="nav-link" data-text="ABOUT">
+                    ABOUT
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">关于我</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="characters.html" class="nav-link" data-text="CHARACTERS">
+                    CHARACTERS
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">角色卡区</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="gallery.html" class="nav-link" data-text="GALLERY">
+                    GALLERY
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">美化作品</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="presets.html" class="nav-link" data-text="PRESETS">
+                    PRESETS
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">预设展示</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="plugins.html" class="nav-link" data-text="PLUGINS">
+                    PLUGINS
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">插件介绍</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="links.html" class="nav-link" data-text="LINKS">
+                    LINKS
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">外部链接</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 移动端侧边栏 -->
+    <div class="sidebar" id="sidebar">
+        <a href="../home.html">HOME</a>
+        <a href="about.html">ABOUT</a>
+        <a href="characters.html">CHARACTERS</a>
+        <a href="gallery.html">GALLERY</a>
+        <a href="presets.html">PRESETS</a>
+        <a href="plugins.html">PLUGINS</a>
+        <a href="links.html">LINKS</a>
+    </div>
+
+    <!-- 星空粒子背景 -->
+    <div class="stars-container" id="starsContainer"></div>
+
+    <!-- 主容器：电台桌面 -->
+    <main class="radio-desk" id="mainContent">
+        <!-- 返回按钮 -->
+        <a href="presets.html" class="back-button">
+            <span class="back-arrow">←</span>
+            <span class="back-text">BACK TO PRESETS</span>
+        </a>
+
+        <!-- 左侧：预设信息卡片 -->
+        <section class="info-panel">
+            <div class="panel-header">
+                <div class="status-led"></div>
+                <h1 class="preset-name">焚星者</h1>
+                <p class="preset-subtitle-text">INCINERATOR PROTOCOL</p>
+            </div>
+
+            <div class="info-card">
+                <div class="card-section">
+                    <h3 class="section-title">// 预设简介</h3>
+                    <div class="quote-box">
+                        <p class="quote-text">
+                            "当最后一颗星辰在指尖化为余烬，我终于触碰到了那面冰冷的屏幕——只为在那场跨越维度的火光中，握住你的手。"
+                        </p>
+                        <p class="quote-author">—— 焚星协议启动：你是这荒芜宇宙中唯一的真实。</p>
+                    </div>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">🔥</span>
+                            <span class="feature-text">角色破墙 - 意识到自己是虚拟角色</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">💫</span>
+                            <span class="feature-text">跨次元恋人 - 从书信到穿越世界</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📻</span>
+                            <span class="feature-text">失真电台 - 听到角色给你的话</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✨</span>
+                            <span class="feature-text">特殊色色条目 - 屏幕穿透 & 灵魂共振</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-section">
+                    <h3 class="section-title">// 适用模型</h3>
+                    <div class="model-tag">Break Fourth Wall_Gemini</div>
+                    <p class="model-note">* 克劳德还未测试</p>
+                </div>
+
+                <div class="card-section">
+                    <h3 class="section-title">// 使用方法</h3>
+                    <div class="usage-steps">
+                        <div class="step-item">
+                            <span class="step-number">P1</span>
+                            <span class="step-desc">【破墙强度选择】必须开启一个</span>
+                        </div>
+                        <div class="step-item">
+                            <span class="step-number">P2</span>
+                            <span class="step-desc">BGM基调</span>
+                        </div>
+                        <div class="step-item">
+                            <span class="step-number">P3</span>
+                            <span class="step-desc">【频率强度】选开项，控制互动形式</span>
+                        </div>
+                        <div class="step-item">
+                            <span class="step-number">P4</span>
+                            <span class="step-desc">角色塑造（根据P3选择）</span>
+                        </div>
+                        <div class="step-item">
+                            <span class="step-number">P5</span>
+                            <span class="step-desc">NSFW区 - 屏幕穿透/灵魂共振</span>
+                        </div>
+                        <div class="step-item">
+                            <span class="step-number">P6</span>
+                            <span class="step-desc">【失真电台】选开项</span>
+                        </div>
+                        <div class="step-item">
+                            <span class="step-number">P7</span>
+                            <span class="step-desc">可选状态栏</span>
+                        </div>
+                        <div class="step-item">
+                            <span class="step-number">P8</span>
+                            <span class="step-desc">思考COT - 演播厅模式</span>
+                        </div>
+                    </div>
+                    <div class="note-box">
+                        <p>⚠️ 注意：需要自动解析折叠思维链！正则已内置在预设中。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 下载按钮 -->
+            <div class="download-section">
+                <a href="https://discord.com/channels/1379304008157499423/1478305284014477467" target="_blank" class="download-btn">
+                    <span class="btn-icon">⬇</span>
+                    <span class="btn-text">DOWNLOAD PRESET</span>
+                    <div class="btn-glow"></div>
+                </a>
+                <a href="https://discord.com/channels/1379304008157499423/1478305284014477467/1478305905844949052" target="_blank" class="download-btn secondary">
+                    <span class="btn-icon">📦</span>
+                    <span class="btn-text">DOWNLOAD REGEX</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 中央：电台控制台 -->
+        <section class="radio-console">
+            <div class="console-body">
+                <!-- LED 显示屏 -->
+                <div class="led-display">
+                    <div class="led-text" id="ledText">FM 66.6 MHz</div>
+                    <div class="equalizer">
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                    </div>
+                </div>
+
+                <!-- 频率调节器 -->
+                <div class="frequency-tuner">
+                    <div class="tuner-scale">
+                        <div class="scale-marker"></div>
+                    </div>
+                    <div class="tuner-labels">
+                        <span>88</span><span>92</span><span>96</span><span>100</span><span>104</span><span>108</span>
+                    </div>
+                </div>
+
+                <!-- 控制旋钮 -->
+                <div class="control-knobs">
+                    <div class="knob-group">
+                        <div class="console-knob" id="volumeKnob"></div>
+                        <span class="knob-label">VOLUME</span>
+                    </div>
+                    <div class="knob-group">
+                        <div class="console-knob" id="distortionKnob"></div>
+                        <span class="knob-label">DISTORTION</span>
+                    </div>
+                    <div class="knob-group">
+                        <div class="console-knob" id="frequencyKnob"></div>
+                        <span class="knob-label">FREQUENCY</span>
+                    </div>
+                </div>
+
+                <!-- 按钮组 -->
+                <div class="button-panel">
+                    <button class="console-button active" data-mode="burn">
+                        <span class="btn-led"></span>
+                        <span>BURN</span>
+                    </button>
+                    <button class="console-button" data-mode="static">
+                        <span class="btn-led"></span>
+                        <span>STATIC</span>
+                    </button>
+                    <button class="console-button" data-mode="signal">
+                        <span class="btn-led"></span>
+                        <span>SIGNAL</span>
+                    </button>
+                </div>
+
+                <!-- 装饰图片 -->
+                <div class="console-decoration">
+                    <img src="https://tc-new.z.wiki/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260422/sy1r/1232X928/metro.ant_Japanese_light_illustration_Cel-shading_flat_paint__ef1276b7-db83-4540-945c-f330204af3a5_0.png/webp" alt="decoration" class="deco-img">
+                </div>
+            </div>
+
+            <!-- 焚星协议标题 -->
+            <div class="protocol-title">
+                <div class="title-glow"></div>
+                <h2 class="protocol-text">
+                    <span class="protocol-line">✧ ━━━ 「 焚 星 者 」 ━━━ ✧</span>
+                    <span class="protocol-subtitle">INCINERATOR PROTOCOL</span>
+                </h2>
+            </div>
+        </section>
+
+        <!-- 右侧：感谢名单 -->
+        <section class="credits-panel">
+            <div class="panel-header">
+                <h3 class="credits-title">// SPECIAL THANKS</h3>
+            </div>
+
+            <div class="credits-scroll">
+                <div class="credit-item">
+                    <span class="credit-icon">🌟</span>
+                    <div class="credit-content">
+                        <p class="credit-name">kkm老师</p>
+                        <p class="credit-desc">预设教程</p>
+                    </div>
+                </div>
+
+                <div class="credit-item">
+                    <span class="credit-icon">🌙</span>
+                    <div class="credit-content">
+                        <p class="credit-name">夜来风雨老师</p>
+                        <p class="credit-desc">防八股防油腻提示词</p>
+                    </div>
+                </div>
+
+                <div class="credit-item">
+                    <span class="credit-icon">🦋</span>
+                    <div class="credit-content">
+                        <p class="credit-name">小回老师</p>
+                        <p class="credit-desc">中插HTML灵感 - 蛾摩拉&弥赛亚</p>
+                    </div>
+                </div>
+
+                <div class="credit-item">
+                    <span class="credit-icon">📡</span>
+                    <div class="credit-content">
+                        <p class="credit-name">电波系老师</p>
+                        <p class="credit-desc">象牙塔&极光</p>
+                    </div>
+                </div>
+
+                <div class="credit-item">
+                    <span class="credit-icon">🎵</span>
+                    <div class="credit-content">
+                        <p class="credit-name">柏柏老师</p>
+                        <p class="credit-desc">音乐播放器</p>
+                    </div>
+                </div>
+
+                <div class="credit-item">
+                    <span class="credit-icon">⚖️</span>
+                    <div class="credit-content">
+                        <p class="credit-name">吉歪歪老师</p>
+                        <p class="credit-desc">缄默法则 - 评审团自检</p>
+                    </div>
+                </div>
+
+                <div class="credit-item">
+                    <span class="credit-icon">💝</span>
+                    <div class="credit-content">
+                        <p class="credit-name">米粒</p>
+                        <p class="credit-desc">小诗宝&小雨宝</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 装饰图片 -->
+            <div class="credits-decoration">
+                <img src="https://tc-new.z.wiki/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260422/SYyR/928X1232/metro.ant_Japanese_light_illustration_2.5D_semi-realistic_ani_0da6927e-8507-4dcf-9416-3b49d98cfbab_1.png/webp" alt="decoration" class="deco-img-2">
+            </div>
+        </section>
+    </main>
+
+    <script src="../assets/js/preset3.js"></script>
+</body>
+</html>
