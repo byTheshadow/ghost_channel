@@ -1,3 +1,359 @@
+:root {
+    /* 主色调 */
+    --bg-main: #140f17;
+    --bg-darker: #050000;
+    --red-dark: #210207;
+    --red-mid: #480415;
+    --red-bright: #730c1e;
+    --red-neon: #ff003c;
+    --white: #f0f0f0;
+    
+    /* 字体 */
+    --font-pixel: 'Press Start 2P', cursive;
+    
+    /* 幽灵 SVG 数据 */
+    --ghost-run-f1: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><path d="M4 0h6v1h2v1h1v1h1v8h-1v1h-2v1h-2v-1h-2v1h-2v-1h-2v1H2v-1H0v-8h1V2h1V1h2V0z" fill="%23ff003c"/><path d="M2 3h3v5H2zM8 3h3v5H8z" fill="white"/><path d="M4 5h2v2H4zM10 5h2v2H10z" fill="%23050000"/></svg>');
+    --ghost-run-f2: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><path d="M4 0h6v1h2v1h1v1h1v8h-2v1h-2v1h-2v-1h-2v1h-2v-1h-2v1H0v-9h1V2h1V1h2V0z" fill="%23ff003c"/><path d="M2 3h3v5H2zM8 3h3v5H8z" fill="white"/><path d="M4 5h2v2H4zM10 5h2v2H10z" fill="%23050000"/></svg>');
+    --ghost-welcome-f1: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 14"><path d="M6 0h6v1h2v1h1v1h1v8h-1v1h-2v1h-2v-1h-2v1h-2v-1h-2v1H4v-1H2v-8h1V2h1V1h2V0z M0 6h2v2H0zM16 6h2v2H16z" fill="%23ff003c"/><path d="M4 3h3v5H4zM11 3h3v5H11z" fill="white"/><path d="M5 5h1v2H5zM12 5h1v2H12z" fill="%23050000"/></svg>');
+    --ghost-welcome-f2: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 14"><path d="M6 0h6v1h2v1h1v1h1v8h-2v1h-2v1h-2v-1h-2v1h-2v-1h-2v1H2v-9h1V2h1V1h2V0z M0 4h2v2H0zM16 4h2v2H16z" fill="%23ff003c"/><path d="M4 3h3v5H4zM11 3h3v5H11z" fill="white"/><path d="M5 5h1v2H5zM12 5h1v2H12z" fill="%23050000"/></svg>');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-darker);
+    overflow: hidden;
+    font-family: var(--font-pixel);
+    color: var(--white);
+}
+
+/* CRT 扫描线效果 */
+.crt-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* 屏幕暗角 */
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 50%, #000 120%);
+    pointer-events: none;
+    z-index: 998;
+}
+
+/* SKIP 按钮 */
+.skip-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    padding: 10px 15px;
+    background: transparent;
+    border: 2px solid var(--red-neon);
+    color: var(--red-neon);
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+
+.skip-btn:hover {
+    background: var(--red-neon);
+    color: var(--bg-darker);
+    box-shadow: 0 0 15px var(--red-neon);
+}
+/* ========== 通用导航栏样式 ========== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(20, 15, 23, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(115, 12, 30, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.nav-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.ghost-icon {
+    width: 28px;
+    height: 28px;
+    background-image: var(--ghost-svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 8px #ff003c);
+    animation: ghost-float 3s ease-in-out infinite;
+}
+
+@keyframes ghost-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.nav-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    color: #ff003c;
+    text-shadow: 0 0 10px rgba(255, 0, 60, 0.6);
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+}
+
+.nav-link {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    position: relative;
+    transition: color 0.3s ease;
+    padding: 8px 0;
+}
+
+.nav-link::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #ff003c;
+    overflow: hidden;
+    width: 0;
+    transition: width 0.3s ease;
+    white-space: nowrap;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #ff003c;
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+    width: 100%;
+    animation: glitch-nav 0.3s infinite;
+}
+
+@keyframes glitch-nav {
+    0%, 100% { clip-path: inset(0 0 0 0); }
+    25% { clip-path: inset(0 0 80% 0); }
+    50% { clip-path: inset(80% 0 0 0); }
+    75% { clip-path: inset(0 0 40% 0); }
+}
+
+/* ========== 小幽灵提示气泡 ========== */
+.ghost-tooltip {
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 1001;
+}
+
+.nav-link:hover .ghost-tooltip {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+}
+
+.ghost-tooltip-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.ghost-tooltip-sprite {
+    width: 32px;
+    height: 32px;
+    background-image: var(--ghost-svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 10px #ff003c);
+    animation: ghost-bounce 0.6s ease-in-out infinite;
+}
+
+@keyframes ghost-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.ghost-tooltip-bubble {
+    position: relative;
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid #ff003c;
+    border-radius: 12px;
+    padding: 8px 14px;
+    box-shadow: 
+        0 0 20px rgba(255, 0, 60, 0.4),
+        inset 0 0 20px rgba(255, 0, 60, 0.1);
+    white-space: nowrap;
+}
+
+.ghost-tooltip-bubble::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #ff003c;
+}
+
+.ghost-tooltip-bubble::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid rgba(0, 0, 0, 0.9);
+}
+
+.ghost-tooltip-text {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #ff003c;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(255, 0, 60, 0.6);
+    position: relative;
+    z-index: 1;
+}
+
+/* 汉堡菜单 */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 2px;
+    background: #ff003c;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* 侧边栏 */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: rgba(20, 15, 23, 0.98);
+    backdrop-filter: blur(20px);
+    border-left: 2px solid rgba(115, 12, 30, 0.5);
+    padding: 100px 30px 30px;
+    transition: right 0.4s ease;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar a {
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    letter-spacing: 2px;
+    padding: 12px 20px;
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    color: #ff003c;
+    border-left-color: #ff003c;
+    background: rgba(115, 12, 30, 0.2);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .ghost-tooltip {
+        display: none;
+    }
+}
 /* ========== 小幽灵提示气泡 ========== */
 .ghost-tooltip {
     position: absolute;
