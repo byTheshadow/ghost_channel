@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SillyTavern Presets - Ghost Channel</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/presets.css">
+    <!-- 像素字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- 哥特字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <!-- VT323 像素字体（支持中文） -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <!-- Noto Sans SC 像素风中文 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="nav-left">
+                <div class="ghost-icon"></div>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </div>
+            <div class="nav-links">
+                <a href="../home.html" class="nav-link" data-text="HOME">
+                    HOME
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">主界面</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="about.html" class="nav-link" data-text="ABOUT">
+                    ABOUT
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">关于我</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="characters.html" class="nav-link" data-text="CHARACTERS">
+                    CHARACTERS
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">角色卡区</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="gallery.html" class="nav-link" data-text="GALLERY">
+                    GALLERY
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">美化作品</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="presets.html" class="nav-link active" data-text="PRESETS">
+                    PRESETS
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">预设展示</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="plugins.html" class="nav-link" data-text="PLUGINS">
+                    PLUGINS
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">插件介绍</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="links.html" class="nav-link" data-text="LINKS">
+                    LINKS
+                    <div class="ghost-tooltip">
+                        <div class="ghost-tooltip-inner">
+                            <div class="ghost-tooltip-sprite"></div>
+                            <div class="ghost-tooltip-bubble">
+                                <span class="ghost-tooltip-text">外部链接</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 移动端侧边栏 -->
+    <div class="sidebar" id="sidebar">
+        <a href="../home.html">HOME</a>
+        <a href="about.html">ABOUT</a>
+        <a href="characters.html">CHARACTERS</a>
+        <a href="gallery.html">GALLERY</a>
+        <a href="presets.html" class="active">PRESETS</a>
+        <a href="plugins.html">PLUGINS</a>
+        <a href="links.html">LINKS</a>
+    </div>
+
+    <!-- 代码矩阵背景 -->
+    <div class="code-matrix" id="codeMatrix"></div>
+
+    <!-- 主容器 -->
+    <main class="presets-container">
+        <!-- 顶部标题区 -->
+        <header class="presets-header">
+            <div class="header-content">
+                <h1 class="main-title">SILLYTAVERN PRESETS</h1>
+                <p class="subtitle">// SELECT YOUR CONFIGURATION</p>
+                <div class="status-bar">
+                    <span class="status-text">SYSTEM STATUS:</span>
+                    <span class="status-indicator">ONLINE</span>
+                    <span class="blink-cursor">_</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 8bit 骷髅头主角 -->
+        <div class="skull-player" id="player">
+            <div class="skull-sprite"></div>
+        </div>
+
+        <!-- 预设选择区 -->
+        <section class="presets-stage" id="presetsStage">
+            <!-- 预设 1 -->
+            <div class="preset-blade" data-index="0" onclick="selectPreset('preset1')">
+                <div class="blade-content">
+                    <span class="preset-label">PRESET 01</span>
+                    <h2 class="preset-title">安息日的个人演出show!!</h2>
+                    <p class="preset-subtitle">For Gemini</p>
+                    <div class="preset-tags">
+                        <span class="tag">创意</span>
+                        <span class="tag">表演</span>
+                    </div>
+                    <div class="enter-hint">[ CLICK TO ENTER ]</div>
+                </div>
+                <div class="blade-glow"></div>
+            </div>
+
+            <!-- 预设 2 -->
+            <div class="preset-blade" data-index="1" onclick="selectPreset('preset2')">
+                <div class="blade-content">
+                    <span class="preset-label">PRESET 02</span>
+                    <h2 class="preset-title">过载 is online</h2>
+                    <p class="preset-subtitle">For Claude</p>
+                    <div class="preset-tags">
+                        <span class="tag">高性能</span>
+                        <span class="tag">稳定</span>
+                    </div>
+                    <div class="enter-hint">[ CLICK TO ENTER ]</div>
+                </div>
+                <div class="blade-glow"></div>
+            </div>
+
+            <!-- 预设 3 -->
+            <div class="preset-blade" data-index="2" onclick="selectPreset('preset3')">
+                <div class="blade-content">
+                    <span class="preset-label">PRESET 03</span>
+                    <h2 class="preset-title">您已连接失真的电台</h2>
+                    <p class="preset-subtitle">For Break Fourth Wall_Gemini</p>
+                    <div class="preset-tags">
+                        <span class="tag">实验性</span>
+                        <span class="tag">破壁</span>
+                    </div>
+                    <div class="enter-hint">[ CLICK TO ENTER ]</div>
+                </div>
+                <div class="blade-glow"></div>
+            </div>
+        </section>
+
+        <!-- 地面 -->
+        <div class="stage-floor">
+            <div class="floor-pattern"></div>
+        </div>
+    </main>
+
+    <script src="../assets/js/presets.js"></script>
+</body>
+</html>
