@@ -1,12 +1,9 @@
 /* ========== Preset3 - 失真电台样式 ========== */
 
-/* ========== Preset3 - 失真电台样式 ========== */
-
 /* 引入中文像素字体 */
 @import url("https://fontsapi.zeoseven.com/784/main/result.css");
 /* 引入复古中文字体 */
 @import url("https://fontsapi.zeoseven.com/689/main/result.css");
-
 
 :root {
     --bg-main: #050000;
@@ -823,24 +820,6 @@ body {
     box-shadow: 0 0 10px var(--red-neon);
 }
 
-.console-decoration {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 150px;
-    height: 150px;
-    opacity: 0.3;
-    pointer-events: none;
-}
-
-.deco-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-    filter: grayscale(0.5) brightness(0.8);
-}
-
 .protocol-title {
     position: relative;
     text-align: center;
@@ -921,11 +900,12 @@ body {
 
 .credits-scroll {
     display: flex;
-      flex-direction: column;
+    flex-direction: column;
     gap: 15px;
-    max-height: 600px;
+    max-height: 400px;
     overflow-y: auto;
     padding-right: 10px;
+    margin-bottom: 30px;
 }
 
 .credits-scroll::-webkit-scrollbar {
@@ -933,7 +913,7 @@ body {
 }
 
 .credits-scroll::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.4);
+        background: rgba(0, 0, 0, 0.4);
     border-radius: 3px;
 }
 
@@ -987,22 +967,99 @@ body {
     line-height: 1.5;
 }
 
-.credits-decoration {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 120px;
-    height: 160px;
-    opacity: 0.2;
-    pointer-events: none;
+/* ========== 拍立得相框 ========== */
+.polaroid-gallery {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+    padding: 20px;
+    flex-wrap: wrap;
 }
 
-.deco-img-2 {
+.polaroid-frame {
+    background: #f5f5f0;
+    padding: 15px 15px 50px 15px;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    position: relative;
+    width: 180px;
+}
+
+.polaroid-frame:hover {
+    transform: rotate(0deg) scale(1.05) !important;
+    box-shadow: 
+        0 8px 16px rgba(255, 0, 60, 0.3),
+        0 16px 32px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(255, 0, 60, 0.2);
+    z-index: 10;
+}
+
+.polaroid-frame::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 15px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+}
+
+.polaroid-photo {
+    width: 100%;
+    height: 200px;
+    background: #000;
+    overflow: hidden;
+    position: relative;
+}
+
+.polaroid-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px;
-    filter: grayscale(0.5) brightness(0.8);
+    display: block;
+    filter: contrast(1.1) saturate(0.9);
+    transition: filter 0.3s ease;
+}
+
+.polaroid-frame:hover .polaroid-photo img {
+    filter: contrast(1.2) saturate(1.1);
+}
+
+.polaroid-caption {
+    font-family: "ChangBanDianSong 12", 'Noto Sans SC', serif;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+    margin-top: 15px;
+    letter-spacing: 1px;
+    font-weight: normal;
+}
+
+/* 拍立得纸张纹理 */
+.polaroid-frame::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.01) 0px,
+            rgba(0, 0, 0, 0.01) 1px,
+            transparent 1px,
+            transparent 2px
+        );
+    pointer-events: none;
+    opacity: 0.3;
 }
 
 /* ========== 响应式设计 ========== */
@@ -1120,14 +1177,21 @@ body {
         font-size: 11px;
     }
 
-    .console-decoration,
-    .credits-decoration {
-        display: none;
-    }
-
     .download-btn {
         padding: 15px 25px;
         font-size: 10px;
+    }
+
+    .polaroid-frame {
+        width: 150px;
+    }
+
+    .polaroid-photo {
+        height: 170px;
+    }
+
+    .polaroid-caption {
+        font-size: 12px;
     }
 }
 
@@ -1161,6 +1225,15 @@ body {
 
     .protocol-line {
         font-size: 1rem;
+    }
+
+    .polaroid-gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .polaroid-frame {
+        width: 160px;
     }
 }
 
