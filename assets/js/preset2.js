@@ -43,6 +43,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ========== 扫雷控制按钮 ==========
+    const backBtn = document.getElementById('backBtn');
+    const skipBtn = document.getElementById('skipBtn');
+
+    if (backBtn) {
+        backBtn.addEventListener('click', () => {
+            window.location.href = 'presets.html';
+        });
+    }
+
+    if (skipBtn) {
+        skipBtn.addEventListener('click', () => {
+            // 直接跳过扫雷，进入详情页
+            const minesweeperStage = document.getElementById('stage-minesweeper');
+            const portfolio = document.getElementById('stage-portfolio');
+            
+            minesweeperStage.style.opacity = '0';
+            
+            setTimeout(() => {
+                minesweeperStage.style.display = 'none';
+                portfolio.style.display = 'block';
+                
+                setTimeout(() => {
+                    revealElements();
+                }, 100);
+            }, 300);
+        });
+    }
+
     // ========== Phase 2: 过载转场 ==========
     function triggerOverload() {
         const overlay = document.getElementById('overload-overlay');
@@ -248,3 +277,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
