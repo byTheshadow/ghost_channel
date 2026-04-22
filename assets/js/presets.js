@@ -228,4 +228,10 @@ function createStarBurst(element) {
         }, 600);
     }
 }
+// 在 presets.js 文件末尾添加
+
+// 预设选择跳转函数
+function selectPreset(presetId) {
+    window.location.href = `${presetId}.html`;
+}
 
