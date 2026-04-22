@@ -1,0 +1,1240 @@
+/* ========== Preset3 - 失真电台样式 ========== */
+
+/* 引入中文像素字体 */
+@import url("https://fontsapi.zeoseven.com/784/main/result.css");
+
+:root {
+    --bg-main: #050000;
+    --bg-darker: #000000;
+    --red-dark: #210207;
+    --red-mid: #480415;
+    --red-bright: #730c1e;
+    --red-neon: #ff003c;
+    --orange-fire: #ff6b00;
+    --yellow-fire: #ffd700;
+    --white: #f0f0f0;
+    --font-pixel: 'Press Start 2P', cursive;
+    --font-gothic: 'UnifrakturMaguntia', cursive;
+    --font-ui: 'VT323', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle at 50% 50%, #1a0000 0%, #000 100%);
+    color: var(--white);
+    font-family: var(--font-ui);
+    overflow-x: hidden;
+    min-height: 100vh;
+    padding-top: 80px;
+    cursor: none;
+}
+
+/* ========== 开屏动画：收音机调频 ========== */
+#intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #020202;
+    background-image: 
+        linear-gradient(#0a0a0a 1px, transparent 1px),
+        linear-gradient(90deg, #0a0a0a 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.radio-tuner {
+    position: relative;
+    width: 400px;
+    height: 250px;
+}
+
+.radio-body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    border-radius: 12px;
+    border: 4px solid #000;
+    box-shadow: 
+        inset 2px 2px 0px #333,
+        inset -4px -4px 10px #000,
+        15px 15px 0px rgba(0,0,0,0.8),
+        16px 16px 0px rgba(255, 26, 26, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.radio-speaker {
+    width: 100%;
+    height: 60px;
+    background: #000;
+    border-radius: 6px;
+    border: 2px solid #333;
+    overflow: hidden;
+}
+
+.speaker-grid {
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(0deg, #222 0px, #222 2px, transparent 2px, transparent 4px),
+        repeating-linear-gradient(90deg, #222 0px, #222 2px, transparent 2px, transparent 4px);
+    background-size: 4px 4px;
+}
+
+.radio-display {
+    background: #0a0a0a;
+    border: 3px solid #333;
+    border-radius: 4px;
+    padding: 15px;
+    box-shadow: inset 0 0 20px rgba(255, 0, 60, 0.3);
+}
+
+.frequency-bar {
+    position: relative;
+    height: 40px;
+    background: linear-gradient(90deg, 
+        rgba(255, 0, 60, 0.1) 0%, 
+        rgba(255, 0, 60, 0.3) 50%, 
+        rgba(255, 0, 60, 0.1) 100%);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.frequency-needle {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 3px;
+    height: 100%;
+    background: var(--red-neon);
+    box-shadow: 0 0 10px var(--red-neon), 0 0 20px var(--red-neon);
+    animation: needle-scan 3s ease-in-out;
+}
+
+@keyframes needle-scan {
+    0% { left: 10%; }
+    50% { left: 50%; }
+    100% { left: 66.6%; }
+}
+
+.frequency-numbers {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+    margin-top: 5px;
+}
+
+.frequency-numbers span {
+    font-family: var(--font-pixel);
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.radio-text {
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    color: var(--red-neon);
+    text-align: center;
+    text-shadow: 0 0 10px var(--red-neon);
+    animation: text-blink 0.5s infinite;
+}
+
+@keyframes text-blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.3; }
+}
+
+.radio-knobs {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.knob {
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, #333 0%, #111 100%);
+    border-radius: 50%;
+    border: 3px solid #000;
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.1),
+        0 4px 8px rgba(0, 0, 0, 0.8);
+    position: relative;
+}
+
+.knob::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 12px;
+    background: var(--red-neon);
+    border-radius: 2px;
+}
+
+.static-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.03) 0px,
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 3;
+    animation: static-flicker 0.1s infinite;
+}
+
+@keyframes static-flicker {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+/* ========== 自定义鼠标 ========== */
+.cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--red-neon);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease, width 0.2s, height 0.2s;
+    box-shadow: 0 0 10px var(--red-neon);
+}
+
+.cursor::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    background: var(--red-neon);
+    border-radius: 50%;
+}
+
+.cursor.hovering {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 0, 60, 0.1);
+}
+
+/* ========== 星空粒子背景 ========== */
+.stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: star-twinkle 3s infinite;
+}
+
+.star.burning {
+    background: var(--orange-fire);
+    box-shadow: 0 0 4px var(--orange-fire);
+    animation: star-burn 2s ease-out forwards;
+}
+
+@keyframes star-twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+@keyframes star-burn {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.5);
+        background: var(--yellow-fire);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+        background: var(--red-neon);
+    }
+}
+
+/* ========== 主容器：电台桌面 ========== */
+.radio-desk {
+    position: relative;
+    z-index: 10;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 20px 100px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 30px;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+/* ========== 返回按钮 ========== */
+.back-button {
+    position: fixed;
+    top: 100px;
+    left: 40px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--red-bright);
+    border-radius: 6px;
+    color: var(--white);
+    text-decoration: none;
+    font-family: var(--font-ui);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: rgba(115, 12, 30, 0.3);
+    border-color: var(--red-neon);
+    box-shadow: 0 0 20px rgba(255, 0, 60, 0.4);
+    transform: translateX(-5px);
+}
+
+.back-arrow {
+    font-size: 20px;
+    color: var(--red-neon);
+}
+
+/* ========== 左侧：信息面板 ========== */
+.info-panel {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(115, 12, 30, 0.5);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 0 30px rgba(255, 0, 60, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.panel-header {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(115, 12, 30, 0.5);
+}
+
+.status-led {
+    width: 12px;
+    height: 12px;
+    background: var(--red-neon);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--red-neon);
+    animation: led-pulse 2s infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes led-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.preset-name {
+    font-family: "BoutiqueBitmap7x7", 'Noto Sans SC', sans-serif;
+    font-size: 2.5rem;
+    color: var(--red-neon);
+    text-shadow: 0 0 20px rgba(255, 0, 60, 0.6);
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+}
+
+.preset-subtitle-text {
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 2px;
+}
+
+.info-card {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.card-section {
+    background: rgba(10, 0, 0, 0.6);
+    border: 1px solid rgba(115, 12, 30, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.section-title {
+    font-family: var(--font-ui);
+    font-size: 18px;
+    color: var(--red-neon);
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.quote-box {
+    background: rgba(0, 0, 0, 0.5);
+    border-left: 3px solid var(--red-neon);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.quote-text {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.quote-author {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: right;
+}
+
+.feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: rgba(115, 12, 30, 0.1);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    background: rgba(115, 12, 30, 0.3);
+    transform: translateX(5px);
+}
+
+.feature-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.feature-text {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.model-tag {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, rgba(115, 12, 30, 0.4), rgba(255, 0, 60, 0.2));
+    border: 2px solid var(--red-bright);
+    border-radius: 6px;
+    font-family: var(--font-ui);
+    font-size: 16px;
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.model-note {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}
+
+.usage-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.step-item:hover {
+    border-left-color: var(--red-neon);
+    background: rgba(115, 12, 30, 0.2);
+}
+
+.step-number {
+    font-family: var(--font-pixel);
+    font-size: 10px;
+    color: var(--red-neon);
+    background: rgba(255, 0, 60, 0.2);
+    padding: 8px 12px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.step-desc {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.note-box {
+    background: rgba(255, 107, 0, 0.1);
+    border: 1px solid rgba(255, 107, 0, 0.3);
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.note-box p {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ========== 下载按钮 ========== */
+.download-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.download-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px 30px;
+    background: linear-gradient(135deg, var(--red-bright), var(--red-mid));
+    border: 2px solid var(--red-neon);
+    border-radius: 8px;
+    color: var(--white);
+    text-decoration: none;
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    letter-spacing: 2px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.download-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.download-btn:hover::before {
+    left: 100%;
+}
+
+.download-btn:hover {
+    box-shadow: 0 0 30px rgba(255, 0, 60, 0.6);
+    transform: translateY(-3px);
+}
+
+.download-btn.secondary {
+    background: linear-gradient(135deg, rgba(115, 12, 30, 0.6), rgba(72, 4, 21, 0.6));
+}
+
+.btn-icon {
+    font-size: 18px;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 0, 60, 0.6), transparent);
+    border-radius: 50%;
+    transition: width 0.3s, height 0.3s;
+}
+
+.download-btn:hover .btn-glow {
+    width: 200%;
+    height: 200%;
+}
+
+/* ========== 中央：电台控制台 ========== */
+.radio-console {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.console-body {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    border: 4px solid #000;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 
+        inset 2px 2px 0px #333,
+        inset -4px -4px 10px #000,
+        0 20px 40px rgba(0, 0, 0, 0.8),
+        0 0 60px rgba(255, 0, 60, 0.2);
+    position: relative;
+}
+
+.led-display {
+    background: #000;
+    border: 3px solid #333;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 0 30px rgba(255, 0, 60, 0.4);
+}
+
+.led-text {
+    font-family: var(--font-pixel);
+    font-size: 24px;
+    color: var(--red-neon);
+    text-align: center;
+    text-shadow: 0 0 20px var(--red-neon);
+    margin-bottom: 20px;
+    animation: led-flicker 3s infinite;
+}
+
+@keyframes led-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.equalizer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 8px;
+    height: 60px;
+}
+
+.eq-bar {
+    width: 12px;
+    background: linear-gradient(to top, var(--red-neon), var(--orange-fire));
+    border-radius: 2px;
+    animation: eq-bounce 0.8s ease-in-out infinite;
+}
+
+.eq-bar:nth-child(1) { animation-delay: 0s; height: 30%; }
+.eq-bar:nth-child(2) { animation-delay: 0.1s; height: 50%; }
+.eq-bar:nth-child(3) { animation-delay: 0.2s; height: 70%; }
+.eq-bar:nth-child(4) { animation-delay: 0.3s; height: 90%; }
+.eq-bar:nth-child(5) { animation-delay: 0.4s; height: 60%; }
+.eq-bar:nth-child(6) { animation-delay: 0.5s; height: 40%; }
+
+@keyframes eq-bounce {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.5); }
+}
+
+.frequency-tuner {
+    margin-bottom: 30px;
+}
+
+.tuner-scale {
+    position: relative;
+    height: 50px;
+    background: linear-gradient(90deg, 
+        rgba(255, 0, 60, 0.1) 0%, 
+        rgba(255, 0, 60, 0.4) 50%, 
+        rgba(255, 0, 60, 0.1) 100%);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.scale-marker {
+    position: absolute;
+    top: 0;
+    left: 66.6%;
+    width: 4px;
+    height: 100%;
+    background: var(--red-neon);
+    box-shadow: 0 0 15px var(--red-neon);
+    animation: marker-glow 2s infinite;
+}
+
+@keyframes marker-glow {
+    0%, 100% { box-shadow: 0 0 15px var(--red-neon); }
+    50% { box-shadow: 0 0 30px var(--red-neon), 0 0 50px var(--red-neon); }
+}
+
+.tuner-labels {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.tuner-labels span {
+    font-family: var(--font-pixel);
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.control-knobs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.knob-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.console-knob {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #333 0%, #111 100%);
+    border-radius: 50%;
+    border: 4px solid #000;
+    box-shadow: 
+        inset 0 4px 8px rgba(255, 255, 255, 0.1),
+        0 8px 16px rgba(0, 0, 0, 0.8);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.console-knob:hover {
+    transform: scale(1.1);
+}
+
+.console-knob::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 20px;
+    background: var(--red-neon);
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--red-neon);
+}
+
+.knob-label {
+    font-family: var(--font-pixel);
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 1px;
+}
+
+.button-panel {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.console-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 25px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #333;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: var(--font-pixel);
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.console-button:hover {
+    border-color: var(--red-bright);
+    background: rgba(115, 12, 30, 0.2);
+}
+
+.console-button.active {
+    border-color: var(--red-neon);
+    background: rgba(115, 12, 30, 0.4);
+    color: var(--white);
+}
+
+.btn-led {
+    width: 10px;
+    height: 10px;
+    background: #333;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.console-button.active .btn-led {
+    background: var(--red-neon);
+    box-shadow: 0 0 10px var(--red-neon);
+}
+
+.console-decoration {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    height: 150px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.deco-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    filter: grayscale(0.5) brightness(0.8);
+}
+
+.protocol-title {
+    position: relative;
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(115, 12, 30, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.title-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 0, 60, 0.3), transparent);
+    animation: glow-pulse 3s infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+}
+
+.protocol-text {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.protocol-line {
+    font-family: "BoutiqueBitmap7x7", 'Noto Sans SC', sans-serif;
+    font-size: 2rem;
+    color: var(--red-neon);
+    text-shadow: 0 0 30px rgba(255, 0, 60, 0.8);
+    letter-spacing: 4px;
+    animation: text-glitch 5s infinite;
+}
+
+@keyframes text-glitch {
+    0%, 90%, 100% { transform: translate(0); }
+    92% { transform: translate(-2px, 2px); }
+    94% { transform: translate(2px, -2px); }
+    96% { transform: translate(-2px, -2px); }
+}
+
+.protocol-subtitle {
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 3px;
+}
+
+/* ========== 右侧：感谢名单 ========== */
+.credits-panel {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(115, 12, 30, 0.5);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 0 30px rgba(255, 0, 60, 0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+.credits-title {
+    font-family: var(--font-ui);
+    font-size: 18px;
+    color: var(--red-neon);
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(115, 12, 30, 0.5);
+}
+
+.credits-scroll {
+    display: flex;
+      flex-direction: column;
+    gap: 15px;
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.credits-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.credits-scroll::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 3px;
+}
+
+.credits-scroll::-webkit-scrollbar-thumb {
+    background: var(--red-bright);
+    border-radius: 3px;
+}
+
+.credits-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--red-neon);
+}
+
+.credit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(10, 0, 0, 0.6);
+    border: 1px solid rgba(115, 12, 30, 0.3);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.credit-item:hover {
+    background: rgba(115, 12, 30, 0.2);
+    border-color: var(--red-bright);
+    transform: translateX(5px);
+}
+
+.credit-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.credit-content {
+    flex: 1;
+}
+
+.credit-name {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 5px;
+}
+
+.credit-desc {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+}
+
+.credits-decoration {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 120px;
+    height: 160px;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.deco-img-2 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    filter: grayscale(0.5) brightness(0.8);
+}
+
+/* ========== 响应式设计 ========== */
+@media (max-width: 1400px) {
+    .radio-desk {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .back-button {
+        left: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px;
+        cursor: auto;
+    }
+
+    .cursor {
+        display: none;
+    }
+
+    .radio-tuner {
+        width: 90%;
+        max-width: 350px;
+        height: 220px;
+    }
+
+    .radio-body {
+        padding: 15px;
+    }
+
+    .radio-speaker {
+        height: 50px;
+    }
+
+    .frequency-bar {
+        height: 30px;
+    }
+
+    .radio-text {
+        font-size: 10px;
+    }
+
+    .knob {
+        width: 35px;
+        height: 35px;
+    }
+
+    .back-button {
+        top: 80px;
+        left: 10px;
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .back-text {
+        display: none;
+    }
+
+    .radio-desk {
+        padding: 20px 15px 60px;
+    }
+
+    .info-panel,
+    .credits-panel {
+        padding: 20px;
+    }
+
+    .preset-name {
+        font-size: 1.8rem;
+    }
+
+    .console-body {
+        padding: 25px;
+    }
+
+    .led-text {
+        font-size: 18px;
+    }
+
+    .equalizer {
+        height: 40px;
+    }
+
+    .eq-bar {
+        width: 8px;
+    }
+
+    .console-knob {
+        width: 60px;
+        height: 60px;
+    }
+
+    .control-knobs {
+        flex-wrap: wrap;
+    }
+
+    .button-panel {
+        flex-wrap: wrap;
+    }
+
+    .console-button {
+        padding: 12px 20px;
+        font-size: 9px;
+    }
+
+    .protocol-line {
+        font-size: 1.3rem;
+    }
+
+    .protocol-subtitle {
+        font-size: 11px;
+    }
+
+    .console-decoration,
+    .credits-decoration {
+        display: none;
+    }
+
+    .download-btn {
+        padding: 15px 25px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .preset-name {
+        font-size: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 16px;
+    }
+
+    .quote-text {
+        font-size: 13px;
+    }
+
+    .feature-text,
+    .step-desc,
+    .credit-desc {
+        font-size: 12px;
+    }
+
+    .console-knob {
+        width: 50px;
+        height: 50px;
+    }
+
+    .knob-label {
+        font-size: 8px;
+    }
+
+    .protocol-line {
+        font-size: 1rem;
+    }
+}
+
+/* ========== 动画效果 ========== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.info-panel,
+.radio-console,
+.credits-panel {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.info-panel {
+    animation-delay: 0.2s;
+}
+
+.radio-console {
+    animation-delay: 0.4s;
+}
+
+.credits-panel {
+    animation-delay: 0.6s;
+}
+
+/* ========== 故障艺术效果 ========== */
+.glitch-effect {
+    position: relative;
+}
+
+.glitch-effect::before,
+.glitch-effect::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-effect::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--red-neon);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim 3s infinite linear alternate-reverse;
+}
+
+.glitch-effect::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--orange-fire);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(61px, 9999px, 90px, 0);
+    }
+    20% {
+        clip: rect(35px, 9999px, 71px, 0);
+    }
+    40% {
+        clip: rect(67px, 9999px, 23px, 0);
+    }
+    60% {
+        clip: rect(10px, 9999px, 85px, 0);
+    }
+    80% {
+        clip: rect(93px, 9999px, 40px, 0);
+    }
+    100% {
+        clip: rect(50px, 9999px, 78px, 0);
+    }
+}
