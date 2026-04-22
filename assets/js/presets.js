@@ -124,27 +124,51 @@ function createPixelCloud() {
     const cloud = document.createElement('div');
     cloud.className = 'pixel-cloud';
     
-    // 随机大小
-    if (Math.random() > 0.6) {
+    // 随机大小（40%大云，30%小云，30%普通）
+    const sizeRandom = Math.random();
+    if (sizeRandom > 0.7) {
         cloud.classList.add('large');
+    } else if (sizeRandom < 0.3) {
+        cloud.classList.add('small');
     }
     
-    // 随机红色云
+    // 随机颜色（20%红色，80%白色）
     if (Math.random() > 0.8) {
         cloud.classList.add('red');
+    } else {
+        cloud.classList.add('white');
     }
     
-    // 随机垂直位置
-    const topPosition = Math.random() * 60 + 10; // 10% - 70%
+    // 随机垂直位置（分层：上层、中层、下层）
+    const layer = Math.random();
+    let topPosition;
+    if (layer < 0.3) {
+        topPosition = Math.random() * 20 + 5; // 上层 5-25%
+    } else if (layer < 0.7) {
+        topPosition = Math.random() * 25 + 25; // 中层 25-50%
+    } else {
+        topPosition = Math.random() * 20 + 50; // 下层 50-70%
+    }
     cloud.style.top = topPosition + '%';
     
-    // 随机动画时长（速度）
-    const duration = Math.random() * 30 + 20; // 20-50秒
+    // 根据层次调整速度（上层快，下层慢）
+    let duration;
+    if (layer < 0.3) {
+        duration = Math.random() * 15 + 25; // 25-40秒
+    } else if (layer < 0.7) {
+        duration = Math.random() * 20 + 35; // 35-55秒
+    } else {
+        duration = Math.random() * 25 + 45; // 45-70秒
+    }
     cloud.style.animationDuration = duration + 's';
     
     // 随机延迟
-    const delay = Math.random() * 10;
+    const delay = Math.random() * 5;
     cloud.style.animationDelay = delay + 's';
+    
+    // 随机透明度微调
+    const opacityAdjust = 0.8 + Math.random() * 0.4; // 0.8-1.2
+    cloud.style.opacity = parseFloat(getComputedStyle(cloud).opacity) * opacityAdjust;
     
     pixelClouds.appendChild(cloud);
     
@@ -158,20 +182,21 @@ function createPixelCloud() {
 function initClouds() {
     if (!pixelClouds) return;
     
-    // 创建初始云朵
-    for (let i = 0; i < 8; i++) {
+    // 创建初始云朵（更多数量）
+    for (let i = 0; i < 12; i++) {
         setTimeout(() => {
             createPixelCloud();
-        }, i * 2000);
+        }, i * 1500);
     }
     
     // 持续生成新云朵
     setInterval(() => {
         createPixelCloud();
-    }, 8000);
+    }, 6000); // 每6秒生成一朵新云
 }
 
 initClouds();
+
 
 // ========== 星星粒子爆发效果 ==========
 function createStarBurst(element) {
