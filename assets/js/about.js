@@ -1,6 +1,6 @@
-// ========== About Me 页面交互逻辑 (Enhanced Ver.) ==========
+// ========== About Me 页面交互逻辑 (Enhanced Ver. - Fixed) ==========
 
-// 全局变量和初始化
+// ========== 1. 全局变量初始化 ==========
 const cursor = document.querySelector('.custom-cursor');
 const screen1 = document.getElementById('screen-1');
 const screen2 = document.getElementById('screen-2');
@@ -10,36 +10,24 @@ const skipBtn = document.getElementById('skip-btn');
 const outputBox = document.getElementById('output-text');
 const popupContainer = document.getElementById('popup-container');
 
+let hasStarted = false;
+let typingTimer;
+let isTyping = false;
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
 // 鼠标光标跟随
-window.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
-
-// ========== 1. 点线网络背景系统 ==========
-const networkCanvas = document.getElementById('network-canvas');
-const networkCtx = networkCanvas.getContext('2d');
-let networkNodes = [];
-let mouse = { x: null, y: null, radius: 150 };
-
-function resizeNetworkCanvas() {
-    networkCanvas.width = window.innerWidth;
-    networkCanvas.height = window.innerHeight;
-    initNetworkNodes();
+if (cursor) {
+    window.addEventListener('mousemove', e => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
 }
 
-window.addEventListener('resize', resizeNetworkCanvas);
-resizeNetworkCanvas();
-
-window.addEventListener('mousemove', e => {
-    mouse.x = e.x;
-    mouse.y = e.y;
-});
-
-window.addEventListener('mouseout', () => {
-    mouse.x = undefined;
-    mouse.y = undefined;
-});
+// ========== 2. 点线网络背景系统 ==========
+const networkCanvas = document.getElementById('network-canvas');
+const networkCtx = networkCanvas ? networkCanvas.getContext('2d') : null;
+let networkNodes = [];
+let mouse = { x: null, y: null, radius: 150 };
 
 class NetworkNode {
     constructor() {
@@ -97,6 +85,7 @@ class NetworkNode {
 }
 
 function initNetworkNodes() {
+    if (!networkCanvas) return;
     networkNodes = [];
     let numNodes = Math.floor((networkCanvas.width * networkCanvas.height) / 15000);
     for (let i = 0; i < numNodes; i++) {
@@ -105,6 +94,7 @@ function initNetworkNodes() {
 }
 
 function connectNodes() {
+    if (!networkCtx) return;
     for (let i = 0; i < networkNodes.length; i++) {
         for (let j = i + 1; j < networkNodes.length; j++) {
             let dx = networkNodes[i].x - networkNodes[j].x;
@@ -124,15 +114,125 @@ function connectNodes() {
 }
 
 function animateNetwork() {
+    if (!networkCtx) return;
     networkCtx.clearRect(0, 0, networkCanvas.width, networkCanvas.height);
     networkNodes.forEach(node => node.update());
     connectNodes();
     requestAnimationFrame(animateNetwork);
 }
 
-animateNetwork();
+function resizeNetworkCanvas() {
+    if (!networkCanvas) return;
+    networkCanvas.width = window.innerWidth;
+    networkCanvas.height = window.innerHeight;
+    initNetworkNodes();
+}
 
-// ========== 2. 混沌弹窗系统（增强版：15个弹窗） ==========
+if (networkCanvas) {
+    window.addEventListener('resize', resizeNetworkCanvas);
+    resizeNetworkCanvas();
+    
+    window.addEventListener('mousemove', e => {
+        mouse.x = e.x;
+        mouse.y = e.y;
+    });
+
+    window.addEventListener('mouseout', () => {
+        mouse.x = undefined;
+        mouse.y = undefined;
+    });
+    
+    animateNetwork();
+}
+
+// ========== 3. 粒子消散系统 ==========
+const particleCanvas = document.getElementById('particle-canvas');
+const particleCtx = particleCanvas ? particleCanvas.getContext('2d') : null;
+let explosionParticles = [];
+
+if (particleCanvas) {
+    particleCanvas.width = window.innerWidth;
+    particleCanvas.height = window.innerHeight;
+}
+
+class ExplosionParticle {
+    constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 8;
+        this.speedY = (Math.random() - 0.5) * 8;
+        this.color = color;
+        this.life = 1;
+        this.decay = Math.random() * 0.02 + 0.01;
+        
+        // 向中心汇聚的力
+        this.targetX = window.innerWidth / 2;
+        this.targetY = window.innerHeight / 2;
+    }
+
+    update() {
+        // 向中心汇聚
+        let dx = this.targetX - this.x;
+        let dy = this.targetY - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance > 50) {
+            this.speedX += (dx / distance) * 0.3;
+            this.speedY += (dy / distance) * 0.3;
+        }
+
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.speedX *= 0.98;
+        this.speedY *= 0.98;
+        this.life -= this.decay;
+    }
+
+    draw() {
+        if (!particleCtx) return;
+        particleCtx.save();
+        particleCtx.globalAlpha = this.life;
+        particleCtx.fillStyle = this.color;
+        particleCtx.beginPath();
+        particleCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        particleCtx.fill();
+        particleCtx.restore();
+    }
+}
+
+function explodePopup(popup) {
+    const rect = popup.getBoundingClientRect();
+    const colors = ['#ff003c', '#8b0000', '#ff2a2a', '#666'];
+    
+    // 从弹窗的每个角落和边缘生成粒子
+    for (let i = 0; i < 50; i++) {
+        const x = rect.left + Math.random() * rect.width;
+        const y = rect.top + Math.random() * rect.height;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        explosionParticles.push(new ExplosionParticle(x, y, color));
+    }
+}
+
+function animateExplosionParticles() {
+    if (!particleCtx) return;
+    particleCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+    
+    for (let i = explosionParticles.length - 1; i >= 0; i--) {
+        explosionParticles[i].update();
+        explosionParticles[i].draw();
+        
+        if (explosionParticles[i].life <= 0) {
+            explosionParticles.splice(i, 1);
+        }
+    }
+    
+    if (explosionParticles.length > 0) {
+        requestAnimationFrame(animateExplosionParticles);
+    }
+}
+
+// ========== 4. 混沌弹窗系统 ==========
 const glitchContent = [
     'SYSTEM_ERROR: 0xDEADBEEF',
     'DATA_CORRUPT: UNABLE TO READ SECTOR 7',
@@ -203,102 +303,19 @@ function makeDraggable(element) {
 
 // 初始化创建15个弹窗
 const popupElements = [];
-for (let i = 0; i < 15; i++) {
-    popupElements.push(createPopup(i));
-}
-
-// ========== 3. 粒子消散系统 ==========
-const particleCanvas = document.getElementById('particle-canvas');
-const particleCtx = particleCanvas.getContext('2d');
-let explosionParticles = [];
-
-particleCanvas.width = window.innerWidth;
-particleCanvas.height = window.innerHeight;
-
-class ExplosionParticle {
-    constructor(x, y, color) {
-        this.x = x;
-        this.y = y;
-        this.size = Math.random() * 3 + 1;
-        this.speedX = (Math.random() - 0.5) * 8;
-        this.speedY = (Math.random() - 0.5) * 8;
-        this.color = color;
-        this.life = 1;
-        this.decay = Math.random() * 0.02 + 0.01;
-        
-        // 向中心汇聚的力
-        this.targetX = window.innerWidth / 2;
-        this.targetY = window.innerHeight / 2;
-    }
-
-    update() {
-        // 向中心汇聚
-        let dx = this.targetX - this.x;
-        let dy = this.targetY - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance > 50) {
-            this.speedX += (dx / distance) * 0.3;
-            this.speedY += (dy / distance) * 0.3;
-        }
-
-        this.x += this.speedX;
-        this.y += this.speedY;
-        this.speedX *= 0.98;
-        this.speedY *= 0.98;
-        this.life -= this.decay;
-    }
-
-    draw() {
-        particleCtx.save();
-        particleCtx.globalAlpha = this.life;
-        particleCtx.fillStyle = this.color;
-        particleCtx.beginPath();
-        particleCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        particleCtx.fill();
-        particleCtx.restore();
+if (popupContainer) {
+    for (let i = 0; i < 15; i++) {
+        popupElements.push(createPopup(i));
     }
 }
 
-function explodePopup(popup) {
-    const rect = popup.getBoundingClientRect();
-    const colors = ['#ff003c', '#8b0000', '#ff2a2a', '#666'];
-    
-    // 从弹窗的每个角落和边缘生成粒子
-    for (let i = 0; i < 50; i++) {
-        const x = rect.left + Math.random() * rect.width;
-        const y = rect.top + Math.random() * rect.height;
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        explosionParticles.push(new ExplosionParticle(x, y, color));
-    }
-}
-
-function animateExplosionParticles() {
-    particleCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
-    
-    for (let i = explosionParticles.length - 1; i >= 0; i--) {
-        explosionParticles[i].update();
-        explosionParticles[i].draw();
-        
-        if (explosionParticles[i].life <= 0) {
-            explosionParticles.splice(i, 1);
-        }
-    }
-    
-    if (explosionParticles.length > 0) {
-        requestAnimationFrame(animateExplosionParticles);
-    }
-}
-
-// ========== 4. 主流程控制 ==========
-let hasStarted = false;
-
+// ========== 5. 主流程控制 ==========
 function startTransition() {
     if (hasStarted) return;
     hasStarted = true;
 
     // 1. 隐藏输入框
-    screen1.classList.add('hidden');
+    if (screen1) screen1.classList.add('hidden');
 
     // 2. 弹窗粒子消散效果
     popupElements.forEach((popup, index) => {
@@ -323,17 +340,24 @@ function startTransition() {
 
     // 3. 激活档案界面
     setTimeout(() => {
-        screen2.classList.add('active');
-        runTypewriter();
+        if (screen2) {
+            screen2.classList.add('active');
+            runTypewriter();
+        }
     }, 1200);
 }
 
-sendBtn.addEventListener('click', startTransition);
-aiInput.addEventListener('keypress', e => {
-    if (e.key === 'Enter') startTransition();
-});
+if (sendBtn) {
+    sendBtn.addEventListener('click', startTransition);
+}
 
-// ========== 5. 打字机效果 ==========
+if (aiInput) {
+    aiInput.addEventListener('keypress', e => {
+        if (e.key === 'Enter') startTransition();
+    });
+}
+
+// ========== 6. 打字机效果 ==========
 const contentChunks = [
     `<h1>◈ 档案存放处 ◈</h1><h2>Shadow Archives — 保持距离，或是彻底沉沦。</h2><hr>`,
     `<p><strong>玉元一</strong>，<br><br>活跃平台和社区是在DC，社区：<span class="highlight">不小心点心铺、锦鲤欧皇食堂，MOM，奇迹之夜</span>等社区。</p>`,
@@ -343,11 +367,8 @@ const contentChunks = [
     `<a href="../home.html" class="action-link">[ 返回主界面 ]</a>`
 ];
 
-let typingTimer;
-let isTyping = false;
-const delay = ms => new Promise(res => setTimeout(res, ms));
-
 async function showDecodingEffect(duration = 200) {
+    if (!outputBox) return;
     let startTime = Date.now();
     const chars = 'ABCDE*&^%$#@!<>?';
     const decoderSpan = document.createElement('span');
@@ -367,6 +388,11 @@ async function showDecodingEffect(duration = 200) {
 
 function typeString(htmlString) {
     return new Promise(resolve => {
+        if (!outputBox) {
+            resolve();
+            return;
+        }
+        
         let charIndex = 0;
         let tagBuffer = '';
         let inTag = false;
@@ -403,8 +429,9 @@ function typeString(htmlString) {
 }
 
 async function runTypewriter() {
+    if (!outputBox) return;
     isTyping = true;
-    skipBtn.style.opacity = '1';
+    if (skipBtn) skipBtn.style.opacity = '1';
     
     for (const chunk of contentChunks) {
         if (!isTyping) break;
@@ -414,25 +441,27 @@ async function runTypewriter() {
     }
     
     isTyping = false;
-    skipBtn.style.opacity = '0';
+    if (skipBtn) skipBtn.style.opacity = '0';
     outputBox.innerHTML += '<span class="cursor"></span>';
 }
 
-skipBtn.addEventListener('click', () => {
-    if (isTyping) {
-        isTyping = false;
-        clearTimeout(typingTimer);
-        outputBox.innerHTML = contentChunks.join('') + '<span class="cursor"></span>';
-        skipBtn.style.opacity = '0';
-    }
-});
+if (skipBtn) {
+    skipBtn.addEventListener('click', () => {
+        if (isTyping && outputBox) {
+            isTyping = false;
+            clearTimeout(typingTimer);
+            outputBox.innerHTML = contentChunks.join('') + '<span class="cursor"></span>';
+            skipBtn.style.opacity = '0';
+        }
+    });
+}
 
-// ========== 6. 导航栏交互（统一 home.html 风格） ==========
+// ========== 7. 导航栏交互 ==========
 const navBurger = document.getElementById('navBurger');
 const mobileMenu = document.getElementById('mobileMenu');
 const ghostNav = document.getElementById('ghostNav');
 
-if (navBurger) {
+if (navBurger && mobileMenu) {
     navBurger.addEventListener('click', () => {
         navBurger.classList.toggle('active');
         mobileMenu.classList.toggle('active');
@@ -440,18 +469,21 @@ if (navBurger) {
 }
 
 // 滚动隐藏导航栏（可选）
-let lastScroll = 0;
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > lastScroll && currentScroll > 100) {
-        ghostNav.style.transform = 'translateY(-100%)';
-    } else {
-        ghostNav.style.transform = 'translateY(0)';
-    }
-    
-    lastScroll = currentScroll;
-});
+if (ghostNav) {
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            ghostNav.style.transform = 'translateY(-100%)';
+        } else {
+            ghostNav.style.transform = 'translateY(0)';
+        }
+        
+        lastScroll = currentScroll;
+    });
+}
+
 
 
 
