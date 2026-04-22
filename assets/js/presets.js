@@ -228,10 +228,21 @@ function createStarBurst(element) {
         }, 600);
     }
 }
-// 在 presets.js 文件末尾添加
 
 // 预设选择跳转函数
 function selectPreset(presetId) {
-    window.location.href = `${presetId}.html`;
+    // 添加选择反馈
+    const player = document.getElementById('player');
+    if (player) {
+        player.style.filter = 'hue-rotate(90deg) brightness(1.5)';
+    }
+    
+    // 页面过渡效果
+    document.body.style.transition = 'opacity 0.3s';
+    document.body.style.opacity = '0.7';
+    
+    setTimeout(() => {
+        // 跳转到对应的预设详情页
+        window.location.href = `${presetId}.html`;
+    }, 300);
 }
-
