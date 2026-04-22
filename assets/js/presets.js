@@ -117,20 +117,20 @@ window.addEventListener('resize', () => {
 
 
 
-// ========== 星星粒子爆发效果 ==========
+// ========== 星星粒子爆发效果 + LEVEL UP 提示 ==========
 function createStarBurst(element) {
     const rect = element.getBoundingClientRect();
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
     
-    // 创建8个星星粒子
-    for (let i = 0; i < 8; i++) {
+    // 创建12个星星粒子（增加数量更炫酷）
+    for (let i = 0; i < 12; i++) {
         const star = document.createElement('div');
         star.className = 'star-particle';
         
         // 计算爆发方向
-        const angle = (Math.PI * 2 * i) / 8;
-        const distance = 50 + Math.random() * 30;
+        const angle = (Math.PI * 2 * i) / 12;
+        const distance = 60 + Math.random() * 40;
         const tx = Math.cos(angle) * distance;
         const ty = Math.sin(angle) * distance;
         
@@ -146,7 +146,38 @@ function createStarBurst(element) {
             star.remove();
         }, 600);
     }
+    
+    // 创建 LEVEL UP 提示语
+    createLevelUpText(element);
 }
+
+// 创建像素游戏提示语（英文版）
+function createLevelUpText(element) {
+    const messages = [
+        { text: 'LEVEL UP!', class: 'gold' },
+        { text: '+100 COINS', class: 'gold' },
+        { text: 'GET!', class: 'red' },
+        { text: 'EXP +50', class: 'green' },
+        { text: 'POWER UP!', class: 'red' },
+        { text: 'UNLOCKED!', class: 'green' },
+        { text: 'BONUS!', class: 'gold' },
+        { text: 'CRITICAL!', class: 'red' }
+    ];
+    
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+    
+    const levelUpText = document.createElement('div');
+    levelUpText.className = `level-up-text ${randomMessage.class}`;
+    levelUpText.textContent = randomMessage.text;
+    
+    element.appendChild(levelUpText);
+    
+    // 动画结束后移除
+    setTimeout(() => {
+        levelUpText.remove();
+    }, 1200);
+}
+
 // ========== 像素云生成系统 ==========
 
 document.addEventListener('DOMContentLoaded', () => {
