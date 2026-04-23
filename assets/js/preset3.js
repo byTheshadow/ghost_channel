@@ -66,36 +66,41 @@ let mouseY = 0;
 let cursorX = 0;
 let cursorY = 0;
 
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
+// 检测是否为桌面端
+const isDesktop = window.matchMedia('(min-width: 1025px) and (hover: hover) and (pointer: fine)').matches;
 
-function animateCursor() {
-    const dx = mouseX - cursorX;
-    const dy = mouseY - cursorY;
-    
-    cursorX += dx * 0.2;
-    cursorY += dy * 0.2;
-    
-    cursor.style.left = cursorX + 'px';
-    cursor.style.top = cursorY + 'px';
-    
-    requestAnimationFrame(animateCursor);
+if (isDesktop && cursor) {
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+        const dx = mouseX - cursorX;
+        const dy = mouseY - cursorY;
+        
+        cursorX += dx * 0.2;
+        cursorY += dy * 0.2;
+        
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+        
+        requestAnimationFrame(animateCursor);
+    }
+
+    animateCursor();
+
+    // 鼠标悬停效果
+    const interactiveElements = document.querySelectorAll('a, button, .console-knob, .polaroid-frame');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.classList.add('hovering');
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.classList.remove('hovering');
+        });
+    });
 }
-
-animateCursor();
-
-// 鼠标悬停效果
-const interactiveElements = document.querySelectorAll('a, button, .console-knob');
-interactiveElements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        cursor.classList.add('hovering');
-    });
-    el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('hovering');
-    });
-});
 
 // ========== 星空粒子系统 ==========
 const starsContainer = document.getElementById('starsContainer');
@@ -214,10 +219,13 @@ knobs.forEach(knob => {
     let isDragging = false;
     let startY = 0;
     
+    // 鼠标事件
     knob.addEventListener('mousedown', (e) => {
         isDragging = true;
         startY = e.clientY;
-        knob.style.cursor = 'grabbing';
+        if (isDesktop) {
+            knob.style.cursor = 'grabbing';
+        }
     });
     
     document.addEventListener('mousemove', (e) => {
@@ -233,46 +241,80 @@ knobs.forEach(knob => {
     document.addEventListener('mouseup', () => {
         if (isDragging) {
             isDragging = false;
-            knob.style.cursor = 'pointer';
+            if (isDesktop) {
+                knob.style.cursor = 'pointer';
+            }
+        }
+    });
+    
+    // 触摸事件支持
+    knob.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startY = e.touches[0].clientY;
+        e.preventDefault();
+    });
+    
+    document.addEventListener('touchmove', (e) => {
+        if (isDragging) {
+            const deltaY = startY - e.touches[0].clientY;
+            rotation += deltaY * 0.5;
+            rotation = Math.max(-180, Math.min(180, rotation));
+            knob.style.transform = `rotate(${rotation}deg)`;
+            startY = e.touches[0].clientY;
+        }
+    });
+    
+    document.addEventListener('touchend', () => {
+        if (isDragging) {
+            isDragging = false;
         }
     });
 });
 
 // ========== 拍立得交互效果 ==========
-function initPolaroids() {
-    const polaroidFrames = document.querySelectorAll('.polaroid-frame');
+const polaroids = document.querySelectorAll('.polaroid-frame');
 
-    polaroidFrames.forEach((polaroid, index) => {
-        // 点击放大效果
-        polaroid.addEventListener('click', () => {
-            polaroid.style.transition = 'all 0.3s ease';
-            polaroid.style.transform = 'rotate(0deg) scale(1.5)';
-            polaroid.style.zIndex = '1000';
-            
-            // 创建遮罩层
-            const overlay = document.createElement('div');
-            overlay.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                background: rgba(0, 0, 0, 0.8);
-                z-index: 999;
-                cursor: pointer;
-            `;
-            
-            document.body.appendChild(overlay);
-            
-            // 点击遮罩关闭
-            overlay.addEventListener('click', () => {
-                polaroid.style.transform = `rotate(${index % 2 === 0 ? -3 : 2}deg) scale(1)`;
-                polaroid.style.zIndex = '1';
-                overlay.remove();
-            });
-        });
+polaroids.forEach((polaroid, index) => {
+    // 点击/触摸放大效果
+    const handleClick = () => {
+        polaroid.style.transition = 'all 0.3s ease';
+        polaroid.style.transform = 'rotate(0deg) scale(1.5)';
+        polaroid.style.zIndex = '1000';
         
-        // 随机轻微晃动
+        // 创建遮罩层
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            cursor: pointer;
+        `;
+        
+        document.body.appendChild(overlay);
+        
+        // 点击/触摸遮罩关闭
+        const closeOverlay = () => {
+            polaroid.style.transform = `rotate(${index % 2 === 0 ? -3 : 2}deg) scale(1)`;
+            polaroid.style.zIndex = '1';
+            overlay.remove();
+        };
+        
+        overlay.addEventListener('click', closeOverlay);
+        overlay.addEventListener('touchend', closeOverlay);
+    };
+    
+    polaroid.addEventListener('click', handleClick);
+    polaroid.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        handleClick();
+    });
+    
+    // 随机轻微晃动（只在桌面端）
+    if (isDesktop) {
         setInterval(() => {
             if (!polaroid.matches(':hover')) {
                 const randomRotate = (Math.random() - 0.5) * 2;
@@ -280,8 +322,8 @@ function initPolaroids() {
                 polaroid.style.transform = `rotate(${baseRotate + randomRotate}deg)`;
             }
         }, 3000 + Math.random() * 2000);
-    });
-}
+    }
+});
 
 // ========== 滚动视差效果 ==========
 window.addEventListener('scroll', () => {
