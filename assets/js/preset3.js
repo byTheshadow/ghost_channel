@@ -85,8 +85,11 @@ function startRadioAnimation() {
 
 // 页面加载完成后启动动画
 window.addEventListener('load', () => {
+    // 移除 loading 类，启用自定义鼠标
+    document.body.classList.remove('loading');
     setTimeout(startRadioAnimation, 500);
 });
+
 
 // ========== 导航栏交互 ==========
 const hamburger = document.getElementById('hamburger');
