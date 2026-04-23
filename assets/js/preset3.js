@@ -1,11 +1,8 @@
-
 // ========== Preset3 - 失真电台交互逻辑 ==========
 
 // ========== 开屏动画控制 ==========
-const introScreen = document.getElementById('intro-screen');
+const skipBtn = document.getElementById('skipBtn');
 const radioText = document.getElementById('radioText');
-const needle = document.getElementById('needle');
-const staticOverlay = document.getElementById('staticOverlay');
 const mainContent = document.getElementById('mainContent');
 
 // 调频文本序列
@@ -19,26 +16,69 @@ const scanningTexts = [
 ];
 
 let textIndex = 0;
+let textInterval = null;
+let animationSkipped = false;
+
+// 跳过动画函数
+function skipIntro() {
+    const introScreen = document.getElementById('intro-screen');
+    if (animationSkipped || !introScreen) return;
+    animationSkipped = true;
+    
+    // 清除定时器
+    if (textInterval) {
+        clearInterval(textInterval);
+    }
+    
+    // 快速淡出
+    introScreen.style.transition = 'opacity 0.5s ease';
+    introScreen.style.opacity = '0';
+    
+    setTimeout(() => {
+        introScreen.style.display = 'none';
+        mainContent.style.opacity = '1';
+        initStars();
+    }, 500);
+}
+
+// SKIP 按钮点击事件
+if (skipBtn) {
+    skipBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        skipIntro();
+    });
+}
+
+// 点击开屏任意位置跳过
+const introScreenElement = document.getElementById('intro-screen');
+if (introScreenElement) {
+    introScreenElement.addEventListener('click', (e) => {
+        if (e.target !== skipBtn && !skipBtn.contains(e.target)) {
+            skipIntro();
+        }
+    });
+}
+
+// 按键跳过
+document.addEventListener('keydown', (e) => {
+    if ((e.key === 'Escape' || e.key === 'Enter') && !animationSkipped) {
+        skipIntro();
+    }
+});
 
 // 调频动画
 function startRadioAnimation() {
-    const textInterval = setInterval(() => {
-        if (textIndex < scanningTexts.length) {
+    textInterval = setInterval(() => {
+        if (textIndex < scanningTexts.length && !animationSkipped) {
             radioText.textContent = scanningTexts[textIndex];
             textIndex++;
         } else {
             clearInterval(textInterval);
-            // 动画结束，淡出开屏
-            setTimeout(() => {
-                introScreen.style.transition = 'opacity 1s ease';
-                introScreen.style.opacity = '0';
+            if (!animationSkipped) {
                 setTimeout(() => {
-                    introScreen.style.display = 'none';
-                    mainContent.style.opacity = '1';
-                    initStars();
-                    initPolaroids(); // 初始化拍立得
-                }, 1000);
-            }, 500);
+                    skipIntro();
+                }, 500);
+            }
         }
     }, 600);
 }
@@ -120,6 +160,8 @@ function createStar() {
 }
 
 function initStars() {
+    if (!starsContainer) return;
+    
     // 创建初始星星
     for (let i = 0; i < 100; i++) {
         createStar();
@@ -134,7 +176,6 @@ function initStars() {
             setTimeout(() => {
                 randomStar.remove();
                 stars = stars.filter(s => s !== randomStar);
-                // 创建新星星补充
                 createStar();
             }, 2000);
         }
@@ -154,12 +195,14 @@ const ledMessages = [
 let ledIndex = 0;
 
 setInterval(() => {
-    ledIndex = (ledIndex + 1) % ledMessages.length;
-    ledText.style.opacity = '0';
-    setTimeout(() => {
-        ledText.textContent = ledMessages[ledIndex];
-        ledText.style.opacity = '1';
-    }, 300);
+    if (ledText) {
+        ledIndex = (ledIndex + 1) % ledMessages.length;
+        ledText.style.opacity = '0';
+        setTimeout(() => {
+            ledText.textContent = ledMessages[ledIndex];
+            ledText.style.opacity = '1';
+        }, 300);
+    }
 }, 4000);
 
 // ========== 控制台按钮交互 ==========
@@ -167,9 +210,7 @@ const consoleButtons = document.querySelectorAll('.console-button');
 
 consoleButtons.forEach(button => {
     button.addEventListener('click', () => {
-        // 移除所有按钮的 active 状态
         consoleButtons.forEach(btn => btn.classList.remove('active'));
-        // 添加当前按钮的 active 状态
         button.classList.add('active');
         
         const mode = button.getAttribute('data-mode');
@@ -181,31 +222,30 @@ function changeMode(mode) {
     const eqBars = document.querySelectorAll('.eq-bar');
     const scaleMarker = document.querySelector('.scale-marker');
     
+    if (!ledText) return;
+    
     switch(mode) {
         case 'burn':
-            // 燃烧模式 - 高频率
-            eqBars.forEach((bar, index) => {
+            eqBars.forEach((bar) => {
                 bar.style.animationDuration = '0.5s';
             });
-            scaleMarker.style.left = '66.6%';
+            if (scaleMarker) scaleMarker.style.left = '66.6%';
             ledText.textContent = 'BURN MODE';
             break;
             
         case 'static':
-            // 静态模式 - 低频率
-            eqBars.forEach((bar, index) => {
+            eqBars.forEach((bar) => {
                 bar.style.animationDuration = '1.5s';
             });
-            scaleMarker.style.left = '33.3%';
+            if (scaleMarker) scaleMarker.style.left = '33.3%';
             ledText.textContent = 'STATIC MODE';
             break;
             
         case 'signal':
-            // 信号模式 - 中频率
-            eqBars.forEach((bar, index) => {
+            eqBars.forEach((bar) => {
                 bar.style.animationDuration = '0.8s';
             });
-            scaleMarker.style.left = '50%';
+            if (scaleMarker) scaleMarker.style.left = '50%';
             ledText.textContent = 'SIGNAL MODE';
             break;
     }
@@ -219,7 +259,6 @@ knobs.forEach(knob => {
     let isDragging = false;
     let startY = 0;
     
-    // 鼠标事件
     knob.addEventListener('mousedown', (e) => {
         isDragging = true;
         startY = e.clientY;
@@ -275,13 +314,11 @@ knobs.forEach(knob => {
 const polaroids = document.querySelectorAll('.polaroid-frame');
 
 polaroids.forEach((polaroid, index) => {
-    // 点击/触摸放大效果
     const handleClick = () => {
         polaroid.style.transition = 'all 0.3s ease';
         polaroid.style.transform = 'rotate(0deg) scale(1.5)';
         polaroid.style.zIndex = '1000';
         
-        // 创建遮罩层
         const overlay = document.createElement('div');
         overlay.style.cssText = `
             position: fixed;
@@ -296,7 +333,6 @@ polaroids.forEach((polaroid, index) => {
         
         document.body.appendChild(overlay);
         
-        // 点击/触摸遮罩关闭
         const closeOverlay = () => {
             polaroid.style.transform = `rotate(${index % 2 === 0 ? -3 : 2}deg) scale(1)`;
             polaroid.style.zIndex = '1';
@@ -313,7 +349,6 @@ polaroids.forEach((polaroid, index) => {
         handleClick();
     });
     
-    // 随机轻微晃动（只在桌面端）
     if (isDesktop) {
         setInterval(() => {
             if (!polaroid.matches(':hover')) {
@@ -340,117 +375,27 @@ window.addEventListener('scroll', () => {
 // ========== 页面可见性检测 ==========
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
-        // 页面隐藏时暂停动画
         document.body.style.animationPlayState = 'paused';
     } else {
-        // 页面显示时恢复动画
         document.body.style.animationPlayState = 'running';
     }
 });
 
 // ========== 键盘快捷键 ==========
 document.addEventListener('keydown', (e) => {
-    // ESC 键返回预设列表
-    if (e.key === 'Escape') {
-        window.location.href = 'presets.html';
-    }
-    
-    // 数字键 1-3 切换模式
-    if (e.key === '1') {
-        consoleButtons[0].click();
-    } else if (e.key === '2') {
-        consoleButtons[1].click();
-    } else if (e.key === '3') {
-        consoleButtons[2].click();
-    }
-});
-// ========== 开屏动画控制 ==========
-const introScreen = document.getElementById('intro-screen');
-const radioText = document.getElementById('radioText');
-const needle = document.getElementById('needle');
-const staticOverlay = document.getElementById('staticOverlay');
-const mainContent = document.getElementById('mainContent');
-const skipBtn = document.getElementById('skipBtn');
-
-// 调频文本序列
-const scanningTexts = [
-    'SCANNING...',
-    'SIGNAL DETECTED',
-    'FREQUENCY: 66.6 MHz',
-    'CONNECTING...',
-    'INCINERATOR PROTOCOL',
-    'ACTIVATED'
-];
-
-let textIndex = 0;
-let textInterval = null;
-let animationSkipped = false;
-
-// 跳过动画函数
-function skipIntro() {
-    if (animationSkipped) return;
-    animationSkipped = true;
-    
-    // 清除定时器
-    if (textInterval) {
-        clearInterval(textInterval);
-    }
-    
-    // 快速淡出
-    introScreen.style.transition = 'opacity 0.5s ease';
-    introScreen.style.opacity = '0';
-    
-    setTimeout(() => {
-        introScreen.style.display = 'none';
-        mainContent.style.opacity = '1';
-        initStars();
-    }, 500);
-}
-
-// SKIP 按钮点击事件
-if (skipBtn) {
-    skipBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        skipIntro();
-    });
-}
-
-// 点击开屏任意位置跳过（可选）
-introScreen.addEventListener('click', (e) => {
-    // 如果点击的不是 SKIP 按钮本身
-    if (e.target !== skipBtn && !skipBtn.contains(e.target)) {
-        skipIntro();
-    }
-});
-
-// 按 ESC 或 Enter 键跳过
-document.addEventListener('keydown', (e) => {
-    if ((e.key === 'Escape' || e.key === 'Enter') && !animationSkipped) {
-        skipIntro();
-    }
-});
-
-// 调频动画
-function startRadioAnimation() {
-    textInterval = setInterval(() => {
-        if (textIndex < scanningTexts.length && !animationSkipped) {
-            radioText.textContent = scanningTexts[textIndex];
-            textIndex++;
-        } else {
-            clearInterval(textInterval);
-            // 动画自然结束
-            if (!animationSkipped) {
-                setTimeout(() => {
-                    skipIntro();
-                }, 500);
-            }
+    if (animationSkipped) {
+        if (e.key === 'Escape') {
+            window.location.href = 'presets.html';
         }
-    }, 600);
-}
-
-// 页面加载完成后启动动画
-window.addEventListener('load', () => {
-    setTimeout(startRadioAnimation, 500);
+        
+        if (e.key === '1' && consoleButtons[0]) {
+            consoleButtons[0].click();
+        } else if (e.key === '2' && consoleButtons[1]) {
+            consoleButtons[1].click();
+        } else if (e.key === '3' && consoleButtons[2]) {
+            consoleButtons[2].click();
+        }
+    }
 });
 
 // ========== 控制台彩蛋 ==========
