@@ -41,7 +41,59 @@ body {
     min-height: 100vh;
     padding-top: 80px;
     position: relative;
+    /* 不要在这里设置 cursor: none */
 }
+
+/* ========== 自定义鼠标 ========== */
+.cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--red-neon);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease, width 0.2s, height 0.2s;
+    box-shadow: 0 0 10px var(--red-neon);
+    display: none; /* 默认隐藏 */
+}
+
+.cursor::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    background: var(--red-neon);
+    border-radius: 50%;
+}
+
+.cursor.hovering {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 0, 60, 0.1);
+}
+
+/* 只在桌面端显示自定义鼠标 */
+@media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+    body:not(.loading) {
+        cursor: none;
+    }
+    
+    body:not(.loading) .cursor {
+        display: block;
+    }
+    
+    body:not(.loading) a, 
+    body:not(.loading) button, 
+    body:not(.loading) .console-knob, 
+    body:not(.loading) .polaroid-frame {
+        cursor: none;
+    }
+}
+
 
 /* ========== CRT 效果层 ========== */
 .crt-overlay {
