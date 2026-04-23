@@ -14,31 +14,37 @@
     <!-- CRT 效果层 -->
     <div class="crt-overlay"></div>
     <div class="vignette"></div>
-
-    <!-- 开屏动画：收音机调频 -->
-    <div id="intro-screen">
-        <div class="radio-tuner" id="radioTuner">
-            <div class="radio-body">
-                <div class="radio-speaker">
-                    <div class="speaker-grid"></div>
-                </div>
-                <div class="radio-display">
-                    <div class="frequency-bar">
-                        <div class="frequency-needle" id="needle"></div>
-                        <div class="frequency-numbers">
-                            <span>88</span><span>92</span><span>96</span><span>100</span><span>104</span><span>108</span>
-                        </div>
-                    </div>
-                    <div class="radio-text" id="radioText">SCANNING...</div>
-                </div>
-                <div class="radio-knobs">
-                    <div class="knob"></div>
-                    <div class="knob"></div>
-                </div>
+<!-- 开屏动画：收音机调频 -->
+<div id="intro-screen">
+    <!-- SKIP 按钮 -->
+    <button class="skip-btn" id="skipBtn">
+        <span class="skip-text">SKIP</span>
+        <span class="skip-icon">»</span>
+    </button>
+    
+    <div class="radio-tuner" id="radioTuner">
+        <div class="radio-body">
+            <div class="radio-speaker">
+                <div class="speaker-grid"></div>
             </div>
-            <div class="static-overlay" id="staticOverlay"></div>
+            <div class="radio-display">
+                <div class="frequency-bar">
+                    <div class="frequency-needle" id="needle"></div>
+                    <div class="frequency-numbers">
+                        <span>88</span><span>92</span><span>96</span><span>100</span><span>104</span><span>108</span>
+                    </div>
+                </div>
+                <div class="radio-text" id="radioText">SCANNING...</div>
+            </div>
+            <div class="radio-knobs">
+                <div class="knob"></div>
+                <div class="knob"></div>
+            </div>
         </div>
+        <div class="static-overlay" id="staticOverlay"></div>
     </div>
+</div>
+
 
     <!-- 自定义鼠标 -->
     <div class="cursor" id="cursor"></div>
