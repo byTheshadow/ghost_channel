@@ -364,6 +364,94 @@ document.addEventListener('keydown', (e) => {
         consoleButtons[2].click();
     }
 });
+// ========== 开屏动画控制 ==========
+const introScreen = document.getElementById('intro-screen');
+const radioText = document.getElementById('radioText');
+const needle = document.getElementById('needle');
+const staticOverlay = document.getElementById('staticOverlay');
+const mainContent = document.getElementById('mainContent');
+const skipBtn = document.getElementById('skipBtn');
+
+// 调频文本序列
+const scanningTexts = [
+    'SCANNING...',
+    'SIGNAL DETECTED',
+    'FREQUENCY: 66.6 MHz',
+    'CONNECTING...',
+    'INCINERATOR PROTOCOL',
+    'ACTIVATED'
+];
+
+let textIndex = 0;
+let textInterval = null;
+let animationSkipped = false;
+
+// 跳过动画函数
+function skipIntro() {
+    if (animationSkipped) return;
+    animationSkipped = true;
+    
+    // 清除定时器
+    if (textInterval) {
+        clearInterval(textInterval);
+    }
+    
+    // 快速淡出
+    introScreen.style.transition = 'opacity 0.5s ease';
+    introScreen.style.opacity = '0';
+    
+    setTimeout(() => {
+        introScreen.style.display = 'none';
+        mainContent.style.opacity = '1';
+        initStars();
+    }, 500);
+}
+
+// SKIP 按钮点击事件
+if (skipBtn) {
+    skipBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        skipIntro();
+    });
+}
+
+// 点击开屏任意位置跳过（可选）
+introScreen.addEventListener('click', (e) => {
+    // 如果点击的不是 SKIP 按钮本身
+    if (e.target !== skipBtn && !skipBtn.contains(e.target)) {
+        skipIntro();
+    }
+});
+
+// 按 ESC 或 Enter 键跳过
+document.addEventListener('keydown', (e) => {
+    if ((e.key === 'Escape' || e.key === 'Enter') && !animationSkipped) {
+        skipIntro();
+    }
+});
+
+// 调频动画
+function startRadioAnimation() {
+    textInterval = setInterval(() => {
+        if (textIndex < scanningTexts.length && !animationSkipped) {
+            radioText.textContent = scanningTexts[textIndex];
+            textIndex++;
+        } else {
+            clearInterval(textInterval);
+            // 动画自然结束
+            if (!animationSkipped) {
+                setTimeout(() => {
+                    skipIntro();
+                }, 500);
+            }
+        }
+    }, 600);
+}
+
+// 页面加载完成后启动动画
+window.addEventListener('load', () => {
+    setTimeout(startRadioAnimation, 500);
+});
 
 // ========== 控制台彩蛋 ==========
 console.log('%c🔥 焚星协议已启动 🔥', 'color: #ff003c; font-size: 20px; font-weight: bold;');
