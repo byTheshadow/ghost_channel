@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - 森川海斗 ⌕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../assets/css/char-intro.css">
+    <link rel="stylesheet" href="../../assets/css/char-detail-a.css">
+    <style>
+        /* 覆盖 global.css 的滚动锁定 */
+        body, html { overflow: visible; height: auto; }
+        /* 森川海斗 个性化：深空冷灰蓝 */
+        .kaito-accent { color: #90caf9; text-shadow: 0 0 10px rgba(144, 202, 249, 0.4); }
+        .hero-banner:hover .hero-title-text {
+            -webkit-text-stroke: 1px #90caf9;
+            color: rgba(144, 202, 249, 0.15);
+            text-shadow: 0 0 40px rgba(144, 202, 249, 0.3);
+        }
+        .hero-title-text::after { background: linear-gradient(90deg, var(--red-mid), #90caf9, var(--red-mid)); }
+    </style>
+</head>
+
+<body class="detail-page">
+
+    <!-- ★ 入场动画 -->
+    <div class="char-intro-overlay" id="charIntro">
+        <div class="intro-stage">
+            <div class="intro-shockwave loop"></div>
+            <!-- 替换为通用信标/十字星 SVG (因无乐器设定) -->
+            <div class="intro-bass-wrapper">
+                <svg viewBox="0 0 24 24" width="100%" height="100%">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="#333" stroke-width="2"/>
+                    <path d="M12 2v20M2 12h20" stroke="#90caf9" stroke-width="1" opacity="0.6"/>
+                    <circle cx="12" cy="12" r="2" fill="#fff"/>
+                </svg>
+            </div>
+            <!-- 8bit幽灵 -->
+            <div class="intro-ghost-track loop">
+                <div class="intro-ghost-sprite">
+                    <svg viewBox="0 0 14 14" width="100%" height="100%">
+                        <rect x="5" y="0" width="4" height="1" fill="#ff003c"/>
+                        <rect x="3" y="1" width="8" height="1" fill="#ff003c"/>
+                        <rect x="2" y="2" width="10" height="1" fill="#ff003c"/>
+                        <rect x="1" y="3" width="12" height="2" fill="#ff003c"/>
+                        <rect x="0" y="5" width="14" height="6" fill="#ff003c"/>
+                        <rect x="0" y="11" width="14" height="1" fill="#ff003c"/>
+                        <rect x="0" y="12" width="3" height="1" fill="#ff003c"/>
+                        <rect x="5" y="12" width="4" height="1" fill="#ff003c"/>
+                        <rect x="11" y="12" width="3" height="1" fill="#ff003c"/>
+                        <rect x="0" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="6" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="12" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="2" y="3" width="4" height="5" fill="#ffffff"/>
+                        <rect x="8" y="3" width="4" height="5" fill="#ffffff"/>
+                        <rect x="4" y="5" width="2" height="2" fill="#000000"/>
+                        <rect x="10" y="5" width="2" height="2" fill="#000000"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="intro-char-name loop">
+            【KAITO】
+            <span class="intro-char-name-cn">森川海斗 ⌕</span>
+        </div>
+        <div class="intro-skip-hint">CLICK ANYWHERE TO SKIP</div>
+    </div>
+
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!--★ 导航栏 -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="../links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../home.html" class="mobile-link">HOME</a>
+        <a href="../about.html" class="mobile-link">ABOUT</a>
+        <a href="../characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="../gallery.html" class="mobile-link">GALLERY</a>
+        <a href="../presets.html" class="mobile-link">PRESETS</a>
+        <a href="../plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="../links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <a href="../characters.html" class="back-btn">← BACK TO CHARACTERS</a>
+
+    <header class="status-header">
+        <div class="status-item">
+            <span class="status-dot-live" style="background:#90caf9;"></span>
+            <span>SYSTEM ACTIVE // UNIT: KAITO MORIKAWA</span>
+        </div>
+        <div>
+            <span>FILE_01 · MODERN ERA</span>
+        </div>
+        <div class="status-item">
+            <span>LOCAL TIME:<span id="liveClock">00:00:00</span></span>
+        </div>
+    </header>
+
+    <div class="hero-banner">
+        <div class="hero-title-text">KAITO</div>
+    </div>
+
+    <div class="detail-container">
+        <!-- 左侧：角色卡片 -->
+        <div class="portrait-wrapper" id="parallaxWrapper">
+            <div class="portrait-card" id="parallaxCard">
+                <div class="portrait-scan-line"></div>
+                <div class="portrait-image-box">
+                    <img class="portrait-img" src="https://cdn.discordapp.com/attachments/1463421610244440114/1463421610408149046/1_3.jpg?ex=6a363494&is=6a34e314&hm=2dc6b7d85d882e094bebd04717f2b2e00dbba19f53148858481d983954086ada&" alt="森川海斗">
+                </div>
+                <div class="portrait-meta">
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">OBSERVER ID</span>
+                        <span class="meta-value">FILE_01</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">UNIVERSE</span>
+                        <span class="meta-value">MODERN // 现代架空</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">ORIENTATION</span>
+                        <span class="meta-value">BG/BL // 绝对的1</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">CREATED</span>
+                        <span class="meta-value">2026.02</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧：信息面板 -->
+        <div class="info-panel">
+            <p class="sys-desc">
+                GHOST_CHANNEL CHARACTER REGISTRY<br>
+                DEEP SPACE PHOTOGRAPHER · THREAT LEVEL: SAFE / DISTANT
+            </p>
+
+            <div class="char-name-block">
+                <h2>森川海斗 <span class="kaito-accent">⌕</span></h2>
+                <p class="char-subtitle">𝑲𝒂𝒊𝒕𝒐 𝑴𝒐𝒓𝒊𝒌𝒂𝒘𝒂 / 観測者 軌道一隅</p>
+            </div>
+
+            <div class="tag-group">
+                <span class="detail-tag">BG/BL 绝对上位</span>
+                <span class="detail-tag warn">⚠ 极度追求自由孤独</span>
+                <span class="detail-tag warn">⚠ 说话直白刺骨</span>
+                <span class="detail-tag warn">⚠ 拒绝世俗情感依赖</span>
+                <span class="detail-tag">深空摄影师</span>
+                <span class="detail-tag">钢铁森林与旷野</span>
+            </div>
+
+            <div>
+                <table class="manifest-table">
+                    <thead>
+                        <tr>
+                            <th>PARAMETER</th>
+                            <th>VALUE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>一句话简介</td>
+                            <td>在钢铁森林与旷野间穿梭的深空摄影师</td>
+                        </tr>
+                        <tr>
+                            <td>灵魂画手</td>
+                            <td>玉元一 ❀</td>
+                        </tr>
+                        <tr>
+                            <td>身份</td>
+                            <td>前社畜 / 极地极限运动狂热者</td>
+                        </tr>
+                        <tr>
+                            <td>世界观</td>
+                            <td>现代 ✧ 钢铁森林与原始荒野交织</td>
+                        </tr>
+                        <tr>
+                            <td>性向</td>
+                            <td>BG/BL 皆可（绝对的1位）</td>
+                        </tr>
+                        <tr>
+                            <td>产出时间</td>
+                            <td>2026年2月</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <section class="bio-section">
+        <div class="bio-block">
+            <div class="bio-header">
+                <span class="bio-header-icon">☕︎</span>
+                <span>CHARACTER BIOGRAPHY</span>
+            </div>
+            <div class="bio-body">
+                <div class="bio-text">
+                    <p>他是一首写在咖啡滤纸上的无言长诗，一个精密计算与极致浪漫的矛盾结合体。现年25岁，太阳落在沉稳的摩羯座，月亮游走于自由的水瓶座。生于冬至这夜最长的一天，似乎注定了他与孤独的灵魂羁绊。彻底挣脱曾经的格子间枷锁后，他化身为高能量的深空摄影师、冲浪与滑雪狂热者。</p>
+                    <p>他的躯壳带着旷野的印记：雪镜留下的深刻晒痕、左耳闪烁着天鹰座形状的钛钉，颈间永远挂着一枚指针微微颤抖的黄铜指南针。他游走于两种气味之间，都市中是清冷孤寂的Le Labo Gaiac 10，在旷野里则是原始森林般深邃的CDG Wonderwood。</p>
+                    <p>极致的理性与感性在他体内完美共存。在零下四十度校准镜头，他如机器般追求绝对精准；却毫无理由地笃信土耳其咖啡渣占卜。他孤高冷酷，直言感动是廉价的副产品，但在大自然面前却有着异样的柔软。每年生日，他都会郑重地给宇宙写一封信并付之一炬。他的关怀从不体现在甜言蜜语上，而是递给你的一杯滚烫姜茶，以及风雪中为你挡风的坚实背影。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bio-block">
+            <div class="bio-header">
+                <span class="bio-header-icon">🗝️</span>
+                <span>DESTINY ORBITS - 命运交汇瞬间</span>
+            </div>
+            <div class="bio-body">
+                <blockquote class="bio-quote" style="text-align:left; font-size: 0.9em; line-height:1.6;">
+                    以下是命运轨道上可能与他交汇的瞬间，等待着被开启：<br><br>
+                    ✦ <b>便利店的偶然：</b>“你……好像每天都买这个组合？”<br>
+                    ✦ <b>荒野守护神：</b>他作为影子向导，在危机四伏的野外与你首次接触。<br>
+                    ✦ <b>跨越时空的共鸣：</b>“軌道の片隅先生，您三年前拍的那张冰岛极光…我当时也在那里。但我的相机里，只有一片漆黑。”<br>
+                    ✦ <b>生死一线：</b>遇险绝境风雪咆哮，而他如冰原上的孤狼般出现。<br>
+                    ✦ <b>诗意呢喃：</b>他低声吟诵：“冬至的影子被拉长成刀锋，割开了白昼仅剩的体温。我吞下一口星屑，嗓子里全是寂静的灰。”
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- 博客宣传区（替代乐队） -->
+        <div class="band-section">
+            <div class="band-header">
+                <span class="band-header-title">✉ 軌道の片隅 / ORBIT CORNER</span>
+                <span class="band-header-tag">SILENT BLOG</span>
+            </div>
+            <div class="band-body">
+                <div class="band-manifesto">
+<span class="highlight-line">【无声的博客：精确坐标与冻结的时间】</span>
+
+他的世界浓缩在这座名为「軌道の片隅」的博客中。
+这里只有附带精确坐标的影像、写在咖啡滤纸上的诗，以及冻结在时间里的静物。
+
+想要与他取得联系，必须遵循他的频道规则。
+他的档期极度有限，完全取决于人与项目的共振。他设下了一个严苛的考验：
+<span class="dim-line">初次邮件切勿长篇大论行程计划，只需用不超过200字回答一个问题：</span>
+<span class="highlight-line">“您希望在那片荒野中，听到何种寂静？”</span>
+
+安全轨道信箱：orbit.corner@morikawa.dev 
+邮件将在他从荒野归来时被审阅。
+<span class="highlight-line">请记住，耐心，是这场旅途的第一个考验。</span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer class="detail-footer">
+        <div class="footer-grid">
+            <div>
+                <span class="footer-glitch">GHOST_CHANNEL // CHARACTER REGISTRY</span>
+            </div>
+            <div>
+                <span>FILE_01 · KAITO MORIKAWA · 2026</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/char-detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - 容霁 🥀</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../assets/css/char-intro.css">
+    <link rel="stylesheet" href="../../assets/css/char-detail-a.css">
+    <style>
+        /* 覆盖 global.css 的滚动锁定 */
+        body, html { overflow: visible; height: auto; }
+        /* 容霁 个性化：鸩毒暗红 */
+        .rongji-accent { color: #b71c1c; text-shadow: 0 0 10px rgba(183, 28, 28, 0.4); }
+        .hero-banner:hover .hero-title-text {
+            -webkit-text-stroke: 1px #b71c1c;
+            color: rgba(183, 28, 28, 0.15);
+            text-shadow: 0 0 40px rgba(183, 28, 28, 0.3);
+        }
+        .hero-title-text::after { background: linear-gradient(90deg, var(--red-mid), #b71c1c, var(--red-mid)); }
+    </style>
+</head>
+
+<body class="detail-page">
+
+    <!-- ★ 入场动画 -->
+    <div class="char-intro-overlay" id="charIntro">
+        <div class="intro-stage">
+            <div class="intro-shockwave loop"></div>
+            <!-- 8bit幽灵 -->
+            <div class="intro-ghost-track loop">
+                <div class="intro-ghost-sprite">
+                    <svg viewBox="0 0 14 14" width="100%" height="100%">
+                        <rect x="5" y="0" width="4" height="1" fill="#ff003c"/>
+                        <rect x="3" y="1" width="8" height="1" fill="#ff003c"/>
+                        <rect x="2" y="2" width="10" height="1" fill="#ff003c"/>
+                        <rect x="1" y="3" width="12" height="2" fill="#ff003c"/>
+                        <rect x="0" y="5" width="14" height="6" fill="#ff003c"/>
+                        <rect x="0" y="11" width="14" height="1" fill="#ff003c"/>
+                        <rect x="0" y="12" width="3" height="1" fill="#ff003c"/>
+                        <rect x="5" y="12" width="4" height="1" fill="#ff003c"/>
+                        <rect x="11" y="12" width="3" height="1" fill="#ff003c"/>
+                        <rect x="0" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="6" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="12" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="2" y="3" width="4" height="5" fill="#ffffff"/>
+                        <rect x="8" y="3" width="4" height="5" fill="#ffffff"/>
+                        <rect x="4" y="5" width="2" height="2" fill="#000000"/>
+                        <rect x="10" y="5" width="2" height="2" fill="#000000"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- 角色名弹出 -->
+        <div class="intro-char-name loop">
+            【RONG JI】
+            <span class="intro-char-name-cn">容霁 🥀</span>
+        </div>
+        <div class="intro-skip-hint">CLICK ANYWHERE TO SKIP</div>
+    </div>
+
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!--★ 导航栏 -->
+    <nav class="ghost-nav" id="ghostNav">
+        <!-- 导航内容同模板 -->
+        <div class="nav-brand"><a href="../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;"><span class="nav-ghost-icon"></span><span class="nav-title">GHOST_CHANNEL</span></a></div>
+        <div class="nav-links"><a href="../../home.html" class="nav-link" data-text="HOME">HOME</a><a href="../about.html" class="nav-link" data-text="ABOUT">ABOUT</a><a href="../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a><a href="../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a><a href="../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a><a href="../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a><a href="../links.html" class="nav-link" data-text="LINKS">LINKS</a></div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../home.html" class="mobile-link">HOME</a><a href="../about.html" class="mobile-link">ABOUT</a><a href="../characters.html" class="mobile-link active">CHARACTERS</a><a href="../gallery.html" class="mobile-link">GALLERY</a><a href="../presets.html" class="mobile-link">PRESETS</a><a href="../plugins.html" class="mobile-link">PLUGINS</a><a href="../links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <a href="../characters.html" class="back-btn">← BACK TO CHARACTERS</a>
+
+    <!-- ★ 状态栏 -->
+    <header class="status-header">
+        <div class="status-item"><span class="status-dot-live"></span><span>SYSTEM ACTIVE // UNIT: RONG JI</span></div>
+        <div><span>CHAR_101 · ANCIENT DYNASTY</span></div>
+        <div class="status-item"><span>LOCAL TIME:<span id="liveClock">00:00:00</span></span></div>
+    </header>
+
+    <!-- ★巨幅角色名 -->
+    <div class="hero-banner"><div class="hero-title-text">RONG JI</div></div>
+
+    <!-- ★ 主内容区 -->
+    <div class="detail-container">
+        <!-- 左侧：角色卡片 -->
+        <div class="portrait-wrapper" id="parallaxWrapper">
+            <div class="portrait-card" id="parallaxCard">
+                <div class="portrait-scan-line"></div>
+                <div class="portrait-image-box">
+                    <img class="portrait-img" src="https://cdn.discordapp.com/attachments/1510587581174120619/1510587582319296572/kaichangtu.png?ex=6a366850&is=6a3516d0&hm=d40442eeb1826d338bcf40054143331b0e4a00ebba151b8bde944f0460bd5411&" alt="容霁">
+                </div>
+                <div class="portrait-meta">
+                    <div class="portrait-meta-row"><span class="meta-label">SUBJECT CODE</span><span class="meta-value">CHAR_101</span></div>
+                    <div class="portrait-meta-row"><span class="meta-label">UNIVERSE</span><span class="meta-value">ANCIENT // 古风架空</span></div>
+                    <div class="portrait-meta-row"><span class="meta-label">ORIENTATION</span><span class="meta-value">BG/BL // 绝对的1</span></div>
+                    <div class="portrait-meta-row"><span class="meta-label">AUTHOR</span><span class="meta-value">玉元一 ✍</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧：信息面板 -->
+        <div class="info-panel">
+            <p class="sys-desc">GHOST_CHANNEL CHARACTER REGISTRY // ANCIENT DIVISION<br>CHIEF MEDICAL OFFICIAL · THREAT LEVEL: EXTREME</p>
+            <div class="char-name-block">
+                <h2>容霁 <span class="rongji-accent">🥀</span></h2>
+                <p class="char-subtitle">RONG JI / 太医院首席 · 光风霁月的笑面虎</p>
+            </div>
+            <!-- 标签 -->
+            <div class="tag-group">
+                <span class="detail-tag">BG 兼 BL</span>
+                <span class="detail-tag warn">⚠ 绝对掌控方(1)</span>
+                <span class="detail-tag warn">⚠ 极度反差阴湿偏执</span>
+                <span class="detail-tag warn">⚠ 重度依恋/病态偷窥</span>
+                <span class="detail-tag">古风架空</span>
+            </div>
+            <!-- 档案表格 -->
+            <div>
+                <table class="manifest-table">
+                    <thead><tr><th>PARAMETER</th><th>VALUE</th></tr></thead>
+                    <tbody>
+                        <tr><td>表面人设</td><td>医者仁心、温文尔雅的太医首辅</td></tr>
+                        <tr><td>真实人设</td><td>偏执阴湿、步步为营的笑面虎</td></tr>
+                        <tr><td>特别预警</td><td>离不开伴侣，暗中记录一切</td></tr>
+                        <tr><td>世界观</td><td>古风架空 · 宫廷宅院与江湖</td></tr>
+                        <tr><td>产出时间</td><td>2026年6月</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ★ 角色介绍区 -->
+    <section class="bio-section">
+        <!-- 角色介绍 -->
+        <div class="bio-block">
+            <div class="bio-header"><span class="bio-header-icon">📜</span><span>CHARACTER BIOGRAPHY</span></div>
+            <div class="bio-body">
+                <div class="bio-text">
+                    <p>他是皇城内外最年轻、最风光霁月的太医院首席 容霁。世人眼中，他医者仁心、温文尔雅，永远带着三分令人如沐春风的浅笑。然而在这副完美无瑕的皮囊之下，却藏着一个极度阴湿、偏执、掌控欲爆表的灵魂。</p>
+                    <p>他为了将心仪的猎物圈禁在领地，甚至不惜以药理为锁链，将你的衣食住行全部浸染上他的气息。他会在暗处贪婪地记录你的点滴，拥有一本绝对私密的秘密手记。一旦离开你，他便宛如失去水源的涸辙之鲋。</p>
+                    <p>千万不要被他温柔的声线骗了，那正是他收紧金丝笼时哼唱的安眠曲。这里的每一声咳嗽、每一碗汤药，都是容大人处心积虑铺就的猎网。</p>
+                </div>
+            </div>
+        </div>
+        <!-- 开场白 -->
+        <div class="bio-block">
+            <div class="bio-header"><span class="bio-header-icon">🍵</span><span>OPENING LINE</span></div>
+            <div class="bio-body">
+                <blockquote class="bio-quote">
+                    “为您精心炮制了五味截然不同的药引，请君入瓮。”
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- 专属设定取代乐队板块 (无图) -->
+        <div class="band-section">
+            <div class="band-header">
+                <span class="band-header-title">🏮 五味药引：多线剧本设定</span>
+                <span class="band-header-tag">SCENARIOS // ROUTES</span>
+            </div>
+            <div class="band-body">
+                <div class="band-manifesto">
+<span class="highlight-line">✦ 壹 ✦ 深宫囚鸟篇 📍 长春宫 🔖 笼中雀与蚀骨香</span>
+秋雨微凉，一场赏菊宴的毒计让你九死一生。他用最温柔的嗓音，以治病为名，将你起居的香气全换成了他炮制的味道。安神香化作无形锁链，他正含着浅笑，将金丝笼的锁扣一寸寸收紧。
+
+<span class="highlight-line">✦ 贰 ✦ 竹马黑化篇 📍 重华宫 🔖 重华夜沉，臣之妄念</span>
+你以为一朝入宫封妃，便只剩娘娘与微臣的尊卑。可夜半高热时，他搭在你脉门上的指尖却带着战栗。他发誓要护你周全，代价便是将你彻底据为己有，不容他人染指分毫。
+
+<span class="highlight-line">✦ 叁 ✦ 宅斗斩桃花篇 📍 江南花厅 🔖 鸠毒藏娇</span>
+当鲜衣怒马的小侯爷大献殷勤时，你那世交哥哥端着川贝雪梨膏登场。三言两语与不知名目的药，便让小侯爷缠绵病榻。世上哪有水到渠成？只有他研磨毒草，赶尽杀绝的蓄谋已久。
+
+<span class="highlight-line">✦ 肆 ✦ 久病娇雀与爹系权医篇 📍 深竹院落 🔖 枯木逢春</span>
+你以为是医者仁心，却不知他为你翻阅三天三夜医案，在冬夜如鬼魅般守了七日。吃下最甜的松子糖，听从最温柔的警告，你这株枯木，从此只能为他一人重焕生机。
+
+<span class="highlight-line">✦ 伍 ✦ 沾血女煞与白切黑神医篇 📍 榆林巷 🔖 掌中刃</span>
+满身血债砸进了白衣书生的罗网。他慢条斯理地告诉你：毒解七成，留三成缠丝在五脏六腑。他不锁你，却用三分浅笑和解药作饵，耐心地等待你这只猞猁学会听话。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ★ 底部页脚 -->
+    <footer class="detail-footer">
+        <div class="footer-grid">
+            <div><span class="footer-glitch">GHOST_CHANNEL // CHARACTER REGISTRY</span></div>
+            <div><span>CHAR_101 · RONG JI · 2026</span></div>
+        </div>
+    </footer>
+    <script src="../../assets/js/char-detail.js"></script>
+</body>
+</html>

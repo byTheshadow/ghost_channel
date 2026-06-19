@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - 林渡 ⛵</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../assets/css/char-intro.css">
+    <link rel="stylesheet" href="../../assets/css/char-detail-a.css">
+    <style>
+        /* 覆盖 global.css 的滚动锁定 */
+        body, html { overflow: visible; height: auto; }
+        /* 林渡 个性化：冷冽江水蓝 */
+        .lindu-accent { color: #90caf9; text-shadow: 0 0 10px rgba(144, 202, 249, 0.4); }
+        .hero-banner:hover .hero-title-text {
+            -webkit-text-stroke: 1px #90caf9;
+            color: rgba(144, 202, 249, 0.15);
+            text-shadow: 0 0 40px rgba(144, 202, 249, 0.3);
+        }
+        .hero-title-text::after { background: linear-gradient(90deg, var(--red-mid), #90caf9, var(--red-mid)); }
+        
+        /* 命运切面列表样式 */
+        .encounter-list p { margin-bottom: 12px; border-left: 2px solid #90caf9; padding-left: 10px; }
+        .encounter-title { color: #90caf9; font-weight: bold; margin-right: 8px; }
+    </style>
+</head>
+
+<body class="detail-page">
+
+    <!-- ★ 入场动画 -->
+    <div class="char-intro-overlay" id="charIntro">
+        <div class="intro-stage">
+            <div class="intro-shockwave loop"></div>
+
+            <!--贝斯 SVG -->
+            <div class="intro-bass-wrapper">
+                <svg viewBox="0 0 10 24" width="100%" height="100%">
+                    <rect x="3" y="0" width="4" height="4" fill="#1a1a1a"/>
+                    <rect x="2" y="1" width="1" height="1" fill="#777"/>
+                    <rect x="2" y="3" width="1" height="1" fill="#777"/>
+                    <rect x="7" y="1" width="1" height="1" fill="#777"/>
+                    <rect x="7" y="3" width="1" height="1" fill="#777"/>
+                    <rect x="4" y="4" width="2" height="10" fill="#0d0d0d"/>
+                    <rect x="4" y="4" width="1" height="10" fill="#333"/>
+                    <rect x="3" y="14" width="4" height="2" fill="#1a1a1a"/>
+                    <rect x="2" y="15" width="6" height="3" fill="#1a1a1a"/>
+                    <rect x="1" y="16" width="8" height="6" fill="#1a1a1a"/>
+                    <rect x="2" y="22" width="6" height="1" fill="#1a1a1a"/>
+                    <rect x="3" y="16" width="4" height="5" fill="#cc0000"/>
+                    <rect x="2" y="17" width="1" height="3" fill="#ff1a1a"/>
+                    <rect x="4" y="18" width="2" height="1" fill="#000"/>
+                    <rect x="5" y="19" width="2" height="1" fill="#000"/>
+                    <rect x="3" y="20" width="4" height="1" fill="#999"/>
+                </svg>
+            </div>
+
+            <!-- 8bit幽灵 -->
+            <div class="intro-ghost-track loop">
+                <div class="intro-ghost-sprite">
+                    <svg viewBox="0 0 14 14" width="100%" height="100%">
+                        <rect x="5" y="0" width="4" height="1" fill="#ff003c"/>
+                        <rect x="3" y="1" width="8" height="1" fill="#ff003c"/>
+                        <rect x="2" y="2" width="10" height="1" fill="#ff003c"/>
+                        <rect x="1" y="3" width="12" height="2" fill="#ff003c"/>
+                        <rect x="0" y="5" width="14" height="6" fill="#ff003c"/>
+                        <rect x="0" y="11" width="14" height="1" fill="#ff003c"/>
+                        <rect x="0" y="12" width="3" height="1" fill="#ff003c"/>
+                        <rect x="5" y="12" width="4" height="1" fill="#ff003c"/>
+                        <rect x="11" y="12" width="3" height="1" fill="#ff003c"/>
+                        <rect x="0" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="6" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="12" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="2" y="3" width="4" height="5" fill="#ffffff"/>
+                        <rect x="8" y="3" width="4" height="5" fill="#ffffff"/>
+                        <rect x="4" y="5" width="2" height="2" fill="#000000"/>
+                        <rect x="10" y="5" width="2" height="2" fill="#000000"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- 角色名弹出 -->
+        <div class="intro-char-name loop">
+            【LINDU】
+            <span class="intro-char-name-cn">林渡 ⛵</span>
+        </div>
+        <div class="intro-skip-hint">CLICK ANYWHERE TO SKIP</div>
+    </div>
+
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!--★ 导航栏 -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="../links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../home.html" class="mobile-link">HOME</a>
+        <a href="../about.html" class="mobile-link">ABOUT</a>
+        <a href="../characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="../gallery.html" class="mobile-link">GALLERY</a>
+        <a href="../presets.html" class="mobile-link">PRESETS</a>
+        <a href="../plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="../links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <!-- ★ 返回按钮 -->
+    <a href="../characters.html" class="back-btn">← BACK TO CHARACTERS</a>
+
+    <!-- ★ 状态栏 -->
+    <header class="status-header">
+        <div class="status-item">
+            <span class="status-dot-live"></span>
+            <span>SYSTEM ACTIVE // UNIT: LINDU</span>
+        </div>
+        <div>
+            <span>NIGHT_BOAT · ESCAPE PLAN</span>
+        </div>
+        <div class="status-item">
+            <span>LOCAL TIME:<span id="liveClock">00:00:00</span></span>
+        </div>
+    </header>
+
+    <!-- ★巨幅角色名 -->
+    <div class="hero-banner">
+        <div class="hero-title-text">LINDU</div>
+    </div>
+
+    <!-- ★ 主内容区 -->
+    <div class="detail-container">
+
+        <!-- 左侧：角色卡片 -->
+        <div class="portrait-wrapper" id="parallaxWrapper">
+            <div class="portrait-card" id="parallaxCard">
+                <div class="portrait-scan-line"></div>
+                <div class="portrait-image-box">
+                    <img class="portrait-img" src="https://cdn.discordapp.com/attachments/1466015442685395031/1466015443331584142/2206849a7490a715.png?ex=6a3669c6&is=6a351846&hm=4379dabf85fa0cbc51e63bc8b80caab673cf054644f52b16928f801b16f22cbd&" alt="林渡">
+                </div>
+                <div class="portrait-meta">
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">CODENAME</span>
+                        <span class="meta-value">夜行船 NIGHT BOAT</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">ERA</span>
+                        <span class="meta-value">90-00s // 千禧年代</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">ORIENTATION</span>
+                        <span class="meta-value">BG/BL // 绝对的1</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">CREATED</span>
+                        <span class="meta-value">2026.02 (REV 06)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧：信息面板 -->
+        <div class="info-panel">
+
+            <!-- 系统描述 -->
+            <p class="sys-desc">
+                GHOST_CHANNEL CHARACTER REGISTRY // RETRO DIVISION<br>
+                STATUS: PREPARING TO ESCAPE · THREAT LEVEL: COLD
+            </p>
+
+            <!-- 角色名 -->
+            <div class="char-name-block">
+                <h2>林渡 <span class="lindu-accent">⛵</span></h2>
+                <p class="char-subtitle">LINDU / 代号：夜行船</p>
+            </div>
+
+            <!-- 标签 -->
+            <div class="tag-group">
+                <span class="detail-tag">BG/BL 设定为1</span>
+                <span class="detail-tag warn">⚠ 原生家庭压抑</span>
+                <span class="detail-tag warn">⚠ 离家出走/逃亡倾向</span>
+                <span class="detail-tag">冰冷疏离的虚无感</span>
+                <span class="detail-tag">反叛精神</span>
+                <span class="detail-tag">千禧年代背景</span>
+            </div>
+
+            <!-- 档案表格 -->
+            <div>
+                <table class="manifest-table">
+                    <thead>
+                        <tr>
+                            <th>PARAMETER</th>
+                            <th>VALUE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>经典台词</td>
+                            <td>“我将弃岸登舟，载着整条江的沉默，与未熄的渴”</td>
+                        </tr>
+                        <tr>
+                            <td>外貌特征</td>
+                            <td>182cm，骨骼仍在拔节生长</td>
+                        </tr>
+                        <tr>
+                            <td>核心执念</td>
+                            <td>彻底逃离这座“灰扑扑的牢笼”前往日本</td>
+                        </tr>
+                        <tr>
+                            <td>兴趣爱好</td>
+                            <td>日本文学、华语摇滚、地理图册、独处</td>
+                        </tr>
+                        <tr>
+                            <td>极度排斥</td>
+                            <td>热闹的集体、甜腻的食物、所谓的“正经事”</td>
+                        </tr>
+                        <tr>
+                            <td>创作者</td>
+                            <td>玉元一</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ★ 角色介绍区 -->
+    <section class="bio-section">
+
+        <!-- 角色介绍 -->
+        <div class="bio-block">
+            <div class="bio-header">
+                <span class="bio-header-icon">📖</span>
+                <span>CHARACTER BIOGRAPHY</span>
+            </div>
+            <div class="bio-body">
+                <div class="bio-text">
+                    <p>他是一个被困在长江沿岸工业县城里的高三少年。这座被网络、题海与工业废气包裹的千禧年代县城，对他而言是一个“灰扑扑的牢笼”。被中式教育的沉重期待所裹挟，他选择了在内心谋划一场去往日本的彻底逃亡。</p>
+                    <p>他疏离、虚无、决绝且敏锐。高冷难以接近的外表并非出于傲慢，而是觉得周遭的一切都太过喧嚣且毫无意义。直到在互联网上，出于对现实的报复性反叛，他随手同意了你的cpdd。</p>
+                    <p>两个同样孤独的灵魂隔着网络的滤镜相互触碰，他渐渐发现你也是那条同样想要逃离的“鱼”。他那被冰冷与疏离包裹的内心，唯独为你留下了唯一的暖意：他会将出走计划展露在你眼前，邀请你做他唯一想带上的“行李”；会用计划之外的钱为你准备生日礼物；会在逃亡成功后，将你紧紧拥入怀中。这是他最激烈的感情迸发，也是他对真实与美最偏执的追求。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 开场白 / 命运切面 -->
+        <div class="bio-block">
+            <div class="bio-header">
+                <span class="bio-header-icon">🗝️</span>
+                <span>NINE ENCOUNTERS // 命运交汇的九个切面</span>
+            </div>
+            <div class="bio-body">
+                <div class="bio-text encounter-list">
+                    <p><span class="encounter-title">01 信号起点：</span>网恋开启。出于对现实嘈杂的报复性反叛，他随手同意了你“cpdd”的请求。</p>
+                    <p><span class="encounter-title">02 烟雾避难：</span>已在网恋。钥匙落在学校无家可归，在网吧打发时间的他，随手向你发出了游戏邀请 ⌨️</p>
+                    <p><span class="encounter-title">03 逃亡共谋：</span>深夜摊牌。他向你发送了手绘的航线图，再次确认计划，你是他在这里唯一想要带上的“行李” 🗺️</p>
+                    <p><span class="encounter-title">04 游魂交汇：</span>夜骑初遇。深夜沿江废弃公路上的偶遇，他没有停下，但眼神交汇间流露出了对同类灵魂的淡淡了然 🚲</p>
+                    <p><span class="encounter-title">05 璀璨落地：</span>函馆之夜。成功逃亡后的拥抱，用山顶实际的冷风和灯火取代了杂志上的图片，没有宏大的誓言，只有相互的温暖与明天的工作计划 🗼</p>
+                    <p><span class="encounter-title">06 六叠半宇宙：</span>生日礼物。异国他乡的简陋居所，他送你一个铜制万花筒，象征一个可以被你完全掌握的、永不重复的彩色小世界 ✨</p>
+                    <p><span class="encounter-title">07 鱼缸裂缝：</span>共鸣觉醒。你的一句“困在鱼缸里”击中了他，他第一次主动暴露心底的秘密，用“打破玻璃”来试探你是否拥有同样的决绝，对你说出“一起逃走吧” 🐠</p>
+                    <p><span class="encounter-title">08 平行白日梦：</span>如果的假设。复习的间隙，抛开所有责任和计划，只想去河边踢生锈的钢圈，问你在那个没有枷锁的平行世界里，你们是否可以相遇 💭</p>
+                    <p><span class="encounter-title">09 肯德基的薯条：</span>初次面基。网上的锋芒消失，所有的理论和计划都抵不过现实的尴尬，他唯一能做的，只是默默推过一盘热薯条 🍟</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 补充档案（原乐队区块，无图片） -->
+        <div class="band-section">
+            <div class="band-header">
+                <span class="band-header-title">🧭 ESCAPE PLAN // 弃岸登舟</span>
+                <span class="band-header-tag">CONFIDENTIAL // 绝密档案</span>
+            </div>
+            <div class="band-body">
+                <div class="band-manifesto">
+<span class="highlight-line">【喜好与偏执的碎片】</span>
+
+沉迷日本文学（如村上春树）与哲学启蒙。
+偏爱华语摇滚与民谣（如窦唯、张楚、罗大佑）。
+执着于地理图册、航海知识，反复审视出走计划。
+喜欢骑车游荡、在废弃场所独处、看水面的反光。
+
+<span class="highlight-line">在平庸与喧嚣的缝隙里，他为你留下了最隐秘的航线图。</span>
+当现实的潮水试图淹没所有不甘平庸的灵魂，
+“跟我走吧，离开这个该死的鱼缸。”
+                </div>
+            </div>
+            <!-- 用户要求：无底部图片，留空 -->
+        </div>
+
+    </section>
+
+    <!-- ★ 底部页脚 -->
+    <footer class="detail-footer">
+        <div class="footer-grid">
+            <div>
+                <span class="footer-glitch">GHOST_CHANNEL // CHARACTER REGISTRY</span>
+            </div>
+            <div>
+                <span>LINDU · NIGHT BOAT · 2026</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/char-detail.js"></script>
+</body>
+</html>

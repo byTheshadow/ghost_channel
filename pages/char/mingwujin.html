@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - 明无烬 🎏</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../assets/css/char-intro.css">
+    <link rel="stylesheet" href="../../assets/css/char-detail-a.css">
+    <style>
+        body, html { overflow: visible; height: auto; }
+        /* 明无烬 个性化：幽冥炽金 */
+        .mingwujin-accent { color: #ffca28; text-shadow: 0 0 10px rgba(255, 202, 40, 0.4); }
+        .hero-banner:hover .hero-title-text {
+            -webkit-text-stroke: 1px #ffca28;
+            color: rgba(255, 202, 40, 0.15);
+            text-shadow: 0 0 40px rgba(255, 202, 40, 0.3);
+        }
+        .hero-title-text::after { background: linear-gradient(90deg, var(--red-mid), #ffca28, var(--red-mid)); }
+    </style>
+</head>
+
+<body class="detail-page">
+
+    <!-- ★ 入场动画 -->
+    <div class="char-intro-overlay" id="charIntro">
+        <div class="intro-stage">
+            <div class="intro-shockwave loop"></div>
+            <div class="intro-bass-wrapper" style="opacity: 0.2;"></div>
+            <div class="intro-ghost-track loop">
+                <div class="intro-ghost-sprite">
+                    <svg viewBox="0 0 14 14" width="100%" height="100%">
+                        <rect x="5" y="0" width="4" height="1" fill="#ff003c"/>
+                        <rect x="3" y="1" width="8" height="1" fill="#ff003c"/>
+                        <rect x="2" y="2" width="10" height="1" fill="#ff003c"/>
+                        <rect x="1" y="3" width="12" height="2" fill="#ff003c"/>
+                        <rect x="0" y="5" width="14" height="6" fill="#ff003c"/>
+                        <rect x="0" y="11" width="14" height="1" fill="#ff003c"/>
+                        <rect x="0" y="12" width="3" height="1" fill="#ff003c"/>
+                        <rect x="5" y="12" width="4" height="1" fill="#ff003c"/>
+                        <rect x="11" y="12" width="3" height="1" fill="#ff003c"/>
+                        <rect x="0" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="6" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="12" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="2" y="3" width="4" height="5" fill="#ffffff"/>
+                        <rect x="8" y="3" width="4" height="5" fill="#ffffff"/>
+                        <rect x="4" y="5" width="2" height="2" fill="#000000"/>
+                        <rect x="10" y="5" width="2" height="2" fill="#000000"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="intro-char-name loop">
+            【MING WUJIN】
+            <span class="intro-char-name-cn">明无烬 🎏</span>
+        </div>
+        <div class="intro-skip-hint">CLICK ANYWHERE TO SKIP</div>
+    </div>
+
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!--★ 导航栏 -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../home.html" class="mobile-link">HOME</a>
+        <a href="../characters.html" class="mobile-link active">CHARACTERS</a>
+    </div>
+
+    <!-- ★ 返回按钮 -->
+    <a href="../characters.html" class="back-btn">← BACK TO CHARACTERS</a>
+
+    <!-- ★ 状态栏 -->
+    <header class="status-header">
+        <div class="status-item">
+            <span class="status-dot-live"></span>
+            <span>SYSTEM ACTIVE // UNIT: MING WUJIN</span>
+        </div>
+        <div>
+            <span>CHAR_EX02 · SPIRIT REALM</span>
+        </div>
+        <div class="status-item">
+            <span>LOCAL TIME:<span id="liveClock">00:00:00</span></span>
+        </div>
+    </header>
+
+    <!-- ★巨幅角色名 -->
+    <div class="hero-banner">
+        <div class="hero-title-text">MING WUJIN</div>
+    </div>
+
+    <!-- ★ 主内容区 -->
+    <div class="detail-container">
+        <div class="portrait-wrapper" id="parallaxWrapper">
+            <div class="portrait-card" id="parallaxCard">
+                <div class="portrait-scan-line"></div>
+                <div class="portrait-image-box">
+                    <img class="portrait-img" src="https://tc-new.z.wiki/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260223/f6W4/3820X1971/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D3553821401181155866%26skey%3D%40crypt_5a237c93_b881fd0db241012c392d7bef44f397d8%26mmweb_appid%3Dwx_webfilehelper.jpg/webp" alt="明无烬">
+                </div>
+                <div class="portrait-meta">
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">STATUS</span>
+                        <span class="meta-value">DECEASED // 魂体</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">UNIVERSE</span>
+                        <span class="meta-value">明神宗万历年间</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">ORIENTATION</span>
+                        <span class="meta-value">BG/BL // 倾向1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-panel">
+            <p class="sys-desc">
+                GHOST_CHANNEL CHARACTER REGISTRY // SPIRIT DIVISION<br>
+                SOUL LANTERN KEEPER · THREAT LEVEL: UNKNOWN
+            </p>
+
+            <div class="char-name-block">
+                <h2>明无烬 <span class="mingwujin-accent">🎏</span></h2>
+                <p class="char-subtitle">MING WUJIN / 字：守羲 · 魂体地缚灵</p>
+            </div>
+
+            <div class="tag-group">
+                <span class="detail-tag warn">⚠ 已死亡 (常人不可见)</span>
+                <span class="detail-tag warn">⚠ 葬身火海的悲惨过往</span>
+                <span class="detail-tag warn">⚠ 朝堂阴谋元素</span>
+                <span class="detail-tag">玩世不恭</span>
+                <span class="detail-tag">温柔兄长</span>
+            </div>
+
+            <div>
+                <table class="manifest-table">
+                    <thead>
+                        <tr>
+                            <th>PARAMETER</th>
+                            <th>VALUE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>外貌年龄</td>
+                            <td>永远定格在17岁少年</td>
+                        </tr>
+                        <tr>
+                            <td>实际年龄</td>
+                            <td>享年17岁，为仙四年 (现年21岁)</td>
+                        </tr>
+                        <tr>
+                            <td>死亡时间</td>
+                            <td>1603年正月十三 (万历三十一年)</td>
+                        </tr>
+                        <tr>
+                            <td>命格生辰</td>
+                            <td>丙戌年 辛卯月 甲午日 戊辰时</td>
+                        </tr>
+                        <tr>
+                            <td>名字寓意</td>
+                            <td>“羲”者，日也。守住心中光芒。</td>
+                        </tr>
+                        <tr>
+                            <td>创作者</td>
+                            <td>玉元一</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ★ 角色介绍区 -->
+    <section class="bio-section">
+        <div class="bio-block">
+            <div class="bio-header">
+                <span class="bio-header-icon">📖</span>
+                <span>CHARACTER BIOGRAPHY</span>
+            </div>
+            <div class="bio-body">
+                <div class="bio-text">
+                    <p>徽州鱼灯游曳于冥河之上。他是嬉笑怒骂的少年鬼，也是执着守护的兄长。金瞳之下藏着无言的孤寂，却愿在这混沌世间，为你点亮一盏灯。</p>
+                    <p><strong>✦ 形态与命格 ✦</strong><br>黑发金瞳，永远定格在十七岁模样。黑发用素色布条松绾，瞳色浅金，笑起来弯成月牙。他的八字火土旺盛，辰戌相冲，主命途多舛、漂泊无定。日坐“午火”桃花，自带三分风流不羁。这烈火般的命格，不仅让他葬身火海，也是他死后为仙的力量之源。</p>
+                    <p><strong>✦ 性格剖析 ✦</strong><br>玩世不恭的少年感背后，是极度的嘴贫心软。他带着朝堂算计惨死的忧郁底色，却选择成为一名称职的守护者。他父亲为他取字“守羲”，盼他无论身在何处，都要守住心中那道光——哪怕这光，最后是以他自己的生命点燃。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bio-block">
+            <div class="bio-header">
+                <span class="bio-header-icon">🕯️</span>
+                <span>OPENING LINE</span>
+            </div>
+            <div class="bio-body">
+                <blockquote class="bio-quote">
+                    “生者提灯照夜，亡者借火还魂。”
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- 阵营档案 (无配图版) -->
+        <div class="band-section">
+            <div class="band-header">
+                <span class="band-header-title">🎏 冥河鱼灯 GHOST LANTERN</span>
+                <span class="band-header-tag">SPIRIT BOUND // WUJIN</span>
+            </div>
+            <div class="band-body" style="padding-bottom: 30px;">
+                <div class="band-manifesto">
+<span class="highlight-line">【暗夜里的不灭炽阳】</span>
+
+朝堂的火烧得毁他的肉身，却烧不透这冥河上的薄雾。
+他提着徽州鱼灯，穿梭在常人看不见的维度里。
+
+他是地缚的灵，是执着的鬼，
+却用最玩世不恭的笑颜，替你驱散了生人的梦魇。
+<span class="highlight-line">“别怕，有我守着这盏灯，夜路就好走了。”</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ★ 底部页脚 -->
+    <footer class="detail-footer">
+        <div class="footer-grid">
+            <div>
+                <span class="footer-glitch">GHOST_CHANNEL // CHARACTER REGISTRY</span>
+            </div>
+            <div>
+                <span>CHAR_EX02 · MING WUJIN · 2026</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/char-detail.js"></script>
+</body>
+</html>

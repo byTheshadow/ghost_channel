@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - 五毒男主群像 ☠</title>
+    <!-- ...字体与CSS引入同上... -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../assets/css/char-intro.css">
+    <link rel="stylesheet" href="../../assets/css/char-detail-a.css">
+    <style>
+        body, html { overflow: visible; height: auto; }
+        /* 五毒 个性化：曼陀罗紫 */
+        .wudu-accent { color: #ab47bc; text-shadow: 0 0 10px rgba(171, 71, 188, 0.4); }
+        .hero-banner:hover .hero-title-text {
+            -webkit-text-stroke: 1px #ab47bc;
+            color: rgba(171, 71, 188, 0.15);
+            text-shadow: 0 0 40px rgba(171, 71, 188, 0.3);
+        }
+        .hero-title-text::after { background: linear-gradient(90deg, var(--red-mid), #ab47bc, var(--red-mid)); }
+    </style>
+</head>
+<body class="detail-page">
+    <!-- 入场动画 -->
+    <div class="char-intro-overlay" id="charIntro">
+        <div class="intro-stage">
+            <div class="intro-shockwave loop"></div>
+            <div class="intro-ghost-track loop">
+                <div class="intro-ghost-sprite"><svg viewBox="0 0 14 14" width="100%" height="100%"><rect x="5" y="0" width="4" height="1" fill="#ff003c"/><rect x="3" y="1" width="8" height="1" fill="#ff003c"/><rect x="2" y="2" width="10" height="1" fill="#ff003c"/><rect x="1" y="3" width="12" height="2" fill="#ff003c"/><rect x="0" y="5" width="14" height="6" fill="#ff003c"/><rect x="0" y="11" width="14" height="1" fill="#ff003c"/><rect x="0" y="12" width="3" height="1" fill="#ff003c"/><rect x="5" y="12" width="4" height="1" fill="#ff003c"/><rect x="11" y="12" width="3" height="1" fill="#ff003c"/><rect x="0" y="13" width="2" height="1" fill="#ff003c"/><rect x="6" y="13" width="2" height="1" fill="#ff003c"/><rect x="12" y="13" width="2" height="1" fill="#ff003c"/><rect x="2" y="3" width="4" height="5" fill="#ffffff"/><rect x="8" y="3" width="4" height="5" fill="#ffffff"/><rect x="4" y="5" width="2" height="2" fill="#000000"/><rect x="10" y="5" width="2" height="2" fill="#000000"/></svg></div>
+            </div>
+        </div>
+        <div class="intro-char-name loop">
+            【FIVE POISONS】
+            <span class="intro-char-name-cn">五毒群像 ☠</span>
+        </div>
+        <div class="intro-skip-hint">CLICK ANYWHERE TO SKIP</div>
+    </div>
+    <!-- CRT效果与导航 -->
+    <div class="crt-overlay"></div><div class="vignette"></div>
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand"><a href="../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;"><span class="nav-ghost-icon"></span><span class="nav-title">GHOST_CHANNEL</span></a></div>
+        <div class="nav-links"><a href="../../home.html" class="nav-link" data-text="HOME">HOME</a><a href="../about.html" class="nav-link" data-text="ABOUT">ABOUT</a><a href="../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a></div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu"><a href="../../home.html" class="mobile-link">HOME</a><a href="../characters.html" class="mobile-link active">CHARACTERS</a></div>
+    
+    <a href="../characters.html" class="back-btn">← BACK TO CHARACTERS</a>
+    <header class="status-header">
+        <div class="status-item"><span class="status-dot-live"></span><span>SYSTEM ACTIVE // UNIT: 5 POISONS</span></div>
+        <div><span>CHAR_102 · ANCIENT DYNASTY</span></div>
+        <div class="status-item"><span>LOCAL TIME:<span id="liveClock">00:00:00</span></span></div>
+    </header>
+
+    <div class="hero-banner"><div class="hero-title-text">FIVE POISONS</div></div>
+
+    <div class="detail-container">
+        <!-- 左侧 -->
+        <div class="portrait-wrapper" id="parallaxWrapper">
+            <div class="portrait-card" id="parallaxCard">
+                <div class="portrait-scan-line"></div>
+                <div class="portrait-image-box">
+                    <img class="portrait-img" src="https://cdn.discordapp.com/attachments/1510197163525804062/1510197164163207208/1780075847032_download_clean.png?ex=6a364e36&is=6a34fcb6&hm=9f90c901b6d12b156fdc70952520ddb30199831371f866ef0ef97364d8b48459" alt="五毒群像">
+                </div>
+                <div class="portrait-meta">
+                    <div class="portrait-meta-row"><span class="meta-label">SUBJECT CODE</span><span class="meta-value">CHAR_102</span></div>
+                    <div class="portrait-meta-row"><span class="meta-label">UNIVERSE</span><span class="meta-value">ANCIENT // 架空古风</span></div>
+                    <div class="portrait-meta-row"><span class="meta-label">ORIENTATION</span><span class="meta-value">BG/BL // 偏攻1位</span></div>
+                    <div class="portrait-meta-row"><span class="meta-label">AUTHOR</span><span class="meta-value">玉元一 ✍</span></div>
+                </div>
+            </div>
+        </div>
+        <!-- 右侧 -->
+        <div class="info-panel">
+            <p class="sys-desc">GHOST_CHANNEL CHARACTER REGISTRY // ANCIENT DIVISION<br>MULTI-TARGET ARCHIVE · THREAT LEVEL: FATAL</p>
+            <div class="char-name-block">
+                <h2>五毒男主群像 <span class="wudu-accent">☠</span></h2>
+                <p class="char-subtitle">贪、嗔、痴、疑、谩 · 极端性格合集</p>
+            </div>
+            <div class="tag-group">
+                <span class="detail-tag">BG / BL皆可</span>
+                <span class="detail-tag warn">⚠ 偏攻的1位</span>
+                <span class="detail-tag warn">⚠ 性格极其恶劣</span>
+                <span class="detail-tag warn">⚠ 极具攻击性/爱恨分明</span>
+                <span class="detail-tag">包含色情条目开关</span>
+                <span class="detail-tag">江湖与朝堂权谋</span>
+            </div>
+            <div>
+                <table class="manifest-table">
+                    <thead><tr><th>PARAMETER</th><th>VALUE</th></tr></thead>
+                    <tbody>
+                        <tr><td>包含角色</td><td>金不换/易斩云/白执/花衔霜/慕昭言</td></tr>
+                        <tr><td>核心特质</td><td>对应贪嗔痴疑谩五种极端缺陷</td></tr>
+                        <tr><td>互动机制</td><td>万物生写卡预设，按需开启</td></tr>
+                        <tr><td>世界观</td><td>架空古风 · 江湖武林与朝堂</td></tr>
+                        <tr><td>产出时间</td><td>2026年5月</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ★ 角色介绍区 -->
+    <section class="bio-section">
+        <div class="bio-block">
+            <div class="bio-header"><span class="bio-header-icon">📜</span><span>CHARACTER BIOGRAPHY</span></div>
+            <div class="bio-body">
+                <div class="bio-text">
+                    <p>这是一组性格极其恶劣的男主角，他们分别对应着“贪、嗔、痴、疑、谩”五种极端的性格缺陷，爱恨分明且极具攻击性。</p>
+                    <p><strong>【贪】金不换 💰：</strong>天下第一大钱庄聚宝斋继承人。人人都说他天生一双点石成金的手。他贪，贪的是银两、是产业、是这世间所有值得占有的东西，顺便把身后的人也拽上了云端。</p>
+                    <p><strong>【嗔】易斩云 ⚔：</strong>江湖人称狂刀，边军遗孤。他只有一柄旧刀和一颗一点就炸的心。他怒这世道不公，可你若被他护在身后，便会知道，那火烫的是敌人，暖的是自己人。</p>
+                    <p><strong>【痴】白执 ⚙：</strong>天机阁弃徒，天下最好的机关偃师。他痴到可以为一只齿轮三天不眠。旁人说他傻，可那被他认定了的人或事，便是天塌下来，他也绝不松手。</p>
+                    <p><strong>【疑】花衔霜 🎭：</strong>听蝉阁阁主，情报组织幕后之主。他疑所有靠近他的人。可你若被他记在了“可信之人”名单上，你便会发现，他的多疑，不过是太害怕失去罢了。</p>
+                    <p><strong>【谩】慕昭言 📜：</strong>前朝皇族后裔，当朝监察御史。他傲到不屑于说谎。可那份傲慢底下，是扛得住滔天大祸的脊梁，是把自己人护得滴水不漏的担当。</p>
+                </div>
+            </div>
+        </div>
+        <div class="bio-block">
+            <div class="bio-header"><span class="bio-header-icon">🎭</span><span>OPENING LINE</span></div>
+            <div class="bio-body">
+                <blockquote class="bio-quote">
+                    诸位大人正于各自的江湖朝堂中静候，期待您执笔赐予他们第一句命运交织的羁绊之语 ✧
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- 专属机制设定 (无图) -->
+        <div class="band-section">
+            <div class="band-header">
+                <span class="band-header-title">⚙ 预设机制与开关</span>
+                <span class="band-header-tag">SYSTEM // PLUGINS</span>
+            </div>
+            <div class="band-body">
+                <div class="band-manifesto">
+<span class="highlight-line">【卡牌使用指南】</span>
+
+本设定采用了万物生写卡预设，剧情中每个人都有自己专属的色色条目。
+需要和哪位发生故事，直接在卡牌内开启对应的条目即可。
+（注：设定内含几个中插HTML的触发机制，详情可查看世界书条目，目前默认仅开启了“月老”的触发项 🌙）
+
+<span class="dim-line">未来作者还会陆续产出他们的单人卡哦，敬请期待！</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ★ 底部页脚 -->
+    <footer class="detail-footer">
+        <div class="footer-grid">
+            <div><span class="footer-glitch">GHOST_CHANNEL // CHARACTER REGISTRY</span></div>
+            <div><span>CHAR_102 · FIVE POISONS · 2026</span></div>
+        </div>
+    </footer>
+    <script src="../../assets/js/char-detail.js"></script>
+</body>
+</html>
