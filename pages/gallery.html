@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - GALLERY</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Noto+Serif+SC:wght@400;700;900&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/gallery.css">
+</head>
+<body>
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!-- 自定义光标(桌面端) -->
+    <div class="gallery-cursor" id="galleryCursor"></div>
+    <div class="gallery-cursor-ring" id="galleryCursorRing"></div>
+
+    <!-- 导航栏(注意路径 ../，样式已在 global.css 中定义，此处不重复) -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="characters.html" class="nav-link" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="gallery.html" class="nav-link active" data-text="GALLERY">GALLERY</a>
+            <a href="presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../home.html" class="mobile-link">HOME</a>
+        <a href="about.html" class="mobile-link">ABOUT</a>
+        <a href="characters.html" class="mobile-link">CHARACTERS</a>
+        <a href="gallery.html" class="mobile-link active">GALLERY</a>
+        <a href="presets.html" class="mobile-link">PRESETS</a>
+        <a href="plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <main class="gallery-main">
+
+        <!-- 镂空遮罩大标题 -->
+        <section class="gallery-hero">
+            <p class="gallery-eyebrow">// VISUAL_ARCHIVE · 视觉档案</p>
+            <h1 class="gallery-masked-title" id="galleryTitle">GALLERY</h1>
+            <p class="gallery-sub">扫描已收录的美化预览图 · SCANNING ARCHIVED RECORDS</p>
+        </section>
+
+        <!-- 分类筛选 -->
+        <section class="gallery-filter-bar" id="galleryFilterBar">
+            <button class="filter-btn active" data-filter="all">ALL / 全部</button>
+            <button class="filter-btn" data-filter="dual">双端 / DUAL</button>
+            <button class="filter-btn" data-filter="pc">电脑端 / PC</button>
+            <span class="filter-count" id="filterCount">00 ITEMS</span>
+        </section>
+
+        <!-- 画廊网格 -->
+        <section class="gallery-grid" id="galleryGrid">
+
+            <!-- 占位卡片 模板 ×6 ：之后用真实素材替换 avatar-placeholder 与 data-* 属性 -->
+            <a href="javascript:void(0)" class="artwork-card" data-category="dual" data-id="01">
+                <div class="card-glitch-overlay"></div>
+                <div class="card-scan-line"></div>
+                <div class="artwork-frame">
+                    <div class="artwork-placeholder">
+                        <span class="placeholder-icon">🖼️</span>
+                        <span class="placeholder-text">IMG_PENDING</span>
+                    </div>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">未命名作品</h3>
+                    <span class="artwork-tag">霖城 / LINCITY</span>
+                </div>
+                <div class="artwork-footer">
+                    <span class="artwork-id">ART_001</span>
+                    <span class="artwork-arrow">→</span>
+                </div>
+            </a>
+
+            <a href="javascript:void(0)" class="artwork-card" data-category="pc" data-id="02">
+                <div class="card-glitch-overlay"></div>
+                <div class="card-scan-line"></div>
+                <div class="artwork-frame">
+                    <div class="artwork-placeholder">
+                        <span class="placeholder-icon">🖼️</span>
+                        <span class="placeholder-text">IMG_PENDING</span>
+                    </div>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">未命名作品</h3>
+                    <span class="artwork-tag">霖城 / LINCITY</span>
+                </div>
+                <div class="artwork-footer">
+                    <span class="artwork-id">ART_002</span>
+                    <span class="artwork-arrow">→</span>
+                </div>
+            </a>
+
+            <a href="javascript:void(0)" class="artwork-card" data-category="dual" data-id="03">
+                <div class="card-glitch-overlay"></div>
+                <div class="card-scan-line"></div>
+                <div class="artwork-frame">
+                    <div class="artwork-placeholder">
+                        <span class="placeholder-icon">🖼️</span>
+                        <span class="placeholder-text">IMG_PENDING</span>
+                    </div>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">未命名作品</h3>
+                    <span class="artwork-tag">大晟 / DASHENG</span>
+                </div>
+                <div class="artwork-footer">
+                    <span class="artwork-id">ART_003</span>
+                    <span class="artwork-arrow">→</span>
+                </div>
+            </a>
+
+            <a href="javascript:void(0)" class="artwork-card" data-category="pc" data-id="04">
+                <div class="card-glitch-overlay"></div>
+                <div class="card-scan-line"></div>
+                <div class="artwork-frame">
+                    <div class="artwork-placeholder">
+                        <span class="placeholder-icon">🖼️</span>
+                        <span class="placeholder-text">IMG_PENDING</span>
+                    </div>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">未命名作品</h3>
+                    <span class="artwork-tag">原创 / ORIGINAL</span>
+                </div>
+                <div class="artwork-footer">
+                    <span class="artwork-id">ART_004</span>
+                    <span class="artwork-arrow">→</span>
+                </div>
+            </a>
+
+            <a href="javascript:void(0)" class="artwork-card" data-category="dual" data-id="05">
+                <div class="card-glitch-overlay"></div>
+                <div class="card-scan-line"></div>
+                <div class="artwork-frame">
+                    <div class="artwork-placeholder">
+                        <span class="placeholder-icon">🖼️</span>
+                        <span class="placeholder-text">IMG_PENDING</span>
+                    </div>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">未命名作品</h3>
+                    <span class="artwork-tag">霖城 / LINCITY</span>
+                </div>
+                <div class="artwork-footer">
+                    <span class="artwork-id">ART_005</span>
+                    <span class="artwork-arrow">→</span>
+                </div>
+            </a>
+
+            <a href="javascript:void(0)" class="artwork-card" data-category="pc" data-id="06">
+                <div class="card-glitch-overlay"></div>
+                <div class="card-scan-line"></div>
+                <div class="artwork-frame">
+                    <div class="artwork-placeholder">
+                        <span class="placeholder-icon">🖼️</span>
+                        <span class="placeholder-text">IMG_PENDING</span>
+                    </div>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">未命名作品</h3>
+                    <span class="artwork-tag">大晟 / DASHENG</span>
+                </div>
+                <div class="artwork-footer">
+                    <span class="artwork-id">ART_006</span>
+                    <span class="artwork-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- ↑ AI 续写须知：
+                 1. 新增作品卡片时复制上面的 <a class="artwork-card"> 整块
+                 2. data-category 取值: lincity / dasheng / original (新世界观需在 filter-bar 里同步加按钮)
+                 3. data-id / artwork-id 按顺序递增 (ART_007...)
+                 4. 真实图片就绪后，把 .artwork-placeholder 换成:
+                    <img src="../assets/images/gallery/xxx.webp" class="artwork-img" alt="...">
+                 5. 详情页功能开发后，把 href="javascript:void(0)" 换成 href="gallery/xxx.html"
+            -->
+
+        </section>
+
+        <!-- 空状态(筛选无结果时显示) -->
+        <p class="gallery-empty" id="galleryEmpty" hidden>// NO RECORDS FOUND IN THIS SECTOR</p>
+
+    </main>
+
+    <script src="../assets/js/gallery.js"></script>
+</body>
+</html>
