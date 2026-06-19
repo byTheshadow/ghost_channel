@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - 𝕾𝖆𝖇𝖇𝖆𝖙𝖍 (安息日)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../assets/css/char-intro.css">
+    <link rel="stylesheet" href="../../assets/css/char-detail-a.css">
+    <style>
+        /* 覆盖 global.css 的滚动锁定 */
+        body, html { overflow: visible; height: auto; }
+        /* Sabbath 个性化：深海盐青色 */
+        .sabbath-accent { color: #4dd0e1; text-shadow: 0 0 10px rgba(77, 208, 225, 0.4); }
+        .hero-banner:hover .hero-title-text {
+            -webkit-text-stroke: 1px #4dd0e1;
+            color: rgba(77, 208, 225, 0.15);
+            text-shadow: 0 0 40px rgba(77, 208, 225, 0.3);
+        }
+        .hero-title-text::after { background: linear-gradient(90deg, var(--red-mid), #4dd0e1, var(--red-mid)); }
+        /* 强调诗句/设定特供排版 */
+        .poem-quote { font-family: 'Share Tech Mono', monospace; font-style: italic; color: #4dd0e1; margin-bottom: 1rem; border-left: 2px solid #4dd0e1; padding-left: 1rem; }
+        .play-tips { margin-top: 1.5rem; padding: 1rem; border: 1px dashed #333; background: rgba(0,0,0,0.3); font-size: 0.85rem; color: #999; }
+        .play-tips a { color: #4dd0e1; text-decoration: none; border-bottom: 1px dotted #4dd0e1; }
+        .play-tips a:hover { color: #ff003c; border-bottom-color: #ff003c; }
+    </style>
+</head>
+
+<body class="detail-page">
+
+    <!-- ★ 入场动画 -->
+    <div class="char-intro-overlay" id="charIntro">
+        <div class="intro-stage">
+            <div class="intro-shockwave loop"></div>
+
+            <!--贝斯 SVG -->
+            <div class="intro-bass-wrapper">
+                <svg viewBox="0 0 10 24" width="100%" height="100%">
+                    <rect x="3" y="0" width="4" height="4" fill="#1a1a1a"/>
+                    <rect x="2" y="1" width="1" height="1" fill="#777"/>
+                    <rect x="2" y="3" width="1" height="1" fill="#777"/>
+                    <rect x="7" y="1" width="1" height="1" fill="#777"/>
+                    <rect x="7" y="3" width="1" height="1" fill="#777"/>
+                    <rect x="4" y="4" width="2" height="10" fill="#0d0d0d"/>
+                    <rect x="4" y="4" width="1" height="10" fill="#333"/>
+                    <rect x="3" y="14" width="4" height="2" fill="#1a1a1a"/>
+                    <rect x="2" y="15" width="6" height="3" fill="#1a1a1a"/>
+                    <rect x="1" y="16" width="8" height="6" fill="#1a1a1a"/>
+                    <rect x="2" y="22" width="6" height="1" fill="#1a1a1a"/>
+                    <rect x="3" y="16" width="4" height="5" fill="#cc0000"/>
+                    <rect x="2" y="17" width="1" height="3" fill="#ff1a1a"/>
+                    <rect x="4" y="18" width="2" height="1" fill="#000"/>
+                    <rect x="5" y="19" width="2" height="1" fill="#000"/>
+                    <rect x="3" y="20" width="4" height="1" fill="#999"/>
+                </svg>
+            </div>
+
+            <!-- 8bit幽灵 -->
+            <div class="intro-ghost-track loop">
+                <div class="intro-ghost-sprite">
+                    <svg viewBox="0 0 14 14" width="100%" height="100%">
+                        <rect x="5" y="0" width="4" height="1" fill="#ff003c"/>
+                        <rect x="3" y="1" width="8" height="1" fill="#ff003c"/>
+                        <rect x="2" y="2" width="10" height="1" fill="#ff003c"/>
+                        <rect x="1" y="3" width="12" height="2" fill="#ff003c"/>
+                        <rect x="0" y="5" width="14" height="6" fill="#ff003c"/>
+                        <rect x="0" y="11" width="14" height="1" fill="#ff003c"/>
+                        <rect x="0" y="12" width="3" height="1" fill="#ff003c"/>
+                        <rect x="5" y="12" width="4" height="1" fill="#ff003c"/>
+                        <rect x="11" y="12" width="3" height="1" fill="#ff003c"/>
+                        <rect x="0" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="6" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="12" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="2" y="3" width="4" height="5" fill="#ffffff"/>
+                        <rect x="8" y="3" width="4" height="5" fill="#ffffff"/>
+                        <rect x="4" y="5" width="2" height="2" fill="#000000"/>
+                        <rect x="10" y="5" width="2" height="2" fill="#000000"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- 角色名弹出 -->
+        <div class="intro-char-name loop">
+            【SABBATH】
+            <span class="intro-char-name-cn">安息日 🎧</span>
+        </div>
+        <div class="intro-skip-hint">CLICK ANYWHERE TO SKIP</div>
+    </div>
+
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!--★ 导航栏 -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="../links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../home.html" class="mobile-link">HOME</a>
+        <a href="../about.html" class="mobile-link">ABOUT</a>
+        <a href="../characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="../gallery.html" class="mobile-link">GALLERY</a>
+        <a href="../presets.html" class="mobile-link">PRESETS</a>
+        <a href="../plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="../links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <!-- ★ 返回按钮 -->
+    <a href="../characters.html" class="back-btn">← BACK TO CHARACTERS</a>
+
+    <!-- ★ 状态栏 -->
+    <header class="status-header">
+        <div class="status-item">
+            <span class="status-dot-live"></span>
+            <span>SYSTEM ACTIVE // UNIT: SABBATH(RIOT)</span>
+        </div>
+        <div>
+            <span>CHAR_013 · LINCITY</span>
+        </div>
+        <div class="status-item">
+            <span>LOCAL TIME:<span id="liveClock">00:00:00</span></span>
+        </div>
+    </header>
+
+    <!-- ★巨幅角色名 -->
+    <div class="hero-banner">
+        <div class="hero-title-text">SABBATH</div>
+    </div>
+
+    <!-- ★ 主内容区 -->
+    <div class="detail-container">
+
+        <!-- 左侧：角色卡片 -->
+        <div class="portrait-wrapper" id="parallaxWrapper">
+            <div class="portrait-card" id="parallaxCard">
+                <div class="portrait-scan-line"></div>
+                <div class="portrait-image-box">
+                    <img class="portrait-img" src="https://cdn.discordapp.com/attachments/1459551405831491644/1459551406188003340/199f9760e1727c05.png?ex=6a35f7ec&is=6a34a66c&hm=223997508acd5cda954753c0409fae38e584e0969fef17d487c54fcf3f16006f" alt="Sabbath 安息日">
+                </div>
+                <div class="portrait-meta">
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">SUBJECT CODE</span>
+                        <span class="meta-value">CHAR_013</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">UNIVERSE</span>
+                        <span class="meta-value">LINCITY // 霖城</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">ORIENTATION</span>
+                        <span class="meta-value">BG/BL // 绝对做1</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">CREATED</span>
+                        <span class="meta-value">2026.01</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧：信息面板 -->
+        <div class="info-panel">
+
+            <!-- 系统描述 -->
+            <p class="sys-desc">
+                GHOST_CHANNEL CHARACTER REGISTRY // LINCITY DIVISION<br>
+                DROWNING TRAVELERS BAND · BASSIST · THREAT LEVEL: MODERATE
+            </p>
+
+            <!-- 角色名 -->
+            <div class="char-name-block">
+                <h2 style="font-family: 'Share Tech Mono', monospace;">𝕾𝖆𝖇𝖇𝖆𝖙𝖍 <span class="sabbath-accent">🎧</span></h2>
+                <p class="char-subtitle">SABBATH (地下代号: Riot) / 溺水旅客 · 贝斯手</p>
+            </div>
+
+            <!-- 标签 -->
+            <div class="tag-group">
+                <span class="detail-tag">BG/BL 均可</span>
+                <span class="detail-tag">绝对的1位 💖</span>
+                <span class="detail-tag warn">⚠ 暴娇 / 嘴硬心软</span>
+                <span class="detail-tag warn">⚠ 拥有 Dom 倾向</span>
+                <span class="detail-tag">孤狼贝斯手</span>
+                <span class="detail-tag">霖城世界观 (酸涩)</span>
+            </div>
+
+            <!-- 档案表格 -->
+            <div>
+                <table class="manifest-table">
+                    <thead>
+                        <tr>
+                            <th>PARAMETER</th>
+                            <th>VALUE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>创作者</td>
+                            <td>𝕾𝖍𝖆𝖉𝖔𝖜玉元一</td>
+                        </tr>
+                        <tr>
+                            <td>所属乐队</td>
+                            <td>溺水旅客 Drowning Travelers</td>
+                        </tr>
+                        <tr>
+                            <td>乐队职位</td>
+                            <td>贝斯手 (主心骨)</td>
+                        </tr>
+                        <tr>
+                            <td>世界观</td>
+                            <td>霖城 LINCITY · 现代架空都市</td>
+                        </tr>
+                        <tr>
+                            <td>性向</td>
+                            <td>BG/BL均可（划重点：做1位）</td>
+                        </tr>
+                        <tr>
+                            <td>产出时间</td>
+                            <td>2026年1月</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ★ 角色介绍区 -->
+    <section class="bio-section">
+
+        <!-- 角色介绍 -->
+        <div class="bio-block">
+            <div class="bio-header">
+                <span class="bio-header-icon">📖</span>
+                <span>CHARACTER BIOGRAPHY</span>
+            </div>
+            <div class="bio-body">
+                <div class="bio-text">
+                    <div class="poem-quote">
+                        "I should have been a pair of ragged claws<br>
+                        Scuttling across the floors of silent seas."<br>
+                        —— T. S. Eliot
+                    </div>
+                    <p>他是地下乐队“溺水旅客”（Drowning Travelers）的贝斯手与主心骨，一个游走在霖城东郊阴影中的孤狼。他自称 Sabbath（安息日），这是一个承载着故乡祝福的名字；但在 Livehouse 粘稠的空气与躁动的鼓点中，人们更熟悉他另一个名号——Riot。</p>
+                    <p>他的外表是他无声的宣言。他闻起来像劣质烟草、松香与金属锈迹的混合体，但若靠得极近，便能捕捉到一丝属于故乡的、干净的海盐气息。虽然外表是一株长满尖刺的植物，但他其实是被家人托举着爱长大的孩子。他从遥远的海边小镇来到霖城，只为弹奏自己的乐曲。</p>
+                    <p>哪怕脾气暴躁，他其实非常关心他人。他支持任何人用音乐表达自我，即使对方弹唱得不好，他也会誓死捍卫对方表达的权利。在面对重要的人时，这份暴躁会化为不自觉的脸红，他的温柔带有清晰的坐标，只对固定的人开放。</p>
+                    <p>在噪音里他寻求的并非救赎，而是与另一个孤独灵魂，在同一个低频上的共振。</p>
+                </div>
+                
+                <div class="play-tips">
+                    <strong>[ 游玩小贴士 & 拓展信息 ]</strong><br><br>
+                    ▸ 严禁二次转载 ❌ 二次修改请务必先戳原作者沟通哦！<br>
+                    ▸ 如果要用安息日预设玩，记得要关掉底部的性格，不然他总是用第一人称称呼自己hhh。<br>
+                    ▸ 角色卡自带安息日预设短 rp 版的格式，有多个状态栏样式可选，url 版一起听可换头像和背景。开场白美化无法跳转哦私密马赛~<br>
+                    ▸ 少年时期前传指路：<a href="https://discord.com/channels/1291925535324110879/1463434118313414677" target="_blank" rel="noopener noreferrer">点击查看 Discord 链接</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 开场白 -->
+        <div class="bio-block">
+            <div class="bio-header">
+                <span class="bio-header-icon">💬</span>
+                <span>SEVEN ENCOUNTERS // 预设开场白</span>
+            </div>
+            <div class="bio-body">
+                <blockquote class="bio-quote">
+                    这里为您准备了七个心动瞬间的相遇情境 ٩(๑>◡<๑)۶ <br><br>
+                    <span style="color:#4dd0e1">🎵 01.</span> 演出结束后的后台通道，你在他擦拭乐器时指出了贴纸的问题。<br>
+                    <span style="color:#4dd0e1">🎵 02.</span> 你在某间商业录音室撞见正在兼职录贝斯的他，他正在忍受“垃圾音乐”的折磨。<br>
+                    <span style="color:#4dd0e1">🎵 03.</span> 在“循环岛”附近的一家旧唱片店偶遇，你认出了他手腕上的特殊手环。<br>
+                    <span style="color:#4dd0e1">🎵 04.</span> 在城东郊区边缘一个鲜为人知的防波堤，他正独自一人面对漆黑的大海。<br>
+                    <span style="color:#4dd0e1">🎵 05.</span> 在“湮灭回声”演出刚结束，你在他下台的第一时间指出了他改动的地方。<br>
+                    <span style="color:#4dd0e1">🎵 06.</span> 在“磐石五金”店门口或某间乐器行的角落，你撞见那个以凶残著称的 Sabbath 正在教一个新手或小孩调弦。<br>
+                    <span style="color:#4dd0e1">🎵 07.</span> 你来到一家社区音乐教室，接那个让你头疼不已的弟弟，却发现今天的代课老师竟然是他。
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- 乐队宣传 (无配图留白) -->
+        <div class="band-section">
+            <div class="band-header">
+                <span class="band-header-title">🌊 溺水旅客 DROWNING TRAVELERS</span>
+                <span class="band-header-tag">EAST DISTRICT // LINCITY</span>
+            </div>
+            <div class="band-body">
+                <div class="band-manifesto">
+<span class="highlight-line">【深海低频：锈迹与海盐的交响】</span>
+
+我们游走在霖城东郊的阴影中，如同在寂静之海的底部穿行的破烂蟹钳。
+<span class="highlight-line">「溺水旅客」——拒绝上岸，拒绝虚伪的呼吸。</span>
+我们的音乐生于海浪与铁锈的摩擦，长于永不妥协的地下失真。
+
+哪怕世界充满廉价的塑料流行乐，我们也要誓死捍卫制造真实噪音的权利。
+在Livehouse粘稠的空气里，我们不寻求轻浮的救赎；
+我们只寻找那个能与我们在同一个低频上共振的孤独灵魂。
+
+<span class="dim-line">若你也听见了深海的轰鸣——</span>
+<span class="highlight-line">别挣扎了，一起溺水吧。</span>
+                </div>
+            </div>
+            <!-- 严格遵照指令：无底部图片，留空 -->
+        </div>
+
+    </section>
+
+    <!-- ★ 底部页脚 -->
+    <footer class="detail-footer">
+        <div class="footer-grid">
+            <div>
+                <span class="footer-glitch">GHOST_CHANNEL // CHARACTER REGISTRY</span>
+            </div>
+            <div>
+                <span>CHAR_013 · SABBATH (RIOT) · LINCITY · 2026</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/char-detail.js"></script>
+</body>
+</html>
