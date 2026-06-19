@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - 谢云戟 👑</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../assets/css/char-intro.css">
+    <link rel="stylesheet" href="../../assets/css/char-detail-a.css">
+    <style>
+        /* 覆盖 global.css 的滚动锁定 */
+        body, html { overflow: visible; height: auto; }
+        /* 谢云戟 个性化：财阀金 */
+        .yunji-accent { color: #ffd700; text-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
+        .hero-banner:hover .hero-title-text {
+            -webkit-text-stroke: 1px #ffd700;
+            color: rgba(255, 215, 0, 0.15);
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+        }
+        .hero-title-text::after { background: linear-gradient(90deg, var(--red-mid), #ffd700, var(--red-mid)); }
+    </style>
+</head>
+
+<body class="detail-page">
+
+    <!-- ★ 入场动画 -->
+    <div class="char-intro-overlay" id="charIntro">
+        <div class="intro-stage">
+            <div class="intro-shockwave loop"></div>
+            <!-- 8bit幽灵 -->
+            <div class="intro-ghost-track loop">
+                <div class="intro-ghost-sprite">
+                    <svg viewBox="0 0 14 14" width="100%" height="100%">
+                        <rect x="5" y="0" width="4" height="1" fill="#ff003c"/>
+                        <rect x="3" y="1" width="8" height="1" fill="#ff003c"/>
+                        <rect x="2" y="2" width="10" height="1" fill="#ff003c"/>
+                        <rect x="1" y="3" width="12" height="2" fill="#ff003c"/>
+                        <rect x="0" y="5" width="14" height="6" fill="#ff003c"/>
+                        <rect x="0" y="11" width="14" height="1" fill="#ff003c"/>
+                        <rect x="0" y="12" width="3" height="1" fill="#ff003c"/>
+                        <rect x="5" y="12" width="4" height="1" fill="#ff003c"/>
+                        <rect x="11" y="12" width="3" height="1" fill="#ff003c"/>
+                        <rect x="0" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="6" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="12" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="2" y="3" width="4" height="5" fill="#ffffff"/>
+                        <rect x="8" y="3" width="4" height="5" fill="#ffffff"/>
+                        <rect x="4" y="5" width="2" height="2" fill="#000000"/>
+                        <rect x="10" y="5" width="2" height="2" fill="#000000"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- 角色名弹出 -->
+        <div class="intro-char-name loop">
+            【XIE YUNJI】
+            <span class="intro-char-name-cn">谢云戟 👑</span>
+        </div>
+        <div class="intro-skip-hint">CLICK ANYWHERE TO SKIP</div>
+    </div>
+
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!--★ 导航栏 -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="../links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../home.html" class="mobile-link">HOME</a>
+        <a href="../about.html" class="mobile-link">ABOUT</a>
+        <a href="../characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="../gallery.html" class="mobile-link">GALLERY</a>
+        <a href="../presets.html" class="mobile-link">PRESETS</a>
+        <a href="../plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="../links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <!-- ★ 返回按钮 -->
+    <a href="../characters.html" class="back-btn">← BACK TO CHARACTERS</a>
+
+    <!-- ★ 状态栏 -->
+    <header class="status-header">
+        <div class="status-item">
+            <span class="status-dot-live"></span>
+            <span>SYSTEM ACTIVE // UNIT: XIE YUNJI</span>
+        </div>
+        <div>
+            <span>MODERN CITY // 现代都市</span>
+        </div>
+        <div class="status-item">
+            <span>LOCAL TIME:<span id="liveClock">00:00:00</span></span>
+        </div>
+    </header>
+
+    <!-- ★巨幅角色名 -->
+    <div class="hero-banner">
+        <div class="hero-title-text">XIE YUNJI</div>
+    </div>
+
+    <!-- ★ 主内容区 -->
+    <div class="detail-container">
+
+        <!-- 左侧：角色卡片 -->
+        <div class="portrait-wrapper" id="parallaxWrapper">
+            <div class="portrait-card" id="parallaxCard">
+                <div class="portrait-scan-line"></div>
+                <div class="portrait-image-box">
+                    <img class="portrait-img" src="https://cdn.discordapp.com/attachments/1435126617071423579/1435126617578930297/985796f25b2e897d.png?ex=6a3619d0&is=6a34c850&hm=927cc1c87db5ddff99261a030b35f1f849f92a007246d7a3c3258011d878a9a1&" alt="谢云戟">
+                </div>
+                <div class="portrait-meta">
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">IDENTITY</span>
+                        <span class="meta-value">HEIR / 继承人</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">UNIVERSE</span>
+                        <span class="meta-value">MODERN CITY</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">ORIENTATION</span>
+                        <span class="meta-value">BG/BL // 做1</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">CREATED</span>
+                        <span class="meta-value">2025.11</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧：信息面板 -->
+        <div class="info-panel">
+
+            <!-- 系统描述 -->
+            <p class="sys-desc">
+                GHOST_CHANNEL CHARACTER REGISTRY // MODERN CITY DIVISION<br>
+                XIE CORPORATION · CEO & SOLE HEIR · THREAT LEVEL: HIGH
+            </p>
+
+            <!-- 角色名 -->
+            <div class="char-name-block">
+                <h2>谢云戟 <span class="yunji-accent">👑</span></h2>
+                <p class="char-subtitle">XIE YUNJI / 谢氏财阀·唯一继承人</p>
+            </div>
+
+            <!-- 标签 -->
+            <div class="tag-group">
+                <span class="detail-tag">BG/BL 绝对做1</span>
+                <span class="detail-tag warn">⚠ 包含BDSM元素</span>
+                <span class="detail-tag warn">⚠ CHAR是DOM</span>
+                <span class="detail-tag">笨蛋霸总</span>
+                <span class="detail-tag">契约包养</span>
+                <span class="detail-tag">现代都市</span>
+            </div>
+
+            <!-- 档案表格 -->
+            <div>
+                <table class="manifest-table">
+                    <thead>
+                        <tr>
+                            <th>PARAMETER</th>
+                            <th>VALUE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>一句话简介</td>
+                            <td>感情笨蛋的顶级浪漫，以交易为名的纯真追求</td>
+                        </tr>
+                        <tr>
+                            <td>身份背景</td>
+                            <td>谢氏财阀唯一继承人 (22岁)</td>
+                        </tr>
+                        <tr>
+                            <td>特殊元素</td>
+                            <td>BDSM倾向 / 可开关的商战剧情</td>
+                        </tr>
+                        <tr>
+                            <td>世界观</td>
+                            <td>现代都市 · 商业架空</td>
+                        </tr>
+                        <tr>
+                            <td>性向</td>
+                            <td>BG/BL皆可（1）</td>
+                        </tr>
+                        <tr>
+                            <td>产出时间</td>
+                            <td>2025年11月</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ★ 角色介绍区 -->
+    <section class="bio-section">
+
+        <!-- 角色介绍 -->
+        <div class="bio-block">
+            <div class="bio-header">
+                <span class="bio-header-icon">📖</span>
+                <span>CHARACTER BIOGRAPHY</span>
+            </div>
+            <div class="bio-body">
+                <div class="bio-text">
+                    <p>在金钱与权力构筑的冰冷王座上，二十二岁的谢云戟是毋庸置疑的君王。作为谢氏财阀唯一的继承人，世间万物于他而言，不过是一串串可以随意标价的数字。他习惯了用命令的口吻支配一切，用交易的方式解决所有问题，直到遇见了你——他人生中第一个，也是唯一一个无法归类的意外。</p>
+                    <p>这个理论上的天才，实践中的感情笨蛋，在初次心动面前，前所未有地慌了神。在咨询了所有不靠谱的“军师”、研读了无数霸总小说后，他得出了一个自认为完美的计划：用一纸契约将你“包养”。</p>
+                    <p>在他那套扭曲的世界观里，这不是侮辱，而是他能动用的全部资源、所能构想出的最顶级的浪漫，将他世界里最好的一切，连同他那颗笨拙而真诚的心，一并奉上。嘴上说着最生硬的话，行动上却做着最温柔的事。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 开场白 -->
+        <div class="bio-block">
+            <div class="bio-header">
+                <span class="bio-header-icon">💬</span>
+                <span>OPENING LINE</span>
+            </div>
+            <div class="bio-body">
+                <blockquote class="bio-quote">
+                    为你准备了超级丰富的相遇方式哦！🎁 包含常规开场白15个，线上开场白4个，以及开袋即食开场白2个。特别指路高亮情节开场白7：跑路被抓回来 🐾 除了特定开场白之外每个开场白都贴心地对应三个可用的 user 身份参考供你选择。
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- 附加情报区 (替代原乐队区) -->
+        <div class="band-section">
+            <div class="band-header">
+                <span class="band-header-title">📂 EXTRA DOSSIER // 附加情报</span>
+                <span class="band-header-tag">XIE CORPORATION // CLASSIFIED</span>
+            </div>
+            <div class="band-body">
+                <div class="band-manifesto">
+<span class="highlight-line">【关于谢云戟的隐藏注意事项】</span>
+
+🌟 带有搞笑轻松向状态栏，恋爱拉扯中的欢乐拉满！
+🌟 <span class="dim-line">警告：</span>损友们的建议仅代表他们，绝对不代表谢云戟本人的真实想法哦 ╮(￣▽￣)╭
+
+🛡️ <span class="highlight-line">安全词机制：</span>走包养线的话，虽然名义上是包养且带有 BDSM 的 Dom 倾向，但是他会小心翼翼地尊重 user 的意愿，绝对不会强行要求 user do 任何事。
+📖✂️ <span class="highlight-line">剧情定制：</span>如果不喜欢商战元素也完全没关系，只需要把世界书里商战的条目关上就可以啦，随心定制你的专属恋爱体验。
+                </div>
+            </div>
+            <!-- 用户要求无底部图片，留空 -->
+        </div>
+
+    </section>
+
+    <!-- ★ 底部页脚 -->
+    <footer class="detail-footer">
+        <div class="footer-grid">
+            <div>
+                <span class="footer-glitch">GHOST_CHANNEL // CHARACTER REGISTRY</span>
+            </div>
+            <div>
+                <span>UNIT_XIE_YUNJI · MODERN CITY · 2025</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/char-detail.js"></script>
+</body>
+</html>
