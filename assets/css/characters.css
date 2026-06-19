@@ -322,7 +322,7 @@
 /* ==================== 世界观区块 ==================== */
 .world-section {
     max-width: 1200px;
-    margin: 0 auto60px;
+    margin: 0 auto 60px;
     padding: 0 20px;
     animation: fadeSlideUp 0.8s ease-out;
 }
