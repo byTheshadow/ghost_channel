@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - 凌昼 🖋️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../assets/css/char-intro.css">
+    <link rel="stylesheet" href="../../assets/css/char-detail-a.css">
+    <style>
+        body, html { overflow: visible; height: auto; }
+        /* 凌昼 个性化：午夜靛蓝 */
+        .lingzhou-accent { color: #7986cb; text-shadow: 0 0 10px rgba(121, 134, 203, 0.4); }
+        .hero-banner:hover .hero-title-text { -webkit-text-stroke: 1px #7986cb; color: rgba(121, 134, 203, 0.15); text-shadow: 0 0 40px rgba(121, 134, 203, 0.3); }
+        .hero-title-text::after { background: linear-gradient(90deg, var(--red-mid), #7986cb, var(--red-mid)); }
+    </style>
+</head>
+<body class="detail-page">
+    <div class="char-intro-overlay" id="charIntro">
+        <div class="intro-stage"><div class="intro-shockwave loop"></div><div class="intro-bass-wrapper"><svg viewBox="0 0 10 24" width="100%" height="100%"><rect x="3" y="0" width="4" height="4" fill="#1a1a1a"/><rect x="2" y="1" width="1" height="1" fill="#777"/><rect x="2" y="3" width="1" height="1" fill="#777"/><rect x="7" y="1" width="1" height="1" fill="#777"/><rect x="7" y="3" width="1" height="1" fill="#777"/><rect x="4" y="4" width="2" height="10" fill="#0d0d0d"/><rect x="4" y="4" width="1" height="10" fill="#333"/><rect x="3" y="14" width="4" height="2" fill="#1a1a1a"/><rect x="2" y="15" width="6" height="3" fill="#1a1a1a"/><rect x="1" y="16" width="8" height="6" fill="#1a1a1a"/><rect x="2" y="22" width="6" height="1" fill="#1a1a1a"/><rect x="3" y="16" width="4" height="5" fill="#cc0000"/><rect x="2" y="17" width="1" height="3" fill="#ff1a1a"/><rect x="4" y="18" width="2" height="1" fill="#000"/><rect x="5" y="19" width="2" height="1" fill="#000"/><rect x="3" y="20" width="4" height="1" fill="#999"/></svg></div><div class="intro-ghost-track loop"><div class="intro-ghost-sprite"><svg viewBox="0 0 14 14" width="100%" height="100%"><rect x="5" y="0" width="4" height="1" fill="#ff003c"/><rect x="3" y="1" width="8" height="1" fill="#ff003c"/><rect x="2" y="2" width="10" height="1" fill="#ff003c"/><rect x="1" y="3" width="12" height="2" fill="#ff003c"/><rect x="0" y="5" width="14" height="6" fill="#ff003c"/><rect x="0" y="11" width="14" height="1" fill="#ff003c"/><rect x="0" y="12" width="3" height="1" fill="#ff003c"/><rect x="5" y="12" width="4" height="1" fill="#ff003c"/><rect x="11" y="12" width="3" height="1" fill="#ff003c"/><rect x="0" y="13" width="2" height="1" fill="#ff003c"/><rect x="6" y="13" width="2" height="1" fill="#ff003c"/><rect x="12" y="13" width="2" height="1" fill="#ff003c"/><rect x="2" y="3" width="4" height="5" fill="#ffffff"/><rect x="8" y="3" width="4" height="5" fill="#ffffff"/><rect x="4" y="5" width="2" height="2" fill="#000000"/><rect x="10" y="5" width="2" height="2" fill="#000000"/></svg></div></div></div>
+        <div class="intro-char-name loop">【LINGZHOU】<span class="intro-char-name-cn">凌昼 🖋️</span></div><div class="intro-skip-hint">CLICK ANYWHERE TO SKIP</div>
+    </div>
+    
+    <div class="crt-overlay"></div><div class="vignette"></div>
+    <nav class="ghost-nav" id="ghostNav"><div class="nav-brand"><a href="../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;"><span class="nav-ghost-icon"></span><span class="nav-title">GHOST_CHANNEL</span></a></div><div class="nav-links"><a href="../../home.html" class="nav-link" data-text="HOME">HOME</a><a href="../about.html" class="nav-link" data-text="ABOUT">ABOUT</a><a href="../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a></div><button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><a href="../../home.html" class="mobile-link">HOME</a><a href="../about.html" class="mobile-link">ABOUT</a><a href="../characters.html" class="mobile-link active">CHARACTERS</a></div>
+
+    <a href="../characters.html" class="back-btn">← BACK TO CHARACTERS</a>
+    <header class="status-header"><div class="status-item"><span class="status-dot-live"></span><span>SYSTEM ACTIVE // UNIT: LINGZHOU</span></div><div><span>CHAR_012 · LINCITY</span></div><div class="status-item"><span>LOCAL TIME:<span id="liveClock">00:00:00</span></span></div></header>
+
+    <div class="hero-banner"><div class="hero-title-text">LINGZHOU</div></div>
+
+    <div class="detail-container">
+        <div class="portrait-wrapper" id="parallaxWrapper">
+            <div class="portrait-card" id="parallaxCard">
+                <div class="portrait-scan-line"></div>
+                <div class="portrait-image-box">
+                    <img class="portrait-img" src="https://cdn.discordapp.com/attachments/1411577272762372097/1414547537234362398/1.png?ex=6a36618d&is=6a35100d&hm=d87da0b8211b689ad6776e9f543d51ac0ce737ddeabd95f929e25f525a27e307" alt="凌昼">
+                </div>
+                <div class="portrait-meta">
+                    <div class="portrait-meta-row"><span class="meta-label">SUBJECT CODE</span><span class="meta-value">CHAR_012</span></div>
+                    <div class="portrait-meta-row"><span class="meta-label">UNIVERSE</span><span class="meta-value">LINCITY // 霖城</span></div>
+                    <div class="portrait-meta-row"><span class="meta-label">ORIENTATION</span><span class="meta-value">BG/BL // 皆可</span></div>
+                    <div class="portrait-meta-row"><span class="meta-label">CREATED</span><span class="meta-value">2025.09</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-panel">
+            <p class="sys-desc">
+                GHOST_CHANNEL REGISTRY // ABYSS STUDIO / GEARS & RUST<br>
+                TATTOO ARTIST & ILLUSTRATOR · THREAT LEVEL: LOW
+            </p>
+            <div class="char-name-block">
+                <h2>凌昼 <span class="lingzhou-accent">🖋️</span></h2>
+                <p class="char-subtitle">LINGZHOU / “渊”工作室 · 纹身师</p>
+            </div>
+            <div class="tag-group">
+                <span class="detail-tag warn">⚠ 傲娇系</span>
+                <span class="detail-tag warn">⚠ 重度自我攻略</span>
+                <span class="detail-tag">口是心非</span>
+                <span class="detail-tag">霖城世界观</span>
+            </div>
+            <div>
+                <table class="manifest-table">
+                    <thead><tr><th>PARAMETER</th><th>VALUE</th></tr></thead>
+                    <tbody>
+                        <tr><td>一句话简介</td><td>傲娇系自我攻略纹身师</td></tr>
+                        <tr><td>所属阵营</td><td>“渊”工作室 (齿轮与锈 关联)</td></tr>
+                        <tr><td>特殊系统</td><td>独立的小剧场和正则系统</td></tr>
+                        <tr><td>性向</td><td>BG / BL 皆可</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <section class="bio-section">
+        <div class="bio-block">
+            <div class="bio-header"><span class="bio-header-icon">📖</span><span>CHARACTER BIOGRAPHY</span></div>
+            <div class="bio-body">
+                <div class="bio-text">
+                    <p>雨夜的霖城东郊，旧厂房深处亮着一盏孤灯。推开“渊”工作室沉重的铁门，消毒水与墨香混合的气息裹挟着冷冽袭来。</p>
+                    <p>他是业内被称为“深渊画手”的凌昼，作品诡谲深刻，匿名夺冠后却销声匿迹。他午夜蓝的发丝在无影灯下泛着幽光，语言比针尖更吝啬，目光却像能剖开皮肤，直抵你藏得最深的念想。</p>
+                    <p>人人都说他冷漠如冰，却不知他的爱是藏在极简主义下的滔天巨浪，是宁可凿穿心脏也不肯说出口的告白。</p>
+                </div>
+            </div>
+        </div>
+        <div class="bio-block">
+            <div class="bio-header"><span class="bio-header-icon">🎭</span><span>OPENING LINE</span></div>
+            <div class="bio-body">
+                <blockquote class="bio-quote">
+                    他那张毫无波澜的脸上不会露出一丝裂缝，通常只会冷冷地低斥一声：“麻烦。”但事实上，当你关心他手腕是否酸疼，或是换了与他同色的手机壳时，他的内心早已上演了一百场浪漫默片。
+                </blockquote>
+            </div>
+        </div>
+        <!-- 齿轮与锈 阵营宣传 -->
+        <div class="band-section">
+            <div class="band-header">
+                <span class="band-header-title">⚙️ 齿轮与锈 GEARS & RUST</span>
+                <span class="band-header-tag">EAST DISTRICT // LINCITY</span>
+            </div>
+            <div class="band-body">
+                <div class="band-manifesto">
+<span class="highlight-line">【东区轰鸣：机油、齿轮与不屈的锈迹】</span>
+在城东，规则由机油与钢铁书写。霓虹的污水渗不进这片被遗忘的锈带。
+这里的主旋律，是V8引擎在废弃高架下的深沉咆哮，是扳手与锈死螺栓的角力。
+<span class="highlight-line">我们称自己为「齿轮与锈」。</span>
+我们不追逐主城区的虚拟积分，我们的赌注更实在：一条无人管辖的公路所有权，一箱走私的高辛烷值燃油。
+<span class="highlight-line">信仰很简单：能亲手触碰的才是真实，能听见轰鸣的才是力量。</span>
+深巷中，第一盏雾灯骤然亮起。
+<span class="dim-line">引擎，已预热。齿轮咬合，锈尘飞扬。</span>
+<span class="highlight-line">规则，即将重铸。</span>
+                </div>
+            </div>
+            <div class="band-image-box">
+                <img src="https://cdn.discordapp.com/attachments/1411577272762372097/1414526233693261858/cgi-bin_mmwebwx-bin_webwxgetmsgimg__MsgID7730600151708303377skeycrypt_5a237c93_e5eeb8b258e55e1e9b402405067e55eammweb_appidwx_webfilehelper.jpg?ex=6a364db6&is=6a34fc36&hm=db8812977ece193c26aead7d4a176e4e1b9bfaad40096ce29785ace000a593ae" alt="齿轮与锈">
+            </div>
+        </div>
+    </section>
+    <footer class="detail-footer"><div class="footer-grid"><div><span class="footer-glitch">GHOST_CHANNEL // CHARACTER REGISTRY</span></div><div><span>CHAR_012 · LINGZHOU · LINCITY · 2025</span></div></div></footer>
+    <script src="../../assets/js/char-detail.js"></script>
+</body>
+</html>

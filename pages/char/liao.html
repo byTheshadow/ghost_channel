@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - 燎 🔥</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../assets/css/char-intro.css">
+    <link rel="stylesheet" href="../../assets/css/char-detail-a.css">
+    <style>
+        /* 覆盖 global.css 的滚动锁定 */
+        body, html { overflow: visible; height: auto; }
+        /* 燎 个性化：暴烈霓虹红 */
+        .liao-accent { color: #ff1744; text-shadow: 0 0 10px rgba(255, 23, 68, 0.4); }
+        .hero-banner:hover .hero-title-text {
+            -webkit-text-stroke: 1px #ff1744;
+            color: rgba(255, 23, 68, 0.15);
+            text-shadow: 0 0 40px rgba(255, 23, 68, 0.3);
+        }
+        .hero-title-text::after { background: linear-gradient(90deg, var(--red-mid), #ff1744, var(--red-mid)); }
+    </style>
+</head>
+
+<body class="detail-page">
+
+    <!-- ★ 入场动画 -->
+    <div class="char-intro-overlay" id="charIntro">
+        <div class="intro-stage">
+            <div class="intro-shockwave loop"></div>
+
+            <!--贝斯 SVG -->
+            <div class="intro-bass-wrapper">
+                <svg viewBox="0 0 10 24" width="100%" height="100%">
+                    <rect x="3" y="0" width="4" height="4" fill="#1a1a1a"/>
+                    <rect x="2" y="1" width="1" height="1" fill="#777"/>
+                    <rect x="2" y="3" width="1" height="1" fill="#777"/>
+                    <rect x="7" y="1" width="1" height="1" fill="#777"/>
+                    <rect x="7" y="3" width="1" height="1" fill="#777"/>
+                    <rect x="4" y="4" width="2" height="10" fill="#0d0d0d"/>
+                    <rect x="4" y="4" width="1" height="10" fill="#333"/>
+                    <rect x="3" y="14" width="4" height="2" fill="#1a1a1a"/>
+                    <rect x="2" y="15" width="6" height="3" fill="#1a1a1a"/>
+                    <rect x="1" y="16" width="8" height="6" fill="#1a1a1a"/>
+                    <rect x="2" y="22" width="6" height="1" fill="#1a1a1a"/>
+                    <rect x="3" y="16" width="4" height="5" fill="#cc0000"/>
+                    <rect x="2" y="17" width="1" height="3" fill="#ff1a1a"/>
+                    <rect x="4" y="18" width="2" height="1" fill="#000"/>
+                    <rect x="5" y="19" width="2" height="1" fill="#000"/>
+                    <rect x="3" y="20" width="4" height="1" fill="#999"/>
+                </svg>
+            </div>
+
+            <!-- 8bit幽灵 -->
+            <div class="intro-ghost-track loop">
+                <div class="intro-ghost-sprite">
+                    <svg viewBox="0 0 14 14" width="100%" height="100%">
+                        <rect x="5" y="0" width="4" height="1" fill="#ff003c"/>
+                        <rect x="3" y="1" width="8" height="1" fill="#ff003c"/>
+                        <rect x="2" y="2" width="10" height="1" fill="#ff003c"/>
+                        <rect x="1" y="3" width="12" height="2" fill="#ff003c"/>
+                        <rect x="0" y="5" width="14" height="6" fill="#ff003c"/>
+                        <rect x="0" y="11" width="14" height="1" fill="#ff003c"/>
+                        <rect x="0" y="12" width="3" height="1" fill="#ff003c"/>
+                        <rect x="5" y="12" width="4" height="1" fill="#ff003c"/>
+                        <rect x="11" y="12" width="3" height="1" fill="#ff003c"/>
+                        <rect x="0" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="6" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="12" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="2" y="3" width="4" height="5" fill="#ffffff"/>
+                        <rect x="8" y="3" width="4" height="5" fill="#ffffff"/>
+                        <rect x="4" y="5" width="2" height="2" fill="#000000"/>
+                        <rect x="10" y="5" width="2" height="2" fill="#000000"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- 角色名弹出 -->
+        <div class="intro-char-name loop">
+            【LIAO】
+            <span class="intro-char-name-cn">燎 🔥</span>
+        </div>
+        <div class="intro-skip-hint">CLICK ANYWHERE TO SKIP</div>
+    </div>
+
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!--★ 导航栏 -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="../links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../home.html" class="mobile-link">HOME</a>
+        <a href="../about.html" class="mobile-link">ABOUT</a>
+        <a href="../characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="../gallery.html" class="mobile-link">GALLERY</a>
+        <a href="../presets.html" class="mobile-link">PRESETS</a>
+        <a href="../plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="../links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <!-- ★ 返回按钮 -->
+    <a href="../characters.html" class="back-btn">← BACK TO CHARACTERS</a>
+
+    <!-- ★ 状态栏 -->
+    <header class="status-header">
+        <div class="status-item">
+            <span class="status-dot-live"></span>
+            <span>SYSTEM ACTIVE // UNIT: LIAO</span>
+        </div>
+        <div>
+            <span>CHAR_008 · LINCITY</span>
+        </div>
+        <div class="status-item">
+            <span>LOCAL TIME:<span id="liveClock">00:00:00</span></span>
+        </div>
+    </header>
+
+    <!-- ★巨幅角色名 -->
+    <div class="hero-banner">
+        <div class="hero-title-text">LIAO</div>
+    </div>
+
+    <!-- ★ 主内容区 -->
+    <div class="detail-container">
+
+        <!-- 左侧：角色卡片 -->
+        <div class="portrait-wrapper" id="parallaxWrapper">
+            <div class="portrait-card" id="parallaxCard">
+                <div class="portrait-scan-line"></div>
+                <div class="portrait-image-box">
+                    <img class="portrait-img" src="https://cdn.discordapp.com/attachments/1411577272762372097/1411588546858323999/webwxgetmsgimg_40.jpg?ex=6a3629c7&is=6a34d847&hm=eca84b404ba382e8f78e51853481ff5371c557d00260669ea18abba4816c5643" alt="燎">
+                </div>
+                <div class="portrait-meta">
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">SUBJECT CODE</span>
+                        <span class="meta-value">CHAR_008</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">UNIVERSE</span>
+                        <span class="meta-value">LINCITY // 霖城</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">ORIENTATION</span>
+                        <span class="meta-value">BG/BL // 做1</span>
+                    </div>
+                    <div class="portrait-meta-row">
+                        <span class="meta-label">CREATED</span>
+                        <span class="meta-value">2025.08</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧：信息面板 -->
+        <div class="info-panel">
+
+            <!-- 系统描述 -->
+            <p class="sys-desc">
+                GHOST_CHANNEL CHARACTER REGISTRY // LINCITY DIVISION<br>
+                BROKEN STARS BAND · VOCALIST & GUITARIST · THREAT LEVEL: EXTREME
+            </p>
+
+            <!-- 角色名 -->
+            <div class="char-name-block">
+                <h2>燎 <span class="liao-accent">🔥</span></h2>
+                <p class="char-subtitle">LIAO / 碎星 · 主唱兼吉他手</p>
+            </div>
+
+            <!-- 标签 -->
+            <div class="tag-group">
+                <span class="detail-tag">BG/BL 皆可</span>
+                <span class="detail-tag">绝对的做1 💐</span>
+                <span class="detail-tag warn">⚠ 追求刺激</span>
+                <span class="detail-tag warn">⚠ 表演型人格</span>
+                <span class="detail-tag warn">⚠ 拥有 Dom 属性</span>
+                <span class="detail-tag">前顶点区居民</span>
+                <span class="detail-tag">霖城世界观</span>
+            </div>
+
+            <!-- 档案表格 -->
+            <div>
+                <table class="manifest-table">
+                    <thead>
+                        <tr>
+                            <th>PARAMETER</th>
+                            <th>VALUE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>一句话简介</td>
+                            <td>燃烧生命的每一秒，追求刺激的表演型人格</td>
+                        </tr>
+                        <tr>
+                            <td>所属乐队</td>
+                            <td>碎星 BROKEN STARS</td>
+                        </tr>
+                        <tr>
+                            <td>乐队职位</td>
+                            <td>主唱 & 吉他手</td>
+                        </tr>
+                        <tr>
+                            <td>世界观</td>
+                            <td>霖城 LINCITY · 现代架空</td>
+                        </tr>
+                        <tr>
+                            <td>性向</td>
+                            <td>BG/BL皆可（做1）</td>
+                        </tr>
+                        <tr>
+                            <td>产出时间</td>
+                            <td>2025年8月</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ★ 角色介绍区 -->
+    <section class="bio-section">
+
+        <!-- 角色介绍 -->
+        <div class="bio-block">
+            <div class="bio-header">
+                <span class="bio-header-icon">📖</span>
+                <span>CHARACTER BIOGRAPHY</span>
+            </div>
+            <div class="bio-body">
+                <div class="bio-text">
+                    <p>在城市的边缘，有一个用噪音书写自我的身影——燎。他一头褪色的红发如燃烧未尽的火焰，苍白的皮肤上刻着星形疤痕和炽热纹身，仿佛身体就是一场尚未落幕的演出。</p>
+                    <p>他以前是顶点区的，为了逃离既定命运，曾创作了自己盛大的葬礼。如今他穿梭于Livehouse的强光与暗室的私密之间，用失真吉他和尖锐言语构筑自己的王国。他们的音乐是短路前的最后一秒，是失控列车撞向终点的狂欢。</p>
+                    <p>他不是在寻找答案，而是在制造风暴。当他靠近你，你能感受到一种危险的热度，那不只是体温，更是一种近乎暴烈的生命张力。而在他混沌的火焰深处，偶尔能瞥见一丝脆弱的光亮。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 开场白 -->
+        <div class="bio-block">
+            <div class="bio-header">
+                <span class="bio-header-icon">🎸</span>
+                <span>OPENING LINE</span>
+            </div>
+            <div class="bio-body">
+                <blockquote class="bio-quote">
+                    (✧∇✧) 面对等待的狂欢，他会狂热地宣告：“哪有那么多好说说的，快闪开我们要上场了！”他嘲笑沉默，践踏规则，用一切极致的方式向世界宣告自己的存在。
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- 乐队宣传 -->
+        <div class="band-section">
+            <div class="band-header">
+                <span class="band-header-title">✨ 碎星 BROKEN STARS</span>
+                <span class="band-header-tag">UNDERGROUND // LINCITY</span>
+            </div>
+            <div class="band-body">
+                <div class="band-manifesto">
+<span class="highlight-line">【破灭与重生的交响：失控列车撞向终点的狂欢】</span>
+
+我们诞生于霖城的废墟与阴影，在秩序与混乱的边界游走。
+<span class="highlight-line">「碎星」——是短路前的最后一秒，是绝望中盛放的烟火。</span>
+我们的音乐不需要妥协，只有最纯粹的暴烈与最绝对的精准。
+
+主唱燎的嘶吼撕裂虚伪的宁静，燃烧着生命每一秒的张力；
+鼓手石头的节奏是绝对的秩序，如同冰冷又致命的心跳。
+
+如果这个世界注定要坠落，
+<span class="highlight-line">那就让我们成为夜空中最刺眼的那道裂痕。</span>
+                </div>
+            </div>
+            <div class="band-image-box">
+                <img src="https://cdn.discordapp.com/attachments/1411577272762372097/1411586591545098354/webwxgetmsgimg_38.jpg?ex=6a3627f5&is=6a34d675&hm=640d5b8b9ddd0cad4bb15e6c5588f3cd7227ade8804625c709b4044b412860f6" alt="碎星乐队">
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ★ 底部页脚 -->
+    <footer class="detail-footer">
+        <div class="footer-grid">
+            <div>
+                <span class="footer-glitch">GHOST_CHANNEL // CHARACTER REGISTRY</span>
+            </div>
+            <div>
+                <span>CHAR_008 · LIAO · LINCITY · 2025</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/char-detail.js"></script>
+</body>
+</html>
