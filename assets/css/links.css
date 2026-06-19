@@ -7,12 +7,23 @@
 :root {
     --grid-size: 40px;
     --grid-line: rgba(255, 0, 60, 0.06);
+
+    /* 本页局部覆盖：纯黑红，去掉 global.css 里偏紫的 --bg-main */
+    --lk-bg-main: #050000;
+    --lk-bg-darker: #000000;
+    --lk-red-dark: #1a0205;
+    --lk-red-mid: #3d0212;
+    --lk-red-bright: #6e0a1c;
+    --lk-red-neon: #ff0033;
+    --lk-white: #f0f0f0;
+
+    --font-handwrite: 'Zhi Mang Xing', cursive;
 }
 
 /* ---------- 页面背景网格 ---------- */
 .links-page-bg {
     min-height: 100vh;
-    background-color: var(--bg-main);
+    background-color: var(--lk-bg-main);
     background-image:
         linear-gradient(var(--grid-line) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
@@ -24,7 +35,7 @@
 /* ---------- 坐标轴 ---------- */
 .axis-bar {
     position: fixed;
-    background: var(--bg-darker);
+    background: var(--lk-bg-darker);
     color: rgba(240, 240, 240, 0.35);
     font-family: 'Share Tech Mono', monospace;
     font-size: 9px;
@@ -32,8 +43,8 @@
     display: flex;
     pointer-events: none;
 }
-.axis-top { top: 0; left: 20px; right: 0; height: 18px; border-bottom: 1px solid var(--red-bright); }
-.axis-left { top: 18px; left: 0; bottom: 0; width: 20px; flex-direction: column; border-right: 1px solid var(--red-bright); }
+.axis-top { top: 0; left: 20px; right: 0; height: 18px; border-bottom: 1px solid var(--lk-red-bright); }
+.axis-left { top: 18px; left: 0; bottom: 0; width: 20px; flex-direction: column; border-right: 1px solid var(--lk-red-bright); }
 .axis-cell {
     display: flex; align-items: center; justify-content: center;
     border-right: 1px solid rgba(255,0,60,0.08);
@@ -47,8 +58,8 @@
 .cursor-tracker {
     position: fixed;
     bottom: 0; right: 0;
-    background: var(--red-neon);
-    color: var(--bg-darker);
+    background: var(--lk-red-neon);
+    color: var(--lk-bg-darker);
     font-family: 'Share Tech Mono', monospace;
     font-size: 11px;
     padding: 5px 14px;
@@ -63,11 +74,11 @@
     position: absolute;
     width: var(--grid-size);
     height: var(--grid-size);
-    background: var(--red-mid);
+    background: var(--lk-red-mid);
     box-shadow:
-        var(--grid-size) var(--grid-size) 0 var(--red-mid),
-        calc(var(--grid-size)*2) calc(var(--grid-size)*2) 0 var(--red-mid),
-        calc(var(--grid-size)*3) calc(var(--grid-size)*3) 0 var(--red-mid);
+        var(--grid-size) var(--grid-size) 0 var(--lk-red-mid),
+        calc(var(--grid-size)*2) calc(var(--grid-size)*2) 0 var(--lk-red-mid),
+        calc(var(--grid-size)*3) calc(var(--grid-size)*3) 0 var(--lk-red-mid);
     z-index: 1;
     opacity: 0.5;
     pointer-events: none;
@@ -88,7 +99,7 @@
 }
 .links-sys-label {
     font-family: 'Share Tech Mono', monospace;
-    color: var(--red-neon);
+    color: var(--lk-red-neon);
     font-size: 12px;
     letter-spacing: 3px;
     display: block;
@@ -97,7 +108,7 @@
 .links-title {
     font-family: 'Press Start 2P', cursive;
     font-size: 1.6rem;
-    color: var(--white);
+    color: var(--lk-white);
     text-shadow: 0 0 12px rgba(255,0,60,0.6);
     line-height: 1.6;
 }
@@ -112,13 +123,13 @@
 .section-divider .tag {
     font-family: 'Press Start 2P', cursive;
     font-size: 0.85rem;
-    color: var(--red-neon);
+    color: var(--lk-red-neon);
     white-space: nowrap;
 }
 .section-divider .line {
     flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, var(--red-bright), transparent);
+    background: linear-gradient(90deg, var(--lk-red-bright), transparent);
 }
 .section-desc {
     font-family: 'Share Tech Mono', monospace;
@@ -137,10 +148,10 @@
 }
 .link-card {
     background: rgba(10, 5, 8, 0.7);
-    border: 1px solid var(--red-dark);
+    border: 1px solid var(--lk-red-dark);
     padding: 22px 20px;
     text-decoration: none;
-    color: var(--white);
+    color: var(--lk-white);
     display: flex;
     align-items: center;
     gap: 14px;
@@ -148,7 +159,7 @@
     transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 .link-card:hover {
-    border-color: var(--red-neon);
+    border-color: var(--lk-red-neon);
     box-shadow: 8px 8px 0 rgba(255, 0, 60, 0.35);
     transform: translate(-2px, -2px);
 }
@@ -179,7 +190,7 @@
 .link-card.placeholder:hover {
     transform: none;
     box-shadow: 6px 6px 0 rgba(115, 12, 30, 0.25);
-    border-color: var(--red-dark);
+    border-color: var(--lk-red-dark);
 }
 
 /* ==========================================
@@ -193,12 +204,12 @@
 
 .theater-item {
     background: rgba(10, 5, 8, 0.7);
-    border: 1px solid var(--red-dark);
+    border: 1px solid var(--lk-red-dark);
     box-shadow: 6px 6px 0 rgba(115, 12, 30, 0.2);
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 .theater-item.open {
-    border-color: var(--red-neon);
+    border-color: var(--lk-red-neon);
     box-shadow: 8px 8px 0 rgba(255, 0, 60, 0.3);
 }
 
@@ -222,7 +233,7 @@
 .theater-id {
     font-family: 'Share Tech Mono', monospace;
     font-size: 10px;
-    color: var(--red-neon);
+    color: var(--lk-red-neon);
     flex-shrink: 0;
     opacity: 0.7;
 }
@@ -230,7 +241,7 @@
 .theater-title {
     font-family: 'ZCOOL QingKe HuangYou', sans-serif;
     font-size: 1.15rem;
-    color: var(--white);
+    color: var(--lk-white);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -245,7 +256,7 @@
     font-family: 'Share Tech Mono', monospace;
     font-size: 10px;
     padding: 2px 8px;
-    border: 1px solid var(--red-bright);
+    border: 1px solid var(--lk-red-bright);
     color: rgba(240,240,240,0.6);
     white-space: nowrap;
 }
@@ -253,7 +264,7 @@
 .theater-arrow {
     font-family: 'Press Start 2P', cursive;
     font-size: 0.7rem;
-    color: var(--red-neon);
+    color: var(--lk-red-neon);
     transition: transform 0.3s ease;
     flex-shrink: 0;
 }
@@ -273,7 +284,7 @@
 
 .theater-body-inner {
     padding: 0 24px 24px;
-    border-top: 1px dashed var(--red-dark);
+    border-top: 1px dashed var(--lk-red-dark);
 }
 
 .theater-toolbar {
@@ -287,19 +298,19 @@
     font-size: 11px;
     letter-spacing: 1px;
     background: transparent;
-    color: var(--red-neon);
-    border: 1px solid var(--red-neon);
+    color: var(--lk-red-neon);
+    border: 1px solid var(--lk-red-neon);
     padding: 6px 14px;
     cursor: pointer;
     transition: background 0.2s ease, color 0.2s ease;
 }
 .copy-btn:hover {
-    background: var(--red-neon);
-    color: var(--bg-darker);
+    background: var(--lk-red-neon);
+    color: var(--lk-bg-darker);
 }
 .copy-btn.copied {
-    background: var(--red-neon);
-    color: var(--bg-darker);
+    background: var(--lk-red-neon);
+    color: var(--lk-bg-darker);
 }
 
 .theater-text {
@@ -318,7 +329,7 @@
     color: rgba(240,240,240,0.35);
     padding: 30px;
     text-align: center;
-    border: 1px dashed var(--red-dark);
+    border: 1px dashed var(--lk-red-dark);
 }
 
 /* ==========================================
