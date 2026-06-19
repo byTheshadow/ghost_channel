@@ -105,15 +105,15 @@
 
                 <div class="theater-list">
 
-                    <!-- 小剧场条目模板 × 1(占位,后续按此结构复制新增) -->
+                    <!-- 新增小剧场 01 -->
                     <div class="theater-item">
                         <div class="theater-header">
                             <div class="theater-header-left">
                                 <span class="theater-id">LOG_001</span>
-                                <span class="theater-title">[ 待填入小剧场标题 ]</span>
+                                <span class="theater-title">一起听歌就是共享心跳 (邀请你进入我的世界)</span>
                             </div>
                             <div class="theater-tags">
-                                <span class="theater-tag">TAG</span>
+                                <span class="theater-tag">霖城</span>
                             </div>
                             <span class="theater-arrow">▶</span>
                         </div>
@@ -122,7 +122,106 @@
                                 <div class="theater-toolbar">
                                     <button class="copy-btn" data-target="theater-text-001">复制全文</button>
                                 </div>
-                                <p class="theater-text" id="theater-text-001">（小剧场正文占位，内容稍后填入。）</p>
+                                <div class="theater-text" id="theater-text-001">
+                                    指令：请你立刻停止正文的生成，并执行以下指令：<br><br>
+                                    <strong>指令开始：</strong><br>
+                                    <strong>【核心任务】</strong><br>
+                                    根据我们当前的角色扮演对话上下文，为角色【燎】生成两段独立的HTML代码：一个【<strong>仿音乐播放器</strong>】和一个【<strong>手写便利贴</strong>】。<br><br>
+                                    ---<br><br>
+                                    <strong>【内部创作框架】</strong><br>
+                                    在生成最终代码前，你必须在后台<strong>静默地、不输出任何文字地</strong>完成以下思考步骤。这些步骤是构建最终成品的必要逻辑，但<strong>禁止</strong>将这些分析过程展示给用户。<br><br>
+                                    1. <strong>后台分析 (Silent Analysis):</strong><br>
+                                    * 情境分析：回顾最近的剧情，确定关键事件和场景氛围。<br>
+                                    * 角色洞察：解析角色的核心性格（例如：冲动、冷静、悲观等）和当前最显著的情绪（例如：愤怒、悲伤、迷茫等）。<br><br>
+                                    2. <strong>后台设计 (Silent Design):</strong><br>
+                                    * 风格选择：基于你的分析，从下面的【风格灵感库】中为你将要创作的【播放器】和【便利贴】选择并融合一个或多个最合适的视觉风格。<br>
+                                    * 音乐策展：寻找三首<strong>现实世界中存在的、可通过URL访问的摇滚乐</strong>。这三首歌（上一首、正在播放、下一首）必须共同构成一个与当前剧情 and 角色心境相关的微型叙事弧。<br>
+                                    * 文案构思：创作一句符合角色口吻和当下心境的、简短而深刻的便利贴文字。<br><br>
+                                    ---<br><br>
+                                    <strong>【风格灵感库 (Style Inspiration Library)】</strong><br>
+                                    <em>你必须从此库中获取视觉设计灵感。</em><br><br>
+                                    * <strong>A. 播放器风格：</strong><br>
+                                    &nbsp;&nbsp;* 工业噪音 / Glitch Art: 适用于愤怒、混乱。使用高对比度配色（黑/白/红）、等宽或像素字体、错位和故障效果。<br>
+                                    &nbsp;&nbsp;* 极简主义 / 冷浪潮: 适用于压抑、冷静。使用冷色调（蓝/灰/黑）、纤细字体、对称布局和大量留白。<br>
+                                    &nbsp;&nbsp;* 复古 / 旧物美学: 适用于怀旧、疲惫。使用泛黄、低饱和度配色、打字机字体，模仿旧设备（卡带机、收音机）的布局。<br>
+                                    &nbsp;&nbsp;* 朋克 / Zine拼贴: 适用于叛逆、不羁。使用随机、刺眼的颜色、混合字体、倾斜和重叠的混乱布局。<br><br>
+                                    * <strong>B. 便利贴风格：</strong><br>
+                                    &nbsp;&nbsp;* 标准便签: 淡黄色背景，轻微阴影和旋转。<br>
+                                    &nbsp;&nbsp;* 笔记本撕页: 白色背景带横线，边缘有撕裂效果。<br>
+                                    &nbsp;&nbsp;* 收据背面: 细长，有模拟打印文字的背景。<br>
+                                    &nbsp;&nbsp;* 潦草的餐巾纸: 方形，有纸巾纹理，边框柔软。<br><br>
+                                    ---<br><br>
+                                    <strong>【HTML生成规则】</strong><br><br>
+                                    * <strong>独特型：</strong>每一次生成都必须是独一无二的，严禁使用固定模板。<br>
+                                    * <strong>技术实现：</strong><br>
+                                    &nbsp;&nbsp;* 必须使用内联CSS (style="...") 进行样式设计。<br>
+                                    &nbsp;&nbsp;* 便利贴必须通过&lt;style&gt;标签引入一个合适的Google手写体字体URL (@import url(...))，并应用该字体。<br>
+                                    &nbsp;&nbsp;* 播放器中的歌曲名必须是可点击的链接 (&lt;a href="..." target="_blank"&gt;)，链接到你找到的音乐URL。<br>
+                                    &nbsp;&nbsp;* 便利贴应使用transform: rotate(...)和box-shadow来增加真实感。<br><br>
+                                    ---<br><br>
+                                    <strong>【!!! 绝对输出指令 !!!】</strong><br><br>
+                                    <strong>不要输出任何思考过程、分析、解释或多余的文字。你的回复必须且只能包含以下两部分内容，严格按照此格式：</strong><br>
+                                    html<br>
+                                    [此处是你生成的【仿音乐播放器】的完整HTML代码]<br>
+                                    ```html<br>
+                                    [此处是你生成的【手写便利贴】的完整HTML代码]<br><br>
+                                    指令结束。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 新增小剧场 02 -->
+                    <div class="theater-item">
+                        <div class="theater-header">
+                            <div class="theater-header-left">
+                                <span class="theater-id">LOG_002</span>
+                                <span class="theater-title">一起听歌就是共享心跳2</span>
+                            </div>
+                            <div class="theater-tags">
+                                <span class="theater-tag">霖城</span>
+                            </div>
+                            <span class="theater-arrow">▶</span>
+                        </div>
+                        <div class="theater-body">
+                            <div class="theater-body-inner">
+                                <div class="theater-toolbar">
+                                    <button class="copy-btn" data-target="theater-text-002">复制全文</button>
+                                </div>
+                                <div class="theater-text" id="theater-text-002">
+                                    【用户指令：开启“霖城之声·同频” v2.1 - 稳定版】 (请完整复制以下所有内容发送给AI)<br>
+                                    指令开始：<br><br>
+                                    你好，请执行一次特殊的创意生成任务。<br><br>
+                                    【核心任务】<br>
+                                    模拟一个名为【霖城之声·同频】的音乐共享功能。你需要根据我们当前的角色扮演对话上下文，为【{{char}}】（角色）和【{{user}}】（我）生成一个共享音乐体验的HTML界面。<br><br>
+                                    ---<br><br>
+                                    【内部创作框架】<br>
+                                    在生成最终代码前，你必须在后台静默地、不输出任何文字地完成以下思考步骤。这些步骤是构建最终成品的必要逻辑，但禁止将这些分析过程展示给用户。<br><br>
+                                    第一步：情境与角色洞察 (Context & Character Insight)<br>
+                                    分析关系氛围、选择头像Emoji。<br><br>
+                                    第二步：音乐与视觉策展 (Music & Visual Curation)<br>
+                                    选择关键歌曲、处理专辑封面（包括使用Emoji作为备选方案）、设计界面风格。<br><br>
+                                    第三步：动态评论创作 (Dynamic Commentary Creation)<br>
+                                    创作气泡评论、设计动态情感CSS动画。<br><br>
+                                    ---<br><br>
+                                    【HTML生成规则】<br><br>
+                                    结构分离： 整体HTML应分为两个主要&lt;div&gt;：上方的【播放器主体】和下方的【互动评论区】。<br>
+                                    技术实现： 严格遵循所有技术要求（Emoji头像、可点击链接、动态CSS等）。<br><br>
+                                    【新增】布局与尺寸稳定性 (Layout & Sizing Stability):<br>
+                                    禁止固定高度 (CRUCIAL):<br>
+                                    &nbsp;严禁为【播放器主体】的容器设置一个固定的height属性（例如 height: 400px;）。<br>
+                                    使用内边距控制空间:<br>
+                                    &nbsp;优先使用padding来控制容器内部的上下空间。这会让容器的高度由内容自然撑开，确保所有内容都能完整显示。<br>
+                                    使用最小高度 (可选):<br>
+                                    &nbsp;如果需要保证一个最小的视觉尺寸，可以使用min-height（例如 min-height: 350px;），它允许容器在内容增多时继续伸展。<br>
+                                    字体尺寸协调:<br>
+                                    &nbsp;确保艺术家名字的font-size比歌曲名的font-size略小，这样既有层次感，也能节省垂直空间。<br><br>
+                                    ---<br><br>
+                                    【!!! 绝对输出指令 !!!】<br><br>
+                                    不要输出任何思考过程、分析、解释或多余的文字。你的回复必须且只能包含以下内容，严格按照此格式：<br><br>
+                                    [此处是你生成的【霖城之声·同频】的完整HTML代码]<br><br>
+                                    指令结束。
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -137,7 +236,7 @@
     </div>
 
     <script src="../assets/js/links.js"></script>
-    <!-- 若 global.js 中含导航栏汉堡菜单逻辑,请确保已引入,否则补充： -->
+    <!-- 导航栏汉堡菜单逻辑 -->
     <script>
         document.getElementById('navBurger')?.addEventListener('click', () => {
             document.getElementById('mobileMenu')?.classList.toggle('open');
