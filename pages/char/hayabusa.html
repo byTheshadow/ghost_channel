@@ -10,18 +10,86 @@
     <link rel="stylesheet" href="../../assets/css/global.css">
     <link rel="stylesheet" href="../../assets/css/char-intro.css">
     <link rel="stylesheet" href="../../assets/css/char-detail-a.css">
-    <style>
-        /* 隼 个性化覆盖 —琥珀金点缀 */
-        .hayabusa-accent { color: #d4a017; text-shadow: 0 0 10px rgba(212, 160, 23, 0.4); }
-        .hero-banner:hover .hero-title-text {
-            -webkit-text-stroke: 1px #d4a017;
-            color: rgba(212, 160, 23, 0.15);
-            text-shadow: 0 0 40px rgba(212, 160, 23, 0.3);
-        }
-        .hero-title-text::after { background: linear-gradient(90deg, var(--red-mid), #d4a017, var(--red-mid)); }
-        /*覆盖 global.css 的 overflow: hidden */
-        body, html { overflow: visible; height: auto; }
-    </style>
+    <style>/* 隼 个性化覆盖 —琥珀金点缀 */
+    .hayabusa-accent { color: #d4a017; text-shadow: 0 0 10px rgba(212, 160, 23, 0.4); }
+    .hero-banner:hover .hero-title-text {
+        -webkit-text-stroke: 1px #d4a017;
+        color: rgba(212, 160, 23, 0.15);
+        text-shadow: 0 0 40px rgba(212, 160, 23, 0.3);
+    }
+    .hero-title-text::after { background: linear-gradient(90deg, var(--red-mid), #d4a017, var(--red-mid)); }
+    /*覆盖 global.css */
+    body, html { overflow: visible; height: auto; }
+
+    /* ===== 压制 global.css 中的导航栏干扰 ===== */
+    .navbar { display: none !important; }
+    .sidebar { display: none !important; }
+    .hamburger { display: none !important; }
+
+    /* 重置 global.css 对 .nav-links / .nav-link 的污染 */
+    .ghost-nav .nav-links {
+        display: flex;
+        gap: 6px;
+    }
+    .ghost-nav .nav-link {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 9px;
+        color: #888;
+        text-decoration: none;
+        padding: 8px 14px;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+        transition: color 0.3s, text-shadow 0.3s;
+    }
+    .ghost-nav .nav-link::before {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 50%;
+        width: 0; height: 2px;
+        background: var(--red-neon);
+        box-shadow: 0 0 8px var(--red-neon);
+        transition: width 0.3s ease, left 0.3s ease;top: auto;
+        transform: none;
+    }
+    .ghost-nav .nav-link:hover,
+    .ghost-nav .nav-link.active {
+        color: var(--red-neon);
+        text-shadow: 0 0 10px rgba(255, 0, 60, 0.6);
+    }
+    .ghost-nav .nav-link:hover::before,
+    .ghost-nav .nav-link.active::before {
+        width: 60%; left: 20%;
+        animation: none;
+    }
+    .ghost-nav .nav-link::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 8px; left: 14px;
+        color: var(--red-neon);
+        opacity: 0;
+        clip-path: inset(0 0 0 0);
+        width: auto;
+        height: auto;
+        background: none;
+        transform: none;
+        transition: none;
+        white-space: nowrap;
+    }
+    .ghost-nav .nav-title {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 11px;
+        color: var(--red-neon);
+        letter-spacing: 2px;
+        text-shadow: 0 0 8px rgba(255, 0, 60, 0.5);
+    }
+
+    @media (max-width: 960px) {
+        .ghost-nav .nav-links { display: none; }
+        .nav-burger { display: flex; }
+    }
+</style>
+
 </head>
 <body class="detail-page">
 
