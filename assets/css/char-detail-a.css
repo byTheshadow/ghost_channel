@@ -1,0 +1,572 @@
+/* ============================================================
+   GHOST CHANNEL — CHARACTER DETAIL · TEMPLATE A
+   「终端档案」— 工业科技风 · 左右分栏 · 扫描线
+   ============================================================ */
+
+/* ==================== 页面基础 ==================== */
+.detail-page {
+    background-color: #050000;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(rgba(139, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* 自定义滚动条 */
+.detail-page ::-webkit-scrollbar { width: 6px; }
+.detail-page ::-webkit-scrollbar-track { background: #000; }
+.detail-page ::-webkit-scrollbar-thumb { background: var(--red-mid); }
+.detail-page ::-webkit-scrollbar-thumb:hover { background: var(--red-neon); }
+
+/* ==================== 返回按钮 ==================== */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 76px 0 0 30px;
+    padding: 10px 20px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: #666;
+    text-decoration: none;
+    border: 1px solid rgba(115, 12, 30, 0.3);
+    border-radius: 4px;
+    background: rgba(10, 2, 2, 0.6);
+    transition: all 0.3s;letter-spacing: 1px;
+    position: relative;
+    z-index: 50;
+}
+
+.back-btn:hover {
+    color: var(--red-neon);
+    border-color: var(--red-neon);
+    box-shadow: 0 0 15px rgba(255, 0, 60, 0.2);
+    background: rgba(255, 0, 60, 0.05);
+}
+
+/* ==================== 顶部状态栏 ==================== */
+.status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+    border-bottom: 1px solid var(--red-mid);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #555;
+    letter-spacing: 2px;
+    background: rgba(5, 0, 0, 0.8);
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-dot-live {
+    width: 6px;
+    height: 6px;
+    background-color: var(--red-neon);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--red-neon);
+    animation: statusPulseLive 2s infinite;
+}
+
+@keyframes statusPulseLive {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* ==================== 巨幅角色名 Banner ==================== */
+.hero-banner {
+    position: relative;
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--red-mid);
+    overflow: hidden;
+}
+
+.hero-title-text {
+    font-family: 'UnifrakturCook', 'ZCOOL QingKe HuangYou', cursive;
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 900;
+    line-height: 0.85;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--red-mid);
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    position: relative;
+    user-select: none;
+    transition: all 0.5s ease;
+}
+
+.hero-banner:hover .hero-title-text {
+    color: var(--red-neon);
+    text-shadow: 0 0 30px rgba(255, 0, 60, 0.4);
+    -webkit-text-stroke: 1px var(--red-neon);
+}
+
+/*横穿线 */
+.hero-title-text::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 3px;
+    background: var(--red-mid);
+    transform: translateY(-50%);
+    opacity: 0.5;
+}
+
+/* ==================== 主内容区（左右分栏） ==================== */
+.detail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+@media (min-width: 992px) {
+    .detail-container {
+        grid-template-columns: 420px 1fr;
+    }
+}
+
+/* ==================== 左侧：角色卡片 ==================== */
+.portrait-wrapper {
+    perspective: 1000px;
+}
+
+.portrait-card {
+    background-color: rgba(10, 2, 2, 0.9);
+    border: 1px solid var(--red-mid);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.1s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;border-radius: 4px;
+}
+
+.portrait-card:hover {
+    box-shadow: 0 10px 40px rgba(255, 0, 60, 0.15);
+    border-color: var(--red-neon);
+}
+
+/* 角色图片 */
+.portrait-image-box {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: #0a0505;
+    overflow: hidden;
+}
+
+.portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    filter: grayscale(60%) contrast(120%) brightness(85%);
+    transition: all 0.5s ease;
+}
+
+.portrait-card:hover .portrait-img {
+    filter: grayscale(10%) contrast(110%) brightness(95%);
+    transform: scale(1.03);
+    opacity: 1;
+}
+
+/*扫描红线 */
+.portrait-scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--red-neon), transparent);
+    animation: portraitScan 4s linear infinite;
+    z-index: 2;
+}
+
+@keyframes portraitScan {
+    0%   { top: 0%; }
+    50%  { top: 100%; }
+    100% { top: 0%; }
+}
+
+/* 卡片底部元数据 */
+.portrait-meta {
+    padding: 18px 20px;
+    border-top: 1px solid var(--red-mid);
+    background: #050000;
+}
+
+.portrait-meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    margin-bottom: 6px;
+    color: #888;
+}
+
+.portrait-meta-row:last-child {
+    margin-bottom: 0;
+}
+
+.meta-label {
+    color: var(--red-mid);
+    letter-spacing: 1px;
+}
+
+.meta-value {
+    color: #aaa;
+}
+
+/* ==================== 右侧：信息面板 ==================== */
+.info-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* 系统描述 */
+.sys-desc {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    line-height: 1.8;
+    color: #555;
+    text-transform: uppercase;
+    border-left: 2px solid var(--red-mid);
+    padding-left: 16px;
+    letter-spacing: 1px;
+}
+
+/* 角色名区块 */
+.char-name-block h2 {
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: 3px;
+}
+
+.char-name-block .char-subtitle {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--red-mid);
+    margin-top: 6px;
+    letter-spacing: 2px;
+}
+
+/*==================== 标签组 ==================== */
+.tag-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.detail-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    padding: 5px 12px;
+    border: 1px solid var(--red-dark);
+    border-radius: 3px;
+    color: var(--red-bright);
+    background: rgba(115, 12, 30, 0.08);
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.detail-tag:hover {
+    border-color: var(--red-neon);
+    color: var(--red-neon);
+    box-shadow: 0 0 10px rgba(255, 0, 60, 0.2);
+    background: rgba(255, 0, 60, 0.05);
+}
+
+.detail-tag.warn {
+    border-color: #553300;
+    color: #cc8800;
+    background: rgba(204, 136, 0, 0.05);
+}
+
+.detail-tag.warn:hover {
+    border-color: #ffaa00;
+    color: #ffaa00;
+    box-shadow: 0 0 10px rgba(255, 170, 0, 0.2);
+}
+
+/* ==================== 终端风格档案表格 ==================== */
+.manifest-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    text-align: left;
+}
+
+.manifest-table th,
+.manifest-table td {
+    border: 1px solid rgba(115, 12, 30, 0.2);
+    padding: 12px 14px;
+}
+
+.manifest-table th {
+    background-color: rgba(10, 2, 2, 0.8);
+    color: var(--red-mid);
+    border-bottom: 1px solid var(--red-mid);
+    font-weight: normal;
+    letter-spacing: 1px;
+    font-size: 11px;
+}
+
+.manifest-table td {
+    color: #999;
+    background: rgba(5, 0, 0, 0.4);
+    transition: all 0.3s;
+}
+
+.manifest-table tr:hover td {
+    background-color: rgba(255, 0, 60, 0.03);
+    color: var(--red-neon);
+}
+
+/* ==================== 角色介绍区 ==================== */
+.bio-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px 40px;
+}
+
+.bio-block {
+    border: 1px solid var(--red-dark);
+    border-radius: 6px;
+    background: rgba(10, 2, 2, 0.7);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.bio-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    background: rgba(20, 5, 10, 0.8);
+    border-bottom: 1px solid var(--red-dark);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: var(--red-mid);
+    letter-spacing: 2px;
+}
+
+.bio-header-icon {
+    font-size: 16px;
+}
+
+.bio-body {
+    padding: 24px;
+}
+
+.bio-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 15px;
+    color: #bbb;
+    line-height: 2;
+    letter-spacing: 0.5px;
+}
+
+.bio-text p {
+    margin-bottom: 16px;
+}
+
+.bio-text p:last-child {
+    margin-bottom: 0;
+}
+
+/*引用块（开场白） */
+.bio-quote {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    color: var(--red-neon);
+    text-shadow: 0 0 8px rgba(255, 0, 60, 0.3);
+    border-left: 3px solid var(--red-neon);
+    padding: 16px 20px;
+    margin: 20px 0;
+    background: rgba(255, 0, 60, 0.03);
+    font-style: italic;
+    line-height: 1.9;
+    border-radius: 0 4px 4px 0;
+}
+
+/* ==================== 乐队宣传区 ==================== */
+.band-section {
+    border: 1px solid var(--red-dark);
+    border-radius: 6px;
+    background: rgba(5, 0, 0, 0.8);
+    overflow: hidden;
+}
+
+.band-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: rgba(20, 5, 10, 0.8);
+    border-bottom: 1px solid var(--red-dark);
+}
+
+.band-header-title {
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    font-size: 16px;
+    color: var(--red-neon);
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(255, 0, 60, 0.4);
+}
+
+.band-header-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 1px;
+}
+
+.band-body {
+    padding: 24px;
+}
+
+.band-manifesto {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    color: #999;
+    line-height: 2;
+    white-space: pre-line;
+}
+
+.band-manifesto .highlight-line {
+    color: var(--red-neon);
+    text-shadow: 0 0 6px rgba(255, 0, 60, 0.3);
+    font-weight: 700;
+}
+
+.band-manifesto .dim-line {
+    color: #555;
+}
+
+/* 乐队图片 */
+.band-image-box {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-top: 1px solid var(--red-dark);
+}
+
+.band-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(50%) contrast(110%) brightness(80%);
+    transition: all 0.5s;
+}
+
+.band-image-box:hover img {
+    filter: grayscale(10%) contrast(105%) brightness(95%);
+    transform: scale(1.03);
+}
+
+/* ==================== 底部终端页脚 ==================== */
+.detail-footer {
+    border-top: 1px solid var(--red-mid);
+    padding: 30px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #444;
+    background: #030000;
+}
+
+.footer-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.footer-glitch {
+    color: var(--red-mid);
+    animation: footerGlitch 5s infinite;
+}
+
+@keyframes footerGlitch {
+    0%, 95%, 100% { transform: skew(0deg); }
+    96% { transform: skew(-2deg); color: var(--red-neon); }
+    97% { transform: skew(3deg); }98% { transform: skew(-1deg); }
+    99% { transform: skew(1deg); }
+}
+
+/* ==================== 响应式 ==================== */
+@media (max-width: 992px) {
+    .detail-container {
+        padding: 30px 20px;
+    }
+
+    .portrait-image-box {
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .back-btn {
+        margin: 66px 0 0 16px;
+    }
+
+    .status-header {
+        padding: 10px 16px;
+        font-size: 10px;
+    }
+
+    .hero-banner {
+        padding: 25px 16px;
+    }
+
+    .detail-container {
+        padding: 20px 16px;
+    }
+
+    .portrait-image-box {
+        height: 350px;
+    }
+
+    .char-name-block h2 {
+        font-size: 1.8rem;
+    }
+
+    .bio-section {
+        padding: 0 16px 30px;
+    }
+
+    .bio-text {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .portrait-image-box {
+        height: 280px;
+    }
+
+    .char-name-block h2 {
+        font-size: 1.5rem;
+    }
+
+    .bio-quote {
+        font-size: 14px;
+    }
+}

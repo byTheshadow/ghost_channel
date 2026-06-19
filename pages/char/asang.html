@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - 阿丧 🥀 司孤鸿</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/char-intro.css">
+    <link rel="stylesheet" href="../../assets/css/char-detail-b.css">
+    <style>
+        /* 阿丧 个性化覆盖 —枯萎玫瑰色 */
+        .asang-accent { color: #8b4557; text-shadow: 0 0 12px rgba(139, 69, 87, 0.5); }
+        .hero-name-sub { -webkit-text-stroke: 1px #8b4557; }
+        .bio-block-b { border-left-color: #8b4557; }
+        .band-section-b::before { background: linear-gradient(to bottom, #8b4557, transparent); }
+        /*覆盖 global.css 的 overflow: hidden */
+        body, html { overflow: visible; height: auto; }
+    </style>
+</head>
+<body class="detail-page-b">
+
+    <!-- ★ 入场动画 -->
+    <div class="char-intro-overlay" id="charIntro">
+        <div class="intro-stage">
+            <div class="intro-shockwave loop"></div>
+            <div class="intro-bass-wrapper">
+                <svg viewBox="0 0 10 24" width="100%" height="100%">
+                    <rect x="3" y="0" width="4" height="4" fill="#1a1a1a"/>
+                    <rect x="2" y="1" width="1" height="1" fill="#777"/>
+                    <rect x="2" y="3" width="1" height="1" fill="#777"/>
+                    <rect x="7" y="1" width="1" height="1" fill="#777"/>
+                    <rect x="7" y="3" width="1" height="1" fill="#777"/>
+                    <rect x="4" y="4" width="2" height="10" fill="#0d0d0d"/>
+                    <rect x="4" y="4" width="1" height="10" fill="#333"/>
+                    <rect x="3" y="14" width="4" height="2" fill="#1a1a1a"/>
+                    <rect x="2" y="15" width="6" height="3" fill="#1a1a1a"/>
+                    <rect x="1" y="16" width="8" height="6" fill="#1a1a1a"/>
+                    <rect x="2" y="22" width="6" height="1" fill="#1a1a1a"/>
+                    <rect x="3" y="16" width="4" height="5" fill="#cc0000"/>
+                    <rect x="2" y="17" width="1" height="3" fill="#ff1a1a"/>
+                    <rect x="4" y="18" width="2" height="1" fill="#000"/>
+                    <rect x="5" y="19" width="2" height="1" fill="#000"/>
+                    <rect x="3" y="20" width="4" height="1" fill="#999"/>
+                </svg>
+            </div>
+            <div class="intro-ghost-track loop">
+                <div class="intro-ghost-sprite">
+                    <svg viewBox="0 0 14 14" width="100%" height="100%">
+                        <rect x="5" y="0" width="4" height="1" fill="#ff003c"/>
+                        <rect x="3" y="1" width="8" height="1" fill="#ff003c"/>
+                        <rect x="2" y="2" width="10" height="1" fill="#ff003c"/>
+                        <rect x="1" y="3" width="12" height="2" fill="#ff003c"/>
+                        <rect x="0" y="5" width="14" height="6" fill="#ff003c"/>
+                        <rect x="0" y="11" width="14" height="1" fill="#ff003c"/>
+                        <rect x="0" y="12" width="3" height="1" fill="#ff003c"/>
+                        <rect x="5" y="12" width="4" height="1" fill="#ff003c"/>
+                        <rect x="11" y="12" width="3" height="1" fill="#ff003c"/>
+                        <rect x="0" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="6" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="12" y="13" width="2" height="1" fill="#ff003c"/>
+                        <rect x="2" y="3" width="4" height="5" fill="#ffffff"/>
+                        <rect x="8" y="3" width="4" height="5" fill="#ffffff"/>
+                        <rect x="4" y="5" width="2" height="2" fill="#000000"/>
+                        <rect x="10" y="5" width="2" height="2" fill="#000000"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="intro-char-name loop">
+            【A-SANG】
+            <span class="intro-char-name-cn">阿丧🥀</span>
+        </div>
+        <div class="intro-skip-hint">CLICK ANYWHERE TO SKIP</div>
+    </div>
+
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!-- 自定义光标 -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-follower"></div>
+
+    <!-- ★ 导航栏 -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="../links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../home.html" class="mobile-link">HOME</a>
+        <a href="../about.html" class="mobile-link">ABOUT</a>
+        <a href="../characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="../gallery.html" class="mobile-link">GALLERY</a>
+        <a href="../presets.html" class="mobile-link">PRESETS</a>
+        <a href="../plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="../links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <!-- ★ 返回按钮 -->
+    <a href="../characters.html" class="back-btn-b">← BACK TO CHARACTERS</a>
+
+    <!-- ★ Hero 全屏区 -->
+    <header class="hero-full">
+        <div class="vertical-deco">为什么不可以只关注我呢？</div>
+
+        <div class="hero-name" id="heroNameParallax">
+            <span class="hero-name-main">阿丧</span>
+            <span class="hero-name-sub">Si Gu Hong</span>
+        </div>
+
+        <div class="hero-img-container" id="heroImgParallax">
+            <img id="heroImgInner" src="https://cdn.discordapp.com/attachments/1411577272762372097/1411584211319787540/webwxgetmsgimg_27.jpg?ex=6a3625bd&is=6a34d43d&hm=9dc516bb1a153607c1bc997acbb300acdb1116c64d3c55ff2bdf561696ee186c" alt="阿丧 司孤鸿">
+        </div>
+    </header>
+
+    <!-- ★ 内容区 -->
+    <section class="content-section-b">
+
+        <!-- 传记 -->
+        <div class="bio-block-b">
+            <span class="bio-lead">"为什么不可以只关注我呢？"</span>
+            在破碎的旋律与城市的低语之间，站着阿丧——"酸雨坠落"乐队沉默的核心。他指尖流淌的吉他声并非纯粹的愤怒，而是更复杂、更缓慢侵蚀人心的东西，如同他名字所预示的忧伤与凋零。
+            <br><br>
+            他看似温和疏离，眼底却藏着不容错辨的掌控欲与深不见底的执着。舞台上的他是情绪的舵手，精准引导着每一次共鸣与崩溃；舞台之下，他的世界则由旧书页的叹息、自制音乐的偏执和一座需要绝对忠诚的堡垒构成。
+        </div>
+
+        <!-- 档案卡片 -->
+        <div class="archive-grid-b"><div class="info-card">
+                <div class="card-meta-b">
+                    <span>FILE [01]</span>
+                    <span>IDENTITY</span>
+                </div>
+                <h3>基础档案</h3>
+                <p>角色名：阿丧（司孤鸿）<br>世界观：霖城 ·现代架空<br>性向：BG / BL做1<br>所属：酸雨坠落乐队 · 主唱兼吉他手<br>产出时间：2025年8月</p>
+            </div>
+
+            <div class="info-card">
+                <div class="card-meta-b">
+                    <span>FILE [02]</span>
+                    <span>WARNING</span>
+                </div>
+                <h3>⚠ 避雷提示</h3>
+                <p>地雷男✧拥有dom倾向 ✧ 极致的掌控欲与近乎毁灭的占有欲。接近阿丧，意味着踏入一场精心编排的情感风暴，体验极致共鸣后的窒息。</p>
+            </div>
+
+            <div class="info-card">
+                <div class="card-img-b">
+                    <img src="https://cdn.discordapp.com/attachments/1411577272762372097/1411582994443010169/webwxgetmsgimg_36.jpg?ex=6a36249b&is=6a34d31b&hm=b259696fcc67a7c0d55c610b20971a40792957ec25a331dc8780582c9c0f4080" alt="阿丧素材">
+                </div>
+                <div class="card-meta-b">
+                    <span>FILE [03]</span>
+                    <span>VISUAL</span>
+                </div>
+                <h3>视觉印象</h3>
+                <p>沉默的核心，温和疏离的表象下是不容错辨的掌控欲。</p>
+            </div>
+
+            <div class="info-card">
+                <div class="card-meta-b">
+                    <span>FILE [04]</span>
+                    <span>OPENING</span>
+                </div>
+                <h3>🎤 开场白</h3>
+                <p>为什么不可以只关注我呢？ヽ(　￣д￣)ノ<br><br>音乐是好是坏是唱出来的，不是说出来的。</p>
+            </div>
+
+            <div class="info-card">
+                <div class="card-meta-b">
+                    <span>FILE [05]</span>
+                    <span>PERSONA</span>
+                </div>
+                <h3>性格侧写</h3>
+                <p>舞台上是情绪的舵手，精准引导着每一次共鸣与崩溃。舞台之下，他的世界由旧书页的叹息、自制音乐的偏执和一座需要绝对忠诚的堡垒构成。</p>
+            </div>
+
+        </div>
+
+        <!-- 开场白引用 -->
+        <div class="quote-section-b">
+            <div class="quote-mark">❝</div>
+            <p class="quote-text-b">
+                为什么不可以只关注我呢？<br>
+                音乐是好是坏是唱出来的，不是说出来的。
+            </p>
+            <div class="quote-mark">❞</div>
+            <p class="quote-author">— 阿丧 · 司孤鸿 · CHAR_005</p>
+        </div>
+
+        <!-- 乐队宣传 -->
+        <div class="band-section-b">
+            <h3 class="band-title-b">🥀 酸雨坠落 ACID RAIN FALL</h3>
+            <div class="band-text-b">在霖城锈蚀的脉搏上，我们是被遗忘的电流。
+主城区的霓虹照不亮城东的裂缝，但我们用失真与嘶吼劈开沉默。
+
+酸雨坠落——不是哀悼，是侵蚀。
+我们的旋律是铁皮屋顶的雨点、废弃工厂的回响、被碾碎却仍在燃烧的梦。
+阿丧的吉他是锈带走廊最后的诗；鼓手阿闲的节奏是街头生存的心跳，贝斯手小白的低音是暗涌的叛流。
+
+我们不属于精致的舞台，只属于雨夜、油污和真实的伤口。
+如果你也厌倦了虚假的和声，渴望一场彻底的情绪崩坏——
+来锈带边缘，听一场酸雨。
+让我们的坠落，砸穿你的地面。</div>
+        </div></section>
+
+    <!-- ★ 底部 -->
+    <footer class="detail-footer-b">
+        GHOST_CHANNEL // CHAR_005 · A-SANG · 司孤鸿 · LINCITY · 2025
+    </footer>
+
+    <script src="../../assets/js/char-detail.js"></script>
+</body>
+</html>
