@@ -1,0 +1,340 @@
+/* ==========================================
+   LINKS.CSS — Ghost Channel
+   坐标网格矩阵 + 手风琴小剧场
+   依赖 global.css 中的 CSS 变量
+   ========================================== */
+
+:root {
+    --grid-size: 40px;
+    --grid-line: rgba(255, 0, 60, 0.06);
+}
+
+/* ---------- 页面背景网格 ---------- */
+.links-page-bg {
+    min-height: 100vh;
+    background-color: var(--bg-main);
+    background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    background-position: 20px 20px;
+    position: relative;
+}
+
+/* ---------- 坐标轴 ---------- */
+.axis-bar {
+    position: fixed;
+    background: var(--bg-darker);
+    color: rgba(240, 240, 240, 0.35);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    z-index: 50;
+    display: flex;
+    pointer-events: none;
+}
+.axis-top { top: 0; left: 20px; right: 0; height: 18px; border-bottom: 1px solid var(--red-bright); }
+.axis-left { top: 18px; left: 0; bottom: 0; width: 20px; flex-direction: column; border-right: 1px solid var(--red-bright); }
+.axis-cell {
+    display: flex; align-items: center; justify-content: center;
+    border-right: 1px solid rgba(255,0,60,0.08);
+    border-bottom: 1px solid rgba(255,0,60,0.08);
+    flex-shrink: 0;
+}
+.axis-top .axis-cell { width: var(--grid-size); height: 100%; }
+.axis-left .axis-cell { width: 100%; height: var(--grid-size); }
+
+/* ---------- 右下角坐标追踪器 ---------- */
+.cursor-tracker {
+    position: fixed;
+    bottom: 0; right: 0;
+    background: var(--red-neon);
+    color: var(--bg-darker);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    padding: 5px 14px;
+    font-weight: bold;
+    z-index: 200;
+    letter-spacing: 1px;
+    box-shadow: 0 0 12px rgba(255,0,60,0.5);
+}
+
+/* ---------- 装饰像素阶梯 ---------- */
+.pixel-stair {
+    position: absolute;
+    width: var(--grid-size);
+    height: var(--grid-size);
+    background: var(--red-mid);
+    box-shadow:
+        var(--grid-size) var(--grid-size) 0 var(--red-mid),
+        calc(var(--grid-size)*2) calc(var(--grid-size)*2) 0 var(--red-mid),
+        calc(var(--grid-size)*3) calc(var(--grid-size)*3) 0 var(--red-mid);
+    z-index: 1;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* ---------- 主容器 ---------- */
+.links-main {
+    position: relative;
+    padding: 140px 40px 100px;
+    max-width: 1100px;
+    margin: 0 auto;
+    z-index: 5;
+}
+
+/* ---------- 页头 ---------- */
+.links-header {
+    margin-bottom: 60px;
+}
+.links-sys-label {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--red-neon);
+    font-size: 12px;
+    letter-spacing: 3px;
+    display: block;
+    margin-bottom: 14px;
+}
+.links-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.6rem;
+    color: var(--white);
+    text-shadow: 0 0 12px rgba(255,0,60,0.6);
+    line-height: 1.6;
+}
+
+/* ---------- 区域分隔标题 ---------- */
+.section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 70px 0 30px;
+}
+.section-divider .tag {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.85rem;
+    color: var(--red-neon);
+    white-space: nowrap;
+}
+.section-divider .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--red-bright), transparent);
+}
+.section-desc {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: rgba(240,240,240,0.4);
+    margin-bottom: 24px;
+}
+
+/* ==========================================
+   LINKS 区 — 卡片网格
+   ========================================== */
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 18px;
+}
+.link-card {
+    background: rgba(10, 5, 8, 0.7);
+    border: 1px solid var(--red-dark);
+    padding: 22px 20px;
+    text-decoration: none;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 6px 6px 0 rgba(115, 12, 30, 0.25);
+    transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.link-card:hover {
+    border-color: var(--red-neon);
+    box-shadow: 8px 8px 0 rgba(255, 0, 60, 0.35);
+    transform: translate(-2px, -2px);
+}
+.link-card .link-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+.link-card .link-info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.link-card .link-name {
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    font-size: 1.05rem;
+}
+.link-card .link-url {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: rgba(240,240,240,0.4);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 占位卡片(施工中) */
+.link-card.placeholder {
+    opacity: 0.4;
+    border-style: dashed;
+    cursor: default;
+}
+.link-card.placeholder:hover {
+    transform: none;
+    box-shadow: 6px 6px 0 rgba(115, 12, 30, 0.25);
+    border-color: var(--red-dark);
+}
+
+/* ==========================================
+   小剧场 区 — 手风琴
+   ========================================== */
+.theater-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.theater-item {
+    background: rgba(10, 5, 8, 0.7);
+    border: 1px solid var(--red-dark);
+    box-shadow: 6px 6px 0 rgba(115, 12, 30, 0.2);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.theater-item.open {
+    border-color: var(--red-neon);
+    box-shadow: 8px 8px 0 rgba(255, 0, 60, 0.3);
+}
+
+.theater-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.theater-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+}
+
+.theater-id {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--red-neon);
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+.theater-title {
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    font-size: 1.15rem;
+    color: var(--white);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.theater-tags {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+.theater-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border: 1px solid var(--red-bright);
+    color: rgba(240,240,240,0.6);
+    white-space: nowrap;
+}
+
+.theater-arrow {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    color: var(--red-neon);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+.theater-item.open .theater-arrow {
+    transform: rotate(90deg);
+}
+
+/* 展开内容 */
+.theater-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+.theater-item.open .theater-body {
+    max-height: 3000px; /* 足够大以容纳长文本 */
+}
+
+.theater-body-inner {
+    padding: 0 24px 24px;
+    border-top: 1px dashed var(--red-dark);
+}
+
+.theater-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px 0 4px;
+}
+
+.copy-btn {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    background: transparent;
+    color: var(--red-neon);
+    border: 1px solid var(--red-neon);
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+.copy-btn:hover {
+    background: var(--red-neon);
+    color: var(--bg-darker);
+}
+.copy-btn.copied {
+    background: var(--red-neon);
+    color: var(--bg-darker);
+}
+
+.theater-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: rgba(240,240,240,0.9);
+    white-space: pre-wrap;
+    padding: 10px 0 6px;
+}
+
+/* 占位提示 */
+.theater-placeholder-note {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: rgba(240,240,240,0.35);
+    padding: 30px;
+    text-align: center;
+    border: 1px dashed var(--red-dark);
+}
+
+/* ==========================================
+   移动端适配
+   ========================================== */
+@media (max-width: 960px) {
+    .links-main { padding: 110px 18px 80px; }
+    .axis-top, .axis-left { display: none; }
+    .links-page-bg { background-position: 0 0; }
+}
+
+@media (max-width: 600px) {
+    .links-title { font-size: 1.1rem; }
+    .links-grid { grid-template-columns: 1fr; }
+    .theater-title { font-size: 1rem; }
+    .theater-tags { display: none; }
+    .pixel-stair { display: none; }
+    .cursor-tracker { font-size: 9px; padding: 4px 10px; }
+}
