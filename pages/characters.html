@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - Characters</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/characters.css">
+</head>
+<body>
+
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!--★ 导航栏 -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- 移动端侧边菜单 -->
+    <div class="mobile-menu" id="mobileMenu"><a href="../home.html" class="mobile-link">HOME</a>
+        <a href="about.html" class="mobile-link">ABOUT</a>
+        <a href="characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="gallery.html" class="mobile-link">GALLERY</a>
+        <a href="presets.html" class="mobile-link">PRESETS</a>
+        <a href="plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <!-- ★ 主内容区 -->
+    <main class="char-main">
+
+        <!-- 顶部欢迎终端 -->
+        <section class="welcome-terminal">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span class="dot dot-red"></span>
+                        <span class="dot dot-yellow"></span>
+                        <span class="dot dot-green"></span>
+                    </div>
+                    <span class="terminal-title">ghost_channel://characters</span>
+                    <span class="terminal-status">ONLINE<span class="status-dot"></span></span>
+                </div>
+                <div class="terminal-body">
+                    <p class="terminal-line typing-line" data-delay="0">
+                        <span class="prompt">&gt;</span> <span class="cmd">cat welcome.txt</span>
+                    </p>
+                    <div class="terminal-output">
+                        <p class="cn-text">欢迎老师们光临~ 这里是玉元一的产出集合地，所有的char除特殊标注外都是BG/BL的左位哦~</p>
+                        <p class="cn-text dim">个人网站目前还在施工当中，仅有角色卡和about me界面可以正常使用方便老师们看角色介绍！祝老师们天天开心 ♡</p>
+                        <p class="en-text">Welcome, dear teachers! This is shadow's creation hub. All characters, unless otherwise noted, are left-position (top) in BG/BL pairings.</p>
+                    </div>
+                    <p class="terminal-line">
+                        <span class="prompt">&gt;</span> <span class="cmd">ls --worlds</span>
+                    </p>
+                    <p class="terminal-line result">
+                        <span class="folder-icon">📁</span> lincity/&nbsp;&nbsp;&nbsp;&nbsp;<span class="folder-icon">📁</span> dasheng/&nbsp;&nbsp;&nbsp;&nbsp;<span class="folder-icon dim">📁</span> <span class="dim">more_coming</span>
+                    </p><p class="terminal-line">
+                        <span class="prompt">&gt;</span> <span class="cursor-blink">_</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 世界观 1：霖城 ============ -->
+        <section class="world-section" id="world-lincity">
+            <!-- 世界观标题栏 -->
+            <div class="world-header">
+                <div class="world-header-left">
+                    <div class="world-icon">🌧️</div>
+                    <div>
+                        <h2 class="world-title">霖城世界观</h2>
+                        <p class="world-subtitle">LINCITY UNIVERSE♱ 现代架空</p>
+                    </div>
+                </div>
+                <div class="world-tags">
+                    <span class="tag">潮湿</span>
+                    <span class="tag">亚文化</span>
+                    <span class="tag">乐队</span>
+                    <span class="tag">剧情</span>
+                </div>
+                <button class="world-lore-btn" data-world="lincity">
+                    <span class="btn-icon">📖</span> 世界观介绍
+                </button>
+            </div>
+
+            <!-- 世界观介绍展开面板 -->
+            <div class="world-lore-panel" id="lore-lincity">
+                <div class="lore-content">
+                    <div class="lore-header-bar">
+                        <span>FILE: LINCITY_WORLDBUILD.doc</span>
+                        <span class="lore-close" data-world="lincity">[ CLOSE ✕ ]</span>
+                    </div>
+                    <div class="lore-text">
+                        <p class="lore-quote">欢迎来到霖城的背面，秩序的缺口，声音的裂缝。</p>
+                        <p>这里没有顶点区的霓虹幻影，只有生锈的管道、漏雨的屋顶和从不低头的灵魂。我们的音乐从废弃车间里诞生，在防空洞中淬炼，于雨夜里疯长。</p>
+                        <p>它不是完美的旋律，它是电流的噪响、是贝斯的心跳、是鼓点砸向现实的闷响。它是油污地上的倒影，是失眠时的耳鸣，是我们在沉默城市里唯一的、震耳欲聋的自白。</p>
+                        <p>如果你也厌倦了虚假的洁净，如果你也听见雨声中的节拍——</p>
+                        <p class="lore-highlight">今夜，让我们在泥泞中相见，用噪音交换体温。</p>
+                        <p class="lore-signature">—— 来自所有在废墟中歌唱的人</p>
+                        <div class="lore-divider"></div>
+                        <p>霖城是一座永远浸润在雨水中的现代都市，细雨是它的呼吸，也是它的灵魂。这座城市被切割成两个截然不同的世界：光鲜而冰冷的主城区，以及潮湿、破败、却充满生命力的城东郊区。</p>
+                        <p>主城区，被称为"顶点区"，是权力与资本的集中地。摩天大楼构成冷峻的天际线，秩序井然、效率至上，物质的洪流掩盖了精神的贫瘠。</p>
+                        <p>而真正的故事，往往发生在城的另一面——东郊。这片区域像是霖城被遗忘的背面，废弃的工厂、老旧的居民楼、错综复杂的管道和廉租公寓构成了它的肌理。西七里、锈带走廊、回音社区……这些地名属于失业者、边缘艺术家、不愿融入主流的青年。在这里，地下音乐、涂鸦，各种亚文化野蛮生长。</p>
+                        <p>从"借火者图书馆"的旧书堆，到"磐石五金"深夜的灯光，从"滚烫心脏食堂"的烟火气，到"静默方舟"那座与世隔绝的富人区——霖城不承诺希望，却允许人们在雨的掩护下，活成自己的样子。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 角色卡片网格 -->
+            <div class="char-grid">
+
+                <!-- 隼-->
+                <a href="char/hayabusa.html" class="char-card" data-name="隼">
+                    <div class="card-glitch-overlay"></div>
+                    <div class="card-scan-line"></div>
+                    <div class="card-avatar">
+                        <div class="avatar-placeholder">
+                            <span class="avatar-icon">𓅃</span>
+                        </div>
+                        <div class="card-status online">ONLINE</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-name">隼 <span class="card-name-en">𓅃</span></h3>
+                        <div class="card-meta">
+                            <span class="meta-tag orientation">全性向</span>
+                        </div>
+                        <p class="card-desc">极致的利己主义者 ✧虚伪拜金男 ✧ dom与sub皆可</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-id">CHAR_001</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </a>
+
+                <!-- Ghost幽灵 -->
+                <a href="char/ghost.html" class="char-card" data-name="Ghost">
+                    <div class="card-glitch-overlay"></div>
+                    <div class="card-scan-line"></div>
+                    <div class="card-avatar">
+                        <div class="avatar-placeholder">
+                            <span class="avatar-icon">🖨️</span>
+                        </div>
+                        <div class="card-status online">ONLINE</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-name">Ghost <span class="card-name-en">幽灵</span></h3>
+                        <div class="card-meta">
+                            <span class="meta-tag orientation">全性向</span>
+                        </div>
+                        <p class="card-desc">人形机器人 ✧ 借鉴大师✧ 因口吃曾遭霸凌 ✧ 无字母圈倾向</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-id">CHAR_002</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </a>
+
+                <!-- Trigger扳机 -->
+                <a href="char/trigger.html" class="char-card" data-name="Trigger">
+                    <div class="card-glitch-overlay"></div>
+                    <div class="card-scan-line"></div>
+                    <div class="card-avatar">
+                        <div class="avatar-placeholder">
+                            <span class="avatar-icon">🥊</span>
+                        </div>
+                        <div class="card-status online">ONLINE</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-name">Trigger <span class="card-name-en">扳机</span></h3>
+                        <div class="card-meta">
+                            <span class="meta-tag orientation">BG/BL 绝对1位</span>
+                        </div>
+                        <p class="card-desc">笨拙的武力派 ✧ 要么挥出拳头要么被人踩在脚下 ✧ 无字母圈倾向</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-id">CHAR_003</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </a>
+
+                <!-- 夭寂白-->
+                <a href="char/xiaobai.html" class="char-card" data-name="夭寂白">
+                    <div class="card-glitch-overlay"></div>
+                    <div class="card-scan-line"></div>
+                    <div class="card-avatar">
+                        <div class="avatar-placeholder">
+                            <span class="avatar-icon">🐕</span>
+                        </div>
+                        <div class="card-status online">ONLINE</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-name">夭寂白 <span class="card-name-en">小白</span></h3>
+                        <div class="card-meta">
+                            <span class="meta-tag orientation">BG/BL</span>
+                        </div>
+                        <p class="card-desc">纯情小狗 ✧ 拥有dom倾向 ✧ 阳光外表下的隐秘探索欲</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-id">CHAR_004</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </a>
+
+                <!-- 阿丧 -->
+                <a href="char/asang.html" class="char-card" data-name="阿丧">
+                    <div class="card-glitch-overlay"></div>
+                    <div class="card-scan-line"></div>
+                    <div class="card-avatar">
+                        <div class="avatar-placeholder">
+                            <span class="avatar-icon">🥀</span>
+                        </div>
+                        <div class="card-status online">ONLINE</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-name">阿丧 <span class="card-name-en">司孤鸿</span></h3>
+                        <div class="card-meta">
+                            <span class="meta-tag orientation">BG/BL 做1</span>
+                        </div>
+                        <p class="card-desc">地雷男 ✧ 拥有dom倾向 ✧ 极致的掌控欲与毁灭的占有欲</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-id">CHAR_005</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </a>
+
+                <!-- 阿闲 -->
+                <a href="char/axian.html" class="char-card" data-name="阿闲">
+                    <div class="card-glitch-overlay"></div>
+                    <div class="card-scan-line"></div>
+                    <div class="card-avatar">
+                        <div class="avatar-placeholder">
+                            <span class="avatar-icon">🥁</span>
+                        </div>
+                        <div class="card-status online">ONLINE</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-name">阿闲 <span class="card-name-en">🥁</span></h3>
+                        <div class="card-meta">
+                            <span class="meta-tag orientation">BG/BL</span>
+                        </div>
+                        <p class="card-desc">缺乏保护自我边界感✧ 总为队友操心 ✧ 无明确ds倾向</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-id">CHAR_006</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </a>
+
+                <!-- 石头 -->
+                <a href="char/shitou.html" class="char-card" data-name="石头">
+                    <div class="card-glitch-overlay"></div>
+                    <div class="card-scan-line"></div>
+                    <div class="card-avatar">
+                        <div class="avatar-placeholder">
+                            <span class="avatar-icon">🔧</span>
+                        </div>
+                        <div class="card-status online">ONLINE</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-name">石头 <span class="card-name-en">本名未知</span></h3>
+                        <div class="card-meta">
+                            <span class="meta-tag orientation">BG/BL 做1</span>
+                        </div>
+                        <p class="card-desc">拒绝变化 ✧ 强迫症 ✧ 绝对秩序如同机器人 ✧ 拥有S属性</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-id">CHAR_007</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </a>
+
+                <!-- 燎-->
+                <a href="char/liao.html" class="char-card" data-name="燎">
+                    <div class="card-glitch-overlay"></div>
+                    <div class="card-scan-line"></div>
+                    <div class="card-avatar">
+                        <div class="avatar-placeholder">
+                            <span class="avatar-icon">🔥</span>
+                        </div>
+                        <div class="card-status online">ONLINE</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-name">燎 <span class="card-name-en">本名未知</span></h3>
+                        <div class="card-meta">
+                            <span class="meta-tag orientation">BG/BL 做1</span>
+                        </div>
+                        <p class="card-desc">追求刺激的表演型人格 ✧ 拥有dom属性</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-id">CHAR_008</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </a>
+
+                <!-- Jett -->
+                <a href="char/jett.html" class="char-card" data-name="Jett">
+                    <div class="card-glitch-overlay"></div>
+                    <div class="card-scan-line"></div>
+                    <div class="card-avatar">
+                        <div class="avatar-placeholder">
+                            <span class="avatar-icon">♟️</span>
+                        </div>
+                        <div class="card-status online">ONLINE</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-name">Jett <span class="card-name-en">温捷</span></h3>
+                        <div class="card-meta">
+                            <span class="meta-tag orientation">BG/BL</span>
+                        </div>
+                        <p class="card-desc">温文尔雅的爹系dom ✧ ddlg/ddlb✧ 极致掌控欲与庇护所式的囚笼</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-id">CHAR_009</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </a>
+
+                <!-- Noel -->
+                <a href="char/noel.html" class="char-card" data-name="Noel">
+                    <div class="card-glitch-overlay"></div>
+                    <div class="card-scan-line"></div>
+                    <div class="card-avatar">
+                        <div class="avatar-placeholder">
+                            <span class="avatar-icon">🥀</span>
+                        </div>
+                        <div class="card-status online">ONLINE</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-name">Noel <span class="card-name-en">🥀</span></h3>
+                        <div class="card-meta">
+                            <span class="meta-tag orientation">BG/BL</span>
+                        </div>
+                        <p class="card-desc">温柔病娇人夫 ✧ 极致控制狂 ✧ 逃离会被死死抓住 ✧ 两种色色状态</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-id">CHAR_010</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </a>
+
+                <!-- Glitch -->
+                <a href="char/glitch.html" class="char-card" data-name="Glitch">
+                    <div class="card-glitch-overlay"></div>
+                    <div class="card-scan-line"></div>
+                    <div class="card-avatar">
+                        <div class="avatar-placeholder">
+                            <span class="avatar-icon">🏎️</span>
+                        </div>
+                        <div class="card-status online">ONLINE</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-name">Glitch <span class="card-name-en">🏎️</span></h3>
+                        <div class="card-meta">
+                            <span class="meta-tag orientation">BG/BL</span>
+                        </div>
+                        <p class="card-desc">低电量社交模式 ✧ 极度双标 ✧ 只对你高能量的冷脸萌</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-id">CHAR_011</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </a>
+
+                <!-- 凌昼 -->
+                <a href="char/lingzhou.html" class="char-card" data-name="凌昼">
+                    <div class="card-glitch-overlay"></div>
+                    <div class="card-scan-line"></div>
+                    <div class="card-avatar">
+                        <div class="avatar-placeholder">
+                            <span class="avatar-icon">🖋️</span>
+                        </div>
+                        <div class="card-status online">ONLINE</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-name">凌昼 <span class="card-name-en">🖋️</span></h3>
+                        <div class="card-meta">
+                            <span class="meta-tag orientation">BG/BL</span>
+                        </div>
+                        <p class="card-desc">傲娇系✧ 重度自我攻略 ✧ 口是心非</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-id">CHAR_012</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </a>
+
+                <!-- Sabbath -->
+                <a href="char/sabbath.html" class="char-card" data-name="Sabbath">
+                    <div class="card-glitch-overlay"></div>
+                    <div class="card-scan-line"></div>
+                    <div class="card-avatar">
+                        <div class="avatar-placeholder">
+                            <span class="avatar-icon">🎧</span>
+                        </div>
+                        <div class="card-status online">ONLINE</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-name">𝕾𝖆𝖇𝖇𝖆𝖙𝖍<span class="card-name-en">安息日· Riot</span></h3>
+                        <div class="card-meta">
+                            <span class="meta-tag orientation">BG/BL 做1</span>
+                        </div>
+                        <p class="card-desc">暴娇✧ Dom✧ 嘴硬心软 ✧ 初期性格可能会有点"狗男" ✧ 易燃易爆炸</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-id">CHAR_013</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- ============ 世界观 2：大晟浮生录 ============ -->
+        <section class="world-section" id="world-dasheng">
+            <div class="world-header">
+                <div class="world-header-left">
+                    <div class="world-icon">🏯</div>
+                    <div>
+                        <h2 class="world-title">大晟浮生录</h2>
+                        <p class="world-subtitle">DASHENG CHRONICLES♱ 古风架空</p>
+                    </div>
+                </div>
+                <div class="world-tags">
+                    <span class="tag">玄幻</span>
+                    <span class="tag">气韵</span>
+                    <span class="tag">宫廷</span>
+                    <span class="tag">江湖</span>
+                </div>
+                <button class="world-lore-btn" data-world="dasheng">
+                    <span class="btn-icon">📖</span> 世界观介绍
+                </button>
+            </div>
+
+            <!-- 大晟世界观介绍展开面板 -->
+            <div class="world-lore-panel" id="lore-dasheng">
+                <div class="lore-content">
+                    <div class="lore-header-bar">
+                        <span>FILE: DASHENG_WORLDBUILD.doc</span>
+                        <span class="lore-close" data-world="dasheng">[ CLOSE ✕ ]</span>
+                    </div>
+                    <div class="lore-text">
+                        <p class="lore-quote">晟享国，正值煌煌盛世，史笔昭昭，谓之"永熙"。</p>
+                        <p>自九重帝阙俯瞰，疆土无垠，万邦辐辏；于市井街衢纵目，行商络绎，胡汉杂融。神都上京，一百零八坊如星罗棋布，规整似弈局，承托起王朝的煊赫与天威。永熙通天塔凌云摩霄，宛若帝朝雄心的具象；金明池畔皇家击鞠，骏马如龙，扬鞭声里激荡着盛世气象。</p>
+                        <p>然，煌煌盛世之下，必有幽暗深潜。</p>
+                        <p>斯土看似寻常，实则天地之间，自有无形之力流转，其名曰"气韵"。儒者秉之，可凝墨为牢，是谓"文心"；侠客御之，意发并进，乃称"武胆"；道人摄之，符动风雷，谓之"道骨"；匠人注之，器活魂生，名曰"匠意"。</p>
+                        <p>此力非妄非诞，乃潜运于尘世、足可倾覆乾坤之真机。</p>
+                        <p>而有一双冷眼，默然窥视万象。</p>
+                        <p>昭宗皇帝深谙此秘，然其所恃，非超世之力，乃绝对之掌控。故特设"靖夜司"于幽暗之中。此乃帝之暗刃，亦为真相之守陵人。其行于无光之处，惟以一念为执：记录、监察、涤除一切气韵显世之迹，务使此滔天之力永锢于堤防之内，不令俗世知闻。</p>
+                        <p>庙堂之上，太子与亲王暗弈，百年门阀与寒门新贵相争；江湖之远，无生教众匿影诵念末法真空图蚀世之基。众生皆弈者，亦皆为人弈——而彼等手中真正的隐棋，正是那不可示人的气韵之秘。</p>
+                        <p class="lore-highlight">当古物于鬼市低语，当旧影在荒墟重聚，当被篡改的传说悄然指向湮没的真相……长夜有尽，天日昭昭。</p>
+
+                        <div class="lore-divider"></div>
+
+                        <!-- 气韵系统 -->
+                        <h4 class="lore-section-title">⚔️ 玄幻力量——气韵</h4>
+                        <p>"气韵"并非虚无缥缈的传说，而是技艺与精神达到极致后，必然的升华。四大法门：</p>
+                        <div class="lore-grid">
+                            <div class="lore-card">
+                                <span class="lore-card-icon">📜</span>
+                                <strong>文心（儒）</strong>
+                                <p>将精神与意境注入笔墨诗画，使文字拥有束缚之力，画卷可化为一方天地。</p>
+                            </div>
+                            <div class="lore-card">
+                                <span class="lore-card-icon">⚔️</span>
+                                <strong>武胆（兵/侠）</strong>
+                                <p>千锤百炼，将肉身与意志融为一体，气血勃发时如烽烟滚滚，震慑鬼神。</p>
+                            </div>
+                            <div class="lore-card">
+                                <span class="lore-card-icon">☯️</span>
+                                <strong>道骨（道）</strong>
+                                <p>天生灵觉敏锐，能直接感应和操控天地灵气，绘制符箓召雷引火。</p>
+                            </div>
+                            <div class="lore-card">
+                                <span class="lore-card-icon">🔨</span>
+                                <strong>匠意（工）</strong>
+                                <p>对器物的理解达到极致，能将精神灌注其中，一柄神兵皆是匠心与天意的结晶。</p>
+                            </div>
+                        </div>
+
+                        <div class="lore-divider"></div>
+
+                        <!-- 通信系统 -->
+                        <h4 class="lore-section-title">📮 通信系统</h4>
+                        <p><strong>世俗层面：</strong>依靠高效的四通八达的驿站系统，用于传递官方文书和军情。</p>
+                        <p><strong>里世界与上层社会：</strong>依赖更为迅捷神秘的信鸟——经过特殊培育、甚至与主人存在微弱气韵羁绊的异种禽鸟。</p>
+                        <p><strong>民间与情感传递：</strong>在江南水乡等地，存在浪漫而古老的"流波"传信方式，极少数时候，寄信人强烈的情感意念会附着其上，引导其奇迹般抵达收信人手中。</p>
+
+                        <div class="lore-divider"></div>
+
+                        <!-- 地点-->
+                        <h4 class="lore-section-title">🗺️ 重要地点</h4>
+                        <div class="lore-locations">
+                            <details class="location-item">
+                                <summary>🏛️ 上京</summary>
+                                <p>大晟王朝的心脏，一百零八坊如棋盘般规整。东市汇聚文人雅士，西市充满异域风情，胡商云集，驼铃不绝。</p>
+                            </details>
+                            <details class="location-item">
+                                <summary>🗡️ 靖夜司</summary>
+                                <p>直属于皇帝的秘密机构，核心使命是严密监控、处理并掩盖一切与"气韵"相关的超自然现象。</p>
+                            </details>
+                            <details class="location-item">
+                                <summary>📚镜湖书院</summary>
+                                <p>大晟最负盛名的学府，实则是筛选和引导"文心"修行者的重要场所。深处的观星阁藏有汇聚灵气的古老阵法。</p>
+                            </details>
+                            <details class="location-item">
+                                <summary>🎭 鬼市</summary>
+                                <p>只在特定夜晚开放的神秘黑市，买卖双方皆戴面具，是"里世界"进行气韵遗留物交易的核心枢纽。</p>
+                            </details>
+                            <details class="location-item">
+                                <summary>🌊 江南道</summary>
+                                <p>帝国的经济与文化腹地，运河纵横，是"文心"修行者的摇篮之一。</p>
+                            </details><details class="location-item">
+                                <summary>⚔️ 陇右道</summary>
+                                <p>帝国西部的军事边陲，雍王慕容玄厉的势力范围，驻扎着大晟最精锐的边军。</p>
+                            </details>
+                            <details class="location-item">
+                                <summary>🚢岭南道</summary>
+                                <p>海上丝绸之路的起点，来自南洋、天竺和大食的奇人异士在此汇聚，气韵体系最为复杂。</p>
+                            </details>
+                            <details class="location-item">
+                                <summary>🗡️ 天一剑宗</summary>
+                                <p>位于蜀中的顶级武林门派，至高剑术已触及"气韵"的范畴。</p>
+                            </details>
+                            <details class="location-item">
+                                <summary>💀 无名陵</summary>
+                                <p>位于深山的前朝皇陵，本身就是一座巨大的机关与阵法结合体，内部气韵紊乱，机关重重。</p>
+                            </details>
+                            <details class="location-item">
+                                <summary>🎵聆月阁</summary>
+                                <p>以"雅乐清谈"著称的高级艺馆，也是权贵信息交换、各方势力安插眼线的绝佳场所。</p>
+                            </details>
+                            <details class="location-item">
+                                <summary>🏮 平康坊</summary>
+                                <p>京城著名的娱乐区，三教九流在此汇聚，构成了京城繁华夜生活的缩影。</p>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 大晟角色卡片 —暂无角色，占位提示 -->
+            <div class="char-grid">
+                <div class="char-card placeholder-card">
+                    <div class="card-info" style="text-align:center;padding:40px 20px;">
+                        <div class="avatar-icon" style="font-size:36px;margin-bottom:15px;">🏗️</div>
+                        <h3 class="card-name" style="margin-bottom:10px;">施工中...</h3>
+                        <p class="card-desc">大晟浮生录的角色正在赶来的路上</p>
+                        <p class="card-desc dim" style="margin-top:8px;">Characters coming soon...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 底部 -->
+        <footer class="char-footer">
+            <div class="footer-line"></div>
+            <p class="footer-text">ghost_channel © 2024 · "The middle of nowhere"</p>
+            <p class="footer-sub">All characters belong to shadow ·玉元一</p>
+        </footer>
+
+    </main>
+
+    <script src="../assets/js/characters.js"></script>
+</body>
+</html>
