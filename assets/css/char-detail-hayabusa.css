@@ -1,0 +1,323 @@
+/* =========================================
+   角色专属样式：隼 (Hayabusa)
+   视觉方向：潮湿 / 地下乐队 / 琥珀与煤油 / 先锋拟物
+========================================= */
+
+/* 1. 引入本页需要的专属字体 */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Space+Mono:wght@400;700&family=Noto+Serif+SC:wght@400;700&display=swap');
+
+/* 2. 定义本页专属变量（严格隔离） */
+body.detail-page-custom {
+    --haya-bg: #0B0C0C; /* 霖城潮湿的黑夜 */
+    --haya-brand: #FF5A00; /* 琥珀色/燃油橙 */
+    --haya-text: #E0E0E0;
+    --haya-muted: #666666;
+    
+    --font-en-serif: 'Playfair Display', serif;
+    --font-en-mono: 'Space Mono', monospace;
+    --font-cn-serif: 'Noto Serif SC', serif;
+
+    background: var(--haya-bg);
+    color: var(--haya-text);
+    font-family: var(--font-cn-serif);
+    cursor: none; /* 隐藏默认鼠标，使用自定义光标 */
+}
+
+/* 基础重置作用域 */
+.detail-page-custom *, 
+.detail-page-custom *::before, 
+.detail-page-custom *::after {
+    box-sizing: border-box;
+}
+
+/* =========================================
+   全局特效：噪点与自定义光标
+========================================= */
+.detail-page-custom .noise-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 9990;
+    opacity: 0.05;
+    background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+}
+
+.detail-page-custom .custom-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 12px; height: 12px;
+    background: var(--haya-brand);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: width 0.3s, height 0.3s, background 0.3s, border-radius 0.3s;
+    mix-blend-mode: difference;
+}
+.detail-page-custom .custom-cursor.active {
+    width: 48px; height: 48px;
+    background: rgba(255, 90, 0, 0.15);
+    border: 1px solid var(--haya-brand);
+}
+
+/* 返回按钮 */
+.detail-page-custom .back-btn-custom {
+    position: fixed;
+    top: 100px; left: 3vw;
+    color: var(--haya-text);
+    text-decoration: none;
+    font-family: var(--font-en-mono);
+    font-size: 0.75rem;
+    z-index: 90;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    mix-blend-mode: difference;
+    transition: color 0.3s;
+}
+.detail-page-custom .back-btn-custom:hover { color: var(--haya-brand); }
+
+/* =========================================
+   第一屏：巨型排版 (Hero)
+========================================= */
+.detail-page-custom .haya-hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 5vw;
+    position: relative;
+    overflow: hidden;
+}
+.detail-page-custom .title-line {
+    overflow: hidden;
+    line-height: 0.9;
+}
+.detail-page-custom .title-line span {
+    display: block;
+    font-family: var(--font-en-serif);
+    font-size: clamp(4rem, 12vw, 15rem);
+    color: var(--haya-brand);
+    letter-spacing: -0.02em;
+    transform: translateY(100%);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+.detail-page-custom .title-line:nth-child(2) span { 
+    color: var(--haya-bg);
+    -webkit-text-stroke: 1px var(--haya-brand);
+    font-style: italic;
+    margin-left: 10vw; 
+}
+.detail-page-custom .haya-hero.loaded .title-line span {
+    transform: translateY(0);
+}
+.detail-page-custom .hero-meta {
+    position: absolute;
+    bottom: 5vh; right: 5vw;
+    text-align: right;
+    font-family: var(--font-en-mono);
+    font-size: 0.8rem;
+    color: var(--haya-muted);
+}
+.detail-page-custom .hero-meta p { margin: 5px 0; }
+.detail-page-custom .highlight-amber { color: var(--haya-brand); }
+
+/* =========================================
+   第二屏：拟物音频设备与简介
+========================================= */
+.detail-page-custom .haya-about {
+    min-height: 120vh;
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    padding: 10vw 5vw;
+    position: relative;
+    z-index: 10;
+    gap: 5vw;
+}
+
+/* 左侧：角色信息 */
+.detail-page-custom .bio-text {
+    flex: 1;
+    max-width: 600px;
+}
+.detail-page-custom .bio-quote {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: var(--haya-brand);
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+.detail-page-custom .bio-desc {
+    font-size: 1rem;
+    line-height: 2;
+    color: var(--haya-text);
+    margin-bottom: 3rem;
+    text-align: justify;
+}
+.detail-page-custom .bio-tags {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    font-family: var(--font-en-mono);
+    font-size: 0.75rem;
+    color: var(--haya-muted);
+    border-top: 1px solid rgba(255, 90, 0, 0.2);
+    padding-top: 2rem;
+}
+.detail-page-custom .bio-tags span {
+    display: block;
+    color: var(--haya-text);
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    font-family: var(--font-cn-serif);
+}
+
+/* 右侧：3D 设备 (提取自您的参考，赋予煤油玫瑰主题) */
+.detail-page-custom .device-container {
+    perspective: 2000px;
+    flex: 0.8;
+    display: flex;
+    justify-content: center;
+}
+.detail-page-custom .device {
+    width: 360px; height: 580px;
+    background: #111;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 
+        0 40px 80px -20px rgba(0,0,0,0.8),
+        inset 0 1px 2px rgba(255,255,255,0.1),
+        inset 0 -2px 5px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.05);
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+.detail-page-custom .screen {
+    background: #050505;
+    height: 220px;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: inset 0 10px 20px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+.detail-page-custom .screen::after {
+    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    opacity: 0.5;
+}
+.detail-page-custom .ui-top { display: flex; justify-content: space-between; font-family: var(--font-en-mono); font-size: 0.6rem; color: #888;}
+.detail-page-custom .ui-center { text-align: center; color: var(--haya-brand); font-size: 3.2rem; font-family: var(--font-en-mono); text-shadow: 0 0 15px rgba(255,90,0,0.5); letter-spacing: -2px;}
+.detail-page-custom .ui-bottom { font-family: var(--font-en-mono); font-size: 0.5rem; color: #666; }
+.detail-page-custom .blink { animation: flash 1.5s infinite; color: red; }
+.detail-page-custom .wave {
+    position: absolute; top: 50%; left: 0; width: 100%; height: 40px; transform: translateY(-50%);
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+}
+.detail-page-custom .bar {
+    width: 2px; background: var(--haya-brand); border-radius: 2px;
+    box-shadow: 0 0 8px var(--haya-brand);
+    animation: bounce 1s ease-in-out infinite alternate;
+}
+.detail-page-custom .bar:nth-child(2n) { height: 100%; animation-duration: 0.4s; }
+.detail-page-custom .bar:nth-child(3n) { height: 40%; animation-duration: 0.7s; }
+.detail-page-custom .bar:nth-child(5n) { height: 80%; animation-duration: 0.5s; }
+
+.detail-page-custom .panel { margin-top: 30px; display: flex; gap: 20px; }
+.detail-page-custom .big-knob-wrap { flex: 1; display: flex; align-items: center; justify-content: center; border-right: 1px solid #333; }
+.detail-page-custom .big-knob {
+    width: 140px; height: 140px; border-radius: 50%;
+    background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+    box-shadow:  15px 15px 30px #040404, -15px -15px 30px #1e1e1e;
+    position: relative; transition: transform 0.1s;
+}
+.detail-page-custom .knob-mark {
+    width: 6px; height: 6px; background: var(--haya-brand); border-radius: 50%;
+    position: absolute; bottom: 20px; left: 25px; box-shadow: 0 0 5px var(--haya-brand);
+}
+
+/* =========================================
+   第三屏：世界观与画廊排版
+========================================= */
+.detail-page-custom .editorial-gallery {
+    padding: 10vw 5vw;
+    background: #050505;
+}
+.detail-page-custom .section-header {
+    font-family: var(--font-en-serif);
+    font-size: 6vw;
+    color: var(--haya-text);
+    margin-bottom: 4vh;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 2vh;
+    display: flex; justify-content: space-between; align-items: flex-end;
+}
+.detail-page-custom .section-header span {
+    font-family: var(--font-en-mono); font-size: 1rem; color: var(--haya-brand);
+}
+.detail-page-custom .worldview-text {
+    column-count: 2;
+    column-gap: 4rem;
+    font-size: 0.95rem;
+    line-height: 2.2;
+    color: #999;
+    margin-bottom: 8vw;
+    text-align: justify;
+}
+.detail-page-custom .worldview-text b { color: var(--haya-text); font-weight: normal; }
+
+.detail-page-custom .layout-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 3vw;
+}
+.detail-page-custom .img-wrap {
+    position: relative;
+    overflow: hidden;
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.detail-page-custom .img-wrap.visible { clip-path: inset(0 0 0 0); }
+.detail-page-custom .img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.2);
+    transform: scale(1.05);
+    transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1), filter 0.8s;
+}
+.detail-page-custom .img-wrap:hover img {
+    transform: scale(1);
+    filter: grayscale(0%) contrast(1);
+}
+.detail-page-custom .caption {
+    position: absolute; bottom: 0; left: 0; width: 100%;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    color: var(--haya-brand); 
+    font-family: var(--font-en-mono); font-size: 0.75rem;
+    transform: translateY(100%);
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.detail-page-custom .img-wrap:hover .caption { transform: translateY(0); }
+
+/* 图片网格分配 */
+.detail-page-custom .item-v { grid-column: 1 / 6; aspect-ratio: 816/1456; } /* 竖图 */
+.detail-page-custom .item-h { grid-column: 6 / 13; aspect-ratio: 1456/816; margin-top: 15vw; } /* 横图 */
+
+/* =========================================
+   动画与响应式
+========================================= */
+@keyframes flash { 0%,50%{opacity:1;} 51%,100%{opacity:0;} }
+@keyframes bounce { 0% { transform: scaleY(0.2); } 100% { transform: scaleY(1); } }
+
+@media (max-width: 900px) {
+    .detail-page-custom .haya-about { flex-direction: column; }
+    .detail-page-custom .device-container { margin-top: 50px; }
+    .detail-page-custom .worldview-text { column-count: 1; }
+    .detail-page-custom .item-v { grid-column: 1 / 13; }
+    .detail-page-custom .item-h { grid-column: 1 / 13; margin-top: 5vw; }
+}
