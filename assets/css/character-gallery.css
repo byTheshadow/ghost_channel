@@ -584,3 +584,114 @@
     .cg-entry-title { font-size: 11px; }
     .cg-entry-right { align-self: flex-end; }
 }
+/* ==================== 提示弹窗 ==================== */
+.cg-notice-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.cg-notice-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cg-notice-box {
+    width: 90%;
+    max-width: 500px;
+    background: rgba(10, 2, 2, 0.95);
+    border: 1px solid var(--red-neon, #ff003c);
+    box-shadow: 0 0 20px rgba(255, 0, 60, 0.2), inset 0 0 10px rgba(255, 0, 60, 0.1);
+    padding: 25px;
+    font-family: 'Share Tech Mono', 'Noto Serif SC', sans-serif;
+    color: #ccc;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+.cg-notice-modal.show .cg-notice-box {
+    transform: translateY(0);
+}
+
+.cg-notice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--red-dark, #8a0020);
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+}
+
+.cg-notice-title {
+    color: var(--red-neon, #ff003c);
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.cg-notice-close {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+    transition: color 0.3s;
+    padding: 0;
+}
+
+.cg-notice-close:hover {
+    color: var(--red-neon, #ff003c);
+}
+
+.cg-notice-body p {
+    margin: 0 0 12px 0;
+    line-height: 1.7;
+    font-size: 14px;
+    color: #e0e0e0;
+}
+
+.cg-notice-divider {
+    border-top: 1px dashed var(--red-dark, #8a0020);
+    margin: 18px 0;
+    opacity: 0.6;
+}
+
+.cg-notice-ps {
+    color: #888 !important;
+    font-size: 12px !important;
+    line-height: 1.6 !important;
+}
+
+.cg-notice-footer {
+    margin-top: 25px;
+    text-align: right;
+}
+
+.cg-notice-btn {
+    background: rgba(255, 0, 60, 0.1);
+    border: 1px solid var(--red-neon, #ff003c);
+    color: var(--red-neon, #ff003c);
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.cg-notice-btn:hover {
+    background: var(--red-neon, #ff003c);
+    color: #000;
+    box-shadow: 0 0 15px var(--red-neon, #ff003c);
+}

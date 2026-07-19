@@ -223,3 +223,32 @@ function escapeHtml(str) {
 
 /* ---------- 启动 ---------- */
 renderGrid();
+/* ---------- 声明弹窗逻辑 ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+    const noticeModal = document.getElementById('cgNoticeModal');
+    const noticeClose = document.getElementById('cgNoticeClose');
+    const noticeConfirm = document.getElementById('cgNoticeConfirm');
+
+    if (!noticeModal) return;
+
+    // 检查本地缓存是否已经点击过确认（关闭后以后不再弹出）
+    // 如果你想让每次刷新页面都弹，请删掉下面这个 if 条件的判断，只保留内部的 setTimeout 即可
+    if (!localStorage.getItem('ghost_channel_notice_agreed')) {
+        // 延迟 0.5 秒弹出，增加终端启动的仪式感
+        setTimeout(() => {
+            noticeModal.classList.add('show');
+            noticeModal.setAttribute('aria-hidden', 'false');
+        }, 500);
+    }
+
+    const closeNotice = () => {
+        noticeModal.classList.remove('show');
+        noticeModal.setAttribute('aria-hidden', 'true');
+        // 记录到浏览器本地，下次再进页面不再打扰
+        localStorage.setItem('ghost_channel_notice_agreed', 'true');
+    };
+
+    if (noticeClose) noticeClose.addEventListener('click', closeNotice);
+    if (noticeConfirm) noticeConfirm.addEventListener('click', closeNotice);
+});
+
