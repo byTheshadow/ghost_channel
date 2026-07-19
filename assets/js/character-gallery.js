@@ -197,6 +197,48 @@ const GALLERY_DATA = [
         full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/0WHz/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D478639697880377334%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
         title: '永不破晓',
         desc:  '我们用黑色的曼陀罗将窗户死死封住。\n只要不去看那虚伪的太阳，黑夜就可以永恒。',
+    },
+        {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/yJx0/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D4837566458750460223%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/yJx0/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D4837566458750460223%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        title: '缝合的灵魂',
+        desc:  '苍白的躯体在手术台上，被黑色的丝线强行缝合。\n你给我的不是新生，而是更漫长的折磨。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/aeaA/2560X1856/4k.png/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/aeaA/2560X1856/4k.png/webp',
+        title: '猩红色的倒计时',
+        desc:  '漏斗里的血沙即将流尽，审判的钟声在迷雾中回荡。\n没有谁能逃脱这场宿命的清算。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/XaPn/848X1424/2.png/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/XaPn/848X1424/2.png/webp',
+        title: '囚笼中的夜莺',
+        desc:  '就算把眼泪熬干，也无法穿透这冰冷的铁栅栏。\n我的歌声，只唱给死去的玫瑰听。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/C3yh/848X1424/4.png/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/C3yh/848X1424/4.png/webp',
+        title: '镜中恶鬼',
+        desc:  '烛光摇曳，镜面浮现出一张熟悉又狰狞的笑脸。\n我们究竟是谁剥夺了谁的呼吸？',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/BA48/848X1424/1.png/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/BA48/848X1424/1.png/webp',
+        title: '厄运之匣',
+        desc:  '魔盒一旦开启，就只有绝望倾泻而出。\n贪婪的人啊，准备好迎接这无尽的深渊了吗？',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/IoBd/848X1424/3.png/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/IoBd/848X1424/3.png/webp',
+        title: '枯骨与权杖',
+        desc:  '王座之上只有累累白骨，还在死死抓着权力的幻影。\n再辉煌的帝国，最终也不过是一抔黄土。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/Wf0o/848X1424/1re.png/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/Wf0o/848X1424/1re.png/webp',
+        title: '最后的悼念者',
+        desc:  '撑着黑伞的影子渐渐融入浓雾，连同那一束枯萎的百合。\n这世上，再也没有人会呼唤你的名字。',
     }
 
 ];
