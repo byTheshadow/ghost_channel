@@ -1,23 +1,23 @@
 @charset "UTF-8";
 
-/* 引入古风衬线字体 */
+/* 1. 引入古风衬线字体（思源宋体） */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;700;900&display=swap');
 
-/* 必须覆盖全局滚动条限制 */
+/* 2. 覆盖全局滚动条限制（必须） */
 body, html {
     overflow: visible !important;
     height: auto !important;
-    background-color: #050505; 
+    background-color: #070707;
 }
 
-/* 本页专属变量隔离 */
+/* 3. 本页专属变量隔离 */
 body.detail-page-custom {
-    --wudu-bg: #050505;
-    --wudu-surface: #0a0a0a;
-    --wudu-text-main: #999;
-    --wudu-text-title: #e0e0e0;
-    --wudu-accent: #6b1414; /* 偏暗的血红色 */
-    --wudu-border: rgba(255, 255, 255, 0.06);
+    --wudu-bg: #070707;
+    --wudu-surface: #111111;
+    --wudu-text-main: #b3b3b3;
+    --wudu-text-title: #e6e6e6;
+    --wudu-accent: #8b0000;
+    --wudu-border: rgba(255, 255, 255, 0.08);
     --wudu-font-serif: 'Noto Serif SC', serif;
 
     background: var(--wudu-bg);
@@ -27,25 +27,21 @@ body.detail-page-custom {
 
 body.detail-page-custom .vignette {
     opacity: 0.9;
-    background: radial-gradient(circle, transparent 50%, #030303 100%);
+    z-index: 5;
+    pointer-events: none;
 }
 
 /* =========================================
-   入场动画 Keyframes
+   入场动画定义
 ========================================= */
-@keyframes wuduFadeInUp {
-    0% { opacity: 0; transform: translateY(50px); filter: blur(4px); }
-    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+@keyframes slideInLeft {
+    0% { opacity: 0; transform: translateX(-40px); }
+    100% { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes wuduFadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-@keyframes wuduBgZoom {
-    0% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+@keyframes slideUpFade {
+    0% { opacity: 0; transform: translateY(50px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 /* =========================================
@@ -76,37 +72,61 @@ body.detail-page-custom .vignette {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: var(--wudu-bg);
+    background: linear-gradient(to right, #050505, rgba(7,7,7,0.8));
     z-index: 10;
     
-    /* 动画：左侧整体淡入 */
+    /* 侧边栏入场动画 */
     opacity: 0;
-    animation: wuduFadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation: slideInLeft 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
 @media (min-width: 1024px) {
     .detail-page-custom .wudu-sidebar {
-        flex: 0 0 360px;
+        flex: 0 0 380px;
         height: calc(100vh - 80px);
         overflow-y: auto;
     }
 }
 
-/* 左侧文字样式 */
-.detail-page-custom .wudu-title-group { margin-bottom: 2rem; }
-.detail-page-custom .wudu-subtitle { font-size: 0.8rem; color: #555; letter-spacing: 3px; margin-bottom: 1rem; }
-.detail-page-custom .wudu-title-group h1 { font-size: 2.5rem; font-weight: 700; color: var(--wudu-text-title); letter-spacing: 4px; margin: 0 0 0.5rem 0; }
-.detail-page-custom .wudu-title-group h1::after { content: ''; display: block; width: 30px; height: 2px; background: var(--wudu-accent); margin-top: 15px; }
-.detail-page-custom .wudu-meta { display: flex; gap: 10px; font-size: 0.75rem; color: #666; margin-bottom: 2rem; flex-wrap: wrap; }
-.detail-page-custom .wudu-meta span { border: 1px solid var(--wudu-border); padding: 4px 8px; border-radius: 2px; }
-.detail-page-custom .wudu-warning { border-left: 2px solid var(--wudu-accent); padding: 0 0 0 1rem; margin-bottom: 2rem; font-size: 0.8rem; line-height: 1.7; color: #8a6a6a; }
-.detail-page-custom .wudu-intro { font-size: 0.8rem; line-height: 1.8; color: #777; }
-.detail-page-custom .wudu-intro p { margin-bottom: 1rem; }
+.detail-page-custom .wudu-sidebar::-webkit-scrollbar { width: 4px; }
+.detail-page-custom .wudu-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
 
-/* 右侧画廊区 (横向滚动) */
+.detail-page-custom .wudu-title-group h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--wudu-text-title);
+    letter-spacing: 4px;
+    margin: 0 0 0.5rem 0;
+}
+.detail-page-custom .wudu-title-group h1::after {
+    content: '';
+    display: block;
+    width: 40px; height: 3px;
+    background: var(--wudu-accent);
+    margin-top: 15px; margin-bottom: 2rem;
+}
+.detail-page-custom .wudu-subtitle {
+    font-size: 0.9rem; color: #888; letter-spacing: 2px; margin-bottom: 1rem;
+}
+.detail-page-custom .wudu-meta {
+    display: flex; gap: 10px; font-size: 0.75rem; color: #666; margin-bottom: 2rem; flex-wrap: wrap;
+}
+.detail-page-custom .wudu-meta span {
+    border: 1px solid var(--wudu-border); padding: 4px 10px; border-radius: 2px;
+}
+.detail-page-custom .wudu-warning {
+    background: rgba(139, 0, 0, 0.05);
+    border-left: 2px solid var(--wudu-accent);
+    padding: 1rem; margin-bottom: 2rem; font-size: 0.85rem; line-height: 1.6; color: #a07a7a;
+}
+.detail-page-custom .wudu-intro {
+    font-size: 0.85rem; line-height: 1.8; color: #777;
+}
+
+/* 右侧画廊区 */
 .detail-page-custom .wudu-gallery {
     display: flex;
-    gap: 2.5rem;
+    gap: 2rem;
     padding: 2rem;
     overflow-x: auto;
     overflow-y: hidden;
@@ -115,163 +135,122 @@ body.detail-page-custom .vignette {
     box-sizing: border-box;
 }
 
-.detail-page-custom .wudu-gallery::-webkit-scrollbar { height: 4px; }
-.detail-page-custom .wudu-gallery::-webkit-scrollbar-track { background: transparent; }
-.detail-page-custom .wudu-gallery::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.08); border-radius: 4px; }
+.detail-page-custom .wudu-gallery::-webkit-scrollbar { height: 6px; }
+.detail-page-custom .wudu-gallery::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); }
+.detail-page-custom .wudu-gallery::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
 
 @media (min-width: 1024px) {
     .detail-page-custom .wudu-gallery {
         height: calc(100vh - 80px);
         padding: 4rem;
-        align-items: center; /* 居中对齐卡片 */
+        align-items: flex-start;
     }
 }
 
 /* =========================================
-   单张卡片：参考“以往信札”的氛围背景流排版
+   单张卷宗卡片（意境背景版）
 ========================================= */
 .detail-page-custom .wudu-card {
-    flex: 0 0 320px;
-    height: 580px;
-    background: var(--wudu-surface);
+    flex: 0 0 340px;
+    height: 650px;
     border: 1px solid var(--wudu-border);
     position: relative;
     scroll-snap-align: center;
     overflow: hidden;
-    cursor: pointer;
     
-    /* 动画：初始隐藏，通过 HTML 里的 style 设定不同 delay 实现错落入场 */
+    /* 卡片依次入场动画 */
     opacity: 0;
-    animation: wuduFadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation: slideUpFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
-/* 氛围背景图层 (代替人设图) */
+.detail-page-custom .wudu-card:nth-child(1) { animation-delay: 0.2s; }
+.detail-page-custom .wudu-card:nth-child(2) { animation-delay: 0.35s; }
+.detail-page-custom .wudu-card:nth-child(3) { animation-delay: 0.5s; }
+.detail-page-custom .wudu-card:nth-child(4) { animation-delay: 0.65s; }
+.detail-page-custom .wudu-card:nth-child(5) { animation-delay: 0.8s; }
+
+/* 意境图片底层 */
 .detail-page-custom .wudu-card-bg {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    inset: 0;
     z-index: 1;
-    overflow: hidden;
 }
-
 .detail-page-custom .wudu-card-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* 极度压暗、去色，使其变为纯粹的氛围底图 */
-    filter: grayscale(100%) brightness(0.3) contrast(1.2);
-    transition: transform 1.5s ease, filter 0.8s ease;
-    animation: wuduBgZoom 2s ease-out forwards;
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(80%) brightness(0.35) contrast(1.2);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
-/* 渐变遮罩，确保文字可读 */
+/* 卡片下半部加黑，确保文字可读 */
 .detail-page-custom .wudu-card-bg::after {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(
-        to bottom, 
-        rgba(5, 5, 5, 0.4) 0%, 
-        rgba(5, 5, 5, 0.1) 40%, 
-        rgba(5, 5, 5, 0.95) 100%
-    );
-    transition: background 0.8s ease;
-}
-
-/* 卡片内容层 (浮于图片之上) */
-.detail-page-custom .wudu-card-content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    box-sizing: border-box;
-    transition: transform 0.4s ease;
-}
-
-/* 卷宗编号 (右上角) */
-.detail-page-custom .wudu-card-vol {
-    align-self: flex-end;
-    font-size: 0.7rem;
-    color: #444;
-    letter-spacing: 2px;
-    font-family: sans-serif;
-    transition: color 0.4s ease;
-}
-
-/* 竖排大标题 (左侧) */
-.detail-page-custom .wudu-card-title {
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    margin-top: 2rem;
-    flex-grow: 1;
-}
-
-.detail-page-custom .wudu-card-title .sin {
-    font-size: 0.9rem;
-    color: var(--wudu-accent);
-    margin-bottom: 1rem;
-    letter-spacing: 4px;
-    opacity: 0.8;
-}
-
-.detail-page-custom .wudu-card-title .name {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.7);
-    letter-spacing: 12px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,1);
-    transition: color 0.4s ease, text-shadow 0.4s ease;
-}
-
-/* 底部简介文本 */
-.detail-page-custom .wudu-card-desc {
-    font-size: 0.8rem;
-    line-height: 1.9;
-    color: #777;
-    text-align: justify;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    padding-top: 1.5rem;
-    height: 120px; /* 固定高度，内部滚动 */
-    overflow-y: auto;
-    transition: color 0.4s ease;
-}
-
-.detail-page-custom .wudu-card-desc::-webkit-scrollbar { width: 2px; }
-.detail-page-custom .wudu-card-desc::-webkit-scrollbar-thumb { background: var(--wudu-accent); }
-
-/* =========================================
-   卡片悬停交互
-========================================= */
-.detail-page-custom .wudu-card:hover {
-    border-color: rgba(107, 20, 20, 0.4);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(7,7,7,0.1) 0%, rgba(7,7,7,0.7) 40%, rgba(7,7,7,0.95) 100%);
+    transition: background 0.6s ease;
 }
 
 .detail-page-custom .wudu-card:hover .wudu-card-bg img {
-    filter: grayscale(40%) brightness(0.5) contrast(1.1); /* 恢复些许色彩 */
+    filter: grayscale(20%) brightness(0.5) contrast(1.2);
     transform: scale(1.05);
 }
-
-.detail-page-custom .wudu-card:hover .wudu-card-bg::after {
-    background: linear-gradient(
-        to bottom, 
-        rgba(5, 5, 5, 0.2) 0%, 
-        rgba(5, 5, 5, 0.0) 40%, 
-        rgba(5, 5, 5, 0.9) 100%
-    );
+.detail-page-custom .wudu-card:hover {
+    border-color: rgba(139, 0, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
-.detail-page-custom .wudu-card:hover .wudu-card-vol {
-    color: var(--wudu-accent);
+/* 卡片内容层 */
+.detail-page-custom .wudu-card-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2.5rem 2rem;
+    box-sizing: border-box;
 }
 
-.detail-page-custom .wudu-card:hover .name {
+/* 古风竖排名字 - 放置在右上角 */
+.detail-page-custom .wudu-card-name {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 12px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,1);
+    align-self: flex-end; /* 靠右 */
+    transition: color 0.4s ease, text-shadow 0.4s ease;
+}
+.detail-page-custom .wudu-card:hover .wudu-card-name {
     color: #fff;
-    text-shadow: 0 0 15px rgba(107, 20, 20, 0.8);
+    text-shadow: 0 0 15px var(--wudu-accent);
+}
+.detail-page-custom .wudu-card-name span {
+    font-size: 0.9rem;
+    color: var(--wudu-accent);
+    margin-bottom: 15px;
+    letter-spacing: 4px;
+    display: inline-block;
 }
 
+/* 卡片文字描述 - 底部 */
+.detail-page-custom .wudu-card-text {
+    height: 45%; 
+    overflow-y: auto;
+    padding-right: 10px;
+}
+.detail-page-custom .wudu-card-text::-webkit-scrollbar { width: 3px; }
+.detail-page-custom .wudu-card-text::-webkit-scrollbar-thumb { background: rgba(139, 0, 0, 0.5); }
+
+.detail-page-custom .wudu-card-desc {
+    font-size: 0.85rem;
+    line-height: 2;
+    color: #999;
+    text-align: justify;
+    margin: 0;
+    transition: color 0.4s ease;
+}
 .detail-page-custom .wudu-card:hover .wudu-card-desc {
-    color: #aaa;
+    color: #ccc;
 }
