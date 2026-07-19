@@ -17,57 +17,42 @@
 </head>
 <body class="detail-page-love">
 
-<!-- ========== 丘比特入场动画 ========== -->
+<!-- ========== 丘比特入场动画 (保持不变) ========== -->
 <div class="cupid-intro-overlay" id="cupidIntro">
     <div class="cupid-stage">
-        <!-- Q版丘比特 SVG -->
         <div class="cupid-sprite" id="cupidSprite">
             <svg viewBox="0 0 120 120" width="100%" height="100%">
-                <!-- 翅膀 -->
                 <ellipse cx="30" cy="55" rx="18" ry="12" fill="#e9d5ff" opacity="0.8"/>
                 <ellipse cx="90" cy="55" rx="18" ry="12" fill="#e9d5ff" opacity="0.8"/>
                 <ellipse cx="28" cy="48" rx="12" ry="8" fill="#f3e8ff" opacity="0.6"/>
                 <ellipse cx="92" cy="48" rx="12" ry="8" fill="#f3e8ff" opacity="0.6"/>
-                <!-- 身体 -->
                 <ellipse cx="60" cy="68" rx="22" ry="24" fill="#fde8f0"/>
-                <!-- 头 -->
                 <circle cx="60" cy="40" r="20" fill="#fde8f0"/>
-                <!-- 腮红 -->
                 <circle cx="50" cy="44" r="4" fill="#f9a8d4" opacity="0.5"/>
                 <circle cx="70" cy="44" r="4" fill="#f9a8d4" opacity="0.5"/>
-                <!-- 眼睛 -->
                 <circle cx="53" cy="38" r="3" fill="#1a0a2e"/>
                 <circle cx="67" cy="38" r="3" fill="#1a0a2e"/>
                 <circle cx="54" cy="37" r="1" fill="#fff"/>
                 <circle cx="68" cy="37" r="1" fill="#fff"/>
-                <!-- 嘴 -->
                 <path d="M56 47 Q60 51 64 47" stroke="#c084fc" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                <!-- 头发卷 -->
                 <circle cx="48" cy="25" r="5" fill="#fbbf24"/>
                 <circle cx="60" cy="22" r="5" fill="#fbbf24"/>
                 <circle cx="72" cy="25" r="5" fill="#fbbf24"/>
                 <circle cx="44" cy="30" r="4" fill="#f59e0b"/>
                 <circle cx="76" cy="30" r="4" fill="#f59e0b"/>
-                <!-- 弓 -->
                 <path d="M95 55 Q115 40 95 25" stroke="#c084fc" stroke-width="3" fill="none" stroke-linecap="round"/>
-                <!-- 弓弦 -->
                 <line x1="95" y1="25" x2="95" y2="55" stroke="#e9d5ff" stroke-width="1.5"/>
-                <!-- 手 -->
                 <circle cx="85" cy="60" r="5" fill="#fde8f0"/>
                 <circle cx="92" cy="40" r="4" fill="#fde8f0"/>
             </svg>
         </div>
-        <!-- 箭 -->
         <div class="cupid-arrow" id="cupidArrow"></div>
-        <!-- 爱心靶 -->
         <div class="cupid-heart" id="cupidHeart">
             <svg viewBox="0 0 60 60" width="100%" height="100%">
                 <path d="M30 52 C12 40 2 28 2 18 C2 8 10 2 18 2 C24 2 28 6 30 10 C32 6 36 2 42 2 C50 2 58 8 58 18 C58 28 48 40 30 52Z" fill="#c084fc" opacity="0.8"/>
             </svg>
         </div>
-        <!-- 花瓣（JS动态生成） -->
     </div>
-    <!-- 角色名 -->
     <div class="cupid-name" id="cupidName">
         <span class="cupid-name-main">ALLEN MELVILLE</span>
         <span class="cupid-name-sub">艾伦 · 梅尔维尔</span>
@@ -75,7 +60,7 @@
     <div class="cupid-skip">Click anywhere to skip</div>
 </div>
 
-<!-- ========== 导航栏 ========== -->
+<!-- ========== 导航栏 (保持不变) ========== -->
 <nav class="ghost-nav" id="ghostNav">
     <div class="nav-brand">
         <a href="../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
@@ -88,7 +73,7 @@
         <a href="../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
         <a href="../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
         <a href="../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
-        <a href="../presets.html" class="nav-link" data-text="PRESETS</a>
+        <a href="../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
         <a href="../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
         <a href="../links.html" class="nav-link" data-text="LINKS">LINKS</a>
     </div>
@@ -109,221 +94,168 @@
 <!-- ========== 主内容 ========== -->
 <main class="love-main">
 
-    <!-- 返回按钮 -->
     <a href="../characters.html" class="back-btn-love">← Back to Characters</a>
 
-    <!-- 原作信息 -->
     <div class="source-notice">
         <strong>原作：共生丘比特</strong><br>
         同人角色卡 &amp; 世界书，使用了本篇 + 部分 FD 的世界观内容，请注意避雷和防剧透！！<br>
         建议在阅读完本篇和本篇隐藏线之后再看世界书和角色卡详细内容哦！请支持原作和 FD~
     </div>
 
-    <!-- Hero 区 -->
-    <section class="love-hero">
-        <div class="love-hero-text">
-            <div class="love-hero-label">CHAR_057 — Symbiotic Cupid</div>
+    <!-- 重新设计的 Hero 区（左字右图） -->
+    <section class="love-hero-banner">
+        <div class="love-hero-info">
+            <div class="love-hero-label">CHAR_057 // LOVE_PANIC SYSTEM</div>
             <h1 class="love-hero-name">Allen Melville</h1>
             <p class="love-hero-name-cn">艾伦 · 梅尔维尔</p>
-            <p class="love-hero-tagline">「嗯~我的好球带很宽的，放心吧！」</p>
+            <div class="love-hero-quote">
+                <span class="quote-mark">“</span>
+                嗯~我的好球带很宽的，放心吧！
+            </div>
         </div>
-        <div class="love-hero-image">
-            <span class="hero-id">CHAR_057 // LOVE_PANIC SYSTEM</span>
-        </div>
-    </section>
-
-    <!-- 角色肖像 -->
-    <section class="love-portrait-section">
-        <div class="love-portrait-card">
+        <div class="love-hero-portrait">
             <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260718/mkHe/1000X1100/20240125144204-9023-16103.png/webp" alt="Allen Melville">
+            <!-- 装饰性光晕 -->
+            <div class="portrait-glow"></div>
         </div>
     </section>
 
     <!-- 会员表 Bento Grid -->
-    <h2 class="love-section-title">Membership Profile</h2>
-    <p class="love-section-subtitle">带彩蛋图标的卡片可以点击展开 · Hover 发现隐藏动画</p>
+    <div class="love-section-header">
+        <h2 class="love-section-title">Membership Profile</h2>
+        <p class="love-section-subtitle"> Hover 发现特殊卡片的隐藏彩蛋</p>
+    </div>
 
     <div class="bento-grid">
-
-        <!-- 姓名 — span2 -->
         <div class="bento-card span-2">
             <div class="bento-card-label">Name</div>
             <div class="bento-card-question">姓名</div>
             <div class="bento-card-answer">艾伦 · 梅尔维尔</div>
         </div>
-
-        <!-- 年龄 -->
         <div class="bento-card">
             <div class="bento-card-label">Age</div>
             <div class="bento-card-question">年龄</div>
             <div class="bento-card-answer">28岁</div>
         </div>
-
-        <!-- 身高 -->
         <div class="bento-card">
             <div class="bento-card-label">Height</div>
             <div class="bento-card-question">身高</div>
             <div class="bento-card-answer">181cm</div>
         </div>
-
-        <!-- 星座 — span2 -->
         <div class="bento-card span-2">
             <div class="bento-card-label">Zodiac</div>
             <div class="bento-card-question">星座</div>
             <div class="bento-card-answer">我是2月8日出生的是什么星座啊？</div>
         </div>
-
-        <!-- 血型 -->
         <div class="bento-card">
             <div class="bento-card-label">Blood Type</div>
             <div class="bento-card-question">血型</div>
             <div class="bento-card-answer">不知道</div>
         </div>
-
-        <!-- Hometown -->
         <div class="bento-card">
             <div class="bento-card-label">Hometown</div>
             <div class="bento-card-question">出身地</div>
             <div class="bento-card-answer">忘记了</div>
         </div>
-
-        <!-- 地址 — dark -->
         <div class="bento-card span-2 dark">
             <div class="bento-card-label">Address</div>
             <div class="bento-card-question">现住址</div>
             <div class="bento-card-answer">在你梦里</div>
         </div>
-
-        <!-- 职业 — span2 + pillow彩蛋（特殊） -->
         <div class="bento-card span-2" data-special="pillow">
             <div class="bento-card-label">Occupation</div>
             <div class="bento-card-question">职业</div>
             <div class="bento-card-answer">高级枕头专卖店技术人员</div>
             <span class="bento-easter">💤</span>
-            <span class="bento-expand-icon">↓</span>
         </div>
-
-        <!-- 工作时间 -->
         <div class="bento-card">
             <div class="bento-card-label">Work Hours</div>
             <div class="bento-card-question">工作时间</div>
             <div class="bento-card-answer">11:00~21:00</div>
         </div>
-
-        <!-- 休息日 -->
         <div class="bento-card">
             <div class="bento-card-label">Day Off</div>
             <div class="bento-card-question">休息日</div>
             <div class="bento-card-answer">你醒着的时候吧...开玩笑的，我固定星期四休息</div>
         </div>
-
-        <!-- 家庭成员 -->
         <div class="bento-card">
             <div class="bento-card-label">Family</div>
             <div class="bento-card-question">家庭成员</div>
             <div class="bento-card-answer">硬要选一个的话，我会选宠物</div>
         </div>
-
-        <!-- 饮酒 — drink彩蛋（特殊） -->
         <div class="bento-card" data-special="drink">
             <div class="bento-card-label">Drinking</div>
             <div class="bento-card-question">是否饮酒</div>
             <div class="bento-card-answer">喜欢（要让我看看你喝醉的表情喔）</div>
             <span class="bento-easter">🍷</span>
-            <span class="bento-expand-icon">↓</span>
         </div>
-
-        <!-- 吸烟 -->
         <div class="bento-card">
             <div class="bento-card-label">Smoking</div>
             <div class="bento-card-question">是否吸烟</div>
             <div class="bento-card-answer">吸烟，在讨厌烟味的女生面前当然不会抽</div>
         </div>
-
-        <!-- 下厨 -->
         <div class="bento-card">
             <div class="bento-card-label">Cooking</div>
             <div class="bento-card-question">是否下厨</div>
             <div class="bento-card-answer">从不</div>
         </div>
-
-        <!-- 结婚 -->
         <div class="bento-card">
             <div class="bento-card-label">Marriage</div>
             <div class="bento-card-question">是否结过婚</div>
             <div class="bento-card-answer">无</div>
         </div>
-
-        <!-- 性格 — span3 dark -->
         <div class="bento-card span-3 dark">
             <div class="bento-card-label">Personality</div>
             <div class="bento-card-question">用一句话形容自己的性格</div>
             <div class="bento-card-answer">嗯~我的好球带很宽的，放心吧！</div>
         </div>
-
-        <!-- 择偶 -->
         <div class="bento-card span-2">
             <div class="bento-card-label">Ideal Partner</div>
             <div class="bento-card-question">择偶时重视的事情？</div>
             <div class="bento-card-answer">果然还是要选会做好梦的人吧。</div>
         </div>
-
-        <!-- 约会地点 — bed彩蛋 span2（特殊） -->
         <div class="bento-card span-2" data-special="bed">
             <div class="bento-card-label">First Date</div>
             <div class="bento-card-question">初次约会想去哪里？</div>
             <div class="bento-card-answer">有床的地方比较好，所以不是家里就是我的店里</div>
             <span class="bento-easter">🛏️</span>
-            <span class="bento-expand-icon">↓</span>
         </div>
-
-        <!-- 结婚时间 -->
         <div class="bento-card span-2">
             <div class="bento-card-label">Marriage Plan</div>
             <div class="bento-card-question">期望结婚的时间</div>
             <div class="bento-card-answer">其他（只要是和我契合度高的女孩都可以）</div>
         </div>
-
-        <!-- 兴趣 — pillow彩蛋（特殊） -->
         <div class="bento-card span-2" data-special="pillow">
             <div class="bento-card-label">Specialty</div>
             <div class="bento-card-question">兴趣专长</div>
             <div class="bento-card-answer">一眼就能替客人选定高度适宜的枕头吧</div>
             <span class="bento-easter">💤</span>
-            <span class="bento-expand-icon">↓</span>
         </div>
-
-        <!-- 休息日活动 -->
         <div class="bento-card">
             <div class="bento-card-label">Day Off Activity</div>
             <div class="bento-card-question">休息日的活动</div>
             <div class="bento-card-answer">愿意跟我约会的话就会知道了</div>
         </div>
-
-        <!-- 喜欢食物 — boba彩蛋（特殊） -->
         <div class="bento-card" data-special="boba">
             <div class="bento-card-label">Favorite Food</div>
             <div class="bento-card-question">喜欢的食物</div>
             <div class="bento-card-answer">梦很美味呢~ 还有大颗的黑珍珠粉圆</div>
             <span class="bento-easter">🧋</span>
-            <span class="bento-expand-icon">↓</span>
         </div>
-
-        <!-- 讨厌食物 — cucumber彩蛋 span2 dark（特殊） -->
         <div class="bento-card span-2 dark" data-special="cucumber">
             <div class="bento-card-label">Hated Food</div>
             <div class="bento-card-question">讨厌的食物</div>
             <div class="bento-card-answer">小黄瓜，我讨厌那个卡滋作响的声音</div>
             <span class="bento-easter">⫸⫸⫸ ｶﾂ!</span>
-            <span class="bento-expand-icon">↓</span>
         </div>
-
     </div>
 
     <!-- ========== 投递箱 ========== -->
     <section class="love-submit-section">
-        <h2 class="love-submit-title">Submit Your Profile</h2>
-        <p class="love-submit-desc">填写你的会员资料，投递给相亲系统 · 纯前端彩蛋，数据不会上传</p>
+        <div class="love-submit-header">
+            <h2 class="love-submit-title">Submit Your Profile</h2>
+            <p class="love-submit-desc">填写会员资料，投递给相亲系统 · 纯前端彩蛋，数据不会上传</p>
+        </div>
 
         <form class="submit-form" id="loveSubmitForm">
             <div class="submit-field">
@@ -360,12 +292,10 @@
 
 </main>
 
-<!-- ========== 页脚 ========== -->
 <footer class="love-footer">
     <p class="love-footer-text">GHOST_CHANNEL <span class="love-footer-heart">♥</span> CHAR_057 — Allen Melville // Symbiotic Cupid</p>
 </footer>
 
-<!-- ========== 投递成功弹窗 ========== -->
 <div class="submit-success-overlay" id="submitSuccess">
     <div class="submit-success-card">
         <div class="submit-success-icon">💘</div>
@@ -375,7 +305,6 @@
     </div>
 </div>
 
-<!-- ========== JS ========== -->
 <script>
 (function() {
     'use strict';
@@ -408,33 +337,15 @@
     function playIntroAnimation() {
         if (animPlayed) return;
         animPlayed = true;
-
-        // Step 1: 丘比特拉弓
-        setTimeout(() => {
-            sprite.classList.add('drawing');
-        }, 500);
-
-        // Step 2: 箭飞出
-        setTimeout(() => {
-            arrow.classList.add('fly');
-        }, 1200);
-
-        // Step 3: 爱心被击中 + 花瓣爆散
+        setTimeout(() => { sprite.classList.add('drawing'); }, 500);
+        setTimeout(() => { arrow.classList.add('fly'); }, 1200);
         setTimeout(() => {
             heart.classList.add('hit');
             const petals = createPetals();
             petals.forEach(p => p.classList.add('burst'));
         }, 1800);
-
-        // Step 4: 角色名浮现
-        setTimeout(() => {
-            nameEl.classList.add('show');
-        }, 2400);
-
-        // Step 5: 自动关闭
-        setTimeout(() => {
-            closeIntro();
-        }, 4500);
+        setTimeout(() => { nameEl.classList.add('show'); }, 2400);
+        setTimeout(() => { closeIntro(); }, 4500);
     }
 
     function closeIntro() {
@@ -442,26 +353,10 @@
         document.body.style.overflow = '';
     }
 
-    // 点击跳过
     intro.addEventListener('click', closeIntro);
-
-    // 页面加载后开始动画
     window.addEventListener('load', () => {
         document.body.style.overflow = 'hidden';
         playIntroAnimation();
-    });
-
-    // ===== Bento 卡片展开/收起（仅特殊卡片） =====
-    const specialCards = document.querySelectorAll('.bento-card[data-special]');
-    specialCards.forEach(card => {
-        card.addEventListener('click', () => {
-            if (card.classList.contains('expanded')) {
-                card.classList.remove('expanded');
-            } else {
-                specialCards.forEach(c => c.classList.remove('expanded'));
-                card.classList.add('expanded');
-            }
-        });
     });
 
     // ===== 投递表单 =====
@@ -471,36 +366,25 @@
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        // 显示成功弹窗
         successOverlay.classList.add('show');
-        // 重置表单
         form.reset();
     });
-
-    closeBtn.addEventListener('click', () => {
-        successOverlay.classList.remove('show');
-    });
-
-    // 点击遮罩也可关闭
+    closeBtn.addEventListener('click', () => { successOverlay.classList.remove('show'); });
     successOverlay.addEventListener('click', (e) => {
-        if (e.target === successOverlay) {
-            successOverlay.classList.remove('show');
-        }
+        if (e.target === successOverlay) successOverlay.classList.remove('show');
     });
 
     // ===== 导航栏汉堡菜单 =====
     const burger = document.getElementById('navBurger');
     const mobileMenu = document.getElementById('mobileMenu');
-
     if (burger && mobileMenu) {
         burger.addEventListener('click', () => {
             burger.classList.toggle('active');
             mobileMenu.classList.toggle('open');
         });
     }
-
 })();
 </script>
-
 </body>
 </html>
+
