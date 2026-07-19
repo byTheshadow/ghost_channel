@@ -233,6 +233,66 @@ const GALLERY_DATA = [
         full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/Wf0o/848X1424/1re.png/webp',
         title: '最后的悼念者',
         desc:  '撑着黑伞的影子渐渐融入浓雾，连同那一束枯萎的百合。\n这世上，再也没有人会呼唤你的名字。',
+    },
+        {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/7FxZ/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D8373107930984000860%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/7FxZ/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D8373107930984000860%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        title: '囚徒的夜祷',
+        desc:  '铁窗外的月光切割着支离破碎的灵魂。\n没有神明会聆听这满是罪孽的呢喃。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/6yYs/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D7961694365540459592%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/6yYs/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D7961694365540459592%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        title: '枯骨与王座',
+        desc:  '荆棘王冠早已被干涸的鲜血染成暗红。\n他守着一座死去的王国，直到化作尘埃。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/F4Vy/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D7928808015378676111%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/F4Vy/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D7928808015378676111%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        title: '迷雾中的幽灵',
+        desc:  '钟楼的阴影里藏着未亡人的秘密。\n你听，那是她游荡在冷风中的叹息。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/r2tk/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D3012620871880632532%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/r2tk/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D3012620871880632532%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        title: '渗血的油画',
+        desc:  '画笔蘸满执念，勾勒出她生前的模样。\n可画布的边缘，却开始滴落温热的腥红。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/NJBO/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D9189434653061615092%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/NJBO/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D9189434653061615092%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        title: '鸦群的审判',
+        desc:  '它们用空洞的眼眸注视着这片荒芜的墓园。\n谁也无法逃脱这来自深渊的凝视。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/yWG2/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D7567843026618815396%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/yWG2/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D7567843026618815396%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        title: '沉没的黑白键',
+        desc:  '积灰的钢琴再也奏不出昔日的狂想。\n只剩下虫蛀的木头，在午夜发出断续的悲鸣。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/X7Lz/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D333262658081019808%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/X7Lz/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D333262658081019808%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        title: '荆棘里的安眠',
+        desc:  '用疼痛编织的摇篮，是她最后的归宿。\n闭上眼，就能回到那个没有背叛的幻梦中去。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/higP/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D9136578047077972878%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/higP/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D9136578047077972878%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        title: '苍白的烛泪',
+        desc:  '摇曳的烛火即将燃烧殆尽，如同这残喘的生命。\n无尽的黑暗，才是绝对的仁慈。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/WXJN/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D5807044570569589344%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/WXJN/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D5807044570569589344%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        title: '遗忘之境',
+        desc:  '迷雾吞噬了通向古堡的最后一条小径。\n留在这里吧，与游魂交换彼此的孤寂。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/6Pb1/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D3655522995291667329%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/6Pb1/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D3655522995291667329%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp',
+        title: '撕裂的信笺',
+        desc:  '那些关于誓言的字迹，被泪水氤氲成扭曲的黑斑。\n没有救赎，只有冷风中空洞的回音。',
     }
 
 ];
