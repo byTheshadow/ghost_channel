@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - Character Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/characters.css">
+    <link rel="stylesheet" href="../assets/css/character-gallery.css">
+    
+    <style>
+        body, html { overflow: visible; height: auto; }
+    </style>
+</head>
+<body>
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!-- ★ 导航栏 -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+    <a href="../home.html" class="nav-link" data-text="HOME">HOME</a>
+    <a href="about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+    <a href="characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+    <a href="gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+    <a href="presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+    <a href="plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+    <a href="links.html" class="nav-link" data-text="LINKS">LINKS</a>
+</div>
+
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- 移动端菜单 -->
+    <div class="mobile-menu" id="mobileMenu">
+    <a href="../home.html" class="mobile-link">HOME</a>
+    <a href="about.html" class="mobile-link">ABOUT</a>
+    <a href="characters.html" class="mobile-link active">CHARACTERS</a>
+    <a href="gallery.html" class="mobile-link">GALLERY</a>
+    <a href="presets.html" class="mobile-link">PRESETS</a>
+    <a href="plugins.html" class="mobile-link">PLUGINS</a>
+    <a href="links.html" class="mobile-link">LINKS</a>
+</div>
+
+
+    <!-- 主内容区 -->
+    <main class="char-main">
+        
+    <!-- 返回按钮 -->
+    <a href="characters.html" class="cg-back-btn">← BACK TO CHARACTERS</a>
+        <!-- 顶部终端头 -->
+        <section class="cg-terminal">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span class="dot dot-red"></span>
+                        <span class="dot dot-yellow"></span>
+                        <span class="dot dot-green"></span>
+                    </div>
+                    <div class="terminal-title">// ghost@channel: ~/gallery/characters</div>
+                    <div class="terminal-status">
+                        <span class="status-dot"></span> SCANNING
+                    </div>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="prompt">shadow@ghost:~$</span>
+                        <span class="cmd"> ls -la ./character_archive/</span>
+                    </div>
+                    <div class="terminal-line result">
+                        <span class="dim">└─ loading image manifest ...</span>
+                    </div>
+                    <div class="terminal-line result">
+                        <span class="dim">└─ total frames: </span>
+                        <span style="color:var(--red-neon);"><span id="cgTotalCount">0</span></span>
+                        <span class="dim"> · rendered: </span>
+                        <span style="color:#00ff66;" id="cgLoadedCount">0</span>
+                    </div>
+
+                    <div class="cg-hero-title">
+                        <span class="cg-hero-cn">角色影像档案</span>
+                        <span class="cg-hero-en">CHARACTER_GALLERY.ARCHIVE</span>
+                    </div>
+                    <p class="cg-hero-desc">
+                        // 这里是角色相关的所有影像资料。<br>
+                        // 每一帧都被时间戳标记，每一张都是一段没说完的故事。
+                        <span class="cursor-blink">_</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 图片瀑布流网格 -->
+        <section class="cg-grid" id="cgGrid">
+            <!-- JS 动态渲染 -->
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="char-footer">
+            <div class="footer-line"></div>
+            <div class="footer-text">END OF ARCHIVE</div>
+            <div class="footer-sub">// GHOST_CHANNEL · shadow · 玉元一 //</div>
+        </footer>
+    </main>
+
+    <!-- ★ 灯箱 -->
+    <div class="cg-lightbox" id="cgLightbox" aria-hidden="true">
+        <div class="cg-lightbox-bg"></div>
+
+        <div class="cg-lightbox-topbar">
+            <span class="cg-lb-counter">
+                <span id="cgLbIndex">01</span>
+                <span class="cg-lb-slash"> / </span>
+                <span id="cgLbTotal">00</span>
+            </span>
+            <button class="cg-lb-close" id="cgLbClose" aria-label="Close">
+                [ × CLOSE ]
+            </button>
+        </div>
+
+        <button class="cg-lb-nav cg-lb-prev" id="cgLbPrev" aria-label="Previous">◀</button>
+        <button class="cg-lb-nav cg-lb-next" id="cgLbNext" aria-label="Next">▶</button>
+
+        <div class="cg-lb-stage">
+            <div class="cg-lb-frame">
+                <img id="cgLbImg" src="" alt="">
+                <div class="cg-lb-crosshair"></div>
+            </div>
+
+            <div class="cg-lb-panel">
+                <div class="cg-lb-fig" id="cgLbFig">FIG.001</div>
+                <h2 class="cg-lb-title" id="cgLbTitle">—</h2>
+                <div class="cg-lb-divider"></div>
+                <p class="cg-lb-desc" id="cgLbDesc">—</p>
+            </div>
+        </div>
+
+        <div class="cg-lb-hint">
+            <span>← → 切换</span>
+            <span>ESC 关闭</span>
+        </div>
+    </div>
+
+    <script src="../assets/js/character-gallery.js"></script>
+</body>
+</html>
