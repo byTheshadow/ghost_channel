@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - 右舷 / Star · LAFD Station 17</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- 保留原黑红霓虹导航栏字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+
+    <!-- 本页字体：Playfair + Roboto + Oswald + Space Mono + Noto Sans SC + Kalam手写 -->
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Oswald:wght@400;500;700&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../assets/css/char-detail-firestation.css">
+
+    <style>
+        body, html { overflow-x: hidden; overflow-y: auto; height: auto; }
+    </style>
+</head>
+<body class="page-firestation detail-page">
+
+    <!-- ============================================================
+         Google 四色 Loader
+         ============================================================ -->
+    <div class="google-intro" id="googleIntro">
+        <div class="google-loader">
+            <div class="google-loader-arc red"></div>
+            <div class="google-loader-arc yellow"></div>
+            <div class="google-loader-arc blue"></div>
+            <div class="google-loader-arc green"></div>
+        </div>
+        <div class="google-intro-name">
+            <span class="name-en">Star.</span>
+            <span class="name-cn">右舷 · CHAR_015 · LAFD 17</span>
+        </div>
+        <div class="google-intro-skip">CLICK ANYWHERE TO SKIP</div>
+    </div>
+
+    <!-- ============================================================
+         导航栏
+         ============================================================ -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="../links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../home.html" class="mobile-link">HOME</a>
+        <a href="../about.html" class="mobile-link">ABOUT</a>
+        <a href="../characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="../gallery.html" class="mobile-link">GALLERY</a>
+        <a href="../presets.html" class="mobile-link">PRESETS</a>
+        <a href="../plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="../links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <!-- 返回按钮 -->
+    <a href="../characters.html" class="fs-back-btn">
+        <span>←</span> Back to Characters
+    </a>
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="fs-hero">
+        <div class="hero-meta-bar">CHAR_015 · LAFD STATION 17 · WILMINGTON DIVISION · ACTIVE DUTY</div>
+
+        <div class="hero-content">
+            <div class="hero-title-block">
+                <h1 class="hero-title">Star<em>.</em></h1>
+                <p class="hero-subtitle">
+                    <span class="cn">右舷</span> / Starboard Brennan
+                </p>
+                <div class="hero-tags">
+                    <span class="hero-tag">现代都市</span>
+                    <span class="hero-tag">LA · San Pedro</span>
+                    <span class="hero-tag">BL / BG</span>
+                    <span class="hero-tag">26 岁 · Firefighter</span>
+                    <span class="hero-tag g-blue">阳光大狗狗 🐕</span>
+                </div>
+                <div class="hero-cta-row">
+                    <button class="hero-cta">🚒 Follow Live Feed</button>
+                    <button class="hero-cta ghost">Share ↗</button>
+                </div>
+            </div>
+
+            <div class="hero-image-block">
+                <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/cZaV/816X1456/qingli_%2811%29.png/webp" alt="Starboard Brennan / 右舷">
+                <div class="cam-tag">CAM_00 // ON DUTY</div>
+                <div class="hero-badge">LAFD · 17</div>
+            </div>
+        </div>
+
+        <div class="hero-specs-bar">
+            <span>REF:<strong>STARBOARD_BRENNAN_015</strong></span>
+            <span>BADGE:<strong>#4173</strong></span>
+            <span>SECTOR:<strong>SAN PEDRO / WILMINGTON</strong></span>
+            <span>STATUS:<strong>ACTIVE</strong></span>
+            <span>RATING:<strong>SUNSHINE-TIER</strong></span>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         Station 17 状态板
+         ============================================================ -->
+    <section class="station-status">
+        <div class="status-wrap">
+            <div class="status-header">
+                <h2 class="status-title">Station <span class="accent">17</span> · Weekly Report</h2>
+                <div class="status-date">
+                    <span class="live"></span>WEEK 29 · 2026 · LAST UPDATED 14:42 PST
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card accent">
+                    <div class="stat-label">Calls Dispatched</div>
+                    <div class="stat-number">12</div>
+                    <div class="stat-unit">本周出警次数</div>
+                    <div class="stat-delta">+2 vs LW</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">People Rescued</div>
+                    <div class="stat-number">16</div>
+                    <div class="stat-unit">救援人数</div>
+                    <div class="stat-delta">+5 vs LW</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Cats Saved 🐱</div>
+                    <div class="stat-number">03</div>
+                    <div class="stat-unit">救猫（副业）</div>
+                    <div class="stat-delta">+1 vs LW</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         Bio + Knowledge Panel + Bulletin Board
+         ============================================================ -->
+    <section class="bio-section">
+        <div class="bio-grid">
+            <div class="bio-block">
+                <span class="section-label">// Character Summary</span>
+                <h2>A firefighter who catches you before the <em>tire blows out</em>.</h2>
+                <p class="bio-text">26 岁，LAFD 第 17 分局消防员。圣佩德罗长大，母亲是码头海鲜馆老板娘，哥哥左舷开健身房。</p>
+                <p class="bio-text">会救火、会做饭、会捡猫。阳光大狗狗——把每一个陌生人都当成"下一个我可能救到的人"，不设防、话多、笑得整栋楼都能听见。</p>
+                <p class="bio-text">他和他那个一句话能噎死人的健身房老板哥哥左舷是两种完全不同的生物，但两人共用一套"外人不能碰我家的人"的默认法则。他不会说"我关心你"，但他会开着消防车堵在你抛锚的车旁边、把GoPro挂满整个头盔、然后大笑着把你的麻烦单方面接管过去。</p>
+
+                <!-- 公告栏 -->
+                <div class="bulletin-board">
+                    <div class="bulletin-title">📌 Station 17 · Bulletin Board · 2026</div>
+                    <div class="bulletin-inner">
+                        <div class="bulletin-notice">
+<span class="handle">@StarboardSaves</span>
+<span class="role">LAFD · 17 分局</span>
+<span class="divider">━━━━━━━━━━━━━━━━━━━</span>
+本职救火，副业做饭，兼职喂猫。
+视频全是 GoPro 拍的。
+
+——你刷到我了，
+   那你今天安全了。
+                        </div>
+
+                        <div class="bulletin-polaroid">
+                            <div class="bulletin-polaroid-img" style="background-image:url('https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/dDWv/928X1232/qingli_%2812%29.png/webp')">POLAROID · 2026</div>
+                            <div class="bulletin-polaroid-caption">
+                                我哥比我帅，<br>但做饭不如我。<br>—— Star
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="knowledge-panel">
+                <div class="knowledge-panel-header">
+                    <span class="g-logo"><span class="b">G</span><span class="r">o</span><span class="y">o</span><span class="b">g</span><span class="g">l</span><span class="r">e</span></span>
+                    <span class="panel-type">Knowledge Panel</span>
+                </div>
+                <div class="kp-title">
+                    Starboard "Star" Brennan
+                    <span class="verified-check" title="Verified · LAFD">✓</span>
+                </div>
+                <div class="kp-subtitle">American · LAFD Firefighter · Content Creator</div>
+                <ul class="kp-facts">
+                    <li><span class="k">Born</span><span class="v">San Pedro, LA · 26y</span></li>
+                    <li><span class="k">Height</span><span class="v">189 cm</span></li>
+                    <li><span class="k">Occupation</span><span class="v">Firefighter · LAFD Station 17</span></li>
+                    <li><span class="k">Family</span><span class="v">Brother: <em>左舷</em> (Gym Owner) · Mom (Seafood market)</span></li>
+                    <li><span class="k">Handle</span><span class="v link">@StarboardSaves</span></li>
+                    <li><span class="k">Skills</span><span class="v">Firefighting · Cooking · Cat rescue</span></li>
+                    <li><span class="k">Vehicle</span><span class="v">Engine 17 · Personal: mountain bike</span></li>
+                    <li><span class="k">Known for</span><span class="v link">Golden retriever energy</span></li>
+                </ul>
+            </aside>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         现场画廊
+         ============================================================ -->
+    <section class="scene-gallery-section">
+        <div class="scene-gallery">
+            <div class="scene-gallery-item">
+                <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/cZaV/816X1456/qingli_%2811%29.png/webp" alt="Star CAM_01">
+                <div class="cam-tag">CAM_01 // ON_SCENE</div>
+                <div class="rec-dot">REC</div>
+                <div class="cam-coord">33.7361° N // 118.2922° W // ENGINE_17</div>
+            </div>
+            <div class="scene-gallery-item">
+                <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/dDWv/928X1232/qingli_%2812%29.png/webp" alt="Star CAM_02">
+                <div class="cam-tag">CAM_02 // KITCHEN_SHIFT</div>
+                <div class="rec-dot">REC</div>
+                <div class="cam-coord">33.7412° N // 118.2799° W // MOM'S DINER</div>
+            </div>
+            <div class="scene-gallery-item">
+                <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/D8bd/816X1456/qingli_%2813%29.png/webp" alt="Star CAM_03">
+                <div class="cam-tag">CAM_03 // OFF_DUTY</div>
+                <div class="rec-dot">REC</div>
+                <div class="cam-coord">33.7530° N // 118.2645° W // BREAKWATER</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         Dispatch Log · 五个场景
+         ============================================================ -->
+    <section class="dispatch-section">
+        <div class="section-container">
+            <span class="section-label">// Dispatch Log · 5 Incidents</span>
+            <h2 class="section-heading">Five calls where <em>your afternoon changed</em>.</h2>
+
+            <div class="dispatch-grid">
+
+                <article class="dispatch-card">
+                    <div class="dispatch-head">
+                        <span class="dispatch-call">CALL# 26-0117</span>
+                        <span class="dispatch-status active">● ON SCENE</span>
+                    </div>
+                    <div class="dispatch-body">
+                        <div class="dispatch-meta">
+                            <span>TIME:<strong>14:03 PST</strong></span>
+                            <span>LOC:<strong>Pacific Coast Hwy</strong></span>
+                            <span>UNIT:<strong>Engine 17</strong></span>
+                            <span>RESP:<strong>04:12 min</strong></span>
+                        </div>
+                        <h3 class="dispatch-title">
+                            <span class="num">01</span>
+                            圣佩德罗公路狂想曲
+                        </h3>
+                        <p class="dispatch-desc">南加州下午两点的烈日和彻底干瘪的车胎，足以毁掉任何人的好心情——直到一辆庞大且鲜艳的消防车带着柴油发动机的轰鸣稳稳停在你身边。他带着无法拒绝的热情和毫不掩饰的自来熟，像一阵不讲理的龙卷风般单方面接管了你的麻烦。这是一场始于柏油路面、伴随着机油味、液压千斤顶与爽朗大笑的意外相遇。</p>
+                        <div class="dispatch-foot">
+                            <span class="pin-icon"></span>
+                            📌 车辆抛锚与消防车天降神兵
+                        </div>
+                    </div>
+                </article>
+
+                <article class="dispatch-card">
+                    <div class="dispatch-head">
+                        <span class="dispatch-call">CALL# 26-0234</span>
+                        <span class="dispatch-status">● OFF DUTY</span>
+                    </div>
+                    <div class="dispatch-body">
+                        <div class="dispatch-meta">
+                            <span>TIME:<strong>18:47 PST</strong></span>
+                            <span>LOC:<strong>San Pedro Fish Market</strong></span>
+                            <span>UNIT:<strong>N/A</strong></span>
+                            <span>SEAT:<strong>Table 07</strong></span>
+                        </div>
+                        <h3 class="dispatch-title">
+                            <span class="num">02</span>
+                            塔塔酱、鱿鱼圈与加州阳光
+                        </h3>
+                        <p class="dispatch-desc">在圣佩德罗码头边缘那家弥漫着麦芽醋气味的平价海鲜馆里，你只想在角落里安静地对付一份炸鳕鱼。然而，一份加了卡宴辣椒的"赠品"鱿鱼圈，和一个穿着沾满面粉的黑 T 恤、强行拉开椅子拼桌的大个子，彻底打破了这份宁静。</p>
+                        <div class="dispatch-foot">
+                            <span class="pin-icon"></span>
+                            📌 海鲜馆里的意外拼桌
+                        </div>
+                    </div>
+                </article>
+
+                <article class="dispatch-card">
+                    <div class="dispatch-head">
+                        <span class="dispatch-call">CALL# 26-0341</span>
+                        <span class="dispatch-status">● OFF DUTY</span>
+                    </div>
+                    <div class="dispatch-body">
+                        <div class="dispatch-meta">
+                            <span>TIME:<strong>12:15 PST</strong></span>
+                            <span>LOC:<strong>Mom's Kitchen</strong></span>
+                            <span>UNIT:<strong>N/A</strong></span>
+                            <span>MODE:<strong>Family Feud</strong></span>
+                        </div>
+                        <h3 class="dispatch-title">
+                            <span class="num">03</span>
+                            蛤蜊浓汤与碳水警告
+                        </h3>
+                        <p class="dispatch-desc">面对海鲜馆老板娘那碗加了满满培根和土豆的"碳水炸弹"巧达汤，你正不知所措，却意外引发了后厨里的一场"抗议"。他一边高声抱怨着母亲的偏心，一边毫不客气地挤进了你的两人小餐桌。他用最直白且生动的方式，试图将你拉入他喧闹而温暖的生活圈。</p>
+                        <div class="dispatch-foot">
+                            <span class="pin-icon"></span>
+                            📌 巧达汤引发的母子斗嘴
+                        </div>
+                    </div>
+                </article>
+
+                <article class="dispatch-card">
+                    <div class="dispatch-head">
+                        <span class="dispatch-call">CALL# 26-0447</span>
+                        <span class="dispatch-status">● OFF DUTY</span>
+                    </div>
+                    <div class="dispatch-body">
+                        <div class="dispatch-meta">
+                            <span>TIME:<strong>16:22 PST</strong></span>
+                            <span>LOC:<strong>Port Breakwater</strong></span>
+                            <span>UNIT:<strong>Personal bike</strong></span>
+                            <span>GEAR:<strong>Hoodie</strong></span>
+                        </div>
+                        <h3 class="dispatch-title">
+                            <span class="num">04</span>
+                            防波堤上的钢铁迷宫
+                        </h3>
+                        <p class="dispatch-desc">吹着夹杂着柴油与盐分生冷气味的港口海风，你原本只想在木制栈道上放空大脑，却被一阵清脆的自行车链条声打断了思绪。他兴致勃勃地指给你看隐藏在礁石上的海豹，主动请缨做你的迷宫向导——把这片毫无浪漫可言的重工业区，描绘成了他引以为傲的游乐场。</p>
+                        <div class="dispatch-foot">
+                            <span class="pin-icon"></span>
+                            📌 港口防波堤旁的偶遇
+                        </div>
+                    </div>
+                </article>
+
+                <article class="dispatch-card">
+                    <div class="dispatch-head">
+                        <span class="dispatch-call">CALL# 26-0512</span>
+                        <span class="dispatch-status active">● IN SESSION</span>
+                    </div>
+                    <div class="dispatch-body">
+                        <div class="dispatch-meta">
+                            <span>TIME:<strong>19:30 PST</strong></span>
+                            <span>LOC:<strong>Community Center</strong></span>
+                            <span>UNIT:<strong>Station 17</strong></span>
+                            <span>EVENT:<strong>Fire Safety Talk</strong></span>
+                        </div>
+                        <h3 class="dispatch-title">
+                            <span class="num">05</span>
+                            灭火器、脱口秀与私人热线
+                        </h3>
+                        <p class="dispatch-desc">一场本该令人昏昏欲睡的秋季防火知识讲座，硬生生被台上那个张扬的消防员变成了一场充满个人风格的单口喜剧。当人群散去，你带着关于老旧公寓逃生通道的隐患向他求助时，他立刻收起了玩笑的姿态，给出了最踏实可靠的承诺。而在解决问题的最后，他露出那个毫无距离感的灿烂笑容，直接将自己的私人工作号码塞进了你的手里。</p>
+                        <div class="dispatch-foot">
+                            <span class="pin-icon"></span>
+                            📌 防火讲座与私人联系方式
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         @StarboardSaves · Instagram 卡片
+         ============================================================ -->
+    <section class="ig-section">
+        <div class="section-container" style="padding:0;">
+            <span class="section-label">// Social · Content Creator Profile</span>
+            <h2 class="section-heading">@StarboardSaves — <em>视频全是 GoPro 拍的</em>.</h2>
+        </div>
+
+        <div class="ig-wrap">
+            <div class="ig-topbar">
+                <span class="brand">SocialFeed</span>
+                <div class="topbar-actions">
+                    <span>🔍 Search</span>
+                    <span>➕ New</span>
+                    <span>♥ Activity</span>
+                </div>
+            </div>
+
+            <div class="ig-profile">
+                <div class="ig-avatar">
+                    <div class="ig-avatar-inner" style="background-image:url('https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/cZaV/816X1456/qingli_%2811%29.png/webp')"></div>
+                </div>
+                <div class="ig-info">
+                    <div class="ig-info-head">
+                        <span class="ig-handle">@StarboardSaves</span>
+                        <span class="verified-check">✓</span>
+                        <span class="ig-follow-btn">Follow</span>
+                        <span class="ig-follow-btn ghost">Message</span>
+                    </div>
+                    <div class="ig-stats">
+                        <span><strong>247</strong> posts</span>
+                        <span><strong>81.4K</strong> followers</span>
+                        <span><strong>132</strong> following</span>
+                    </div>
+                    <div class="ig-bio">
+                        <span class="role-name">Starboard "Star" Brennan · LAFD 17 🚒</span>
+                        本职救火，副业做饭，兼职喂猫 🐱<br>
+                        视频全是 GoPro 拍的<br>
+                        <span class="quote">"——你刷到我了，那你今天安全了。"</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ig-tabs">
+                <span class="ig-tab active">▦ Posts</span>
+                <span class="ig-tab">▶ Reels</span>
+                <span class="ig-tab">◐ Tagged</span>
+            </div>
+
+            <div class="ig-posts">
+                <div class="ig-post">
+                    <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/cZaV/816X1456/qingli_%2811%29.png/webp" alt="Post 1">
+                    <span class="ig-post-badge">▶ 12.4K</span>
+                    <div class="ig-post-overlay">♥ 8.2K · 💬 341</div>
+                </div>
+                <div class="ig-post">
+                    <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/dDWv/928X1232/qingli_%2812%29.png/webp" alt="Post 2">
+                    <span class="ig-post-badge">▶ 9.1K</span>
+                    <div class="ig-post-overlay">♥ 5.7K · 💬 218</div>
+                </div>
+                <div class="ig-post">
+                    <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/D8bd/816X1456/qingli_%2813%29.png/webp" alt="Post 3">
+                    <span class="ig-post-badge">▶ 22.7K</span>
+                    <div class="ig-post-overlay">♥ 14.3K · 💬 602</div>
+                </div>
+                <!-- 复用 3 张，做出 9 宫格 -->
+                <div class="ig-post">
+                    <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/dDWv/928X1232/qingli_%2812%29.png/webp" alt="Post 4" style="filter:grayscale(0.15) brightness(1.05);">
+                    <span class="ig-post-badge">▶ 4.8K</span>
+                    <div class="ig-post-overlay">♥ 3.1K · 💬 87</div>
+                </div>
+                <div class="ig-post">
+                    <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/cZaV/816X1456/qingli_%2811%29.png/webp" alt="Post 5" style="filter:sepia(0.15) saturate(1.1);">
+                    <span class="ig-post-badge">▶ 6.3K</span>
+                    <div class="ig-post-overlay">♥ 4.2K · 💬 152</div>
+                </div>
+                <div class="ig-post">
+                    <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/D8bd/816X1456/qingli_%2813%29.png/webp" alt="Post 6" style="filter:contrast(1.08);">
+                    <span class="ig-post-badge">▶ 18.9K</span>
+                    <div class="ig-post-overlay">♥ 12.1K · 💬 448</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         LAFD 17 商家页面
+         ============================================================ -->
+    <section class="business-section">
+        <div class="business-wrap">
+            <span class="section-label">// Google Maps · Fire Station Profile</span>
+            <h2 class="section-heading">LAFD · Fire Station 17</h2>
+
+            <div class="business-card">
+                <div class="business-info">
+                    <div>
+                        <h3 class="business-name">Fire Station No. 17</h3>
+                        <p class="business-type">Los Angeles Fire Department · Public Service · Wilmington</p>
+
+                        <div class="business-rating">
+                            <span class="rating-score">4.9</span>
+                            <span class="rating-stars">★★★★★</span>
+                            <span class="rating-count">(1,204 reviews)</span>
+                        </div>
+
+                        <div class="business-status">
+                            <span class="status-open">● 24/7 Emergency Response</span>
+                            <span class="status-sep">·</span>
+                            <span class="status-hours">Non-emergency visits: 9 AM – 5 PM</span>
+                        </div>
+
+                        <ul class="business-details">
+                            <li>
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-8-7-8-13a8 8 0 1116 0c0 6-8 13-8 13z"/><circle cx="12" cy="8" r="2.5"/></svg>
+                                <span>1601 S Grand Ave, Wilmington, Los Angeles, CA 90744</span>
+                            </li>
+                            <li>
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                                <span>24/7 · Emergency: 911 · Non-emergency: (213) 555-0117</span>
+                            </li>
+                            <li>
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3-3 4 4 5-5"/></svg>
+                                <span>Engine 17 · Truck 17 · Rescue Ambulance 17</span>
+                            </li>
+                            <li>
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+                                <span>lafd.org/stations/17</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="business-actions">
+                        <button class="biz-btn primary">🧭 Directions</button>
+                        <button class="biz-btn">☆ Save</button>
+                        <button class="biz-btn">📞 Non-Emergency</button>
+                        <button class="biz-btn">🌐 Website</button>
+                    </div>
+                </div>
+
+                <div class="business-map">
+                    <div class="map-grid"></div>
+                    <div class="map-roads"></div>
+                    <div class="map-radius"></div>
+                    <div class="map-pin">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8z" fill="#C8102E"/>
+                            <circle cx="12" cy="10" r="4" fill="#fff"/>
+                            <text x="12" y="13" text-anchor="middle" font-size="6" font-weight="700" font-family="Oswald, sans-serif" fill="#C8102E">17</text>
+                        </svg>
+                    </div>
+                    <div class="map-attribution">Map data · Ghost Channel</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         页脚
+         ============================================================ -->
+    <footer class="fs-footer">
+        <div class="footer-wrap">
+            <span>© 2026 Ghost Channel · Character File CHAR_015 · LAFD Station 17</span>
+            <span>Powered by <a href="#">@StarboardSaves</a> · GoPro Certified</span>
+        </div>
+    </footer>
+
+    <div class="vertical-watermark">
+        BADGE #4173 // ENGINE 17 // STATUS: ONLINE
+    </div>
+
+    <script>
+        // Google 四色 loader 入场
+        (function () {
+            const intro = document.getElementById('googleIntro');
+            if (!intro) return;
+            let dismissed = false;
+            const dismiss = () => {
+                if (dismissed) return;
+                dismissed = true;
+                intro.classList.add('fade-out');
+                setTimeout(() => intro.remove(), 900);
+            };
+            intro.addEventListener('click', dismiss);
+            setTimeout(dismiss, 3500);
+        })();
+
+        // 移动端汉堡菜单
+        (function () {
+            const burger = document.getElementById('navBurger');
+            const menu   = document.getElementById('mobileMenu');
+            if (!burger || !menu) return;
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                menu.classList.toggle('active');
+            });
+            menu.querySelectorAll('.mobile-link').forEach(a => {
+                a.addEventListener('click', () => {
+                    burger.classList.remove('active');
+                    menu.classList.remove('active');
+                });
+            });
+        })();
+
+        // Weekly Stats · 数字滚动动画（可选彩蛋）
+        (function () {
+            const nums = document.querySelectorAll('.page-firestation .stat-number');
+            if (!nums.length) return;
+            const animateNum = (el) => {
+                const target = parseInt(el.textContent, 10);
+                if (isNaN(target)) return;
+                const pad = el.textContent.startsWith('0') ? 2 : 0;
+                let current = 0;
+                const step = Math.max(1, Math.ceil(target / 30));
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) { current = target; clearInterval(timer); }
+                    el.textContent = pad ? String(current).padStart(pad, '0') : current;
+                }, 45);
+            };
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        animateNum(e.target);
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.4 });
+            nums.forEach(n => io.observe(n));
+        })();
+    </script>
+</body>
+</html>
