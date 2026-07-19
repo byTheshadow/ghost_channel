@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - 左舷 / Port · ORCA POWER Gym</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- 保留原黑红霓虹导航栏所需字体（不删，导航栏用得到） -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+
+    <!-- 本页 Google 风格字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS 引用：global 与 characters 保留（为导航栏），char-detail-google 是独立样式 -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../assets/css/char-detail-google.css">
+
+    <style>
+        /* 覆盖 global.css 的 overflow hidden（详情页必须） */
+        body, html { overflow-x: hidden; overflow-y: auto; height: auto; }
+    </style>
+</head>
+<body class="page-google detail-page">
+
+    <!-- ============================================================
+         Google 四色 Loader 入场动画
+         ============================================================ -->
+    <div class="google-intro" id="googleIntro">
+        <div class="google-loader">
+            <div class="google-loader-arc blue"></div>
+            <div class="google-loader-arc red"></div>
+            <div class="google-loader-arc yellow"></div>
+            <div class="google-loader-arc green"></div>
+        </div>
+        <div class="google-intro-name">
+            <span class="name-en">Port.</span>
+            <span class="name-cn">左舷 · CHAR_014</span>
+        </div>
+        <div class="google-intro-skip">CLICK ANYWHERE TO SKIP</div>
+    </div>
+
+    <!-- ============================================================
+         导航栏（保留原黑红霓虹样式，第七节模板）
+         ============================================================ -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="../links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../home.html" class="mobile-link">HOME</a>
+        <a href="../about.html" class="mobile-link">ABOUT</a>
+        <a href="../characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="../gallery.html" class="mobile-link">GALLERY</a>
+        <a href="../presets.html" class="mobile-link">PRESETS</a>
+        <a href="../plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="../links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <!-- ============================================================
+         返回按钮（Google 蓝）
+         ============================================================ -->
+    <a href="../characters.html" class="google-back-btn">
+        <span>←</span> Back to Characters
+    </a>
+
+    <!-- ============================================================
+         HERO 区
+         ============================================================ -->
+    <section class="google-hero">
+        <div class="hero-meta-bar">CHAR_014 · ESTABLISHED 2024 · SAN PEDRO / WILMINGTON</div>
+
+        <div class="hero-content">
+            <div class="hero-title-block">
+                <h1 class="hero-title">Port<em>.</em></h1>
+                <p class="hero-subtitle">
+                    <span class="cn">左舷</span> / Porter Brennan
+                </p>
+                <div class="hero-tags">
+                    <span class="hero-tag">现代都市</span>
+                    <span class="hero-tag">LA · Wilmington</span>
+                    <span class="hero-tag">BL / BG(1)</span>
+                    <span class="hero-tag">28 岁 · 193cm</span>
+                    <span class="hero-tag">Gym Owner</span>
+                </div>
+                <div class="hero-cta-row">
+                    <button class="hero-cta">Save to your list</button>
+                    <button class="hero-cta ghost">Share ↗</button>
+                </div>
+            </div>
+
+            <div class="hero-image-block">
+                <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/bNdl/1456X816/qingkong_%287%29.png/webp" alt="Porter Brennan / 左舷">
+                <div class="cam-tag">CAM_00 // PRIMARY_ASSET</div>
+            </div>
+        </div>
+
+        <div class="hero-specs-bar">
+            <span>REF:<strong>PORTER_BRENNAN_014</strong></span>
+            <span>COORD:<strong>33.7861° N, 118.2647° W</strong></span>
+            <span>SECTOR:<strong>SAN PEDRO / WILMINGTON</strong></span>
+            <span>RATING:<strong>S-TIER</strong></span>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         Knowledge Panel + 简介
+         ============================================================ -->
+    <section class="knowledge-section">
+        <div class="knowledge-grid">
+            <div class="bio-block">
+                <span class="section-label">// Character Summary</span>
+                <h2>A walking concrete wall that <em>quietly moves two inches</em> to let you sit down.</h2>
+                <p class="bio-text">左舷，28 岁，ORCA POWER 健身房老板兼教练，193cm，码头蓝领家庭出身。说话直接，不废话，毒舌。</p>
+                <p class="bio-text">他跟他那个话多到能淹死人的消防员弟弟右舷是两种完全不同的生物，但两人共用一套"外人不能碰我家的人"的默认法则。</p>
+                <p class="bio-text">在恋爱中，他是一堵会挪动两英寸让你坐下的混凝土墙：你不会听到他说"我喜欢你"，但你会在他车里发现一张你提过一次的 CD，和他永远走在你靠马路那一侧的脚步。</p>
+            </div>
+
+            <aside class="knowledge-panel">
+                <div class="knowledge-panel-header">
+                    <span class="g-logo"><span class="b">G</span><span class="r">o</span><span class="y">o</span><span class="b">g</span><span class="g">l</span><span class="r">e</span></span>
+                    <span class="panel-type">Knowledge Panel</span>
+                </div>
+                <div class="kp-title">Porter "Port" Brennan</div>
+                <div class="kp-subtitle">American · Gym owner &amp; personal trainer</div>
+                <ul class="kp-facts">
+                    <li><span class="k">Born</span><span class="v">San Pedro, LA · 28y</span></li>
+                    <li><span class="k">Height</span><span class="v">193 cm</span></li>
+                    <li><span class="k">Occupation</span><span class="v">Owner, ORCA POWER Gym</span></li>
+                    <li><span class="k">Family</span><span class="v">Brother: <em>右舷</em> (Firefighter)</span></li>
+                    <li><span class="k">Trait</span><span class="v">Sharp tongue · Steady hand</span></li>
+                    <li><span class="k">Speaks</span><span class="v">English · A little Spanish</span></li>
+                    <li><span class="k">Vehicle</span><span class="v">Old Ford F-150 pickup</span></li>
+                    <li><span class="k">Known for</span><span class="v link">Two-inch mercy</span></li>
+                </ul>
+            </aside>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CAM 画廊（三张竖图）
+         ============================================================ -->
+    <section class="cam-gallery-section">
+        <div class="cam-gallery">
+            <div class="cam-gallery-item">
+                <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/VTFX/816X1456/qingkong_%285%29.png/webp" alt="Port CAM_01">
+                <div class="cam-tag">CAM_01 // FIELD_OPS</div>
+                <div class="cam-coord">33.7712° N // 118.2637° W // GYM_FLOOR</div>
+            </div>
+            <div class="cam-gallery-item">
+                <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/EBh9/816X1456/qingkong_%286%29.png/webp" alt="Port CAM_02">
+                <div class="cam-tag">CAM_02 // OFF_DUTY</div>
+                <div class="cam-coord">33.7861° N // 118.2647° W // PORT_HARBOR</div>
+            </div>
+            <div class="cam-gallery-item">
+                <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/TqSi/816X1456/qingkong_%284%29.png/webp" alt="Port CAM_03">
+                <div class="cam-tag">CAM_03 // AFTER_HOURS</div>
+                <div class="cam-coord">33.7833° N // 118.2620° W // TRUCK_CAB</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         Scenarios 五个场景
+         ============================================================ -->
+    <section class="scenes-section">
+        <div class="section-container">
+            <span class="section-label">// Scenarios · 5 Encounters</span>
+            <h2 class="section-heading">Five moments where <em>silence speaks louder</em>.</h2>
+
+            <div class="scenes-grid">
+                <article class="scene-card">
+                    <div class="scene-card-head">
+                        <span class="scene-number">01</span>
+                        <span class="scene-badge">📌 拼桌</span>
+                    </div>
+                    <h3 class="scene-title">喧嚣真空：海鲜馆的拼桌默契</h3>
+                    <p class="scene-desc">在圣佩德罗最嘈杂、最拥挤的海鲜馆里，想要找到一个落脚点难如登天。直到你被迫端着餐盘，踏入那个高大男人用气场圈出的"真空地带"。他看起来像个生人勿近、沉迷格斗比赛的暴徒，却会在震耳欲聋的吵闹声和满盘高热量食物的粗犷中，默默为你挪出两英寸的温柔空间。</p>
+                    <div class="scene-card-foot">San Pedro Fish Market · Public Table</div>
+                </article>
+
+                <article class="scene-card">
+                    <div class="scene-card-head">
+                        <span class="scene-number">02</span>
+                        <span class="scene-badge">📌 救场</span>
+                    </div>
+                    <h3 class="scene-title">重力悬停：楼梯间的"硬拉"警告</h3>
+                    <p class="scene-desc">疲惫的深夜加班，受潮发软的沉重纸箱，加上一次意外的踩空，足以酿成一场楼梯间里的灾难。但在这个瞬间，他就像一堵突然拔地而起的混凝土墙，仅凭单手就替你稳稳托住了下坠的重负。没有温声细语的安慰，只有一句皱着眉头、极度硬核的"发力姿势纠正"。</p>
+                    <div class="scene-card-foot">Apartment Stairwell · 23:47</div>
+                </article>
+
+                <article class="scene-card">
+                    <div class="scene-card-head">
+                        <span class="scene-number">03</span>
+                        <span class="scene-badge">📌 深夜赠饭</span>
+                    </div>
+                    <h3 class="scene-title">怠速轰鸣：夜归人的温热谎言</h3>
+                    <p class="scene-desc">凌晨一点的港口区粗糙且冰冷，但在那辆没有熄火的老旧皮卡车里，却藏着一份刚刚出锅的温热。他用拙劣的"剩菜"借口，掩盖了刻意在停车场等待你安全回家的事实。在那句带着命令口吻的"早点上去"背后，是他不愿明说、却如车大灯般将你背后照亮的护短与在意。</p>
+                    <div class="scene-card-foot">Harbor Blvd Parking · 01:12</div>
+                </article>
+
+                <article class="scene-card">
+                    <div class="scene-card-head">
+                        <span class="scene-number">04</span>
+                        <span class="scene-badge">📌 清晨修车</span>
+                    </div>
+                    <h3 class="scene-title">晨雾防线：隐秘的胎压警报</h3>
+                    <p class="scene-desc">轮胎隐秘的漏气，就像生活中潜伏的危机。当你还在为昨晚的一丝异样而惴惴不安时，那个总是冷着脸的男人已经带着满手轮胎灰，在清晨的雾气中替你封死了漏洞。他不懂得如何邀功，只会用最生硬的语气下达"必须换胎"的指令。</p>
+                    <div class="scene-card-foot">Curbside · 06:34 · Foggy</div>
+                </article>
+
+                <article class="scene-card">
+                    <div class="scene-card-head">
+                        <span class="scene-number">05</span>
+                        <span class="scene-badge">📌 餐厅停电</span>
+                    </div>
+                    <h3 class="scene-title">盲区指令：断电瞬间的安全坐标</h3>
+                    <p class="scene-desc">盛夏的闷热与突如其来的停电，足以在一秒钟内引爆所有人的恐慌。但在那片绝对的黑暗里，他低沉的一句"别怕"，犹如一枚定海神针。他能在伸手不见五指的混乱中熟练穿行，擦肩而过时带起的微热气流、洗衣皂香，和那句霸道的叮嘱，成了你在无光世界里最清晰的安全感坐标。</p>
+                    <div class="scene-card-foot">Local Bistro · Power Outage</div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         ORCA POWER · Google 商家页面（重头戏）
+         ============================================================ -->
+    <section class="business-section">
+        <div class="business-wrap">
+            <span class="section-label">// Google Maps · Business Profile</span>
+            <h2 class="section-heading">ORCA POWER Gym</h2>
+
+            <!-- 商家卡片 -->
+            <div class="business-card">
+                <div class="business-info">
+                    <div>
+                        <h3 class="business-name">ORCA POWER Gym</h3>
+                        <p class="business-type">Gym · Personal training · Wilmington</p>
+
+                        <div class="business-rating">
+                            <span class="rating-score">4.8</span>
+                            <span class="rating-stars">★★★★★</span>
+                            <span class="rating-count">(287 reviews)</span>
+                        </div>
+
+                        <div class="business-status">
+                            <span class="status-open">● Open</span>
+                            <span class="status-sep">·</span>
+                            <span class="status-hours">Closes 7 PM · Mon–Sat 8 AM – 7 PM · Sun Closed</span>
+                        </div>
+
+                        <ul class="business-details">
+                            <li>
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-8-7-8-13a8 8 0 1116 0c0 6-8 13-8 13z"/><circle cx="12" cy="8" r="2.5"/></svg>
+                                <span>1247 Industrial Way, Wilmington, Los Angeles, CA 90744</span>
+                            </li>
+                            <li>
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                                <span>Mon–Sat · 8:00 AM – 7:00 PM · Sunday: Closed</span>
+                            </li>
+                            <li>
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.1-8.7A2 2 0 014 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.7a2 2 0 01-.5 2.1L7.9 9.8a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.3 1.8.5 2.7.6A2 2 0 0122 16.9z"/></svg>
+                                <span>(310) 555-ORCA</span>
+                            </li>
+                            <li>
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+                                <span>orcapower.gym</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="business-actions">
+                        <button class="biz-btn primary">🧭 Directions</button>
+                        <button class="biz-btn">☆ Save</button>
+                        <button class="biz-btn">📞 Call</button>
+                        <button class="biz-btn">🌐 Website</button>
+                    </div>
+                </div>
+
+                <!-- 右侧简化地图 -->
+                <div class="business-map">
+                    <div class="map-grid"></div>
+                    <div class="map-roads"></div>
+                    <div class="map-pin">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8z" fill="#EA4335"/>
+                            <circle cx="12" cy="10" r="3" fill="#fff"/>
+                        </svg>
+                    </div>
+                    <div class="map-attribution">Map data · Ghost Channel</div>
+                </div>
+            </div>
+
+            <!-- 评论区 -->
+            <div class="reviews-block">
+                <div class="reviews-head">
+                    <div class="reviews-score-big">
+                        <div class="num">4.8</div>
+                        <div class="stars">★★★★★</div>
+                        <div class="total">287 reviews</div>
+                    </div>
+                    <div class="rating-dist">
+                        <div class="dist-row"><span>5</span><div class="dist-bar"><div class="dist-bar-fill" style="width:82%"></div></div><span>82%</span></div>
+                        <div class="dist-row"><span>4</span><div class="dist-bar"><div class="dist-bar-fill" style="width:12%"></div></div><span>12%</span></div>
+                        <div class="dist-row"><span>3</span><div class="dist-bar"><div class="dist-bar-fill" style="width:3%"></div></div><span>3%</span></div>
+                        <div class="dist-row"><span>2</span><div class="dist-bar"><div class="dist-bar-fill" style="width:1%"></div></div><span>1%</span></div>
+                        <div class="dist-row"><span>1</span><div class="dist-bar"><div class="dist-bar-fill" style="width:2%"></div></div><span>2%</span></div>
+                    </div>
+                </div>
+
+                <!-- 置顶评价 -->
+                <article class="review-item pinned">
+                    <div class="review-user">
+                        <div class="user-avatar blue">O</div>
+                        <div class="user-meta-block">
+                            <div class="user-name">Olivia M.</div>
+                            <div class="user-info-sub">Local Guide · 24 reviews</div>
+                        </div>
+                        <span class="pin-badge">📌 Top Review</span>
+                    </div>
+                    <div class="review-stars-line">
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-date">2 weeks ago</span>
+                    </div>
+                    <p class="review-text">"Port 是我遇到过最专业的教练。三个月瘦了二十五斤。五星。"</p>
+                </article>
+
+                <article class="review-item">
+                    <div class="review-user">
+                        <div class="user-avatar red">T</div>
+                        <div class="user-meta-block">
+                            <div class="user-name">Tom K.</div>
+                            <div class="user-info-sub">18 reviews</div>
+                        </div>
+                    </div>
+                    <div class="review-stars-line">
+                        <span class="review-stars">★★★★<span style="color:var(--g-outline)">★</span></span>
+                        <span class="review-date">1 month ago</span>
+                    </div>
+                    <p class="review-text">"设备好，全是 Rogue 的架子。Port 这个人嘛——你第一次去会觉得他不笑。但你把动作做对了之后他会说一句'还行'——你知道这个评价从他嘴里出来已经是高分了。扣一星是因为他不肯教我调酒。"</p>
+                </article>
+
+                <article class="review-item">
+                    <div class="review-user">
+                        <div class="user-avatar yellow">J</div>
+                        <div class="user-meta-block">
+                            <div class="user-name">Jake W.</div>
+                            <div class="user-info-sub">2 reviews</div>
+                        </div>
+                    </div>
+                    <div class="review-stars-line">
+                        <span class="review-stars">★<span style="color:var(--g-outline)">★★★★</span></span>
+                        <span class="review-date">3 months ago</span>
+                    </div>
+                    <p class="review-text">"老板太严肃了，全程不跟我聊天，搞得我压力很大不敢偷懒。"</p>
+                </article>
+
+                <article class="review-item">
+                    <div class="review-user">
+                        <div class="user-avatar green">D</div>
+                        <div class="user-meta-block">
+                            <div class="user-name">Danny S.</div>
+                            <div class="user-info-sub">Neighbor · 7 reviews</div>
+                        </div>
+                    </div>
+                    <div class="review-stars-line">
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-date">5 months ago</span>
+                    </div>
+                    <p class="review-text">"我不是会员，但我知道这家店。我住在隔壁街，有一年圣诞前夜我家水管爆了，是 Port 拿工具箱来修的。他没要我钱，说'你帮我看着点健身房门口有没有人乱停车就行'。之后我每次路过 ORCA POWER 都会看看，他不是那种对人热情的老板，但他是那种你看一眼就知道'这人靠得住'的类型。我觉得这家店 4.8 分低了。"</p>
+                </article>
+
+                <article class="review-item">
+                    <div class="review-user">
+                        <div class="user-avatar purple">C</div>
+                        <div class="user-meta-block">
+                            <div class="user-name">Carlos &amp; Hector's Auto</div>
+                            <div class="user-info-sub">Verified business · 41 reviews</div>
+                        </div>
+                    </div>
+                    <div class="review-stars-line">
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-date">8 months ago</span>
+                        <span class="translation-note">Translated from Spanish</span>
+                    </div>
+                    <p class="review-text">"Port 是我见过最固执的客户。每次我给他修车他都要硬塞钱，我说不用他说'不行'。后来我们都不收他钱了，他就把健身房淘汰的风扇搬过来给我们用。好人。"</p>
+                    <p class="review-text-en">"Port is the most stubborn customer I've ever had. Every time I fix his truck he insists on paying, I say no, he says 'no'. Eventually we stopped taking his money, so he brought over the retired fans from his gym for us to use. Good man."</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         页脚
+         ============================================================ -->
+    <footer class="google-footer">
+        <div class="footer-wrap">
+            <span>© 2024 Ghost Channel · Character File CHAR_014</span>
+            <span>Ratings powered by <a href="#">Ghost Reviews</a></span>
+        </div>
+    </footer>
+
+    <!-- 侧边水印 -->
+    <div class="vertical-watermark">
+        LAT: 33.7861° N // LONG: 118.2647° W // PORT: ONLINE
+    </div>
+
+    <script>
+        // === Google 四色 loader 入场动画 ===
+        (function () {
+            const intro = document.getElementById('googleIntro');
+            if (!intro) return;
+            let dismissed = false;
+            const dismiss = () => {
+                if (dismissed) return;
+                dismissed = true;
+                intro.classList.add('fade-out');
+                setTimeout(() => intro.remove(), 900);
+            };
+            intro.addEventListener('click', dismiss);
+            // 自动跳过：3.5 秒
+            setTimeout(dismiss, 3500);
+        })();
+
+        // === 导航栏移动端汉堡菜单 ===
+        (function () {
+            const burger = document.getElementById('navBurger');
+            const menu   = document.getElementById('mobileMenu');
+            if (!burger || !menu) return;
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                menu.classList.toggle('active');
+            });
+            menu.querySelectorAll('.mobile-link').forEach(a => {
+                a.addEventListener('click', () => {
+                    burger.classList.remove('active');
+                    menu.classList.remove('active');
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

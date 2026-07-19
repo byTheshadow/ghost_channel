@@ -1,0 +1,1182 @@
+/* ============================================================
+   char-detail-google.css
+   命名空间：.page-google
+   Google 白蓝风格角色详情页专属样式（独立于黑红体系）
+   仅对 body.page-google 生效，不影响其他页面
+   ============================================================ */
+
+/* ---------- 覆盖 global.css 的 overflow hidden ---------- */
+html:has(body.page-google),
+body.page-google {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: auto;
+}
+
+/* ---------- 屏蔽 CRT 层与暗角（Google 页面不用） ---------- */
+body.page-google .crt-overlay,
+body.page-google .vignette {
+    display: none !important;
+}
+
+/* ---------- 根变量与基础 ---------- */
+.page-google {
+    /* Google 官方色 */
+    --g-blue: #1a73e8;
+    --g-blue-dark: #1557b0;
+    --g-blue-light: #e8f0fe;
+    --g-red: #ea4335;
+    --g-yellow: #fbbc04;
+    --g-green: #34a853;
+    --g-star: #fabb05;
+
+    /* 中性色 */
+    --g-surface: #ffffff;
+    --g-surface-2: #f8f9fa;
+    --g-surface-3: #f1f3f4;
+    --g-outline: #dadce0;
+    --g-outline-light: #e8eaed;
+    --g-text-primary: #202124;
+    --g-text-secondary: #5f6368;
+    --g-text-tertiary: #80868b;
+
+    /* 字体 */
+    --gf-sans: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    --gf-serif: 'Playfair Display', 'Times New Roman', serif;
+    --gf-mono: 'Space Mono', 'Courier New', monospace;
+    --gf-cn: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+
+    background: var(--g-surface);
+    color: var(--g-text-primary);
+    font-family: var(--gf-sans);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+}
+
+.page-google *,
+.page-google *::before,
+.page-google *::after {
+    box-sizing: border-box;
+}
+
+.page-google h1,
+.page-google h2,
+.page-google h3,
+.page-google h4,
+.page-google p,
+.page-google ul,
+.page-google li {
+    margin: 0;
+    padding: 0;
+}
+
+.page-google a { color: inherit; text-decoration: none; }
+.page-google img { display: block; max-width: 100%; }
+
+/* ============================================================
+   Google 四色 Loader 入场动画
+   ============================================================ */
+.page-google .google-intro {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--g-surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.page-google .google-intro.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.page-google .google-loader {
+    position: relative;
+    width: 88px;
+    height: 88px;
+    margin-bottom: 3rem;
+}
+
+.page-google .google-loader-arc {
+    position: absolute;
+    inset: 0;
+    border: 5px solid transparent;
+    border-radius: 50%;
+    animation: googleSpin 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.page-google .google-loader-arc.blue   { border-top-color:    #4285F4; animation-delay: 0s; }
+.page-google .google-loader-arc.red    { border-right-color:  #EA4335; animation-delay: 0.12s; }
+.page-google .google-loader-arc.yellow { border-bottom-color: #FBBC05; animation-delay: 0.24s; }
+.page-google .google-loader-arc.green  { border-left-color:   #34A853; animation-delay: 0.36s; }
+
+@keyframes googleSpin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.page-google .google-intro-name {
+    text-align: center;
+    opacity: 0;
+    animation: introNameFadeIn 0.8s ease 0.6s forwards;
+}
+
+.page-google .google-intro-name .name-en {
+    display: block;
+    font-family: var(--gf-serif);
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    font-weight: 600;
+    color: var(--g-text-primary);
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+.page-google .google-intro-name .name-cn {
+    display: block;
+    margin-top: 0.8rem;
+    font-family: var(--gf-cn);
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+    color: var(--g-text-secondary);
+    letter-spacing: 8px;
+    text-transform: uppercase;
+}
+
+@keyframes introNameFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-google .google-intro-skip {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--gf-mono);
+    font-size: 0.7rem;
+    color: var(--g-text-tertiary);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: introNameFadeIn 0.8s ease 1.4s forwards;
+}
+
+/* ============================================================
+   返回按钮
+   ============================================================ */
+.page-google .google-back-btn {
+    position: fixed;
+    top: 90px;
+    left: 2rem;
+    z-index: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.1rem;
+    background: var(--g-surface);
+    color: var(--g-blue);
+    font-family: var(--gf-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid var(--g-outline);
+    border-radius: 999px;
+    box-shadow: 0 1px 2px rgba(60,64,67,0.08);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.page-google .google-back-btn:hover {
+    background: var(--g-blue-light);
+    box-shadow: 0 2px 6px rgba(26,115,232,0.15);
+    transform: translateX(-2px);
+}
+
+/* ============================================================
+   通用分区
+   ============================================================ */
+.page-google .section-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+.page-google .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--gf-mono);
+    font-size: 0.7rem;
+    color: var(--g-text-tertiary);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.page-google .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--g-blue);
+}
+
+.page-google .section-heading {
+    font-family: var(--gf-serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    color: var(--g-text-primary);
+    margin-bottom: 2.5rem;
+    max-width: 720px;
+}
+
+/* ============================================================
+   HERO 区
+   ============================================================ */
+.page-google .google-hero {
+    padding: 130px 3rem 4rem;
+    border-bottom: 1px solid var(--g-outline);
+    background: linear-gradient(180deg, var(--g-surface) 0%, var(--g-surface-2) 100%);
+}
+
+.page-google .hero-meta-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: var(--gf-mono);
+    font-size: 0.72rem;
+    color: var(--g-text-secondary);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+}
+
+.page-google .hero-meta-bar::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--g-blue);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(26,115,232,0.15);
+}
+
+.page-google .hero-content {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 4rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.page-google .hero-title {
+    font-family: var(--gf-serif);
+    font-size: clamp(4rem, 10vw, 9rem);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -3px;
+    color: var(--g-text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.page-google .hero-title em {
+    font-style: italic;
+    color: var(--g-blue);
+}
+
+.page-google .hero-subtitle {
+    font-family: var(--gf-sans);
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--g-text-secondary);
+    margin-bottom: 2rem;
+    letter-spacing: 0.3px;
+}
+
+.page-google .hero-subtitle .cn {
+    font-family: var(--gf-cn);
+    color: var(--g-text-primary);
+    font-weight: 500;
+    margin-right: 0.6rem;
+}
+
+.page-google .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+}
+
+.page-google .hero-tag {
+    padding: 0.4rem 0.9rem;
+    background: var(--g-blue-light);
+    color: var(--g-blue-dark);
+    font-size: 0.82rem;
+    font-weight: 500;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.page-google .hero-tag:hover { border-color: var(--g-blue); }
+
+.page-google .hero-cta-row {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+.page-google .hero-cta {
+    padding: 0.7rem 1.5rem;
+    background: var(--g-blue);
+    color: #fff;
+    font-family: var(--gf-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.page-google .hero-cta:hover {
+    background: var(--g-blue-dark);
+    box-shadow: 0 4px 12px rgba(26,115,232,0.25);
+}
+
+.page-google .hero-cta.ghost {
+    background: transparent;
+    color: var(--g-blue);
+    border: 1px solid var(--g-outline);
+}
+
+.page-google .hero-cta.ghost:hover {
+    background: var(--g-blue-light);
+    border-color: var(--g-blue);
+}
+
+.page-google .hero-image-block {
+    position: relative;
+    aspect-ratio: 16/12;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 8px 32px rgba(60,64,67,0.15);
+}
+
+.page-google .hero-image-block img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.02) saturate(0.95);
+    transition: transform 0.6s ease;
+}
+
+.page-google .hero-image-block:hover img { transform: scale(1.03); }
+
+.page-google .cam-tag {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.35rem 0.75rem;
+    background: rgba(255,255,255,0.95);
+    color: var(--g-text-primary);
+    font-family: var(--gf-mono);
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    backdrop-filter: blur(4px);
+}
+
+.page-google .hero-specs-bar {
+    max-width: 1280px;
+    margin: 3rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--g-outline);
+    font-family: var(--gf-mono);
+    font-size: 0.72rem;
+    color: var(--g-text-tertiary);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2.5rem;
+}
+
+.page-google .hero-specs-bar span strong {
+    color: var(--g-text-primary);
+    font-weight: 500;
+    margin-left: 0.4rem;
+}
+
+/* ============================================================
+   Knowledge Panel + 简介
+   ============================================================ */
+.page-google .knowledge-section {
+    padding: 5rem 3rem;
+    border-bottom: 1px solid var(--g-outline);
+}
+
+.page-google .knowledge-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.page-google .bio-block h2 {
+    font-family: var(--gf-serif);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--g-text-primary);
+    margin-bottom: 2rem;
+    letter-spacing: -0.5px;
+}
+
+.page-google .bio-block h2 em {
+    font-style: italic;
+    color: var(--g-blue);
+}
+
+.page-google .bio-text {
+    font-family: var(--gf-cn);
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: #3c4043;
+    font-weight: 400;
+}
+
+.page-google .bio-text + .bio-text { margin-top: 1.2rem; }
+
+.page-google .knowledge-panel {
+    background: var(--g-surface);
+    border: 1px solid var(--g-outline);
+    border-radius: 8px;
+    padding: 1.8rem;
+    box-shadow: 0 1px 3px rgba(60,64,67,0.06);
+    position: sticky;
+    top: 100px;
+}
+
+.page-google .knowledge-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--g-outline-light);
+    margin-bottom: 1.2rem;
+}
+
+.page-google .knowledge-panel-header .g-logo {
+    font-family: var(--gf-sans);
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0;
+}
+.page-google .knowledge-panel-header .g-logo .b { color: #4285F4; }
+.page-google .knowledge-panel-header .g-logo .r { color: #EA4335; }
+.page-google .knowledge-panel-header .g-logo .y { color: #FBBC05; }
+.page-google .knowledge-panel-header .g-logo .g { color: #34A853; }
+
+.page-google .knowledge-panel-header .panel-type {
+    font-family: var(--gf-mono);
+    font-size: 0.68rem;
+    color: var(--g-text-tertiary);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-left: auto;
+}
+
+.page-google .kp-title {
+    font-family: var(--gf-cn);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--g-text-primary);
+    margin-bottom: 0.3rem;
+}
+
+.page-google .kp-subtitle {
+    font-size: 0.85rem;
+    color: var(--g-text-secondary);
+    margin-bottom: 1.2rem;
+}
+
+.page-google .kp-facts {
+    list-style: none;
+}
+
+.page-google .kp-facts li {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 0.8rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--g-outline-light);
+    font-size: 0.88rem;
+}
+
+.page-google .kp-facts li:last-child { border-bottom: none; }
+
+.page-google .kp-facts .k {
+    color: var(--g-text-secondary);
+    font-weight: 400;
+}
+
+.page-google .kp-facts .v {
+    color: var(--g-text-primary);
+    font-weight: 500;
+}
+
+.page-google .kp-facts .v.link { color: var(--g-blue); }
+
+/* ============================================================
+   CAM 画廊（三张竖图）
+   ============================================================ */
+.page-google .cam-gallery-section {
+    border-bottom: 1px solid var(--g-outline);
+}
+
+.page-google .cam-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: clamp(400px, 60vh, 600px);
+}
+
+.page-google .cam-gallery-item {
+    position: relative;
+    overflow: hidden;
+    background: var(--g-surface-3);
+    border-right: 1px solid rgba(255,255,255,0.4);
+}
+
+.page-google .cam-gallery-item:last-child { border-right: none; }
+
+.page-google .cam-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+
+.page-google .cam-gallery-item:hover img { transform: scale(1.06); }
+
+.page-google .cam-gallery-item .cam-tag {
+    z-index: 2;
+}
+
+.page-google .cam-gallery-item .cam-coord {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    font-family: var(--gf-mono);
+    font-size: 0.65rem;
+    color: #fff;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+}
+
+/* ============================================================
+   Scenarios 场景卡片
+   ============================================================ */
+.page-google .scenes-section {
+    padding: 6rem 3rem;
+    border-bottom: 1px solid var(--g-outline);
+    background: var(--g-surface-2);
+}
+
+.page-google .scenes-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.page-google .scene-card {
+    background: var(--g-surface);
+    border: 1px solid var(--g-outline);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-google .scene-card:hover {
+    box-shadow: 0 8px 24px rgba(60,64,67,0.12);
+    transform: translateY(-2px);
+    border-color: var(--g-blue-light);
+}
+
+.page-google .scene-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+}
+
+.page-google .scene-number {
+    font-family: var(--gf-serif);
+    font-size: 2.2rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--g-blue);
+    line-height: 1;
+}
+
+.page-google .scene-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.75rem;
+    background: var(--g-blue-light);
+    color: var(--g-blue-dark);
+    font-size: 0.72rem;
+    font-weight: 500;
+    border-radius: 999px;
+    letter-spacing: 0.5px;
+}
+
+.page-google .scene-title {
+    font-family: var(--gf-cn);
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--g-text-primary);
+    margin-bottom: 1rem;
+}
+
+.page-google .scene-desc {
+    font-family: var(--gf-cn);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--g-text-secondary);
+}
+
+.page-google .scene-card-foot {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--g-outline-light);
+    font-family: var(--gf-mono);
+    font-size: 0.7rem;
+    color: var(--g-text-tertiary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.page-google .scene-card-foot::before {
+    content: '';
+    width: 14px; height: 14px;
+    background: var(--g-blue);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   ORCA POWER · Google 商家页面
+   ============================================================ */
+.page-google .business-section {
+    padding: 6rem 3rem;
+    background: var(--g-surface);
+    border-bottom: 1px solid var(--g-outline);
+}
+
+.page-google .business-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.page-google .business-card {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    background: var(--g-surface);
+    border: 1px solid var(--g-outline);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(60,64,67,0.08);
+}
+
+.page-google .business-info {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-google .business-name {
+    font-family: var(--gf-sans);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--g-text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.page-google .business-type {
+    font-size: 0.9rem;
+    color: var(--g-text-secondary);
+    margin-bottom: 1rem;
+}
+
+.page-google .business-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.page-google .rating-score {
+    font-size: 1.1rem;
+    color: var(--g-text-primary);
+    font-weight: 500;
+}
+
+.page-google .rating-stars {
+    color: var(--g-star);
+    letter-spacing: 1px;
+    font-size: 1rem;
+}
+
+.page-google .rating-count {
+    color: var(--g-blue);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.page-google .rating-count:hover { text-decoration: underline; }
+
+.page-google .business-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.page-google .business-status .status-open { color: var(--g-green); font-weight: 500; }
+.page-google .business-status .status-sep { color: var(--g-text-tertiary); }
+.page-google .business-status .status-hours { color: var(--g-text-secondary); }
+
+.page-google .business-details {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.page-google .business-details li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--g-outline-light);
+    font-size: 0.92rem;
+    color: var(--g-text-primary);
+}
+
+.page-google .business-details li:last-child { border-bottom: none; }
+
+.page-google .business-details .icon {
+    width: 20px; height: 20px;
+    flex-shrink: 0;
+    color: var(--g-text-secondary);
+    margin-top: 2px;
+}
+
+.page-google .business-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: auto;
+    padding-top: 1.5rem;
+}
+
+.page-google .biz-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1.2rem;
+    background: var(--g-surface);
+    color: var(--g-blue);
+    border: 1px solid var(--g-outline);
+    border-radius: 999px;
+    font-family: var(--gf-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.page-google .biz-btn:hover {
+    background: var(--g-blue-light);
+    border-color: var(--g-blue);
+}
+
+.page-google .biz-btn.primary {
+    background: var(--g-blue);
+    color: #fff;
+    border-color: var(--g-blue);
+}
+
+.page-google .biz-btn.primary:hover { background: var(--g-blue-dark); }
+
+/* 右侧地图占位 */
+.page-google .business-map {
+    position: relative;
+    background:
+        linear-gradient(135deg, #e8f0e8 0%, #d5e5db 50%, #cbdccf 100%);
+    overflow: hidden;
+    min-height: 380px;
+}
+
+.page-google .map-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.6;
+}
+
+.page-google .map-roads {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.page-google .map-roads::before,
+.page-google .map-roads::after {
+    content: '';
+    position: absolute;
+    background: #ffffff;
+    opacity: 0.85;
+}
+
+.page-google .map-roads::before {
+    top: 40%; left: -5%; right: -5%; height: 10px;
+    transform: rotate(-6deg);
+    box-shadow: 0 0 0 2px #e0e5df;
+}
+
+.page-google .map-roads::after {
+    left: 62%; top: -5%; bottom: -5%; width: 8px;
+    transform: rotate(4deg);
+    box-shadow: 0 0 0 2px #e0e5df;
+}
+
+.page-google .map-pin {
+    position: absolute;
+    top: 42%;
+    left: 55%;
+    transform: translate(-50%, -100%);
+    z-index: 3;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+    animation: pinBounce 2s ease-in-out infinite;
+}
+
+.page-google .map-pin svg {
+    width: 42px;
+    height: 42px;
+}
+
+@keyframes pinBounce {
+    0%, 100% { transform: translate(-50%, -100%); }
+    50%      { transform: translate(-50%, -110%); }
+}
+
+.page-google .map-attribution {
+    position: absolute;
+    bottom: 8px; right: 12px;
+    font-family: var(--gf-sans);
+    font-size: 0.68rem;
+    color: rgba(60,64,67,0.6);
+    letter-spacing: 0.3px;
+}
+
+/* 评论区 */
+.page-google .reviews-block {
+    margin-top: 3.5rem;
+    background: var(--g-surface);
+    border: 1px solid var(--g-outline);
+    border-radius: 12px;
+    padding: 2.5rem;
+}
+
+.page-google .reviews-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--g-outline-light);
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+.page-google .reviews-score-big {
+    text-align: center;
+}
+
+.page-google .reviews-score-big .num {
+    font-family: var(--gf-serif);
+    font-size: 4.5rem;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--g-text-primary);
+}
+
+.page-google .reviews-score-big .stars {
+    color: var(--g-star);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    margin: 0.4rem 0;
+}
+
+.page-google .reviews-score-big .total {
+    font-size: 0.85rem;
+    color: var(--g-blue);
+    cursor: pointer;
+}
+
+.page-google .rating-dist {
+    display: grid;
+    gap: 0.4rem;
+}
+
+.page-google .dist-row {
+    display: grid;
+    grid-template-columns: 20px 1fr 40px;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.85rem;
+    color: var(--g-text-secondary);
+}
+
+.page-google .dist-bar {
+    height: 8px;
+    background: var(--g-surface-3);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.page-google .dist-bar-fill {
+    height: 100%;
+    background: var(--g-star);
+    border-radius: 999px;
+}
+
+.page-google .review-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--g-outline-light);
+}
+
+.page-google .review-item:last-child { border-bottom: none; }
+
+.page-google .review-item.pinned {
+    background: linear-gradient(180deg, rgba(232,240,254,0.4) 0%, transparent 100%);
+    margin: 0 -1.5rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-bottom: 1px solid var(--g-outline-light);
+}
+
+.page-google .review-user {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.6rem;
+}
+
+.page-google .user-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    font-family: var(--gf-sans);
+    flex-shrink: 0;
+}
+
+.page-google .user-avatar.blue   { background: #4285F4; }
+.page-google .user-avatar.red    { background: #EA4335; }
+.page-google .user-avatar.yellow { background: #F9AB00; }
+.page-google .user-avatar.green  { background: #34A853; }
+.page-google .user-avatar.purple { background: #A142F4; }
+.page-google .user-avatar.teal   { background: #24C1E0; }
+
+.page-google .user-meta-block { flex: 1; }
+.page-google .user-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--g-text-primary);
+}
+.page-google .user-info-sub {
+    font-size: 0.78rem;
+    color: var(--g-text-secondary);
+    margin-top: 2px;
+}
+
+.page-google .pin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.7rem;
+    background: var(--g-blue);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 500;
+    border-radius: 999px;
+    letter-spacing: 0.3px;
+}
+
+.page-google .review-stars-line {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.7rem;
+}
+
+.page-google .review-stars {
+    color: var(--g-star);
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+
+.page-google .review-stars.low { color: var(--g-outline); }
+
+.page-google .review-date {
+    font-size: 0.8rem;
+    color: var(--g-text-tertiary);
+}
+
+.page-google .review-text {
+    font-family: var(--gf-cn);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #3c4043;
+}
+
+.page-google .review-text-en {
+    font-family: var(--gf-sans);
+    font-size: 0.85rem;
+    color: var(--g-text-secondary);
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+.page-google .translation-note {
+    display: inline-block;
+    margin-top: 0.6rem;
+    padding: 0.2rem 0.5rem;
+    background: var(--g-surface-3);
+    color: var(--g-text-secondary);
+    font-size: 0.72rem;
+    border-radius: 4px;
+}
+
+/* ============================================================
+   页脚
+   ============================================================ */
+.page-google .google-footer {
+    padding: 3rem;
+    background: var(--g-surface-2);
+    border-top: 1px solid var(--g-outline);
+}
+
+.page-google .footer-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-family: var(--gf-mono);
+    font-size: 0.75rem;
+    color: var(--g-text-tertiary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.page-google .footer-wrap a { color: var(--g-blue); }
+
+/* ============================================================
+   侧边水印
+   ============================================================ */
+.page-google .vertical-watermark {
+    position: fixed;
+    right: 8px;
+    bottom: 24px;
+    writing-mode: vertical-rl;
+    font-family: var(--gf-mono);
+    font-size: 0.62rem;
+    color: var(--g-text-tertiary);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    z-index: 100;
+    pointer-events: none;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1024px) {
+    .page-google .hero-content { gap: 2.5rem; }
+    .page-google .knowledge-grid { gap: 2.5rem; }
+}
+
+@media (max-width: 768px) {
+    .page-google .section-container,
+    .page-google .google-hero,
+    .page-google .knowledge-section,
+    .page-google .scenes-section,
+    .page-google .business-section,
+    .page-google .google-footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+    .page-google .google-hero { padding-top: 110px; }
+    .page-google .google-back-btn { top: 78px; left: 1rem; padding: 0.5rem 0.9rem; font-size: 0.8rem; }
+
+    .page-google .hero-content { grid-template-columns: 1fr; gap: 2rem; }
+    .page-google .hero-title { font-size: clamp(3rem, 14vw, 5rem); }
+    .page-google .knowledge-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .page-google .knowledge-panel { position: static; }
+
+    .page-google .cam-gallery {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    .page-google .cam-gallery-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        aspect-ratio: 4/5;
+    }
+
+    .page-google .scenes-grid { grid-template-columns: 1fr; }
+
+    .page-google .business-card { grid-template-columns: 1fr; }
+    .page-google .business-map { min-height: 280px; order: -1; }
+    .page-google .reviews-head { grid-template-columns: 1fr; gap: 1.5rem; }
+    .page-google .reviews-block { padding: 1.5rem; }
+    .page-google .review-item.pinned { margin: 0; }
+
+    .page-google .hero-specs-bar { gap: 0.8rem 1.5rem; font-size: 0.65rem; }
+    .page-google .vertical-watermark { display: none; }
+}
+
+@media (max-width: 480px) {
+    .page-google .business-info { padding: 1.5rem; }
+    .page-google .business-name { font-size: 1.6rem; }
+    .page-google .business-actions .biz-btn { flex: 1; justify-content: center; }
+    .page-google .scene-card { padding: 1.5rem; }
+    .page-google .reviews-score-big .num { font-size: 3.5rem; }
+}
