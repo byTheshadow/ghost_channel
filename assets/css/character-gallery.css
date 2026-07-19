@@ -460,13 +460,27 @@
     .cg-lb-next { right: 8px; }
 }
 
+/* 手机端：变成横向滑动 */
 @media (max-width: 480px) {
-    .cg-hero-cn { font-size: 20px; letter-spacing: 2px; }
-    .cg-hero-desc { font-size: 12px; }
-    .cg-lb-hint { display: none; }
-    .cg-lightbox-topbar { top: 10px; left: 12px; right: 12px; }
-    .cg-lb-close { font-size: 9px; padding: 6px 10px; }
-    .cg-lb-counter { font-size: 9px; }
+    .cg-grid {
+        column-count: auto;         /* 取消瀑布流布局 */
+        display: flex !important;   /* 变成横向排列 */
+        flex-wrap: nowrap;          /* 强制不换行 */
+        overflow-x: auto;           /* 开启横向滚动 */
+        scroll-snap-type: x mandatory; /* 增加滑动吸附感（高级感） */
+        gap: 12px;                  /* 图片之间的间距 */
+        padding: 10px 20px 30px;    /* 留点底部空间给滚动条 */
+        -webkit-overflow-scrolling: touch; /* 让滑动更顺滑 */
+    }
+    .cg-item {
+        flex: 0 0 80%;              /* 每张图占据屏幕 80% 的宽度 */
+        scroll-snap-align: center;  /* 划过去后自动居中 */
+        margin-bottom: 0;
+    }
+    /* 隐藏丑陋的滚动条 */
+    .cg-grid::-webkit-scrollbar {
+        display: none;
+    }
 }
 /* ==================== 入口条（在 characters.html 里用） ==================== */
 .char-gallery-entry {

@@ -223,12 +223,6 @@ const GALLERY_DATA = [
         desc:  '烛光摇曳，镜面浮现出一张熟悉又狰狞的笑脸。\n我们究竟是谁剥夺了谁的呼吸？',
     },
     {
-        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/BA48/848X1424/1.png/webp',
-        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/BA48/848X1424/1.png/webp',
-        title: '厄运之匣',
-        desc:  '魔盒一旦开启，就只有绝望倾泻而出。\n贪婪的人啊，准备好迎接这无尽的深渊了吗？',
-    },
-    {
         thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/IoBd/848X1424/3.png/webp',
         full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/IoBd/848X1424/3.png/webp',
         title: '枯骨与权杖',
