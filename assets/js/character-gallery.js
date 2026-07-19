@@ -14,19 +14,73 @@
 */
 const GALLERY_DATA = [
     {
-        thumb: '../assets/images/char-gallery/thumb/001.webp',
-        full:  '../assets/images/char-gallery/full/001.webp',
-        title: '隼 · 舞台侧影',
-        desc:  '2024.03 · 霖城地下 Livehouse\n那晚他弹断了一根弦，还是弹完了。',
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/fD91/1632X2912/0_0%2B-%2B2025-06-27T135940.088.jpeg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/fD91/1632X2912/0_0%2B-%2B2025-06-27T135940.088.jpeg/webp',
+        title: '苍白的挽歌',
+        desc:  '鲜血褪去后的十字架，只剩下灰烬与沉默。\n不要试图唤醒沉睡的夜。',
     },
     {
-        thumb: '../assets/images/char-gallery/thumb/002.webp',
-        full:  '../assets/images/char-gallery/full/002.webp',
-        title: '阿丧 · 雨夜',
-        desc:  '角色设定初稿。\n伞是没有的，他从来不带。',
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/zUPx/1632X2912/0_0%2B-%2B2025-06-27T135753.101.jpeg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/zUPx/1632X2912/0_0%2B-%2B2025-06-27T135753.101.jpeg/webp',
+        title: '破碎的倒影',
+        desc:  '乌鸦在塔楼盘旋，带走最后一丝温度。\n镜子里的那张脸，早就不属于我。',
     },
-    // ↓↓↓ 继续加就行，加多少张都可以 ↓↓↓
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/KcOo/1632X2912/0_0%2B-%2B2025-06-27T135955.887.jpeg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/KcOo/1632X2912/0_0%2B-%2B2025-06-27T135955.887.jpeg/webp',
+        title: '永夜的低语',
+        desc:  '提灯的光芒无法穿透这片灵魂的荒芜。\n我们在深渊边缘，等待着被吞噬。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/Zegj/1632X2912/0_0%2B-%2B2025-06-27T135749.214.jpeg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/Zegj/1632X2912/0_0%2B-%2B2025-06-27T135749.214.jpeg/webp',
+        title: '枯萎的黑蔷薇',
+        desc:  '爱情与死亡，最终都成了干瘪的花瓣。\n风一吹，连同誓言一起散落。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/wWCn/1632X2912/0_0%2B-%2B2025-06-29T164042.175.jpeg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/wWCn/1632X2912/0_0%2B-%2B2025-06-29T164042.175.jpeg/webp',
+        title: '第十三次葬礼',
+        desc:  '墓碑上的名字早已斑驳不清。\n只有无尽的冷雨，还在诉说被遗忘的罪恶。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/ABUm/1632X2912/0_0%2B-%2B2025-06-27T135746.920.jpeg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/ABUm/1632X2912/0_0%2B-%2B2025-06-27T135746.920.jpeg/webp',
+        title: '提线木偶',
+        desc:  '丝线嵌进血肉，舞步伴随着关节碎裂的脆响。\n没有灵魂的躯壳，连流泪都是一种奢望。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/jEbO/1632X2912/0_0%2B-%2B2025-06-29T164044.176.jpeg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/jEbO/1632X2912/0_0%2B-%2B2025-06-29T164044.176.jpeg/webp',
+        title: '血族之拥',
+        desc:  '獠牙刺破苍白颈项的瞬间，是永生的赐福，亦是诅咒。\n黎明，是永远无法触及的痛。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/AJX4/1632X2912/0_0%2B-%2B2025-06-29T164109.343.jpeg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/AJX4/1632X2912/0_0%2B-%2B2025-06-29T164109.343.jpeg/webp',
+        title: '废墟上的安魂曲',
+        desc:  '钟摆停在了午夜零点，管风琴发出沙哑的悲鸣。\n神明早已背弃了这座荒城。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/C1qN/1632X2912/0_0%2B-%2B2025-06-29T163404.186.jpeg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/C1qN/1632X2912/0_0%2B-%2B2025-06-29T163404.186.jpeg/webp',
+        title: '黑天鹅的哀羽',
+        desc:  '水面上漂浮着最后一片黑羽。\n她沉入寒冷的湖底，将秘密永远封存。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/6dMw/1632X2912/0_0%2B-%2B2025-06-29T163406.720.jpeg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/6dMw/1632X2912/0_0%2B-%2B2025-06-29T163406.720.jpeg/webp',
+        title: '猩红之眼',
+        desc:  '在黑暗中凝视深渊的人，眼底也会染上绝望的底色。\n别看，那里面藏着地狱。',
+    },
+    {
+        thumb: 'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/MbXq/1632X2912/0_0%2B-%2B2025-06-29T163400.717.jpeg/webp',
+        full:  'https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/MbXq/1632X2912/0_0%2B-%2B2025-06-29T163400.717.jpeg/webp',
+        title: '尘封的契约',
+        desc:  '用干涸的血迹写下的羊皮纸，字迹发黄斑驳。\n代价是交出你那千疮百孔的心。',
+    }
 ];
+
 
 /* ---------- DOM 引用 ---------- */
 const grid = document.getElementById('cgGrid');
