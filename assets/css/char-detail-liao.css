@@ -1,0 +1,290 @@
+@charset "UTF-8";
+/* 1. 独立字体：引入工业/硬核英文字体和无衬线中文字体 */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Noto+Sans+SC:wght@300;500;700;900&display=swap');
+
+/* 2. 作用域隔离的 CSS 变量 */
+body.detail-page-custom {
+    --my-bg: #0a0a0c;
+    --my-accent: #ff2a2a; /* 暴烈的危险红 */
+    --my-text: #e0e0e0;
+    --my-muted: #737373;
+    --my-border: #222222;
+    --my-font-title: 'Oswald', 'Noto Sans SC', sans-serif;
+    --my-font-body: 'Noto Sans SC', sans-serif;
+
+    background-color: var(--my-bg);
+    color: var(--my-text);
+    font-family: var(--my-font-body);
+}
+
+/* 链接无下划线 */
+.detail-page-custom .custom-main a { text-decoration: none; color: inherit; }
+
+/* 3. 布局：利用 Fixed 和 Margin 实现的完美双屏分割，兼容 body 的 overflow: visible */
+.detail-page-custom .custom-main {
+    display: flex;
+    min-height: 100vh;
+    padding-top: 60px; /* 避开顶部共享导航栏的高度 */
+}
+
+/* 左侧固定视觉区 */
+.detail-page-custom .left-panel {
+    width: 50%;
+    position: fixed;
+    top: 60px; /* 从导航栏下方开始 */
+    bottom: 0;
+    left: 0;
+    /* 使用您提供的水平构图图片作为背景 */
+    background-image: url('https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260720/8oR3/1456X816/720_%282%29.png/webp');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    
+    /* 页面加载进入动画 */
+    opacity: 0;
+    animation: panelFadeIn 1s cubic-bezier(0.19, 1, 0.22, 1) 0.1s forwards;
+}
+
+/* 左侧中间的 Logo 盒子 */
+.detail-page-custom .logo-box {
+    width: 160px;
+    height: 160px;
+    background-color: rgba(10, 10, 12, 0.7);
+    backdrop-filter: blur(8px);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--my-border);
+}
+
+.detail-page-custom .corner {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--my-accent);
+}
+.detail-page-custom .corner.tl { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+.detail-page-custom .corner.tr { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+.detail-page-custom .corner.bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+.detail-page-custom .corner.br { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+.detail-page-custom .logo-box svg {
+    stroke: var(--my-accent);
+    width: 70px;
+    height: 70px;
+}
+
+/* 右侧内容滚动区 */
+.detail-page-custom .right-panel {
+    width: 50%;
+    margin-left: 50%; /* 留出左侧 Fixed 区域的位置 */
+    padding: 60px 80px;
+    z-index: 2;
+    
+    /* 页面加载进入动画 */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUpFade 1s cubic-bezier(0.19, 1, 0.22, 1) 0.3s forwards;
+}
+
+/* 4. 排版与排版样式 */
+.detail-page-custom .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    font-family: var(--my-font-title);
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--my-muted);
+    border-bottom: 1px solid var(--my-border);
+    padding-bottom: 20px;
+}
+.detail-page-custom .page-header span {
+    color: var(--my-accent);
+}
+
+.detail-page-custom .intro-section { margin-bottom: 60px; }
+.detail-page-custom .intro-section h1 {
+    font-family: var(--my-font-title);
+    font-size: 4rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 10px;
+    line-height: 1;
+    text-transform: uppercase;
+}
+.detail-page-custom .intro-section .tags {
+    font-family: var(--my-font-title);
+    font-size: 14px;
+    color: var(--my-accent);
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+.detail-page-custom .intro-section p {
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: #cccccc;
+    text-align: justify;
+}
+
+/* 语录块 */
+.detail-page-custom .quote-block {
+    margin: 40px 0;
+    padding: 20px 30px;
+    border-left: 4px solid var(--my-accent);
+    background: linear-gradient(90deg, rgba(255,42,42,0.1) 0%, transparent 100%);
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    font-style: italic;
+}
+
+/* 乐队信息块 */
+.detail-page-custom .band-info {
+    border: 1px solid var(--my-border);
+    padding: 30px;
+    margin-bottom: 60px;
+    position: relative;
+    background: url('data:image/svg+xml;utf8,<svg width="4" height="4" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><rect width="4" height="4" fill="none"/><rect width="1" height="1" fill="%23222"/></svg>');
+}
+.detail-page-custom .band-info h3 {
+    font-family: var(--my-font-title);
+    color: var(--my-accent);
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+.detail-page-custom .band-info strong {
+    font-family: var(--my-font-title);
+    display: block;
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+.detail-page-custom .band-info p {
+    font-size: 13px;
+    color: var(--my-muted);
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+/* 5. 档案列表（借鉴参考布局） */
+.detail-page-custom .list-container { width: 100%; }
+.detail-page-custom .list-header {
+    display: grid;
+    grid-template-columns: 50px 80px 1fr;
+    gap: 20px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-top: 1px solid var(--my-border);
+    border-bottom: 1px solid var(--my-border);
+    padding-top: 15px;
+    font-family: var(--my-font-title);
+    font-size: 11px;
+    color: var(--my-muted);
+    letter-spacing: 1.5px;
+}
+.detail-page-custom .list-item {
+    display: grid;
+    grid-template-columns: 50px 80px 1fr;
+    gap: 20px;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--my-border);
+    transition: all 0.3s ease;
+}
+.detail-page-custom .list-item:hover {
+    background: rgba(255,42,42,0.05);
+    padding-left: 15px;
+}
+.detail-page-custom .item-no {
+    font-family: var(--my-font-title);
+    font-size: 14px;
+    color: var(--my-accent);
+}
+.detail-page-custom .item-thumb {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.2);
+    border: 1px solid var(--my-border);
+    transition: filter 0.3s ease;
+}
+.detail-page-custom .list-item:hover .item-thumb {
+    filter: grayscale(0%) contrast(1.1); /* hover 时恢复彩色 */
+}
+.detail-page-custom .item-details h4 {
+    font-family: var(--my-font-title);
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+.detail-page-custom .item-meta {
+    font-size: 12px;
+    color: var(--my-muted);
+    line-height: 1.6;
+}
+
+/* 6. 悬浮返回按钮 */
+.detail-page-custom .back-btn-custom {
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    background: var(--my-accent);
+    color: #fff;
+    padding: 12px 24px;
+    font-family: var(--my-font-title);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    z-index: 100;
+    border: 1px solid var(--my-accent);
+    transition: all 0.3s ease;
+}
+.detail-page-custom .back-btn-custom:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+}
+
+/* 7. 动画定义 */
+@keyframes panelFadeIn {
+    from { opacity: 0; filter: brightness(0); }
+    to { opacity: 1; filter: brightness(1); }
+}
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 8. 移动端响应式处理 */
+@media (max-width: 900px) {
+    .detail-page-custom .custom-main { flex-direction: column; padding-top: 60px; }
+    /* 左侧视觉区变为正常的流式布局，固定高度 */
+    .detail-page-custom .left-panel {
+        width: 100%;
+        position: relative;
+        height: 45vh;
+        top: 0;
+    }
+    /* 右侧信息区重置 margin */
+    .detail-page-custom .right-panel {
+        width: 100%;
+        margin-left: 0;
+        padding: 30px 20px;
+    }
+    .detail-page-custom .intro-section h1 { font-size: 3rem; }
+    .detail-page-custom .list-header, 
+    .detail-page-custom .list-item {
+        grid-template-columns: 40px 60px 1fr;
+        gap: 15px;
+    }
+    .detail-page-custom .item-thumb { width: 60px; height: 60px; }
+    .detail-page-custom .back-btn-custom { bottom: 20px; right: 20px; padding: 10px 15px; }
+}
