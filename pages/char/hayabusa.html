@@ -64,10 +64,18 @@
     <main class="custom-main">
         
         <!-- Hero: 巨型排版 -->
+                <!-- Hero: 巨型排版 -->
         <section class="haya-hero" id="hero">
-            <div class="title-line"><span class="parallax-text" data-speed="0.1">Hayabusa.</span></div>
-            <div class="title-line"><span class="parallax-text" data-speed="0.25">Kerosene</span></div>
-            <div class="title-line"><span class="parallax-text" data-speed="0.15">Roses</span></div>
+            <!-- 修复：外层做视差滚动，内层 span 专心做 CSS 遮罩入场动画 -->
+            <div class="title-line parallax-text" data-speed="0.1">
+                <span>Hayabusa.</span>
+            </div>
+            <div class="title-line parallax-text" data-speed="0.25">
+                <span>Kerosene</span>
+            </div>
+            <div class="title-line parallax-text" data-speed="0.15">
+                <span>Roses</span>
+            </div>
             
             <div class="hero-meta parallax-text" data-speed="0.05">
                 <p>FILE // <span class="highlight-amber">CHAR_0XX</span></p>
@@ -75,6 +83,7 @@
                 <p>DATE // <span class="highlight-amber">2025.08</span></p>
             </div>
         </section>
+
 
         <!-- About: 介绍与3D音频设备 -->
         <section class="haya-about">
@@ -250,7 +259,8 @@
         document.querySelectorAll('.img-wrap').forEach(img => observer.observe(img));
 
         // 7. 时钟秒表计时
-        let seconds = 3410; 
+               // 7. 时钟秒表计时 (修复：从0起跳)
+        let seconds = 0; 
         setInterval(() => {
             seconds++;
             let h = Math.floor(seconds / 3600).toString().padStart(2, '0');
@@ -258,6 +268,7 @@
             let s = (seconds % 60).toString().padStart(2, '0');
             document.getElementById('clock').innerText = `${h}:${m}:${s}`;
         }, 1000);
+
     </script>
 </body>
 </html>

@@ -321,3 +321,14 @@ body.detail-page-custom {
     .detail-page-custom .item-v { grid-column: 1 / 13; }
     .detail-page-custom .item-h { grid-column: 1 / 13; margin-top: 5vw; }
 }
+/* =========================================
+   移动端交互修复：禁用自定义光标，恢复默认
+========================================= */
+@media (hover: none) and (pointer: coarse) {
+    body.detail-page-custom { 
+        cursor: auto; 
+    }
+    .detail-page-custom .custom-cursor { 
+        display: none !important; 
+    }
+}
