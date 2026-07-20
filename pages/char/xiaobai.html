@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -22,6 +23,14 @@
     </style>
 </head>
 <body class="detail-page-custom">
+
+    <!-- ========== 小白专属加载画面 ========== -->
+    <div id="xb-loader" class="xb-loader">
+        <div class="xb-loader-content">
+            <span class="xb-loader-text">CONNECTING TO ACID RAIN...</span>
+            <div class="xb-loader-bar"></div>
+        </div>
+    </div>
 
     <!-- CRT 效果层 -->
     <div class="crt-overlay"></div>
@@ -111,7 +120,7 @@
             </div>
         </section>
 
-        <!-- 瀑布流画廊 (Visual Journal) -->
+        <!-- 画廊 (Visual Journal) 已删减指定图片 -->
         <section class="xb-gallery-section">
             <div class="xb-section-header">
                 <h2 class="xb-sub-title">Visual Journal</h2>
@@ -122,10 +131,6 @@
                 <div class="xb-masonry-item">
                     <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260720/Dxda/832X1456/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D6494327625332513854%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp" alt="小白 资料图1">
                     <div class="xb-caption">Acid Rain Drop - Live</div>
-                </div>
-                <div class="xb-masonry-item">
-                    <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260720/BggY/816X1456/eb.png/webp" alt="小白 资料图2">
-                    <div class="xb-caption">The Tinker's Secret</div>
                 </div>
             </div>
         </section>
@@ -147,6 +152,19 @@
                 mobileMenu.classList.toggle('active');
             });
         }
+    </script>
+    
+    <!-- 加载画面移除逻辑 -->
+    <script>
+        window.addEventListener('load', () => {
+            // 设置 1.2 秒的延迟，让用户看清专属加载扫描线
+            setTimeout(() => {
+                const loader = document.getElementById('xb-loader');
+                if(loader) {
+                    loader.classList.add('fade-out');
+                }
+            }, 1200); 
+        });
     </script>
 </body>
 </html>
