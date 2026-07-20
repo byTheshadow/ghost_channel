@@ -23,7 +23,71 @@ body.detail-page-custom {
     line-height: 1.8;
 }
 
-/* 4. 页面主体重置（加前缀隔离） */
+/* ===== 小白专属加载画面 ===== */
+.detail-page-custom .xb-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--xb-bg-color);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.detail-page-custom .xb-loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.detail-page-custom .xb-loader-content {
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.detail-page-custom .xb-loader-text {
+    color: var(--xb-text-dark);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 20px;
+    animation: xb-pulse 1.5s infinite;
+}
+
+.detail-page-custom .xb-loader-bar {
+    width: 200px;
+    height: 2px;
+    background-color: var(--xb-border);
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.detail-page-custom .xb-loader-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--xb-accent);
+    animation: xb-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes xb-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+@keyframes xb-loading {
+    0% { left: -100%; }
+    50% { left: 0; }
+    100% { left: 100%; }
+}
+
+/* ===== 页面主体重置 ===== */
 .detail-page-custom .custom-main {
     padding-top: 100px; /* 避开导航栏高度 */
     min-height: 100vh;
@@ -143,25 +207,9 @@ body.detail-page-custom {
     filter: sepia(15%) contrast(105%);
 }
 
-/* ===== 角色大字语录区 ===== */
-.detail-page-custom .xb-quote-section {
-    padding: 100px 5%;
-    background-color: #ece8df; /* 稍微深一点的背景区分 */
-    text-align: center;
-}
-
-.detail-page-custom .xb-quote-text {
-    max-width: 900px;
-    margin: 0 auto;
-    font-size: 2rem;
-    line-height: 1.6;
-    font-style: italic;
-    color: var(--xb-accent);
-}
-
 /* ===== 角色档案区 ===== */
 .detail-page-custom .xb-bio-section {
-    padding: 120px 5%;
+    padding: 60px 5% 100px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -213,171 +261,97 @@ body.detail-page-custom {
     text-align: justify;
 }
 
-/* ===== 画廊区 (瀑布流) ===== */
-.detail-page-custom .xb-gallery-section {
-    padding: 60px 5% 120px;
-    max-width: 1400px;
+/* ===== 全新排版：杂志感图文语录区 ===== */
+.detail-page-custom .xb-editorial-section {
+    background-color: #eae6db; /* 稍深的背景色增加层次感 */
+    padding: 100px 5%;
+}
+
+.detail-page-custom .xb-editorial-grid {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-.detail-page-custom .xb-section-header {
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.detail-page-custom .xb-section-header p {
-    color: var(--xb-text-light);
-    font-style: italic;
-}
-
-.detail-page-custom .xb-masonry {
-    column-count: 2;
-    column-gap: 20px;
-}
-
-.detail-page-custom .xb-masonry-item {
-    break-inside: avoid;
-    margin-bottom: 20px;
-    position: relative;
+.detail-page-custom .xb-editorial-image {
+    flex: 1;
     overflow: hidden;
     border-radius: 4px;
-    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
 }
 
-.detail-page-custom .xb-masonry-item img {
+.detail-page-custom .xb-editorial-image img {
     width: 100%;
+    height: auto;
     display: block;
-    transition: transform 0.8s ease, filter 0.5s ease;
     filter: sepia(20%) brightness(0.95);
+    transition: filter 0.5s ease;
 }
 
-.detail-page-custom .xb-masonry-item:hover img {
-    transform: scale(1.03);
+.detail-page-custom .xb-editorial-image:hover img {
     filter: sepia(0%) brightness(1);
 }
 
-.detail-page-custom .xb-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px;
-    background: linear-gradient(transparent, rgba(44, 41, 37, 0.8));
-    color: var(--xb-bg-color);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    font-family: var(--xb-font-title);
-    font-style: italic;
+.detail-page-custom .xb-editorial-quote {
+    flex: 1;
 }
 
-.detail-page-custom .xb-masonry-item:hover .xb-caption {
-    opacity: 1;
+.detail-page-custom .xb-editorial-quote h2 {
+    font-size: 2rem;
+    line-height: 1.6;
+    font-style: italic;
+    color: var(--xb-accent);
+    margin-bottom: 20px;
+}
+
+.detail-page-custom .xb-quote-author {
+    display: block;
+    font-family: var(--xb-font-title);
+    color: var(--xb-text-light);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
 }
 
 /* ===== 页脚 ===== */
 .detail-page-custom .xb-footer {
     padding: 60px 5%;
     text-align: center;
-    border-top: 1px solid var(--xb-border);
+    background-color: var(--xb-bg-color);
     color: var(--xb-text-light);
     font-family: var(--xb-font-title);
     font-size: 0.9rem;
     letter-spacing: 2px;
 }
 
-/* ===== 小白专属加载画面 ===== */
-.detail-page-custom .xb-loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--xb-bg-color); /* 与详情页一致的纸张底色 */
-    z-index: 99999; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
-}
-
-.detail-page-custom .xb-loader.fade-out {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.detail-page-custom .xb-loader-content {
-    text-align: center;
-    font-family: 'Press Start 2P', monospace; /* 仪器感/像素感 */
-}
-
-.detail-page-custom .xb-loader-text {
-    color: var(--xb-text-dark);
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    display: block;
-    margin-bottom: 20px;
-    animation: xb-pulse 1.5s infinite;
-}
-
-.detail-page-custom .xb-loader-bar {
-    width: 200px;
-    height: 2px;
-    background-color: var(--xb-border);
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-}
-
-.detail-page-custom .xb-loader-bar::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background-color: var(--xb-accent); /* 铁锈红扫描线 */
-    animation: xb-loading 1.5s ease-in-out infinite;
-}
-
-/* 呼吸/加载动画 */
-@keyframes xb-pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-}
-
-@keyframes xb-loading {
-    0% { left: -100%; }
-    50% { left: 0; }
-    100% { left: 100%; }
-}
-
 /* ===== 响应式设计 ===== */
 @media (max-width: 900px) {
-    .detail-page-custom .xb-hero-content {
+    .detail-page-custom .xb-hero-content,
+    .detail-page-custom .xb-editorial-grid {
         flex-direction: column;
         text-align: center;
     }
+    
     .detail-page-custom .xb-title {
         font-size: 3.5rem;
     }
+    
     .detail-page-custom .xb-meta-tags {
         justify-content: center;
     }
+    
     .detail-page-custom .xb-hero-image {
         width: 100%;
         height: 50vh;
     }
+    
     .detail-page-custom .xb-bio-grid {
         flex-direction: column;
         gap: 40px;
     }
-}
-
-@media (max-width: 600px) {
-    .detail-page-custom .xb-masonry {
-        column-count: 1;
-    }
-    .detail-page-custom .xb-quote-text {
-        font-size: 1.5rem;
+    
+    .detail-page-custom .xb-editorial-quote {
+        padding-top: 20px;
     }
 }

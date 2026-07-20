@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -75,13 +74,13 @@
             <a href="../characters.html" class="back-btn-custom">← BACK TO LIST</a>
         </div>
 
-        <!-- 首屏：杂志感排版 -->
+        <!-- 首屏：杂志封面感排版 -->
         <header class="xb-hero">
             <div class="xb-hero-content">
                 <div class="xb-hero-text">
                     <span class="xb-tag">CHAR_001 · 酸雨坠落贝斯手</span>
                     <h1 class="xb-title">夭寂白<br><span>Xiaobai</span></h1>
-                    <p class="xb-one-liner">“活泼开朗，即使害怕也会挺身而出的好孩子。他是天生的修补匠，既能修复破损的电路，也能用音乐粘合破碎的情绪。”</p>
+                    <p class="xb-one-liner">“活泼开朗即使害怕也会挺身而出的好孩子。他是天生的修补匠，既能修复破损的电路，也能用音乐粘合破碎的情绪。”</p>
                     <div class="xb-meta-tags">
                         <span class="meta-tag">纯情小狗 🐕</span>
                         <span class="meta-tag">拥有dom倾向 ✧</span>
@@ -94,18 +93,11 @@
             </div>
         </header>
 
-        <!-- 角色语录 -->
-        <section class="xb-quote-section">
-            <h2 class="xb-quote-text">
-                "(๑•̀ㅂ•́)و✧ 嘿！阿丧就是在内涵楼上的煤油玫瑰。请不要再抄袭了好吗？好的！"
-            </h2>
-        </section>
-
         <!-- 角色档案 -->
         <section class="xb-bio-section">
             <div class="xb-bio-grid">
                 <div class="xb-bio-sidebar">
-                    <h3 class="xb-sub-title">Profile</h3>
+                    <h3 class="xb-sub-title">Profile Archive</h3>
                     <ul class="xb-info-list">
                         <li><strong>World:</strong> 霖城世界观 ♱ 现代架空</li>
                         <li><strong>Band:</strong> 酸雨坠落 (Bass)</li>
@@ -120,17 +112,15 @@
             </div>
         </section>
 
-        <!-- 画廊 (Visual Journal) 已删减指定图片 -->
-        <section class="xb-gallery-section">
-            <div class="xb-section-header">
-                <h2 class="xb-sub-title">Visual Journal</h2>
-                <p>Moments captured on stage and in the junkyard.</p>
-            </div>
-            
-            <div class="xb-masonry">
-                <div class="xb-masonry-item">
-                    <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260720/Dxda/832X1456/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D6494327625332513854%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp" alt="小白 资料图1">
-                    <div class="xb-caption">Acid Rain Drop - Live</div>
+        <!-- 全新：图文互现的语录特写区 (Editorial Spread) -->
+        <section class="xb-editorial-section">
+            <div class="xb-editorial-grid">
+                <div class="xb-editorial-image">
+                    <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260720/Dxda/832X1456/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D6494327625332513854%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp" alt="小白 资料图">
+                </div>
+                <div class="xb-editorial-quote">
+                    <h2>"(๑•̀ㅂ•́)و✧ 嘿！阿丧就是在内涵楼上的煤油玫瑰。请不要再抄袭了好吗？好的！"</h2>
+                    <span class="xb-quote-author">— Xiaobai / Bassist</span>
                 </div>
             </div>
         </section>
@@ -142,8 +132,9 @@
         <p>GHOST CHANNEL &copy; 2026. CHARACTER ARCHIVE: XIAOBAI.</p>
     </footer>
 
-    <!-- 汉堡菜单交互（保留全站统一逻辑） -->
+    <!-- 交互脚本 -->
     <script>
+        // 1. 汉堡菜单交互（保留全站统一逻辑）
         const burger = document.getElementById('navBurger');
         const mobileMenu = document.getElementById('mobileMenu');
         if(burger && mobileMenu) {
@@ -152,19 +143,17 @@
                 mobileMenu.classList.toggle('active');
             });
         }
-    </script>
-    
-    <!-- 加载画面移除逻辑 -->
-    <script>
+
+        // 2. 专属加载画面移除逻辑
         window.addEventListener('load', () => {
-            // 设置 1.2 秒的延迟，让用户看清专属加载扫描线
             setTimeout(() => {
                 const loader = document.getElementById('xb-loader');
                 if(loader) {
                     loader.classList.add('fade-out');
                 }
-            }, 1200); 
+            }, 1200); // 1.2秒后淡出
         });
     </script>
 </body>
 </html>
+
