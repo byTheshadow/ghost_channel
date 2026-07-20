@@ -65,7 +65,6 @@
         
         <!-- Hero: 巨型排版 -->
         <section class="haya-hero" id="hero">
-            <!-- 修复：外层做视差滚动，内层 span 专心做 CSS 遮罩入场动画 -->
             <div class="title-line parallax-text" data-speed="0.1">
                 <span>Hayabusa.</span>
             </div>
@@ -82,7 +81,6 @@
                 <p>DATE // <span class="highlight-amber">2025.08</span></p>
             </div>
         </section>
-
 
         <!-- About: 介绍与3D音频设备 -->
         <section class="haya-about">
@@ -161,19 +159,16 @@
             </div>
 
             <div class="layout-grid">
-                <!-- 原有竖图放入左侧 -->
                 <div class="img-wrap item-v hover-target">
                     <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260720/7qih/816X1456/qi_%289%29.png/webp" alt="Hayabusa Vertical">
                     <div class="caption">FILE 01 // TOXIC MUSHROOM</div>
                 </div>
                 
-                <!-- 原有横图放入右侧错落布局 -->
                 <div class="img-wrap item-h hover-target">
                     <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260720/mOK4/1456X816/qi_%2810%29.png/webp" alt="Hayabusa Horizontal">
                     <div class="caption">FILE 02 // KEROSENE ROSES LIVE</div>
                 </div>
 
-                <!-- 新增的角色个人图：补充排版至左下角 -->
                 <div class="img-wrap item-v2 hover-target">
                     <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/659l/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D8407251227727386565%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp" alt="Hayabusa Solo">
                     <div class="caption">FILE 03 // PORTRAIT</div>
@@ -183,9 +178,8 @@
         
     </main>
 
-    <!-- 交互脚本 -->
     <script>
-        // 1. 汉堡菜单交互 (保留原站功能)
+        // 1. 汉堡菜单交互
         const burger = document.getElementById('navBurger');
         const mobileMenu = document.getElementById('mobileMenu');
         burger?.addEventListener('click', () => {
@@ -198,7 +192,7 @@
             setTimeout(() => { document.getElementById('hero').classList.add('loaded'); }, 100);
         });
 
-        // 3. 自定义高级光标 (丝滑跟随 + 悬停放大)
+        // 3. 自定义高级光标
         const cursor = document.getElementById('cursor');
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
@@ -213,15 +207,13 @@
             target.addEventListener('mouseleave', () => cursor.classList.remove('active'));
         });
 
-        // 4. requestAnimationFrame 全局平滑循环 (光标缓动 & 滚动视差)
+        // 4. requestAnimationFrame 全局平滑循环
         let scrollY = window.scrollY;
         function render() {
-            // 光标插值运算
             cursorX += (mouseX - cursorX) * 0.15;
             cursorY += (mouseY - cursorY) * 0.15;
             cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
 
-            // 视差滚动插值
             scrollY += (window.scrollY - scrollY) * 0.1;
             document.querySelectorAll('.parallax-text').forEach(text => {
                 const speed = parseFloat(text.getAttribute('data-speed'));
@@ -232,7 +224,7 @@
         }
         requestAnimationFrame(render);
 
-        // 5. 设备的 3D 悬浮响应 (根据鼠标倾斜)
+        // 5. 设备的 3D 悬浮响应
         const device = document.getElementById('device');
         const deviceContainer = document.getElementById('device-container');
 
@@ -251,7 +243,7 @@
             device.style.transition = 'transform 1s cubic-bezier(0.16, 1, 0.3, 1)';
         });
 
-        // 6. 滚动监听：图片遮罩拉开动画
+        // 6. 滚动监听：修改 threshold 和 rootMargin 使其极容易触发
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -259,11 +251,11 @@
                     obs.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.05, rootMargin: "0px 0px 50px 0px" });
 
         document.querySelectorAll('.img-wrap').forEach(img => observer.observe(img));
 
-        // 7. 时钟秒表计时 (修复：从0起跳)
+        // 7. 时钟秒表计时
         let seconds = 0; 
         setInterval(() => {
             seconds++;
