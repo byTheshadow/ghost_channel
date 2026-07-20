@@ -20,11 +20,29 @@ body.detail-page-custom {
 /* 链接无下划线 */
 .detail-page-custom .custom-main a { text-decoration: none; color: inherit; }
 
-/* 3. 布局：利用 Fixed 和 Margin 实现的完美双屏分割，兼容 body 的 overflow: visible */
+/* 3. 布局：利用 Fixed 和 Margin 实现的完美双屏分割 */
 .detail-page-custom .custom-main {
     display: flex;
     min-height: 100vh;
     padding-top: 60px; /* 避开顶部共享导航栏的高度 */
+}
+
+/* 修复后的加载动画方案：使用 both 属性确保初始和结束状态被强绑定，防止闪烁或失效 */
+.detail-page-custom .left-panel {
+    animation: liaoCustomFadeIn 1.5s cubic-bezier(0.19, 1, 0.22, 1) 0.1s both;
+}
+.detail-page-custom .right-panel {
+    animation: liaoCustomSlideUp 1.2s cubic-bezier(0.19, 1, 0.22, 1) 0.3s both;
+}
+
+@keyframes liaoCustomFadeIn {
+    0% { opacity: 0; filter: brightness(0.2) grayscale(50%); }
+    100% { opacity: 1; filter: brightness(1) grayscale(0%); }
+}
+
+@keyframes liaoCustomSlideUp {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 /* 左侧固定视觉区 */
@@ -42,10 +60,6 @@ body.detail-page-custom {
     align-items: center;
     justify-content: center;
     z-index: 1;
-    
-    /* 页面加载进入动画 */
-    opacity: 0;
-    animation: panelFadeIn 1s cubic-bezier(0.19, 1, 0.22, 1) 0.1s forwards;
 }
 
 /* 左侧中间的 Logo 盒子 */
@@ -84,11 +98,6 @@ body.detail-page-custom {
     margin-left: 50%; /* 留出左侧 Fixed 区域的位置 */
     padding: 60px 80px;
     z-index: 2;
-    
-    /* 页面加载进入动画 */
-    opacity: 0;
-    transform: translateY(30px);
-    animation: slideUpFade 1s cubic-bezier(0.19, 1, 0.22, 1) 0.3s forwards;
 }
 
 /* 4. 排版与排版样式 */
@@ -118,13 +127,42 @@ body.detail-page-custom {
     line-height: 1;
     text-transform: uppercase;
 }
-.detail-page-custom .intro-section .tags {
-    font-family: var(--my-font-title);
+
+/* 新增：属性与避雷项面板 UI */
+.detail-page-custom .char-attributes {
+    margin: 25px 0 35px 0;
+    background: rgba(255, 42, 42, 0.03);
+    border: 1px solid var(--my-border);
+    padding: 20px 25px;
     font-size: 14px;
-    color: var(--my-accent);
-    letter-spacing: 2px;
-    margin-bottom: 30px;
+    line-height: 1.6;
 }
+.detail-page-custom .attr-item {
+    margin-bottom: 10px;
+    color: #d0d0d0;
+}
+.detail-page-custom .attr-item:last-child {
+    margin-bottom: 0;
+}
+.detail-page-custom .attr-item .label {
+    color: var(--my-muted);
+    font-family: var(--my-font-title);
+    margin-right: 10px;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+/* 避雷项强调样式 */
+.detail-page-custom .attr-item.warning {
+    color: var(--my-accent);
+    font-weight: 500;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--my-border);
+}
+.detail-page-custom .attr-item.warning .label {
+    color: var(--my-accent);
+}
+
 .detail-page-custom .intro-section p {
     font-size: 15px;
     line-height: 1.8;
@@ -174,7 +212,7 @@ body.detail-page-custom {
     margin-bottom: 15px;
 }
 
-/* 5. 档案列表（借鉴参考布局） */
+/* 5. 档案列表 */
 .detail-page-custom .list-container { width: 100%; }
 .detail-page-custom .list-header {
     display: grid;
@@ -253,17 +291,7 @@ body.detail-page-custom {
     border-color: #fff;
 }
 
-/* 7. 动画定义 */
-@keyframes panelFadeIn {
-    from { opacity: 0; filter: brightness(0); }
-    to { opacity: 1; filter: brightness(1); }
-}
-@keyframes slideUpFade {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* 8. 移动端响应式处理 */
+/* 7. 移动端响应式处理 */
 @media (max-width: 900px) {
     .detail-page-custom .custom-main { flex-direction: column; padding-top: 60px; }
     /* 左侧视觉区变为正常的流式布局，固定高度 */
