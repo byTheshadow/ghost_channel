@@ -1,6 +1,6 @@
 /* =========================================
    角色专属样式：隼 (Hayabusa)
-   视觉方向：潮湿 / 地下乐队 / 琥珀与煤油 / 先锋拟物
+   视觉方向：潮湿 / 地下乐队 / 玫红与煤油 / 先锋拟物
 ========================================= */
 
 /* 1. 引入本页需要的专属字体 */
@@ -9,7 +9,7 @@
 /* 2. 定义本页专属变量（严格隔离） */
 body.detail-page-custom {
     --haya-bg: #0B0C0C; /* 霖城潮湿的黑夜 */
-    --haya-brand: #FF5A00; /* 琥珀色/燃油橙 */
+    --haya-brand: #E91E63; /* 玫红色 */
     --haya-text: #E0E0E0;
     --haya-muted: #666666;
     
@@ -56,7 +56,7 @@ body.detail-page-custom {
 }
 .detail-page-custom .custom-cursor.active {
     width: 48px; height: 48px;
-    background: rgba(255, 90, 0, 0.15);
+    background: rgba(233, 30, 99, 0.15); /* 玫红色半透明 */
     border: 1px solid var(--haya-brand);
 }
 
@@ -162,7 +162,7 @@ body.detail-page-custom {
     font-family: var(--font-en-mono);
     font-size: 0.75rem;
     color: var(--haya-muted);
-    border-top: 1px solid rgba(255, 90, 0, 0.2);
+    border-top: 1px solid rgba(233, 30, 99, 0.2);
     padding-top: 2rem;
 }
 .detail-page-custom .bio-tags span {
@@ -173,7 +173,7 @@ body.detail-page-custom {
     font-family: var(--font-cn-serif);
 }
 
-/* 右侧：3D 设备 (提取自您的参考，赋予煤油玫瑰主题) */
+/* 右侧：3D 设备 (已调整为银白色系) */
 .detail-page-custom .device-container {
     perspective: 2000px;
     flex: 0.8;
@@ -182,14 +182,14 @@ body.detail-page-custom {
 }
 .detail-page-custom .device {
     width: 360px; height: 580px;
-    background: #111;
+    background: #e0e0e0;
     border-radius: 16px;
     padding: 20px;
     box-shadow: 
-        0 40px 80px -20px rgba(0,0,0,0.8),
-        inset 0 1px 2px rgba(255,255,255,0.1),
-        inset 0 -2px 5px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255,255,255,0.05);
+        0 40px 80px -20px rgba(0,0,0,0.6),
+        inset 0 2px 5px rgba(255,255,255,0.9),
+        inset 0 -2px 5px rgba(0,0,0,0.15);
+    border: 1px solid rgba(255,255,255,0.8);
     transform-style: preserve-3d;
     will-change: transform;
 }
@@ -198,7 +198,7 @@ body.detail-page-custom {
     height: 220px;
     border-radius: 8px;
     padding: 15px;
-    box-shadow: inset 0 10px 20px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.1);
+    box-shadow: inset 0 10px 20px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.6);
     position: relative;
     overflow: hidden;
     display: flex; flex-direction: column; justify-content: space-between;
@@ -211,7 +211,7 @@ body.detail-page-custom {
     opacity: 0.5;
 }
 .detail-page-custom .ui-top { display: flex; justify-content: space-between; font-family: var(--font-en-mono); font-size: 0.6rem; color: #888;}
-.detail-page-custom .ui-center { text-align: center; color: var(--haya-brand); font-size: 3.2rem; font-family: var(--font-en-mono); text-shadow: 0 0 15px rgba(255,90,0,0.5); letter-spacing: -2px;}
+.detail-page-custom .ui-center { text-align: center; color: var(--haya-brand); font-size: 3.2rem; font-family: var(--font-en-mono); text-shadow: 0 0 15px rgba(233, 30, 99, 0.5); letter-spacing: -2px;}
 .detail-page-custom .ui-bottom { font-family: var(--font-en-mono); font-size: 0.5rem; color: #666; }
 .detail-page-custom .blink { animation: flash 1.5s infinite; color: red; }
 .detail-page-custom .wave {
@@ -228,11 +228,11 @@ body.detail-page-custom {
 .detail-page-custom .bar:nth-child(5n) { height: 80%; animation-duration: 0.5s; }
 
 .detail-page-custom .panel { margin-top: 30px; display: flex; gap: 20px; }
-.detail-page-custom .big-knob-wrap { flex: 1; display: flex; align-items: center; justify-content: center; border-right: 1px solid #333; }
+.detail-page-custom .big-knob-wrap { flex: 1; display: flex; align-items: center; justify-content: center; border-right: 1px solid #c0c0c0; }
 .detail-page-custom .big-knob {
     width: 140px; height: 140px; border-radius: 50%;
-    background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
-    box-shadow:  15px 15px 30px #040404, -15px -15px 30px #1e1e1e;
+    background: linear-gradient(145deg, #f0f0f0, #bebebe);
+    box-shadow:  15px 15px 30px #a3a3a3, -15px -15px 30px #ffffff;
     position: relative; transition: transform 0.1s;
 }
 .detail-page-custom .knob-mark {
@@ -307,6 +307,7 @@ body.detail-page-custom {
 /* 图片网格分配 */
 .detail-page-custom .item-v { grid-column: 1 / 6; aspect-ratio: 816/1456; } /* 竖图 */
 .detail-page-custom .item-h { grid-column: 6 / 13; aspect-ratio: 1456/816; margin-top: 15vw; } /* 横图 */
+.detail-page-custom .item-v2 { grid-column: 3 / 8; aspect-ratio: 848/1424; margin-top: 10vw; } /* 新增的第二张竖图 */
 
 /* =========================================
    动画与响应式
@@ -320,6 +321,7 @@ body.detail-page-custom {
     .detail-page-custom .worldview-text { column-count: 1; }
     .detail-page-custom .item-v { grid-column: 1 / 13; }
     .detail-page-custom .item-h { grid-column: 1 / 13; margin-top: 5vw; }
+    .detail-page-custom .item-v2 { grid-column: 1 / 13; margin-top: 5vw; }
 }
 /* =========================================
    移动端交互修复：禁用自定义光标，恢复默认

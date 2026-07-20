@@ -64,7 +64,6 @@
     <main class="custom-main">
         
         <!-- Hero: 巨型排版 -->
-                <!-- Hero: 巨型排版 -->
         <section class="haya-hero" id="hero">
             <!-- 修复：外层做视差滚动，内层 span 专心做 CSS 遮罩入场动画 -->
             <div class="title-line parallax-text" data-speed="0.1">
@@ -162,16 +161,22 @@
             </div>
 
             <div class="layout-grid">
-                <!-- 竖图放入左侧 -->
+                <!-- 原有竖图放入左侧 -->
                 <div class="img-wrap item-v hover-target">
                     <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260720/7qih/816X1456/qi_%289%29.png/webp" alt="Hayabusa Vertical">
                     <div class="caption">FILE 01 // TOXIC MUSHROOM</div>
                 </div>
                 
-                <!-- 横图放入右侧错落布局 -->
+                <!-- 原有横图放入右侧错落布局 -->
                 <div class="img-wrap item-h hover-target">
                     <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260720/mOK4/1456X816/qi_%2810%29.png/webp" alt="Hayabusa Horizontal">
                     <div class="caption">FILE 02 // KEROSENE ROSES LIVE</div>
+                </div>
+
+                <!-- 新增的角色个人图：补充排版至左下角 -->
+                <div class="img-wrap item-v2 hover-target">
+                    <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260719/659l/848X1424/_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D8407251227727386565%26skey%3D%40crypt_5a237c93_ed3a555a3aaee4dafb5cc80bc48c37fb%26mmweb_appid%3Dwx_webfilehelper.jpg/webp" alt="Hayabusa Solo">
+                    <div class="caption">FILE 03 // PORTRAIT</div>
                 </div>
             </div>
         </section>
@@ -258,8 +263,7 @@
 
         document.querySelectorAll('.img-wrap').forEach(img => observer.observe(img));
 
-        // 7. 时钟秒表计时
-               // 7. 时钟秒表计时 (修复：从0起跳)
+        // 7. 时钟秒表计时 (修复：从0起跳)
         let seconds = 0; 
         setInterval(() => {
             seconds++;
@@ -272,5 +276,6 @@
     </script>
 </body>
 </html>
+
 
 
