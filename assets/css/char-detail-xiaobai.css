@@ -1,0 +1,317 @@
+/* 1. 引入本页需要的字体：复古衬线与优雅无衬线 */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;1,400&family=Noto+Serif+SC:wght@400;700&display=swap');
+
+/* 2. 覆盖 global.css 的 overflow: hidden（必须保障） */
+body, html { 
+    overflow: visible !important; 
+    height: auto !important; 
+}
+
+/* 3. 定义本页专属变量，全部在 body.detail-page-custom 作用域内，绝不污染全局 */
+body.detail-page-custom {
+    --xb-bg-color: #f4f1eb;         /* 暖白/纸张色 */
+    --xb-text-dark: #2c2925;        /* 深灰字色 */
+    --xb-text-light: #7a756d;       /* 浅灰字色 */
+    --xb-accent: #c96b52;           /* 铁锈红（呼应废品站/旧零件感） */
+    --xb-border: #ded9d1;
+    --xb-font-title: 'Playfair Display', 'Noto Serif SC', serif;
+    --xb-font-body: 'Lora', 'Noto Serif SC', serif;
+
+    background-color: var(--xb-bg-color);
+    color: var(--xb-text-dark);
+    font-family: var(--xb-font-body);
+    line-height: 1.8;
+}
+
+/* 4. 页面主体重置（加前缀隔离） */
+.detail-page-custom .custom-main {
+    padding-top: 100px; /* 避开导航栏高度 */
+    min-height: 100vh;
+}
+
+.detail-page-custom a {
+    text-decoration: none;
+    color: var(--xb-text-dark);
+    transition: color 0.3s ease;
+}
+
+.detail-page-custom a:hover {
+    color: var(--xb-accent);
+}
+
+.detail-page-custom h1, 
+.detail-page-custom h2, 
+.detail-page-custom h3, 
+.detail-page-custom h4 {
+    font-family: var(--xb-font-title);
+    font-weight: 400;
+}
+
+/* 返回按钮 */
+.detail-page-custom .back-link-wrapper {
+    max-width: 1200px;
+    margin: 20px auto 0;
+    padding: 0 5%;
+}
+
+.detail-page-custom .back-btn-custom {
+    display: inline-block;
+    font-family: var(--xb-font-title);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--xb-text-dark);
+    padding-bottom: 2px;
+}
+
+/* ===== 首屏 Hero 区 ===== */
+.detail-page-custom .xb-hero {
+    padding: 40px 5% 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.detail-page-custom .xb-hero-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.detail-page-custom .xb-hero-text {
+    flex: 1.2;
+}
+
+.detail-page-custom .xb-tag {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--xb-accent);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.detail-page-custom .xb-title {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.detail-page-custom .xb-title span {
+    font-size: 3rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--xb-text-light);
+}
+
+.detail-page-custom .xb-one-liner {
+    font-size: 1.1rem;
+    color: var(--xb-text-dark);
+    margin-bottom: 30px;
+    border-left: 2px solid var(--xb-accent);
+    padding-left: 20px;
+    font-style: italic;
+}
+
+.detail-page-custom .xb-meta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.detail-page-custom .meta-tag {
+    border: 1px solid var(--xb-border);
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    border-radius: 40px;
+    background: rgba(255,255,255,0.3);
+}
+
+.detail-page-custom .xb-hero-image {
+    flex: 1;
+    height: 65vh;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.detail-page-custom .xb-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(15%) contrast(105%);
+}
+
+/* ===== 角色大字语录区 ===== */
+.detail-page-custom .xb-quote-section {
+    padding: 100px 5%;
+    background-color: #ece8df; /* 稍微深一点的背景区分 */
+    text-align: center;
+}
+
+.detail-page-custom .xb-quote-text {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 2rem;
+    line-height: 1.6;
+    font-style: italic;
+    color: var(--xb-accent);
+}
+
+/* ===== 角色档案区 ===== */
+.detail-page-custom .xb-bio-section {
+    padding: 120px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.detail-page-custom .xb-bio-grid {
+    display: flex;
+    gap: 80px;
+    border-top: 1px solid var(--xb-border);
+    padding-top: 80px;
+}
+
+.detail-page-custom .xb-bio-sidebar {
+    flex: 1;
+}
+
+.detail-page-custom .xb-sub-title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.detail-page-custom .xb-info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.detail-page-custom .xb-info-list li {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--xb-border);
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-page-custom .xb-info-list li strong {
+    font-family: var(--xb-font-title);
+    color: var(--xb-text-light);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.detail-page-custom .xb-bio-content {
+    flex: 2;
+}
+
+.detail-page-custom .xb-bio-content p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* ===== 画廊区 (瀑布流) ===== */
+.detail-page-custom .xb-gallery-section {
+    padding: 60px 5% 120px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.detail-page-custom .xb-section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.detail-page-custom .xb-section-header p {
+    color: var(--xb-text-light);
+    font-style: italic;
+}
+
+.detail-page-custom .xb-masonry {
+    column-count: 2;
+    column-gap: 20px;
+}
+
+.detail-page-custom .xb-masonry-item {
+    break-inside: avoid;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.detail-page-custom .xb-masonry-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.8s ease, filter 0.5s ease;
+    filter: sepia(20%) brightness(0.95);
+}
+
+.detail-page-custom .xb-masonry-item:hover img {
+    transform: scale(1.03);
+    filter: sepia(0%) brightness(1);
+}
+
+.detail-page-custom .xb-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(44, 41, 37, 0.8));
+    color: var(--xb-bg-color);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    font-family: var(--xb-font-title);
+    font-style: italic;
+}
+
+.detail-page-custom .xb-masonry-item:hover .xb-caption {
+    opacity: 1;
+}
+
+/* ===== 页脚 ===== */
+.detail-page-custom .xb-footer {
+    padding: 60px 5%;
+    text-align: center;
+    border-top: 1px solid var(--xb-border);
+    color: var(--xb-text-light);
+    font-family: var(--xb-font-title);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+/* ===== 响应式设计 ===== */
+@media (max-width: 900px) {
+    .detail-page-custom .xb-hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .detail-page-custom .xb-title {
+        font-size: 3.5rem;
+    }
+    .detail-page-custom .xb-meta-tags {
+        justify-content: center;
+    }
+    .detail-page-custom .xb-hero-image {
+        width: 100%;
+        height: 50vh;
+    }
+    .detail-page-custom .xb-bio-grid {
+        flex-direction: column;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .detail-page-custom .xb-masonry {
+        column-count: 1;
+    }
+    .detail-page-custom .xb-quote-text {
+        font-size: 1.5rem;
+    }
+}
