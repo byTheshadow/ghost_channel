@@ -1,0 +1,184 @@
+/* ============================================================
+   GHOST CHANNEL — SCENE COMMON
+   所有互动场景共用的组件：
+   - 侧边纸条 (.note)
+   - 返回按钮 (.back-btn 沿用 char-detail-a.css，此处提供备份)
+   - "?" 帮助按钮 (.help-btn)
+   - 帮助浮层 (.help-panel)
+   ============================================================ */
+
+/* ==================== 侧边纸条 ==================== */
+.side-notes {
+    position: fixed;
+    top: 120px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    z-index: 100;
+    max-width: 200px;
+}
+
+.note {
+    --rot: 0deg;
+    padding: 12px 14px;
+    font-family: 'Noto Serif SC', 'Share Tech Mono', serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #2b1a0b;
+    background: #f5e8c8;
+    box-shadow:
+        0 8px 14px rgba(0, 0, 0, 0.5),
+        inset 0 0 20px rgba(180, 130, 80, 0.15);
+    transform: rotate(var(--rot));
+    transition: transform .3s, box-shadow .3s;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.note::before {
+    /* 图钉 */
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ff5577, #8a0018);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.note:hover {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow:
+        0 12px 20px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(255, 0, 60, 0.2);
+}
+
+/* 纸条变体（深色暗调） */
+.note.dark {
+    background: #1a0d0d;
+    color: #d0a878;
+    border: 1px solid var(--red-dark);
+    box-shadow:
+        0 8px 14px rgba(0, 0, 0, 0.7),
+        inset 0 0 20px rgba(255, 0, 60, 0.08);
+}
+
+/* 移动端：纸条改为顶部横向排布 */
+@media (max-width: 900px) {
+    .side-notes {
+        position: relative;
+        top: auto;
+        right: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 100%;
+        padding: 20px;
+        margin: 0 auto;
+    }
+    .note { max-width: 160px; }
+}
+
+/* ==================== "?" 帮助按钮 ==================== */
+.help-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(10, 2, 2, 0.85);
+    border: 1.5px solid var(--red-neon);
+    color: var(--red-neon);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 200;
+    box-shadow: 0 0 15px rgba(255, 0, 60, 0.3);
+    transition: transform .3s, box-shadow .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.help-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(255, 0, 60, 0.6);
+}
+
+/* 帮助浮层 */
+.help-panel {
+    position: fixed;
+    bottom: 80px;
+    right: 24px;
+    width: 280px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 20px;
+    background: rgba(5, 1, 1, 0.95);
+    border: 1px solid var(--red-mid);
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(255, 0, 60, 0.25);
+    z-index: 199;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity .3s, transform .3s;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: #bbb;
+    line-height: 1.8;
+}
+
+.help-panel.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.help-panel h4 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 11px;
+    color: var(--red-neon);
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+.help-panel ul {
+    padding-left: 18px;
+}
+
+.help-panel li {
+    margin-bottom: 6px;
+}
+
+/* ==================== 场景返回按钮（备份，若详情页不引 char-detail-a.css）==================== */
+.scene-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 90px 0 0 30px;
+    padding: 10px 20px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: #666;
+    text-decoration: none;
+    border: 1px solid rgba(115, 12, 30, 0.3);
+    border-radius: 4px;
+    background: rgba(10, 2, 2, 0.6);
+    transition: all 0.3s;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 50;
+}
+
+.scene-back-btn:hover {
+    color: var(--red-neon);
+    border-color: var(--red-neon);
+    box-shadow: 0 0 15px rgba(255, 0, 60, 0.2);
+    background: rgba(255, 0, 60, 0.05);
+}

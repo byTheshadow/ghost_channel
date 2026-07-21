@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - Interactive Scenes</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../assets/css/scene-common.css">
+    <link rel="stylesheet" href="../../assets/css/scenes-hub.css">
+
+    <style>
+        body, html { overflow: visible; height: auto; }
+    </style>
+</head>
+<body class="scenes-hub-page">
+
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!-- 导航栏 -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="../links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../home.html" class="mobile-link">HOME</a>
+        <a href="../about.html" class="mobile-link">ABOUT</a>
+        <a href="../characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="../gallery.html" class="mobile-link">GALLERY</a>
+        <a href="../presets.html" class="mobile-link">PRESETS</a>
+        <a href="../plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="../links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <!-- 返回按钮 -->
+    <a href="../characters.html" class="back-btn">← BACK TO CHARACTERS</a>
+
+    <!-- Hub 主体 -->
+    <main class="hub-main">
+
+        <!-- 顶部终端窗口 -->
+        <section class="hub-terminal">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span class="dot dot-red"></span>
+                        <span class="dot dot-yellow"></span>
+                        <span class="dot dot-green"></span>
+                    </div>
+                    <span class="terminal-title">ghost_channel://scenes</span>
+                    <span class="terminal-status">CONNECTED<span class="status-dot"></span></span>
+                </div>
+                <div class="terminal-body">
+                    <p class="terminal-line">
+                        <span class="prompt">&gt;</span> <span class="cmd">mount /dev/interactive</span>
+                    </p>
+                    <p class="terminal-line result">→ mounted at /scenes</p>
+                    <p class="terminal-line">
+                        <span class="prompt">&gt;</span> <span class="cmd">ls -al</span>
+                    </p>
+                    <div class="terminal-output">
+                        <p class="cn-text">这里是霖城的碎片档案室。</p>
+                        <p class="cn-text dim">监控里的雨、深夜的通话、某人朋友圈里那句没被删掉的话。所有信息都被折叠在下面四个文件夹里。</p>
+                        <p class="en-text">// four folders. everything you weren't supposed to see.</p>
+                    </div>
+                    <p class="terminal-line">
+                        <span class="prompt">&gt;</span> <span class="cursor-blink">_</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 四文件夹网格 -->
+        <section class="hub-folders">
+            <a href="social/weibo.html" class="folder-tile" data-folder="social">
+                <div class="folder-icon-wrap">
+                    <div class="folder-tab"></div>
+                    <div class="folder-body">
+                        <div class="folder-inside-glow"></div>
+                        <span class="folder-emoji">🐦</span>
+                    </div>
+                </div>
+                <div class="folder-label">SOCIAL_MEDIA</div>
+                <div class="folder-sub">// 社交媒体</div>
+                <div class="folder-meta">
+                    <span class="folder-count" data-count-key="social">-- items</span>
+                    <span class="folder-tag">WEIBO / MOMENTS</span>
+                </div>
+            </a>
+
+            <a href="calls/index.html" class="folder-tile" data-folder="calls">
+                <div class="folder-icon-wrap">
+                    <div class="folder-tab"></div>
+                    <div class="folder-body">
+                        <div class="folder-inside-glow"></div>
+                        <span class="folder-emoji">📞</span>
+                    </div>
+                </div>
+                <div class="folder-label">CALL_ARCHIVE</div>
+                <div class="folder-sub">// 通话记录 · 通用数据库</div>
+                <div class="folder-meta">
+                    <span class="folder-count" data-count-key="calls">-- items</span>
+                    <span class="folder-tag">VOICE_LOG</span>
+                </div>
+            </a>
+
+            <a href="surveillance/index.html" class="folder-tile" data-folder="surveillance">
+                <div class="folder-icon-wrap">
+                    <div class="folder-tab"></div>
+                    <div class="folder-body">
+                        <div class="folder-inside-glow"></div>
+                        <span class="folder-emoji">📺</span>
+                    </div>
+                </div>
+                <div class="folder-label">SURVEILLANCE</div>
+                <div class="folder-sub">// 监控 · CLASSIFIED</div>
+                <div class="folder-meta">
+                    <span class="folder-count" data-count-key="surveillance">-- items</span>
+                    <span class="folder-tag">CCTV / DANMAKU</span>
+                </div>
+            </a>
+
+            <a href="forum/index.html" class="folder-tile" data-folder="forum">
+                <div class="folder-icon-wrap">
+                    <div class="folder-tab"></div>
+                    <div class="folder-body">
+                        <div class="folder-inside-glow"></div>
+                        <span class="folder-emoji">💬</span>
+                    </div>
+                </div>
+                <div class="folder-label">FORUM_BBS</div>
+                <div class="folder-sub">// 论坛 · 早期贴吧/天涯风</div>
+                <div class="folder-meta">
+                    <span class="folder-count" data-count-key="forum">-- threads</span>
+                    <span class="folder-tag">THREADS</span>
+                </div>
+            </a>
+
+            <a href="dial/index.html" class="folder-tile folder-tile-wide" data-folder="dial">
+                <div class="folder-icon-wrap">
+                    <div class="folder-tab"></div>
+                    <div class="folder-body folder-body-special">
+                        <div class="folder-inside-glow"></div>
+                        <span class="folder-emoji">☎️</span>
+                    </div>
+                </div>
+                <div class="folder-label">DIAL_PAD</div>
+                <div class="folder-sub">// 拨号盘 · 试着打给谁</div>
+                <div class="folder-meta">
+                    <span class="folder-count" data-count-key="dial">-- contacts</span>
+                    <span class="folder-tag folder-tag-special">EXPERIMENTAL</span>
+                </div>
+            </a>
+        </section>
+
+        <!-- 底部提示 -->
+        <section class="hub-footer-hint">
+            <p class="hint-line">// 每个文件夹里的内容都由不同的记录者上传，风格各异。</p>
+            <p class="hint-line dim">// 点击"?"图标查看当前区域的使用说明。</p>
+        </section>
+
+    </main>
+
+    <!-- 场景数据总索引（先加载） -->
+    <script src="../../assets/data/scenes/_registry.js"></script>
+    <!-- Hub 逻辑 -->
+    <script src="../../assets/js/scenes-hub.js"></script>
+
+    <!-- 汉堡菜单基础交互（内联，避免依赖 characters.js） -->
+    <script>
+        const burger = document.getElementById('navBurger');
+        const menu = document.getElementById('mobileMenu');
+        if (burger && menu) {
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                menu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
