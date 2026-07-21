@@ -958,3 +958,97 @@
     .card-name { font-size: 16px; }
     .card-desc { font-size: 11px; }
 }
+/* ============================================================
+   互动场景入口条 · scenes-entry
+   （用于 characters.html，跳转到 pages/scenes/index.html）
+   ============================================================ */
+.scenes-entry {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+    animation: fadeSlideUp 0.8s ease-out;
+}
+
+.sc-entry-card {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 22px 28px;
+    background: rgba(10, 2, 2, 0.7);
+    border: 1px solid var(--red-dark);
+    border-radius: 8px;
+    text-decoration: none;
+    overflow: hidden;
+    transition: border-color .3s, box-shadow .3s, transform .3s;
+}
+
+.sc-entry-card:hover {
+    border-color: var(--red-neon);
+    box-shadow: 0 0 25px rgba(255, 0, 60, 0.25);
+    transform: translateY(-2px);
+}
+
+.sc-entry-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.sc-entry-icon {
+    width: 44px;
+    height: 36px;
+    filter: drop-shadow(0 0 8px rgba(255, 0, 60, 0.4));
+}
+
+.sc-entry-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16px;
+    color: var(--red-neon);
+    text-shadow: 0 0 12px rgba(255, 0, 60, 0.5);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+}
+
+.sc-entry-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: #888;
+    letter-spacing: 1px;
+}
+
+.sc-entry-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: var(--red-bright);
+}
+
+.sc-entry-arrow {
+    font-size: 20px;
+    color: var(--red-neon);
+    transition: transform .3s;
+}
+
+.sc-entry-card:hover .sc-entry-arrow {
+    transform: translateX(6px);
+}
+
+.sc-entry-scan {
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 60, 0.06), transparent);
+    animation: headerScan 4s linear infinite;
+    pointer-events: none;
+}
+
+@media (max-width: 640px) {
+    .sc-entry-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}
