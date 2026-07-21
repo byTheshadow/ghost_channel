@@ -235,6 +235,14 @@ window.SCENES_REGISTRY = {
     preview:    '"如果你的‘烫伤’不是火造成的，打这个电话。"',
     time:       '2024-10-27 02:15',
     phonePage:  'clinic-line.html'
+},
+{
+    id:         'feed-aether-01',
+    type:       'error',
+    title:      '截获的内部求救信号',
+    preview:    '"他们来了……穿黑衣服的人。我的手在变成玻璃……"',
+    time:       '2024-10-14 02:23',
+    phonePage:  'aether-line.html'
 }
 
         ],
@@ -275,7 +283,30 @@ window.SCENES_REGISTRY = {
     reachable:  false,
     unreachableType: 'empty',
     feedId:     'feed-clinic-01'
+},
+// 往 dial.contacts 数组末尾追加：
+{
+    number:     '404-0099',
+    name:       '未知通讯源',
+    reachable:  true,
+    file:       'aether-talk-01.html',
+    feedId:     'feed-aether-01'
+},
+{
+    number:     '404-0000',
+    name:       null,
+    reachable:  false,
+    unreachableType: 'empty',
+    feedId:     'feed-aether-01'
+},
+{
+    number:     '999-0099',
+    name:       null,
+    reachable:  false,
+    unreachableType: 'busy',
+    feedId:     'feed-aether-01'
 }
+
 
         ]
     }

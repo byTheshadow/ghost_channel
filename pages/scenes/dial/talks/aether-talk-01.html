@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - Call</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../assets/css/global.css">
+    <link rel="stylesheet" href="../../../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../../../assets/css/scene-common.css">
+    <link rel="stylesheet" href="../../../../assets/css/scene-dial-base.css">
+
+    <style>
+        .this-scene .talk-caller-name {
+            color: #ff3333;
+            font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 1px;
+        }
+        .this-scene .talk-status {
+            color: #aa3333;
+        }
+        .this-scene .talk-option-btn {
+            border-color: #330000;
+            color: #ff9999;
+        }
+        .this-scene .talk-option-btn:hover {
+            background: #330000;
+            color: #fff;
+        }
+        /* 清道夫机械提示音的专属样式 */
+        .this-scene .cleaner-text .talk-bubble {
+            background-color: #ff0000 !important;
+            color: #000 !important;
+            font-family: 'Share Tech Mono', monospace;
+            font-weight: bold;
+            border: none !important;
+            border-radius: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(255,0,0,0.8);
+        }
+    </style>
+</head>
+<body class="talk-page scene-page">
+
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <nav class="ghost-nav" id="ghostNav">
+        <!-- 导航略 -->
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <!-- 导航略 -->
+    </div>
+
+    <a href="../phones/aether-line.html" class="back-btn">← 强行切断</a>
+
+    <main class="talk-container this-scene">
+        <header class="talk-header">
+            <h1 class="talk-caller-name">未知通讯源</h1>
+            <p class="talk-status">信号极度不稳定...</p>
+        </header>
+
+        <div class="talk-messages">
+            <!-- 对方开场(自动) -->
+            <div class="talk-message from-them" data-delay="500" data-typewriter="true">
+                <div class="talk-bubble">救命……有没有人听得到？</div>
+            </div>
+            <div class="talk-message from-them" data-delay="3000" data-typewriter="true">
+                <div class="talk-bubble">我的手……我的左手完全变成水晶了，好痛……</div>
+            </div>
+
+            <!-- 用户选 opt1 后 -->
+            <div class="talk-message from-user" data-option-id="opt1" style="display:none;">
+                <div class="talk-bubble">你在哪里？我怎么帮你？</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt1" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">我在码头区……废弃的十二号仓库。</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt1" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">不，来不及了。他们带了能量武器和闪光棒！</div>
+            </div>
+
+            <!-- 用户选 opt2 后 -->
+            <div class="talk-message from-user" data-option-id="opt2" style="display:none;">
+                <div class="talk-bubble">这通电话不安全，快挂掉！</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt2" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">我没有别的频率了！</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt2" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">这是唯一能绕过 Aether-Core 监控的频道，求求你……</div>
+            </div>
+
+            <!-- 第二轮: 选了 opt1 之后 -->
+            <div class="talk-message from-user" data-option-id="opt1-a" style="display:none;">
+                <div class="talk-bubble">我马上联系 GPPD（警察局）！</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt1-a" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">别叫警察！连警察局里也有他们的人！我们只是“资产”——</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt1-a" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">砰！！（巨大的破门声）</div>
+            </div>
+            <div class="talk-message from-them cleaner-text" data-reply-to="opt1-a" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">[ 资产 #0099 已回收。正在清除通讯端记录。]</div>
+            </div>
+
+            <div class="talk-message from-user" data-option-id="opt1-b" style="display:none;">
+                <div class="talk-bubble">找个黑暗的地方躲好，别出声。</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt1-b" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">没用的，他们有热成像。我看到红色的激光了。</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt1-b" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">砰！！（巨大的破门声）</div>
+            </div>
+            <div class="talk-message from-them cleaner-text" data-reply-to="opt1-b" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">[ 资产 #0099 已回收。正在清除通讯端记录。]</div>
+            </div>
+
+            <!-- 第二轮: 选了 opt2 之后 -->
+            <div class="talk-message from-user" data-option-id="opt2-a" style="display:none;">
+                <div class="talk-bubble">你已经暴露了，跑！</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt2-a" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">我跑不掉了……晶体化已经蔓延到了我的腿上。</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt2-a" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">砰！！（巨大的破门声）</div>
+            </div>
+            <div class="talk-message from-them cleaner-text" data-reply-to="opt2-a" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">[ 资产 #0099 已回收。正在清除通讯端记录。]</div>
+            </div>
+        </div>
+
+        <!-- 第一轮选项 -->
+        <div class="talk-options" data-round="1">
+            <button class="talk-option-btn" data-option-id="opt1">你在哪里？我怎么帮你？</button>
+            <button class="talk-option-btn" data-option-id="opt2">这通电话不安全，快挂掉！</button>
+        </div>
+
+        <!-- 第二轮选项(选 opt1 后出现) -->
+        <div class="talk-options" data-after="opt1" style="display:none;">
+            <button class="talk-option-btn" data-option-id="opt1-a">我马上联系 GPPD（警察局）！</button>
+            <button class="talk-option-btn" data-option-id="opt1-b">找个黑暗的地方躲好，别出声。</button>
+        </div>
+
+        <!-- 第二轮选项(选 opt2 后出现) -->
+        <div class="talk-options" data-after="opt2" style="display:none;">
+            <button class="talk-option-btn" data-option-id="opt2-a">你已经暴露了，跑！</button>
+        </div>
+
+        <!-- 通话结束 -->
+        <div class="talk-end" style="display:none;">
+            <p class="talk-end-text">// 通讯源已被强制阻断</p>
+            <p class="talk-end-time">追踪代码: SIRU-042</p>
+        </div>
+    </main>
+
+    <script src="../../../../assets/data/scenes/_registry.js"></script>
+    <script src="../../../../assets/js/scene-dial.js"></script>
+    <script>
+        const burger = document.getElementById('navBurger');
+        const menu = document.getElementById('mobileMenu');
+        if (burger && menu) {
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                menu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

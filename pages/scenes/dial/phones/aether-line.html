@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - Phone</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../assets/css/global.css">
+    <link rel="stylesheet" href="../../../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../../../assets/css/scene-common.css">
+    <link rel="stylesheet" href="../../../../assets/css/scene-dial-base.css">
+
+    <!-- ★ 详情页个性化样式: 赫利俄斯塔内部故障终端风格 -->
+    <style>
+        .this-scene .phone-screen {
+            background-color: #0a0000;
+            box-shadow: inset 0 0 20px rgba(255, 0, 0, 0.15);
+            border: 1px solid #4a0000;
+            position: relative;
+        }
+        /* 红色干扰扫描线 */
+        .this-scene .phone-screen::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,0,0,0.05) 3px, rgba(255,0,0,0.05) 4px);
+            pointer-events: none;
+            z-index: 10;
+        }
+        .this-scene .phone-status-bar {
+            color: #ff3333;
+            text-shadow: 0 0 5px rgba(255,51,51,0.5);
+        }
+        .this-scene .phone-display {
+            color: #ff3333;
+            border-bottom-color: #550000;
+            text-shadow: 0 0 8px rgba(255,51,51,0.8);
+        }
+        .this-scene .key {
+            background: #110000;
+            border-color: #330000;
+            color: #aa3333;
+        }
+        .this-scene .key:hover {
+            background: #330000;
+            color: #ff4444;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+        }
+        .this-scene .key-call {
+            background: #4a0000;
+            color: #ff9999;
+        }
+        .this-scene .clue-panel {
+            border-left: 1px solid #ff3333;
+            background: linear-gradient(90deg, rgba(30,0,0,0.8) 0%, transparent 100%);
+        }
+        .this-scene .clue-panel-title {
+            color: #ff3333;
+            font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 1px;
+        }
+        .this-scene .aether-alert {
+            display: inline-block;
+            background: #ff0000;
+            color: #fff;
+            padding: 2px 6px;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+            animation: aether-blink 1s step-end infinite;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        @keyframes aether-blink { 50% { opacity: 0; } }
+        .this-scene .clue-hints-label {
+            color: #ff6666;
+        }
+    </style>
+</head>
+<body class="phone-page scene-page" data-feed-id="feed-aether-01">
+
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../../../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../../../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../../../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="../../../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="../../../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="../../../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="../../../links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../../../home.html" class="mobile-link">HOME</a>
+        <a href="../../../about.html" class="mobile-link">ABOUT</a>
+        <a href="../../../characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="../../../gallery.html" class="mobile-link">GALLERY</a>
+        <a href="../../../presets.html" class="mobile-link">PRESETS</a>
+        <a href="../../../plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="../../../links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <a href="../index.html" class="back-btn">← BACK TO DIAL</a>
+
+    <main class="phone-layout this-scene">
+        <div class="phone-device">
+            <div class="phone-screen">
+                <div class="phone-status-bar">
+                    <span>ERR:404</span>
+                    <span>⚠ ██▒▒</span>
+                </div>
+                <div class="phone-display">
+                    <span class="phone-number empty">输入号码</span>
+                </div>
+                <div class="phone-call-status idle"></div>
+                <div class="phone-keypad">
+                    <button class="key" data-digit="1"><span class="key-digit">1</span><span class="key-letters">&nbsp;</span></button>
+                    <button class="key" data-digit="2"><span class="key-digit">2</span><span class="key-letters">ABC</span></button>
+                    <button class="key" data-digit="3"><span class="key-digit">3</span><span class="key-letters">DEF</span></button>
+                    <button class="key" data-digit="4"><span class="key-digit">4</span><span class="key-letters">GHI</span></button>
+                    <button class="key" data-digit="5"><span class="key-digit">5</span><span class="key-letters">JKL</span></button>
+                    <button class="key" data-digit="6"><span class="key-digit">6</span><span class="key-letters">MNO</span></button>
+                    <button class="key" data-digit="7"><span class="key-digit">7</span><span class="key-letters">PQRS</span></button>
+                    <button class="key" data-digit="8"><span class="key-digit">8</span><span class="key-letters">TUV</span></button>
+                    <button class="key" data-digit="9"><span class="key-digit">9</span><span class="key-letters">WXYZ</span></button>
+                    <button class="key" data-digit="*"><span class="key-digit">*</span><span class="key-letters">&nbsp;</span></button>
+                    <button class="key" data-digit="0"><span class="key-digit">0</span><span class="key-letters">+</span></button>
+                    <button class="key" data-digit="#"><span class="key-digit">#</span><span class="key-letters">&nbsp;</span></button>
+                </div>
+                <div class="phone-actions">
+                    <button class="key-delete">⌫</button>
+                    <button class="key-call">📞</button>
+                    <div class="key-placeholder"></div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="clue-panel">
+            <h2 class="clue-panel-title">Aether-Core 异常日志</h2>
+            <div class="aether-alert">[ ⚠ 警告: 侦测到生物资产失控 ]</div>
+            <p class="clue-panel-desc">
+                一段被强行截获的内部数据包，附带着一张异常的心率起伏图。从音频杂波中能分辨出玻璃碎裂的声音，以及一个人急促的、绝望的喘息。
+            </p>
+            <div class="clue-hints">
+                <p class="clue-hints-label">// INTERCEPTED HINTS</p>
+                <p class="clue-hint-item">"SIRU（特殊事故反应部）的通讯拦截频段通常以 404 开始..."</p>
+                <p class="clue-hint-item">"日志显示，目标资产编号为 #0099。它正在盲目地向外发送求救信号。"</p>
+            </div>
+        </aside>
+    </main>
+
+    <script src="../../../../assets/data/scenes/_registry.js"></script>
+    <script src="../../../../assets/js/scene-dial.js"></script>
+    <script>
+        const burger = document.getElementById('navBurger');
+        const menu = document.getElementById('mobileMenu');
+        if (burger && menu) {
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                menu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
