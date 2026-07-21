@@ -1,0 +1,126 @@
+/* =========================================
+   【大晟】古风诡异 CSS 改造
+   ID: thread-005
+   ========================================= */
+
+/* 1. 主基调：墨黑、纸黄、朱砂红 */
+.this-scene {
+    background-color: #0c0b0a;
+    color: #d4c4a8; /* 旧宣纸色 */
+    font-family: 'Noto Serif SC', 'SimSun', serif;
+}
+
+/* 2. 覆盖默认的赛博扫描线，制造纸张斑驳感 */
+.this-scene .crt-overlay {
+    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.08"/></svg>');
+    opacity: 0.6;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    animation: none; /* 移除扫描线动画 */
+}
+
+/* 3. 帖子容器：古籍卷宗感 */
+.this-scene .thread-detail-wrap {
+    border: 1px solid #3a2e24;
+    background: #141210;
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.8), 0 5px 15px rgba(0,0,0,0.9);
+}
+
+.this-scene .thread-header {
+    border-bottom: 2px solid #5c1e1e;
+    background: linear-gradient(180deg, #1f1816 0%, #141210 100%);
+    padding-bottom: 20px;
+}
+
+.this-scene .th-title {
+    font-family: 'Noto Serif SC', serif;
+    color: #d4c4a8;
+    text-shadow: 2px 2px 4px #000;
+    font-weight: 700;
+}
+
+.this-scene .th-section {
+    color: #8b2c2c;
+    border: 1px solid #8b2c2c;
+    background: transparent;
+    font-family: 'Noto Serif SC', serif;
+    letter-spacing: 1px;
+}
+
+.this-scene .th-op, 
+.this-scene .op-name {
+    color: #a39178;
+    font-family: 'Noto Serif SC', serif;
+}
+
+/* 4. 楼层与文字排版 */
+.this-scene .floor {
+    border-bottom: 1px dashed #3a2e24;
+    padding: 20px 0;
+}
+
+.this-scene .floor-content {
+    font-family: 'Noto Serif SC', serif;
+    line-height: 1.8;
+    letter-spacing: 1px;
+    font-size: 0.95rem;
+}
+
+/* 5. 引用框改造：古籍注疏风格 */
+.this-scene .floor-quote {
+    border-left: 3px solid #5c1e1e;
+    background: #0f0d0c;
+    color: #8f816b;
+    font-style: italic;
+}
+.this-scene .quote-author {
+    color: #5c1e1e;
+}
+
+/* 6. 将楼主 OP Badge 改造成“古风印章” */
+.this-scene .op-badge {
+    background: transparent;
+    color: #a83232;
+    border: 1px solid #a83232;
+    border-radius: 2px;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: bold;
+    padding: 2px 6px;
+    box-shadow: inset 0 0 2px rgba(168,50,50,0.5);
+    text-transform: uppercase;
+}
+
+/* 7. 头像框质感降级 */
+.this-scene .avatar-fallback {
+    background: #241c18;
+    color: #8f816b;
+    border: 1px solid #3a2e24;
+    font-family: 'Noto Serif SC', serif;
+}
+
+/* 8. 【核心视觉改造】第7楼灵异崩溃效果（也就是楼主绝望的那一楼） */
+.this-scene .floor:nth-child(7) .floor-content {
+    color: #c43c3c;
+    text-shadow: 0 0 5px rgba(196, 60, 60, 0.4);
+    animation: inkBleed 3s infinite alternate;
+}
+
+@keyframes inkBleed {
+    0% { 
+        text-shadow: 0 0 3px rgba(196, 60, 60, 0.3); 
+        letter-spacing: 1px;
+    }
+    100% { 
+        text-shadow: 0 0 10px rgba(196, 60, 60, 0.8), 2px 2px 3px rgba(0,0,0,0.9); 
+        letter-spacing: 1.5px;
+    }
+}
+
+/* 第8楼（靖夜司）用冰冷的灰色压制 */
+.this-scene .floor:nth-child(8) .floor-content {
+    color: #8c9b9d;
+}
+.this-scene .floor:nth-child(8) .user-name {
+    color: #5b797d;
+    font-weight: bold;
+}

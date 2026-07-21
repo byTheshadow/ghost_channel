@@ -1,0 +1,188 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>昨夜在锦瑟巷淘到一支旧乌木笔... · Ghost_BBS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../assets/css/global.css">
+    <link rel="stylesheet" href="../../../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../../../assets/css/scene-common.css">
+    <link rel="stylesheet" href="../../../../assets/css/scene-forum-base.css">
+    <!-- 引入独立古风诡异 CSS -->
+    <link rel="stylesheet" href="../../../../assets/css/threads/thread-005.css">
+
+</head>
+<body class="scene-page forum-page this-scene">
+
+    <!-- 移除了原本的 CRT 覆盖，交由 CSS 改写为宣纸杂色质感 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../../../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../../../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../../../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="../../../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="../../../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="../../../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="../../../links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../../../home.html" class="mobile-link">HOME</a>
+        <a href="../../../about.html" class="mobile-link">ABOUT</a>
+        <a href="../../../characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="../../../gallery.html" class="mobile-link">GALLERY</a>
+        <a href="../../../presets.html" class="mobile-link">PRESETS</a>
+        <a href="../../../plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="../../../links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <a href="../index.html" class="back-btn">← 返回留言壁</a>
+
+    <div class="thread-detail-wrap">
+        <div id="threadHeader"></div>
+        <div id="threadFloors"></div>
+
+        <div class="thread-footer">
+            <span class="page-btn disabled">&lt; 上一页</span>
+            <span class="page-btn active">1</span>
+            <span class="page-btn disabled">下一页 &gt;</span>
+        </div>
+    </div>
+
+    <!-- 侧边纸条 -->
+    <div class="side-notes">
+        <div class="note" style="--rot:-2deg; font-family: 'Noto Serif SC', serif; background: #8b2c2c; color: #d4c4a8; border: 1px solid #000;">
+            [卷宗批注]<br>
+            此案已由青龙衙接手，涉事“文心遗留物”已寻回封存。书生已服忘忧散，作癔症结案。<br>
+            —— 长夜有尽，天日昭昭。
+        </div>
+    </div>
+
+    <button class="help-btn" id="helpBtn" aria-label="Help">?</button>
+    <div class="help-panel" id="helpPanel">
+        <h4>// 留言壁守则</h4>
+        <ul>
+            <li>莫谈朝堂政事，违者严惩。</li>
+            <li>印章朱红标志为发帖人。</li>
+            <li>坊间诡事，信则有不信则无，切勿深究。</li>
+        </ul>
+    </div>
+
+    <script>
+        window.THREAD_DATA = {
+            title:   '昨夜在锦瑟巷淘到一支旧乌木笔，写出的字竟如活物，但总觉得哪里不对……',
+            section: '【大晟】鬼市留言壁',
+            op: {
+                name:   '落榜闲人',
+                avatar: '',
+                level:  2,
+                time:   '1023-09-07 21:15'
+            },
+            floors: [
+                {
+                    name:    '落榜闲人',
+                    avatar:  '',
+                    level:   2,
+                    time:    '1023-09-07 21:15',
+                    isOP:    true,
+                    content: '诸位，小生今年秋闱又落榜了。昨夜心灰意冷，去城北的锦瑟巷闲逛，在一个瞎眼老叟的地摊上买了支带裂纹的旧乌木笔。\n本想买回来随便练练字，结果奇了。一握住那笔，就像着了魔，字迹铁画银钩，绝非我平日那般软弱无力。只是抄书时会彻底忘却时辰，一写就是一整夜。\n今日同窗看我的眼神怪怪的，说我昨晚连灯都没点，闭着眼睛在悬腕狂草。我现在觉得手脚冰凉，是不是惹上什么不干净的东西了？'
+                },
+                {
+                    name:    '平康坊常客',
+                    avatar:  '',
+                    level:   5,
+                    time:    '1023-09-07 21:30',
+                    content: '兄弟，你确定不是自己偷偷去了趟平康坊掏空了身子？读书人压力大我懂，实在不行去聆月阁听听清倌弹琴静静心，别老疑神疑鬼的。'
+                },
+                {
+                    name:    '洛阳铲',
+                    avatar:  '',
+                    level:   8,
+                    time:    '1023-09-07 21:45',
+                    content: '锦瑟巷？那地方多是土里刨出来的明器。那瞎眼老叟……莫不是专收“血煞件”的鬼手？\n楼主听我一句劝，那笔八成带了前主人的怨气。赶紧弄点纯正的雄黄酒把手好好洗洗，笔直接烧了！'
+                },
+                {
+                    name:    '镜湖打渔人',
+                    avatar:  '',
+                    level:   3,
+                    time:    '1023-09-07 22:05',
+                    content: '别搁这吓唬读书人了。依我看，就是秋闱落榜，心有不甘，生了癔症。好好睡一觉比什么都强。'
+                },
+                {
+                    name:    '落榜闲人',
+                    avatar:  '',
+                    level:   2,
+                    time:    '1023-09-08 14:20',
+                    isOP:    true,
+                    content: '多谢各位……我白日里越看那笔越觉得瘆人，笔杆上的裂纹像是在往外渗墨。 \n我胆子小，没敢烧，趁着午后人少，用布包着偷偷扔进镜湖书院旁边的深水区了。这下应该没事了吧？'
+                },
+                {
+                    name:    '洛阳铲',
+                    avatar:  '',
+                    level:   8,
+                    time:    '1023-09-08 14:35',
+                    quote:   { name: '落榜闲人', excerpt: '扔进镜湖书院旁边的深水区了' },
+                    content: '糊涂啊！水生阴，木生水，你把它扔水里，还是书院旁边那种文人意念聚拢的地方……哎，自求多福吧。'
+                },
+                {
+                    name:    '落榜闲人',
+                    avatar:  '',
+                    level:   2,
+                    time:    '1023-09-08 23:45',
+                    isOP:    true,
+                    content: '它回来了。\n\n我刚才回书舍推开门，那支笔湿漉漉地搁在我的砚台上，还在滴水。\n桌上铺着的生宣上，洇出了一行红色的字：\n\n“ 何  故  弃  我  ？ ”\n\n字迹……是我自己的。我手抖得停不下来，谁来救救我。'
+                },
+                {
+                    name:    '神都巡街武侯',
+                    avatar:  '',
+                    level:   15,
+                    time:    '1023-09-08 23:55',
+                    content: '休要惊慌。你买的那种劣质乌木笔，笔杆多用生犀漆混合朱砂填补裂缝。受潮后，朱砂与劣漆混合会挥发微量致幻毒气，你这是中了毒产生幻觉，自己写了字都不记得。\n\n你家住哪个书舍？明日一早本使带人来查房，将此有毒违禁物交予官府统一销毁。切记，今夜锁好门窗，切勿再碰那支笔。'
+                }
+            ]
+        };
+    </script>
+
+    <script src="../../../../assets/js/scene-forum-thread.js"></script>
+
+    <script>
+        const burger = document.getElementById('navBurger');
+        const menu = document.getElementById('mobileMenu');
+        if (burger && menu) {
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                menu.classList.toggle('active');
+            });
+        }
+        const helpBtn = document.getElementById('helpBtn');
+        const helpPanel = document.getElementById('helpPanel');
+        if (helpBtn && helpPanel) {
+            helpBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                helpPanel.classList.toggle('open');
+            });
+            document.addEventListener('click', (e) => {
+                if (!helpPanel.contains(e.target) && e.target !== helpBtn) {
+                    helpPanel.classList.remove('open');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

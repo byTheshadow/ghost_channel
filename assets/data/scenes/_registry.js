@@ -178,7 +178,21 @@ window.SCENES_REGISTRY = {
     lastReply:    '2023-11-03 22:45',
     pinned:       false,
     hot:          true
-  }
+  },
+      {
+      id:           'thread-005',
+      file:         'thread-005.html',
+      title:        '昨夜在锦瑟巷淘到一支旧乌木笔，写出的字竟如活物...',
+      author:       '落榜闲人',
+      authorAvatar: '',
+      section:      '【大晟】鬼市留言壁',
+      replies:      7,
+      views:        4028,
+      lastReply:    '1023-09-08 23:55',
+      pinned:       false,
+      hot:          true
+    }
+
 
 
     ],
