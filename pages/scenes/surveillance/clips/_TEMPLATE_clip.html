@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--
+    ============================================================
+    GHOST CHANNEL — 监控详情页模板
+    ============================================================
+    使用方法：
+      1. 复制本文件，重命名为你要做的场景，例如 alley-2024-08-15.html
+      2. 修改以下 [FILL_ME:xxx] 占位为实际内容
+      3. 在 <style class="scoped"> 里写个性化 CSS，选择器必须以 .this-scene 开头
+      4. 在 _registry.js 的 surveillance 数组末尾 append 一条对应条目
+
+    路径规则（详情页视角，比列表页多一层 ../）：
+      CSS：  ../../../../assets/css/xxx.css
+      JS：   ../../../../assets/js/xxx.js
+      图片： ../../../../assets/images/xxx
+      返回列表：../index.html
+    ============================================================
+-->
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[FILL_ME:标题] · Surveillance</title>
+
+    <!-- 1. 字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+
+    <!-- 2. CSS（顺序不要动） -->
+    <link rel="stylesheet" href="../../../../assets/css/global.css">
+    <link rel="stylesheet" href="../../../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../../../assets/css/scene-common.css">
+    <link rel="stylesheet" href="../../../../assets/css/scene-surveillance-base.css">
+
+    <!-- 3. body 覆盖 overflow + 个性化 CSS（选择器必须以 .this-scene 开头） -->
+    <style>
+        body, html { overflow: visible; height: auto; }
+
+        /* 例：想让这段监控偏绿色老式监视器色调 */
+        /*
+        .this-scene .surv-frame img { filter: contrast(1.2) brightness(0.7) sepia(0.4) hue-rotate(60deg); }
+        .this-scene .frame-scanlines { background: repeating-linear-gradient(0deg, rgba(0,255,120,0.05) 0px, rgba(0,255,120,0.05) 2px, transparent 2px, transparent 4px); }
+        */
+    </style>
+</head>
+<!-- 4. body 加 .this-scene 作为个性化 CSS 作用域 -->
+<body class="scene-page surveillance-page this-scene">
+
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!-- 导航（详情页路径前缀 ../../../ ） -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../../../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../../../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../../../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="../../../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="../../../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="../../../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="../../../links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../../../home.html" class="mobile-link">HOME</a>
+        <a href="../../../about.html" class="mobile-link">ABOUT</a>
+        <a href="../../../characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="../../../gallery.html" class="mobile-link">GALLERY</a>
+        <a href="../../../presets.html" class="mobile-link">PRESETS</a>
+        <a href="../../../plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="../../../links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <a href="../index.html" class="back-btn">← BACK TO SURVEILLANCE</a>
+
+    <div class="surv-detail-wrap">
+
+        <!-- 详情头 -->
+        <div class="surv-detail-header">
+            <div class="h-left">
+                <div class="h-codename">// [FILL_ME:CODE_NAME]</div>
+                <div class="h-location">[FILL_ME:地点]</div>
+            </div>
+            <div class="h-timestamp">[FILL_ME:YYYY-MM-DD HH:MM:SS]</div>
+        </div>
+
+        <!-- 监控画面。有图时把下面 <img> 的 src 填上，empty 类会自动失效 -->
+        <div class="surv-frame empty">
+            <!-- 有图时启用这一行，并把 empty 类从上面去掉 -->
+            <!-- <img src="../../../../assets/images/scenes/surv/[FILL_ME].webp" alt="[FILL_ME]"> -->
+            <div class="frame-scanlines"></div>
+            <div class="frame-vignette"></div>
+            <div class="frame-rec">
+                <span class="rec-dot-pulse"></span>REC
+            </div>
+            <div class="frame-codename">[FILL_ME:CODE_NAME]</div>
+            <div class="frame-watermark">[FILL_ME:YYYY-MM-DD HH:MM:SS]</div>
+            <div class="frame-tag classified">[FILL_ME:CLASSIFIED]</div>
+        </div>
+
+        <!-- 弹幕区 -->
+        <div class="danmaku-container">
+            <div class="danmaku-header">
+                <div class="dh-left">
+                    <span class="live-dot"></span>
+                    <span>LIVE_COMMENT</span>
+                </div>
+                <div class="dh-right">// 观察这段监控的匿名用户</div>
+            </div>
+            <div class="danmaku-track"></div>
+        </div>
+
+        <!-- 分析说明（可选，也可以删） -->
+        <div class="surv-analysis">
+            <div class="an-title">// FIELD_NOTES</div>
+            <p>[FILL_ME:一段简短的记录/分析文字，说明这段监控的背景、观察到的细节，或某个未被解释的现象。]</p>
+            <p class="an-dim">[FILL_ME:可选一句灰色引言，比如目击者的原话或系统日志摘录。]</p>
+        </div>
+
+    </div>
+
+    <!-- 侧边纸条（可选 1-3 张） -->
+    <div class="side-notes">
+        <div class="note" style="--rot:-3deg;">
+            [FILL_ME:一张手写风格纸条，可写目击者证词、背景音说明、隐藏细节等]
+        </div>
+        <!-- 更多纸条可以复制上面的 div -->
+    </div>
+
+    <!-- 帮助按钮 -->
+    <button class="help-btn" id="helpBtn" aria-label="Help">?</button>
+    <div class="help-panel" id="helpPanel">
+        <h4>// PLAYBACK</h4>
+        <ul>
+            <li>画面为静帧截图，非实时视频</li>
+            <li>下方评论为其他浏览者留言</li>
+            <li>侧栏纸条为记录者手写批注</li>
+        </ul>
+    </div>
+
+    <!-- 弹幕数据（本页专属，每个详情页自己写） -->
+    <script>
+        window.DANMAKU_DATA = [
+            // { text: '弹幕内容', time: 秒数, color: '#可选颜色' }
+            { text: '[FILL_ME:第一条弹幕]', time: 0.5 },
+            { text: '[FILL_ME:第二条弹幕]', time: 1.8, color: '#ff5577' },
+            { text: '[FILL_ME:第三条弹幕]', time: 3.2 },
+            { text: '[FILL_ME:第四条弹幕]', time: 4.5, color: '#ffee55' },
+            { text: '[FILL_ME:第五条弹幕]', time: 5.9 },
+            // 建议 15-40 条，单条 <= 20 字
+        ];
+    </script>
+
+    <!-- 弹幕引擎（放最后加载，此时 track 已在 DOM 中） -->
+    <script src="../../../../assets/js/danmaku.js"></script>
+
+    <script>
+        // 汉堡菜单
+        const burger = document.getElementById('navBurger');
+        const menu = document.getElementById('mobileMenu');
+        if (burger && menu) {
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                menu.classList.toggle('active');
+            });
+        }
+        // 帮助浮层
+        const helpBtn = document.getElementById('helpBtn');
+        const helpPanel = document.getElementById('helpPanel');
+        if (helpBtn && helpPanel) {
+            helpBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                helpPanel.classList.toggle('open');
+            });
+            document.addEventListener('click', (e) => {
+                if (!helpPanel.contains(e.target) && e.target !== helpBtn) {
+                    helpPanel.classList.remove('open');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南三环 · 巷道 · Surveillance</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=UnifrakturCook:wght@700&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../assets/css/global.css">
+    <link rel="stylesheet" href="../../../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../../../assets/css/scene-common.css">
+    <link rel="stylesheet" href="../../../../assets/css/scene-surveillance-base.css">
+
+    <style>
+        body, html { overflow: visible; height: auto; }
+
+        /* ------------------------------------------------------------
+           个性化 CSS · 只作用于本页 .this-scene 域内
+           这段监控偏深红夜色，稍微加重 vignette
+           ------------------------------------------------------------ */
+        .this-scene .surv-frame {
+            border-color: #6a0e1c;
+            box-shadow:
+                0 0 40px rgba(255, 0, 60, 0.22),
+                inset 0 0 80px rgba(0, 0, 0, 0.75);
+        }
+        .this-scene .frame-vignette {
+            box-shadow: inset 0 0 140px rgba(0, 0, 0, 0.95);
+        }
+        .this-scene .surv-analysis {
+            border-left-color: #a0142d;
+        }
+    </style>
+</head>
+<body class="scene-page surveillance-page this-scene">
+
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../../../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../../../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../../../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="../../../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="../../../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="../../../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="../../../links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../../../home.html" class="mobile-link">HOME</a>
+        <a href="../../../about.html" class="mobile-link">ABOUT</a>
+        <a href="../../../characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="../../../gallery.html" class="mobile-link">GALLERY</a>
+        <a href="../../../presets.html" class="mobile-link">PRESETS</a>
+        <a href="../../../plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="../../../links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <a href="../index.html" class="back-btn">← BACK TO SURVEILLANCE</a>
+
+    <div class="surv-detail-wrap">
+
+        <div class="surv-detail-header">
+            <div class="h-left">
+                <div class="h-codename">// CAM_A17</div>
+                <div class="h-location">南三环 · 巷道</div>
+            </div>
+            <div class="h-timestamp">2024-08-15 02:33:41</div>
+        </div>
+
+        <!-- 图片路径待补充：把 src 填上并去掉 empty 类即可 -->
+        <div class="surv-frame empty">
+            <!-- <img src="" alt="南三环 巷道 监控画面"> -->
+            <div class="frame-scanlines"></div>
+            <div class="frame-vignette"></div>
+            <div class="frame-rec">
+                <span class="rec-dot-pulse"></span>REC
+            </div>
+            <div class="frame-codename">CAM_A17</div>
+            <div class="frame-watermark">2024-08-15 02:33:41</div>
+            <div class="frame-tag classified">[CLASSIFIED]</div>
+        </div>
+
+        <div class="danmaku-container">
+            <div class="danmaku-header">
+                <div class="dh-left">
+                    <span class="live-dot"></span>
+                    <span>LIVE_COMMENT</span>
+                </div>
+                <div class="dh-right">// 42 观察者在线</div>
+            </div>
+            <div class="danmaku-track"></div>
+        </div>
+
+        <div class="surv-analysis">
+            <div class="an-title">// FIELD_NOTES</div>
+            <p>这段画面来自南三环临湖巷 A17 号机位，上传者是"哔卟哔卟"，一位常年在监控中心值夜班的匿名用户。他说，那晚三点前后，画面里连续两次出现了同一个人影：从北向南走过一次，又从南向北走了回来 —— 中间没有任何画面切换。</p>
+            <p class="an-dim">"我倒回去看了七遍，"他在留言里写，"那个人走路的姿势……不太像人走路的姿势。"</p>
+        </div>
+
+    </div>
+
+    <div class="side-notes">
+        <div class="note" style="--rot:-3deg;">
+            机位 A17 于 2024/08/14 完成维护，红外补光模块更新为夜鹰-II。理论上不应出现残影或反光。
+        </div>
+        <div class="note dark" style="--rot:2deg;">
+            那天巷子口小卖部的老板说他家的狗从傍晚开始就一直冲同一个方向叫。他没敢出门看。
+        </div>
+        <div class="note" style="--rot:-1deg;">
+            画面里 02:33:38 到 02:33:44，共 6 帧丢失。原始文件 hash 不匹配。
+        </div>
+    </div>
+
+    <button class="help-btn" id="helpBtn" aria-label="Help">?</button>
+    <div class="help-panel" id="helpPanel">
+        <h4>// PLAYBACK</h4>
+        <ul>
+            <li>画面为静帧截图，非实时视频</li>
+            <li>下方为其他浏览者的滚动评论</li>
+            <li>侧栏为记录者手写批注</li>
+        </ul>
+        <p style="margin-top:10px;color:#888;">若发现监控异常，请勿传播。</p>
+    </div>
+
+    <script>
+        window.DANMAKU_DATA = [
+            { text: '这地方是不是南三环？', time: 0.4 },
+            { text: '哔卟你又来上传诡异的了', time: 1.1, color: '#ff5577' },
+            { text: '楼上笑死', time: 2.0 },
+            { text: '看着好瘆人啊', time: 2.8, color: '#ff5577' },
+            { text: '2:33 那个是啥？路灯坏了？', time: 3.6 },
+            { text: '不是路灯 是那个人影', time: 4.9 },
+            { text: '哪有人影 我怎么没看见', time: 6.0 },
+            { text: '暂停在 02:33:41 慢慢看', time: 7.2, color: '#ffee55' },
+            { text: 'kao 真有', time: 8.5 },
+            { text: '我看了三遍我不看了 拜拜', time: 9.6, color: '#ff5577' },
+            { text: '楼上你自己不才是那个', time: 10.8, color: '#ffee55' },
+            { text: '别在这瞎说话', time: 12.0 },
+            { text: '这条巷子我天天路过', time: 13.4 },
+            { text: '楼上你以后别路过了', time: 14.7, color: '#ff5577' },
+            { text: '2333', time: 15.6 },
+            { text: '这不好笑', time: 16.4 },
+            { text: '有人认得那件衣服吗', time: 17.5, color: '#ffee55' },
+            { text: '认得', time: 18.6 },
+            { text: '楼上说话啊！！！', time: 19.5, color: '#ff5577' },
+            { text: '我不敢说', time: 20.8 },
+            { text: '哔卟能不能把原图放出来', time: 22.0 },
+            { text: '原图 6 帧丢失 上传者说的', time: 23.2, color: '#ffee55' },
+            { text: '这种事 帧丢失是有原因的', time: 24.7 },
+            { text: '别科普 关掉页面 现在', time: 26.0, color: '#ff5577' },
+            { text: '我关不掉', time: 27.4, color: '#ff5577' },
+            { text: '……', time: 28.8 },
+            { text: '有人吗', time: 30.5, color: '#ff5577' },
+            { text: '别刷了 大家散了吧', time: 32.0 },
+        ];
+    </script>
+
+    <script src="../../../../assets/js/danmaku.js"></script>
+
+    <script>
+        const burger = document.getElementById('navBurger');
+        const menu = document.getElementById('mobileMenu');
+        if (burger && menu) {
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                menu.classList.toggle('active');
+            });
+        }
+        const helpBtn = document.getElementById('helpBtn');
+        const helpPanel = document.getElementById('helpPanel');
+        if (helpBtn && helpPanel) {
+            helpBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                helpPanel.classList.toggle('open');
+            });
+            document.addEventListener('click', (e) => {
+                if (!helpPanel.contains(e.target) && e.target !== helpBtn) {
+                    helpPanel.classList.remove('open');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

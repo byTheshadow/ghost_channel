@@ -95,7 +95,18 @@ window.SCENES_REGISTRY = {
          codeName:   string  可选  代号，例 'CAM_A17'
        }
        ------------------------------------------------------------ */
-    surveillance: [],
+       surveillance: [
+        {
+            id:        'cctv-alley-01',
+            file:      'alley-2024-08-15.html',
+            location:  '南三环 · 巷道',
+            timestamp: '2024-08-15 02:33:41',
+            thumbnail: '',                    // 图片路径待补充
+            tag:       '[CLASSIFIED]',
+            codeName:  'CAM_A17'
+        }
+    ],
+
 
     /* ------------------------------------------------------------
        论坛 · forum （早期贴吧/天涯风）
