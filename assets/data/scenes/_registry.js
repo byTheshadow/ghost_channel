@@ -165,6 +165,19 @@ window.SCENES_REGISTRY = {
     lastReply:    '2023-10-24 20:12',
     pinned:       false,
     hot:          true
+  },
+    {
+    id:           'thread-004',
+    file:         'thread-004.html',
+    title:        '[绞索角日常] 救命！周末要和暧昧对象第一次正式约会，这破城市到底哪里氛围好啊？',
+    author:       '抹茶星冰乐',
+    authorAvatar: '',
+    section:      '同城闲聊',
+    replies:      7,
+    views:        688,
+    lastReply:    '2023-11-03 22:45',
+    pinned:       false,
+    hot:          true
   }
 
 
