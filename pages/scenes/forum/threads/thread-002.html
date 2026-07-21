@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ghost Channel - Forum Thread</title>
   <link rel="stylesheet" href="../../../../assets/css/scene-forum-base.css">
-  <style>
+    <style>
     /* 
      * 轻改造：灵异/能量污染的视觉失真
      * 严格使用黑、深红、霓虹红、米白等色系 
      */
     .this-scene {
-      background-color: #050505; /* 比纯黑更深邃一点的底色 */
+      background-color: #050505 !important;
     }
 
     /* 9楼（第10层）：异象初始，轻微电流闪烁 */
@@ -49,7 +49,6 @@
       color: #ff003c;
     }
 
-    /* 动画定义 */
     @keyframes tc-flicker {
       0% { opacity: 1; }
       5% { opacity: 0.8; }
@@ -91,7 +90,7 @@
 
   <!-- 帖子数据 -->
   <script>
-    const THREAD_DATA = {
+       const THREAD_DATA = {
       title: "【求证】布莱尔区蓝线地铁，凌晨2点半那班车的最后一节车厢…",
       section: "灵异discuss",
       op: {
@@ -226,6 +225,7 @@
         }
       ]
     };
+
   </script>
 
   <!-- 引入渲染 JS -->
