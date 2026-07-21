@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     
-    <!-- 引入本页专属字体 -->
+    <!-- 引入本页专属字体：思源宋体（标题）与思源黑体（正文） -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
@@ -25,18 +25,6 @@
     </style>
 </head>
 <body class="detail-page-custom">
-
-    <!-- ========== 开场互动：荷叶遮挡层 ========== -->
-    <div class="lotus-cover" id="lotusCover">
-        <!-- 遮挡层文字提示 -->
-        <div class="click-hint">✦ 触碰落叶 · 揭开虚妄 ✦</div>
-        <!-- 四片巨型几何荷叶 -->
-        <div class="lotus-leaf leaf-1"></div>
-        <div class="lotus-leaf leaf-2"></div>
-        <div class="lotus-leaf leaf-3"></div>
-        <div class="lotus-leaf leaf-4"></div>
-    </div>
-    <!-- ======================================= -->
 
     <!-- CRT 效果层保留 -->
     <div class="crt-overlay"></div>
@@ -76,7 +64,19 @@
 
     <a href="../characters.html" class="back-btn-custom">← BACK</a>
 
-    <!-- ========== 背景层 (月白光晕) ========== -->
+    <!-- ==================== 荷叶遮挡交互层 ==================== -->
+    <div class="lotus-cover" id="lotusCover">
+        <!-- 提示文字 -->
+        <div class="cover-hint">点击水面 · 拨开浮萍</div>
+        <!-- 巨大的荷叶群 -->
+        <div class="lotus lotus-1"></div>
+        <div class="lotus lotus-2"></div>
+        <div class="lotus lotus-3"></div>
+        <div class="lotus lotus-4"></div>
+    </div>
+    <!-- ======================================================== -->
+
+    <!-- 背景层 (月白光晕与装饰排版) -->
     <div class="bg-layer">
         <div class="top-meta">
             <span>HEHUAN SECT</span>
@@ -90,8 +90,9 @@
         <div class="glow-orb orb-2"></div>
     </div>
 
-    <!-- ========== 内容层 ========== -->
+    <!-- 内容层 -->
     <main class="custom-main content-layer">
+        
         <!-- 左侧：角色主立绘 -->
         <div class="portrait-box">
             <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260721/9GpB/816X1456/721_%284%29.png/webp" alt="沈九音"> 
@@ -152,7 +153,9 @@
         </div>
     </main>
 
+    <!-- 交互脚本 -->
     <script>
+        // 汉堡菜单
         const burger = document.getElementById('navBurger');
         const mobileMenu = document.getElementById('mobileMenu');
         burger?.addEventListener('click', () => {
@@ -160,24 +163,14 @@
             mobileMenu.classList.toggle('active');
         });
 
-        // ==========================================
-        // 开场荷叶遮罩交互
-        // ==========================================
+        // 荷叶拨开与水波纹交互
         const lotusCover = document.getElementById('lotusCover');
-        lotusCover?.addEventListener('click', function() {
-            // 给遮挡层加上消失类名，触发 CSS 散开动画
-            this.classList.add('vanish');
-            
-            // 动画播放完毕后（1.2秒），将其隐藏，避免阻挡底层点击
-            setTimeout(() => {
-                this.style.display = 'none';
-            }, 1200); 
-        });
-
-        // 专属水波纹交互 (藕荷色版)
+        
         document.addEventListener('click', (e) => {
+            // 避免在点击导航栏时产生波纹
             if (e.target.closest('.ghost-nav')) return;
 
+            // 1. 触发水波纹
             const ripple = document.createElement('div');
             ripple.classList.add('water-ripple-custom');
             ripple.style.left = `${e.clientX}px`;
@@ -187,6 +180,13 @@
             ripple.addEventListener('animationend', () => {
                 ripple.remove();
             });
+
+            // 2. 第一次点击时，拨开荷叶遮罩
+            if (lotusCover && !lotusCover.classList.contains('is-opened')) {
+                lotusCover.classList.add('is-opened');
+                // 禁止底层内容在荷叶完全打开前发生跳跃（可选）
+                window.scrollTo(0, 0); 
+            }
         });
     </script>
 </body>

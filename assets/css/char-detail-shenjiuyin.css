@@ -1,7 +1,10 @@
 @charset "UTF-8";
 
+/* ========================================================
+   沈九音 (Shen Jiuyin) 专属页面样式
+======================================================== */
+
 body.detail-page-custom {
-    /* 色彩系统 - 藕荷、月白与琥珀的修真配色 */
     --my-bg: #07070a;         
     --my-orb-dark: #201a2c;   
     --my-orb-mid: #4a3e59;    
@@ -20,79 +23,90 @@ body.detail-page-custom {
     overflow-x: hidden;
 }
 
-/* ========================================================
-   1. 开场荷叶遮挡层 (点击消失)
-======================================================== */
+/* ================== 荷叶遮挡层 (核心新增) ================== */
 .detail-page-custom .lotus-cover {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(4, 5, 4, 0.9); /* 极深的青黑底色 */
-    backdrop-filter: blur(15px);
-    z-index: 99999; /* 确保在导航栏之上 */
+    z-index: 900; /* 高于内容，低于波纹(9999)和可能存在的导航栏(1000) */
+    background: rgba(7, 7, 10, 0.95);
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     overflow: hidden;
-    cursor: pointer;
-    transition: opacity 0.8s ease-in-out 0.2s, visibility 1s; /* 遮罩褪去稍有延迟，让叶子先飞一会 */
+    /* 遮罩背景逐渐变透明 */
+    transition: background 1.5s ease 0.2s, visibility 2s;
 }
 
-/* 点击后遮罩层隐藏 */
-.detail-page-custom .lotus-cover.vanish {
-    opacity: 0;
+/* 点击后遮罩隐藏状态 */
+.detail-page-custom .lotus-cover.is-opened {
+    background: transparent;
+    pointer-events: none; /* 让鼠标穿透，点击到下面的内容 */
     visibility: hidden;
-    pointer-events: none;
 }
 
 /* 提示文字 */
-.detail-page-custom .click-hint {
+.detail-page-custom .cover-hint {
     position: relative;
     z-index: 10;
+    color: rgba(200, 155, 83, 0.8);
     font-family: var(--my-font-title);
-    color: var(--my-gold);
-    font-size: 1.2rem;
+    font-size: 16px;
     letter-spacing: 6px;
     animation: pulse-hint 2.5s infinite ease-in-out;
+    transition: opacity 0.5s ease;
     pointer-events: none;
 }
 @keyframes pulse-hint {
-    0%, 100% { opacity: 0.4; transform: scale(0.98); filter: blur(1px); }
-    50% { opacity: 1; transform: scale(1.05); filter: blur(0); }
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+.detail-page-custom .lotus-cover.is-opened .cover-hint {
+    opacity: 0;
 }
 
-/* 荷叶的几何表现 (沿用多重渐变叶脉，使用墨绿色系) */
-.detail-page-custom .lotus-leaf {
+/* 模拟暗青色的深邃荷叶 */
+.detail-page-custom .lotus {
     position: absolute;
     border-radius: 50%;
-    /* 十字形叶脉 */
-    background-image: 
-        linear-gradient(0deg, transparent 49.6%, rgba(255,255,255,0.06) 49.6%, rgba(255,255,255,0.06) 50.4%, transparent 50.4%),
-        linear-gradient(45deg, transparent 49.6%, rgba(255,255,255,0.06) 49.6%, rgba(255,255,255,0.06) 50.4%, transparent 50.4%),
-        linear-gradient(90deg, transparent 49.6%, rgba(255,255,255,0.06) 49.6%, rgba(255,255,255,0.06) 50.4%, transparent 50.4%),
-        linear-gradient(135deg, transparent 49.6%, rgba(255,255,255,0.06) 49.6%, rgba(255,255,255,0.06) 50.4%, transparent 50.4%);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-    transition: all 1.2s cubic-bezier(0.25, 1, 0.3, 1);
+    /* 使用多重线性渐变模拟荷叶的放射状叶脉 */
+    background-image:
+        linear-gradient(0deg, transparent 49.6%, rgba(255,255,255,0.03) 49.6%, rgba(255,255,255,0.03) 50.4%, transparent 50.4%),
+        linear-gradient(45deg, transparent 49.6%, rgba(255,255,255,0.03) 49.6%, rgba(255,255,255,0.03) 50.4%, transparent 50.4%),
+        linear-gradient(90deg, transparent 49.6%, rgba(255,255,255,0.03) 49.6%, rgba(255,255,255,0.03) 50.4%, transparent 50.4%),
+        linear-gradient(135deg, transparent 49.6%, rgba(255,255,255,0.03) 49.6%, rgba(255,255,255,0.03) 50.4%, transparent 50.4%);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.9);
+    /* 荷叶退散动画：使用缓动函数展现“水面推开”的阻力感 */
+    transition: transform 1.8s cubic-bezier(0.25, 1, 0.3, 1), opacity 1.5s ease 0.3s;
 }
 
-/* 四片巨型荷叶的初始位置与墨绿色调 */
-.detail-page-custom .leaf-1 { width: 70vw; height: 70vw; background-color: #15221c; top: -20vw; left: -10vw; z-index: 4; }
-.detail-page-custom .leaf-2 { width: 60vw; height: 60vw; background-color: #1e3026; bottom: -15vw; right: -5vw; z-index: 3; }
-.detail-page-custom .leaf-3 { width: 50vw; height: 50vw; background-color: #0c1410; top: 10vh; right: 20vw; z-index: 2; }
-.detail-page-custom .leaf-4 { width: 80vw; height: 80vw; background-color: #1a2a22; bottom: -20vw; left: 15vw; z-index: 1; }
+/* 荷叶中心的小点，模拟荷叶梗 */
+.detail-page-custom .lotus::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 6%; height: 6%;
+    background: rgba(0,0,0,0.4);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
 
-/* 消失时的散开动画（位移 + 缩小 + 变透明） */
-.detail-page-custom .lotus-cover.vanish .leaf-1 { transform: translate(-30%, -30%) scale(0.6) rotate(-45deg); opacity: 0; }
-.detail-page-custom .lotus-cover.vanish .leaf-2 { transform: translate(30%, 30%) scale(0.6) rotate(45deg); opacity: 0; }
-.detail-page-custom .lotus-cover.vanish .leaf-3 { transform: translate(40%, -20%) scale(0.6) rotate(90deg); opacity: 0; }
-.detail-page-custom .lotus-cover.vanish .leaf-4 { transform: translate(-40%, 30%) scale(0.6) rotate(-90deg); opacity: 0; }
+/* 初始排布 (铺满屏幕) */
+.detail-page-custom .lotus-1 { width: 65vw; height: 65vw; top: -15vw; left: -10vw; background-color: #1e3325; z-index: 5; }
+.detail-page-custom .lotus-2 { width: 75vw; height: 75vw; bottom: -20vw; right: -15vw; background-color: #16261a; z-index: 4; }
+.detail-page-custom .lotus-3 { width: 45vw; height: 45vw; top: 15vw; right: -5vw; background-color: #26402e; z-index: 6; }
+.detail-page-custom .lotus-4 { width: 55vw; height: 55vw; bottom: 10vw; left: -10vw; background-color: #1a2c1e; z-index: 3; }
 
+/* 被点击后，荷叶向四周散开并淡出 */
+.detail-page-custom .lotus-cover.is-opened .lotus-1 { transform: translate(-50vw, -50vw) rotate(-45deg); opacity: 0; }
+.detail-page-custom .lotus-cover.is-opened .lotus-2 { transform: translate(50vw, 50vw) rotate(45deg); opacity: 0; }
+.detail-page-custom .lotus-cover.is-opened .lotus-3 { transform: translate(50vw, -30vw) rotate(60deg); opacity: 0; }
+.detail-page-custom .lotus-cover.is-opened .lotus-4 { transform: translate(-50vw, 30vw) rotate(-60deg); opacity: 0; }
+/* ========================================================== */
 
-/* ========================================================
-   2. 页面基础组件
-======================================================== */
+/* --- 返回按钮 --- */
 .detail-page-custom .back-btn-custom {
     position: fixed;
     top: 80px; 
@@ -106,93 +120,203 @@ body.detail-page-custom {
     opacity: 0.6;
     transition: opacity 0.3s ease, color 0.3s ease;
 }
-.detail-page-custom .back-btn-custom:hover { opacity: 1; color: var(--my-gold); }
+.detail-page-custom .back-btn-custom:hover {
+    opacity: 1;
+    color: var(--my-gold);
+}
 
-/* --- 背景光晕 --- */
+/* ---------------- 背景光晕层 ---------------- */
 .detail-page-custom .bg-layer {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 1; pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
 }
+
 .detail-page-custom .top-meta {
-    position: absolute; top: 80px; width: 100%; padding: 20px 50px;
-    box-sizing: border-box; display: flex; justify-content: space-between;
-    font-size: 11px; letter-spacing: 3px; color: rgba(255, 255, 255, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 5;
+    position: absolute;
+    top: 80px;
+    width: 100%;
+    padding: 20px 50px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 5;
     font-family: 'Playfair Display', serif;
 }
-.detail-page-custom .glow-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5; }
+
+.detail-page-custom .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+}
 .detail-page-custom .orb-1 { width: 50vw; height: 50vw; background-color: var(--my-orb-mid); top: -20vw; left: -15vw; z-index: 2; }
 .detail-page-custom .orb-2 { width: 45vw; height: 45vw; background-color: var(--my-orb-light); bottom: -15vw; right: -10vw; z-index: 1; opacity: 0.2;}
 .detail-page-custom .orb-3 { width: 35vw; height: 35vw; background-color: var(--my-orb-dark); top: 30vh; right: 15vw; z-index: 3; }
 .detail-page-custom .orb-4 { width: 65vw; height: 65vw; background-color: var(--my-orb-bright); bottom: -30vw; left: 10vw; z-index: 4; opacity: 0.3;}
 
 .detail-page-custom .bg-typography {
-    position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
-    font-family: 'Playfair Display', serif; font-size: 18vw; color: rgba(255,255,255, 0.02);
-    white-space: nowrap; z-index: 3; margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 18vw;
+    color: rgba(255,255,255, 0.02);
+    white-space: nowrap;
+    z-index: 3;
+    margin: 0;
 }
-.detail-page-custom .bg-typography span { color: rgba(200, 155, 83, 0.05); font-style: italic; font-size: 15vw; }
+.detail-page-custom .bg-typography span {
+    color: rgba(200, 155, 83, 0.05); 
+    font-style: italic;
+    font-size: 15vw;
+}
 
-/* ========================================================
-   3. 内容排版层
-======================================================== */
+/* ---------------- 内容层布局 ---------------- */
 .detail-page-custom .content-layer {
-    position: relative; z-index: 10; display: flex; align-items: flex-start; justify-content: center;
-    gap: 4%; min-height: 100vh; padding: 140px 5vw 80px; box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4%;
+    min-height: 100vh;
+    padding: 140px 5vw 80px;
+    box-sizing: border-box;
     background: linear-gradient(to right, rgba(7,7,10,0.8) 0%, rgba(7,7,10,0.4) 50%, rgba(7,7,10,0.8) 100%);
     backdrop-filter: blur(8px);
 }
+
 .detail-page-custom .portrait-box {
-    width: 38%; height: 80vh; position: sticky; top: 100px;
-    border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; overflow: hidden;
+    width: 38%;
+    height: 80vh;
+    position: sticky;
+    top: 100px; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
     box-shadow: 0 30px 60px rgba(0,0,0,0.8);
 }
-.detail-page-custom .portrait-box img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
+.detail-page-custom .portrait-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+}
 
 .detail-page-custom .info-box {
-    width: 48%; padding: 50px; background: rgba(20, 18, 25, 0.6);
-    backdrop-filter: blur(15px); border-left: 2px solid var(--my-gold);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6); border-radius: 0 8px 8px 0;
+    width: 48%;
+    padding: 50px;
+    background: rgba(20, 18, 25, 0.6);
+    backdrop-filter: blur(15px);
+    border-left: 2px solid var(--my-gold);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    border-radius: 0 8px 8px 0;
 }
-.detail-page-custom .char-title { font-family: var(--my-font-title); font-size: 4rem; margin: 0 0 10px 0; line-height: 1.1; font-weight: 700; }
-.detail-page-custom .char-subtitle { font-size: 14px; color: var(--my-gold); letter-spacing: 4px; margin-bottom: 40px; font-family: var(--my-font-title); }
 
-.detail-page-custom .char-attributes { display: flex; gap: 30px; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 25px; }
-.detail-page-custom .attr-item { display: flex; flex-direction: column; }
+.detail-page-custom .char-title {
+    font-family: var(--my-font-title);
+    font-size: 4rem;
+    margin: 0 0 10px 0;
+    line-height: 1.1;
+    font-weight: 700;
+}
+.detail-page-custom .char-subtitle {
+    font-size: 14px;
+    color: var(--my-gold);
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+    font-family: var(--my-font-title);
+}
+
+.detail-page-custom .char-attributes {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 25px;
+}
+.detail-page-custom .attr-item {
+    display: flex;
+    flex-direction: column;
+}
 .detail-page-custom .attr-label { font-size: 11px; color: #888; letter-spacing: 2px; }
 .detail-page-custom .attr-val { font-size: 15px; font-weight: 500; margin-top: 8px; }
 
 .detail-page-custom .warning-banner {
-    background: rgba(200, 155, 83, 0.1); border: 1px dashed var(--my-gold);
-    padding: 15px 20px; border-radius: 4px; display: flex; gap: 10px; align-items: center;
-    font-size: 13px; color: #e0d0b0; margin-bottom: 40px; letter-spacing: 1px;
+    background: rgba(200, 155, 83, 0.1);
+    border: 1px dashed var(--my-gold);
+    padding: 15px 20px;
+    border-radius: 4px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 13px;
+    color: #e0d0b0;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
 }
-.detail-page-custom .char-desc { font-size: 15px; line-height: 2; color: #c4c4cc; text-align: justify; }
-.detail-page-custom .char-desc p { margin-bottom: 18px; }
+
+.detail-page-custom .char-desc {
+    font-size: 15px;
+    line-height: 2;
+    color: #c4c4cc;
+    text-align: justify;
+}
+.detail-page-custom .char-desc p {
+    margin-bottom: 18px;
+}
 
 .detail-page-custom .dialogue-box {
-    background: rgba(255,255,255,0.02); border-left: 3px solid var(--my-orb-mid);
-    padding: 15px 20px; margin: 20px 0; border-radius: 0 4px 4px 0; font-size: 14px; color: #b0b0bb;
+    background: rgba(255,255,255,0.02);
+    border-left: 3px solid var(--my-orb-mid);
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 4px 4px 0;
+    font-size: 14px;
+    color: #b0b0bb;
 }
 .detail-page-custom .dialogue-box p { margin-bottom: 10px; }
 .detail-page-custom .dialogue-box p:last-child { margin-bottom: 0; }
 
-.detail-page-custom .inline-gallery { width: 100%; margin: 30px 0; border-radius: 6px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+.detail-page-custom .inline-gallery {
+    width: 100%;
+    margin: 30px 0;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
 .detail-page-custom .inline-gallery img { width: 100%; display: block; }
 .detail-page-custom .split-gallery { display: flex; gap: 10px; box-shadow: none; overflow: visible; }
 .detail-page-custom .split-gallery img { width: calc(50% - 5px); border-radius: 6px; object-fit: cover; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
 
-/* --- 水波纹 --- */
+/* ---------------- 水波纹动画 ---------------- */
 .detail-page-custom .water-ripple-custom {
-    position: fixed; border: 1px solid rgba(224, 229, 234, 0.4); 
+    position: fixed;
+    border: 1px solid rgba(224, 229, 234, 0.4); 
     background: radial-gradient(circle, rgba(155, 140, 186, 0.15) 0%, transparent 70%); 
-    border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%) scale(0);
-    animation: ripple-out-custom 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards; z-index: 999999;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple-out-custom 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    z-index: 9999;
 }
-@keyframes ripple-out-custom { 0% { width: 0; height: 0; opacity: 0.8; } 100% { width: 400px; height: 400px; opacity: 0; } }
+@keyframes ripple-out-custom {
+    0% { width: 0; height: 0; opacity: 0.8; }
+    100% { width: 400px; height: 400px; opacity: 0; }
+}
 
-/* 移动端适配 */
+/* ---------------- 移动端响应式 ---------------- */
 @media (max-width: 900px) {
     .detail-page-custom .content-layer { flex-direction: column; padding-top: 120px; align-items: center; }
     .detail-page-custom .portrait-box { width: 90%; height: 60vh; position: relative; top: 0; margin-bottom: 30px; }
@@ -202,4 +326,8 @@ body.detail-page-custom {
     .detail-page-custom .back-btn-custom { top: 70px; left: 20px; }
     .detail-page-custom .split-gallery { flex-direction: column; }
     .detail-page-custom .split-gallery img { width: 100%; }
+    /* 移动端荷叶适当调大保证遮挡 */
+    .detail-page-custom .lotus-1 { width: 120vw; height: 120vw; }
+    .detail-page-custom .lotus-2 { width: 130vw; height: 130vw; }
 }
+
