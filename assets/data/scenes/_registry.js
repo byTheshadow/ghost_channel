@@ -127,19 +127,20 @@ window.SCENES_REGISTRY = {
        }
        ------------------------------------------------------------ */
         forum: [
-        {
-            id:           'thread-001',
-            file:         'thread-001.html',
-            title:        '有人见过南三环那个弹贝斯的男的吗？',
-            author:       '路人甲',
-            authorAvatar: '',                    // 头像路径待补充，留空自动用首字母
-            section:      '灵异discuss',
-            replies:      18,
-            views:        2103,
-            lastReply:    '2024-08-16 08:22',
-            pinned:       false,
-            hot:          true
-        }
+            {
+      id:           'thread-001',
+      file:         'thread-001.html',
+      title:        '昨晚高架底下那辆没声音的黑车，谁遇上了？',
+      author:       '燃油泵',
+      authorAvatar: '',  
+      section:      '霖城城东',
+      replies:      15,
+      views:        8421,
+      lastReply:    '2024-09-11 02:35',
+      pinned:       false,
+      hot:          true
+    }
+
     ],
 
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>有人见过南三环那个弹贝斯的男的吗？ · Ghost_BBS</title>
+    <title>昨晚高架底下那辆没声音的黑车，谁遇上了？ · Ghost_BBS</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,9 +17,81 @@
     <style>
         body, html { overflow: visible; height: auto; }
 
-        /* 这帖子是灵异讨论，把标题加个微微的红光 */
-        .this-scene .thread-header .th-title {
-            text-shadow: 0 0 12px rgba(255, 0, 60, 0.15);
+        /* 基础氛围定调：黑红、生锈、机油感 */
+        .this-scene .thread-detail-wrap {
+            border: 1px solid rgba(255, 60, 60, 0.1);
+            box-shadow: 0 0 40px rgba(10, 0, 0, 0.9) inset;
+            background: linear-gradient(180deg, rgba(15, 10, 10, 0.95) 0%, rgba(5, 5, 5, 0.98) 100%);
+        }
+        
+        .this-scene .thread-header {
+            border-bottom: 2px dashed #4a1515;
+        }
+
+        .this-scene .th-title {
+            color: #e0e0e0;
+            text-shadow: 0 0 10px rgba(255, 0, 60, 0.4);
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 700;
+        }
+
+        .this-scene .floor {
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .this-scene .floor-content {
+            color: #cccccc;
+            line-height: 1.7;
+        }
+
+        .this-scene .side-notes .note {
+            background: rgba(20, 5, 5, 0.8);
+            border: 1px solid #660000;
+            color: #ff6666;
+            box-shadow: 3px 3px 0 #2a0000;
+        }
+
+        /* 视觉渐进扭曲：随着楼层深入，氛围开始失控 */
+        .this-scene .floor:nth-child(10) .floor-content,
+        .this-scene .floor:nth-child(11) .floor-content,
+        .this-scene .floor:nth-child(12) .floor-content {
+            color: #ff7777;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+        }
+
+        .this-scene .floor:nth-child(13) .floor-content {
+            color: #ff3333;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* 倒数第三层：楼主被盯上，文字开始震颤扭曲 */
+        .this-scene .floor:nth-child(14) .floor-content {
+            color: #ff1111;
+            font-weight: bold;
+            letter-spacing: 2px;
+            animation: text-jitter 0.15s infinite;
+            filter: drop-shadow(0 0 2px #ff0000);
+        }
+
+        /* 倒数第二层：呼叫无果 */
+        .this-scene .floor:nth-child(15) .floor-content {
+            filter: blur(0.6px);
+        }
+
+        /* 最后一层：注销 */
+        .this-scene .floor:nth-child(16) .floor-content {
+            color: #444;
+            text-decoration: line-through;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        @keyframes text-jitter {
+            0% { transform: translate(0, 0) skew(0deg); }
+            25% { transform: translate(1px, -1px) skew(-2deg); }
+            50% { transform: translate(-1px, 1px) skew(2deg); }
+            75% { transform: translate(1px, 1px) skew(0deg); }
+            100% { transform: translate(0, 0) skew(0deg); }
         }
     </style>
 </head>
@@ -71,11 +143,11 @@
     </div>
 
     <div class="side-notes">
-        <div class="note" style="--rot:-3deg;">
-            这帖子被顶了三天后突然沉了。楼主 ID "路人甲" 于第四天注销。
+        <div class="note" style="--rot:-2deg;">
+            该帖在发布 4 小时后被后台系统强制阻断。
         </div>
-        <div class="note dark" style="--rot:2deg;">
-            2024/08/17 网友"哔卟哔卟"在监控区上传了 CAM_A17，正是这条巷子。
+        <div class="note dark" style="--rot:3deg;">
+            事后没人去过楼主的车库。只有人听见那卷帘门底下，一直有类似浓痰沸腾的咕噜声。
         </div>
     </div>
 
@@ -91,94 +163,79 @@
 
     <script>
         window.THREAD_DATA = {
-            title:   '有人见过南三环那个弹贝斯的男的吗？',
-            section: '灵异discuss',
+            title:   '昨晚高架底下那辆没声音的黑车，谁遇上了？',
+            section: '城东废区',
             op: {
-                name:   '路人甲',
+                name:   '燃油泵',
                 avatar: '',
-                level:  3,
-                time:   '2024-08-13 23:47'
+                level:  4,
+                time:   '2024-09-11 01:14'
             },
             floors: [
                 {
-                    name: '路人甲', avatar: '', level: 3, time: '2024-08-13 23:47', isOP: true,
-                    content: '事情是这样的。\n上周三我下夜班回家，抄近路走南三环那条临湖巷。差不多两点半。\n巷子中间有个人坐在墙根下弹贝斯。四根弦，没接音箱，声音闷闷的但很清楚。\n我说很清楚是什么意思——那哥们背对着我，我从他后面走过去，他手指按弦、拨弦的动作我看得一清二楚。但是。\n他弹的是电贝斯，没有音箱。声音是从我脑袋里响的。'
+                    name: '燃油泵', avatar: '', level: 4, time: '2024-09-11 01:14', isOP: true,
+                    content: '昨晚雨停的时候，我在南段高架底下抽烟。看到一辆全黑的车滑过去。\n真的就是“滑”，一点引擎声都没有，连胎噪都没。如果是主城区那帮玩智能驾驶的蠢货迷路了，好歹也有电机声吧？\n那玩意儿安静得像个死人，而且车身反光不对劲，油腻腻的。'
                 },
                 {
-                    name: 'B站小刘', avatar: '', level: 5, time: '2024-08-13 23:52',
-                    content: '楼上是不是喝多了'
+                    name: '生锈齿轮', avatar: '', level: 5, time: '2024-09-11 01:20',
+                    content: '主城区的装逼犯呗。降噪做过头了。你没上去别一下它？教教它城东的规矩。'
                 },
                 {
-                    name: '路人甲', avatar: '', level: 3, time: '2024-08-13 23:55', isOP: true,
-                    content: '真的假的你自己去看看。我没喝酒 我下夜班从来不喝酒。',
-                    quote: { name: 'B站小刘', excerpt: '楼上是不是喝多了' }
+                    name: '燃油泵', avatar: '', level: 4, time: '2024-09-11 01:25', isOP: true,
+                    content: '没轮到我。老鬼开着他那辆改了V8的皮卡直接从岔路口横插过去，想把它逼停。那黑车根本没减速。',
+                    quote: { name: '生锈齿轮', excerpt: '你没上去别一下它？教教它城东的规矩。' }
                 },
                 {
-                    name: '不吃香菜', avatar: '', level: 2, time: '2024-08-14 00:14',
-                    content: '南三环临湖巷？我住那边。没听说过啥弹贝斯的。'
+                    name: '火花塞', avatar: '', level: 3, time: '2024-09-11 01:31',
+                    content: '老鬼那暴脾气，估计直接撞上去了吧？黑车报废没？'
                 },
                 {
-                    name: 'a_sang_23', avatar: '', level: 7, time: '2024-08-14 00:31',
-                    content: '你们不知道很正常。他只在凌晨两点到三点之间出现，弹二十分钟就走。而且他挑人。'
+                    name: '燃油泵', avatar: '', level: 4, time: '2024-09-11 01:38', isOP: true,
+                    content: '问题就在这。老鬼撞上去的瞬间，黑车没有金属碰撞的声音。就像是……老鬼的皮卡陷进了一大团沥青里。然后黑车就这么继续往前滑走了。'
                 },
                 {
-                    name: 'B站小刘', avatar: '', level: 5, time: '2024-08-14 00:35',
-                    content: '楼上装什么神秘',
-                    quote: { name: 'a_sang_23', excerpt: '他只在凌晨两点到三点之间出现' }
+                    name: '生锈齿轮', avatar: '', level: 5, time: '2024-09-11 01:45',
+                    content: '扯淡呢？老鬼那防撞杠是实心钢焊的，能把墙撞个洞。老鬼人呢？'
                 },
                 {
-                    name: 'a_sang_23', avatar: '', level: 7, time: '2024-08-14 00:42',
-                    content: '我不装。我见过他两次。你要真好奇 你也去。'
+                    name: '燃油泵', avatar: '', level: 4, time: '2024-09-11 01:52', isOP: true,
+                    content: '今早我们在烂泥沟里找到了皮卡。全车完好，除了引擎。整个V8缸体熔成了一块铁疙瘩，连带着变速箱全化了。\n车里没人。只有一股浓到刺鼻的臭氧味。'
                 },
                 {
-                    name: '路人甲', avatar: '', level: 3, time: '2024-08-14 01:03', isOP: true,
-                    content: '楼上说的挑人是什么意思？',
-                    quote: { name: 'a_sang_23', excerpt: '他挑人' }
+                    name: '机油拌饭', avatar: '', level: 7, time: '2024-09-11 02:05',
+                    content: '等等，昨晚城北也出现了一辆没声音的黑车。你们看没看三号车间的监控？'
                 },
                 {
-                    name: 'a_sang_23', avatar: '', level: 7, time: '2024-08-14 01:20',
-                    content: '有些人从他面前走过去 什么都听不见。有些人能听见——但只有心里响。你 属于后者。'
+                    name: '机油拌饭', avatar: '', level: 7, time: '2024-09-11 02:08',
+                    content: '那东西根本不是车。它在过减速带的时候，底盘像是有什么东西……像触手一样贴着地面蠕动过去的。'
                 },
                 {
-                    name: '路人甲', avatar: '', level: 3, time: '2024-08-14 01:25', isOP: true,
-                    content: '你怎么知道？'
+                    name: '燃油泵', avatar: '', level: 4, time: '2024-09-11 02:15', isOP: true,
+                    content: '草。'
                 },
                 {
-                    name: 'a_sang_23', avatar: '', level: 7, time: '2024-08-14 01:32',
-                    content: '因为你还在这里发帖问。听不见的人不会在意。'
+                    name: '生锈齿轮', avatar: '', level: 5, time: '2024-09-11 02:16',
+                    content: '怎么了？'
                 },
                 {
-                    name: '不吃香菜', avatar: '', level: 2, time: '2024-08-14 07:48',
-                    content: '一觉起来看到这帖 头皮发麻。'
+                    name: '燃油泵', avatar: '', level: 4, time: '2024-09-11 02:18', isOP: true,
+                    content: '我现在在自己车库里。卷帘门外头有个影子停着。没有任何引擎声。'
                 },
                 {
-                    name: '哔卟哔卟', avatar: '', level: 9, time: '2024-08-15 03:14',
-                    content: '我调了 CAM_A17 那晚的画面。02:30 到 03:00，巷子里空的。什么人都没有。'
+                    name: '机油拌饭', avatar: '', level: 7, time: '2024-09-11 02:20',
+                    content: '别开门！！绝对别开门！！别看它的车灯！！'
                 },
                 {
-                    name: '路人甲', avatar: '', level: 3, time: '2024-08-15 08:22', isOP: true,
-                    content: '不可能。我从他身边走过去的。',
-                    quote: { name: '哔卟哔卟', excerpt: '巷子里空的。什么人都没有。' }
+                    name: '燃油泵', avatar: '', level: 4, time: '2024-09-11 02:23', isOP: true,
+                    content: '它没开雾灯。那是……两只眼睛。它在融化我的卷帘门。'
                 },
                 {
-                    name: '哔卟哔卟', avatar: '', level: 9, time: '2024-08-15 09:10',
-                    content: '02:33:38 到 02:33:44 之间画面丢失六帧。我把片段上传到监控区了。你自己看。'
+                    name: '生锈齿轮', avatar: '', level: 5, time: '2024-09-11 02:30',
+                    content: '喂？燃油泵？说话！'
                 },
                 {
-                    name: 'a_sang_23', avatar: '', level: 7, time: '2024-08-15 15:47',
-                    content: '别在这继续问了。你越问 越容易再见到他。'
-                },
-                {
-                    name: '路人甲', avatar: '', level: 3, time: '2024-08-16 03:11', isOP: true,
-                    content: '刚回家。今天走的是别的路。可是我脑子里还在响。'
-                },
-                {
-                    name: 'a_sang_23', avatar: '', level: 7, time: '2024-08-16 03:15',
-                    content: '……'
-                },
-                {
-                    name: 'a_sang_23', avatar: '', level: 7, time: '2024-08-16 08:22',
-                    content: '删掉这帖 现在。'
+                    name: 'SYSTEM', avatar: '', level: 99, time: '2024-09-11 02:35',
+                    content: '[ 目标用户连接已丢失。状态：注销 ]'
                 }
             ]
         };
