@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Talk - Doc Stitch</title>
+    <style>
+        .this-scene .talk-caller-name { color: #a4303f; text-shadow: 0 0 5px rgba(164, 48, 63, 0.5); }
+    </style>
+</head>
+<body class="talk-page scene-page">
+    <main class="talk-container this-scene">
+        <header class="talk-header">
+            <a href="../phones/clinic-line.html" class="back-btn">← 挂断</a>
+            <h1 class="talk-caller-name">妙手缝匠</h1>
+            <p class="talk-status">通话中...</p>
+        </header>
+
+        <div class="talk-messages">
+            <!-- 对方开场(自动) -->
+            <div class="talk-message from-them" data-delay="1000" data-typewriter="true">
+                <div class="talk-bubble">（一阵尖锐的电流声，夹杂着金属器皿碰撞的声音）</div>
+            </div>
+            <div class="talk-message from-them" data-delay="3000" data-typewriter="true">
+                <div class="talk-bubble">不管你是被口径多大的子弹打了，还是身体里长出了不该长的东西，规矩只有一条。</div>
+            </div>
+            <div class="talk-message from-them" data-delay="6000" data-typewriter="true">
+                <div class="talk-bubble">不收医保，只收现金和未经标记的 Aether-Core 电池。</div>
+            </div>
+
+            <!-- 第一轮：用户选 opt1 后 -->
+            <div class="talk-message from-user" data-option-id="opt1" style="display:none;">
+                <div class="talk-bubble">我需要帮助。</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt1" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">废话少说。是能量灼伤还是强制变形？</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt1" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">如果地上没有血，就别浪费我缝针的时间。</div>
+            </div>
+
+            <!-- 第一轮：用户选 opt2 后 -->
+            <div class="talk-message from-user" data-option-id="opt2" style="display:none;">
+                <div class="talk-bubble">这是什么地方？</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt2" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">一个死过很多宠物，也救活过几个怪胎的地方。</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt2" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">如果你只是好奇，现在挂断还不至于惹上麻烦。</div>
+            </div>
+
+            <!-- 第二轮：选了 opt1 之后的用户消息和对方回复 -->
+            <div class="talk-message from-user" data-option-id="opt1-a" style="display:none;">
+                <div class="talk-bubble">都有。你能治吗？</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt1-a" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">哼……有意思。从后门进来，避开监控。</div>
+            </div>
+
+            <div class="talk-message from-user" data-option-id="opt1-b" style="display:none;">
+                <div class="talk-bubble">我带了电池。</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt1-b" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">很好。希望那是满电的，你接下来的手术可没有麻药。</div>
+            </div>
+
+            <!-- 第二轮：选了 opt2 之后的用户消息和对方回复 -->
+            <div class="talk-message from-user" data-option-id="opt2-a" style="display:none;">
+                <div class="talk-bubble">我受了点“特殊”的伤。</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt2-a" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">那就闭嘴，按传单上的地址来。别带尾巴。</div>
+            </div>
+
+            <div class="talk-message from-user" data-option-id="opt2-b" style="display:none;">
+                <div class="talk-bubble">抱歉，打扰了。</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt2-b" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">祝你今晚好运。在绞索角，你迟早会需要我的。</div>
+            </div>
+        </div>
+
+        <!-- 第一轮选项 -->
+        <div class="talk-options" data-round="1">
+            <button class="talk-option-btn" data-option-id="opt1">我需要帮助。</button>
+            <button class="talk-option-btn" data-option-id="opt2">这是什么地方？</button>
+        </div>
+
+        <!-- 第二轮选项 (选 opt1 后出现) -->
+        <div class="talk-options" data-after="opt1" style="display:none;">
+            <button class="talk-option-btn" data-option-id="opt1-a">都有。你能治吗？</button>
+            <button class="talk-option-btn" data-option-id="opt1-b">我带了电池。</button>
+        </div>
+
+        <!-- 第二轮选项 (选 opt2 后出现) -->
+        <div class="talk-options" data-after="opt2" style="display:none;">
+            <button class="talk-option-btn" data-option-id="opt2-a">我受了点“特殊”的伤。</button>
+            <button class="talk-option-btn" data-option-id="opt2-b">抱歉，打扰了。</button>
+        </div>
+
+    </main>
+</body>
+</html>

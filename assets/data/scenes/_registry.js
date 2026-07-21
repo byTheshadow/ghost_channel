@@ -227,8 +227,18 @@ window.SCENES_REGISTRY = {
                 preview:    '"试着打这个号码,有人会接。"凌晨三点收到,发送者未知。',
                 time:       '2024-08-15 03:12',
                 phonePage:  'demo-line.html'
-            }
+            },
+            {
+    id:         'feed-clinic-01',
+    type:       'notice',
+    title:      '一张倒闭宠物医院的传单',
+    preview:    '"如果你的‘烫伤’不是火造成的，打这个电话。"',
+    time:       '2024-10-27 02:15',
+    phonePage:  'clinic-line.html'
+}
+
         ],
+        
 
         /* 号码本 */
         contacts: [
@@ -245,7 +255,28 @@ window.SCENES_REGISTRY = {
                 reachable:  false,
                 unreachableType: 'empty',
                 feedId:     'feed-demo-line'
-            }
+            },{
+    number:     '555-8002',
+    name:       '妙手缝匠',
+    reachable:  true,
+    file:       'clinic-talk-01.html',
+    feedId:     'feed-clinic-01'
+},
+{
+    number:     '555-8000',
+    name:       null,
+    reachable:  false,
+    unreachableType: 'busy',
+    feedId:     'feed-clinic-01'
+},
+{
+    number:     '555-8008',
+    name:       null,
+    reachable:  false,
+    unreachableType: 'empty',
+    feedId:     'feed-clinic-01'
+}
+
         ]
     }
 
