@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     
-    <!-- 引入本页专属字体：思源宋体（标题）与思源黑体（正文） -->
+    <!-- 引入本页专属字体 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
@@ -26,11 +26,23 @@
 </head>
 <body class="detail-page-custom">
 
-    <!-- CRT 效果层保留，增添一点年代感和幻觉感 -->
+    <!-- ========== 开场互动：荷叶遮挡层 ========== -->
+    <div class="lotus-cover" id="lotusCover">
+        <!-- 遮挡层文字提示 -->
+        <div class="click-hint">✦ 触碰落叶 · 揭开虚妄 ✦</div>
+        <!-- 四片巨型几何荷叶 -->
+        <div class="lotus-leaf leaf-1"></div>
+        <div class="lotus-leaf leaf-2"></div>
+        <div class="lotus-leaf leaf-3"></div>
+        <div class="lotus-leaf leaf-4"></div>
+    </div>
+    <!-- ======================================= -->
+
+    <!-- CRT 效果层保留 -->
     <div class="crt-overlay"></div>
     <div class="vignette"></div>
 
-    <!-- ===== 导航栏（原样复制，不要改样式，只改 active 标记） ===== -->
+    <!-- ===== 导航栏（原样复制） ===== -->
     <nav class="ghost-nav" id="ghostNav">
         <div class="nav-brand">
             <a href="../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
@@ -64,30 +76,23 @@
 
     <a href="../characters.html" class="back-btn-custom">← BACK</a>
 
-    <!-- ========== 本页专属自由发挥区 ========== -->
-    
-    <!-- 1. 背景层 (月白光晕与装饰排版) -->
+    <!-- ========== 背景层 (月白光晕) ========== -->
     <div class="bg-layer">
         <div class="top-meta">
             <span>HEHUAN SECT</span>
             <span>VOL. 09 — SHEN JIUYIN</span>
             <span>VOID & ILLUSION</span>
         </div>
-
         <div class="glow-orb orb-1"></div>
         <div class="glow-orb orb-3"></div>
-        
-        <!-- 背景穿插文字 -->
         <h1 class="bg-typography">S<span>&</span>J</h1>
-
         <div class="glow-orb orb-4"></div>
         <div class="glow-orb orb-2"></div>
     </div>
 
-    <!-- 2. 内容层 -->
+    <!-- ========== 内容层 ========== -->
     <main class="custom-main content-layer">
-        
-        <!-- 左侧：角色主立绘（使用比例为816x1456的竖版图） -->
+        <!-- 左侧：角色主立绘 -->
         <div class="portrait-box">
             <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260721/9GpB/816X1456/721_%284%29.png/webp" alt="沈九音"> 
         </div>
@@ -97,7 +102,6 @@
             <h2 class="char-title">沈九音</h2>
             <div class="char-subtitle">字：善渊 | Shen Jiuyin</div>
             
-            <!-- 角色属性条目 -->
             <div class="char-attributes">
                 <div class="attr-item">
                     <span class="attr-label">FACTION</span>
@@ -113,13 +117,11 @@
                 </div>
             </div>
 
-            <!-- 避雷项警示 -->
             <div class="warning-banner">
                 <span class="warning-icon">⚠</span>
                 <span>表面温柔内在空洞 ✧ 情感隔离型人格 · 间歇性失联症候群</span>
             </div>
 
-            <!-- 详细背景故事/介绍 -->
             <div class="char-desc">
                 <p>他是修真界最让人摸不透的存在。</p>
                 <p>合欢宗弟子，修的是情丝诀，心里却空得像一口枯井。墨发半束玉冠，眉目生得极好，浅褐瞳孔在光下像融化的琥珀，天生一张含笑的脸，不笑也像在笑。常着月白或藕荷色广袖长袍，手里总有一壶酒或一把折扇，浑身上下写满了“随意”两个字。</p>
@@ -130,7 +132,6 @@
                     <p>“怎么样？”</p>
                 </div>
 
-                <!-- 插入一张横版氛围图 -->
                 <div class="inline-gallery">
                     <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260721/Z7CR/1456X816/721_%282%29.png/webp" alt="沈九音横版图1">
                 </div>
@@ -143,7 +144,6 @@
                     <p>“去偷懒的吧。”</p>
                 </div>
 
-                <!-- 插入另一张横竖版补充图 -->
                 <div class="inline-gallery split-gallery">
                     <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260721/PAPv/1456X816/721_%283%29.png/webp" alt="沈九音横版图2">
                     <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260721/mAWA/816X1456/721_%281%29.png/webp" alt="沈九音竖版图2">
@@ -151,9 +151,7 @@
             </div>
         </div>
     </main>
-    <!-- ========== 自由发挥区结束 ========== -->
 
-    <!-- 汉堡菜单交互 -->
     <script>
         const burger = document.getElementById('navBurger');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -162,9 +160,22 @@
             mobileMenu.classList.toggle('active');
         });
 
-        // 专属水波纹交互 (藕荷色/月白光晕版)
+        // ==========================================
+        // 开场荷叶遮罩交互
+        // ==========================================
+        const lotusCover = document.getElementById('lotusCover');
+        lotusCover?.addEventListener('click', function() {
+            // 给遮挡层加上消失类名，触发 CSS 散开动画
+            this.classList.add('vanish');
+            
+            // 动画播放完毕后（1.2秒），将其隐藏，避免阻挡底层点击
+            setTimeout(() => {
+                this.style.display = 'none';
+            }, 1200); 
+        });
+
+        // 专属水波纹交互 (藕荷色版)
         document.addEventListener('click', (e) => {
-            // 避免在点击导航栏时产生太突兀的波纹遮挡
             if (e.target.closest('.ghost-nav')) return;
 
             const ripple = document.createElement('div');
