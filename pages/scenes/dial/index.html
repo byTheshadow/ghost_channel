@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - Dial Pad</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../assets/css/global.css">
+    <link rel="stylesheet" href="../../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../../assets/css/scene-common.css">
+    <link rel="stylesheet" href="../../../assets/css/scene-dial-base.css">
+</head>
+<body class="dial-page">
+
+    <!-- CRT 效果层 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!-- 导航栏 -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="../../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="../../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="../../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="../../links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../../home.html" class="mobile-link">HOME</a>
+        <a href="../../about.html" class="mobile-link">ABOUT</a>
+        <a href="../../characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="../../gallery.html" class="mobile-link">GALLERY</a>
+        <a href="../../presets.html" class="mobile-link">PRESETS</a>
+        <a href="../../plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="../../links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <!-- 弹窗风暴层 -->
+    <div class="popup-storm"></div>
+    <button class="close-all-btn">关闭全部</button>
+
+    <!-- 返回按钮 -->
+    <a href="../index.html" class="back-btn">← BACK TO SCENES</a>
+
+    <!-- 信息流 -->
+    <main class="feed-container">
+        <header class="feed-header">
+            <h1 class="feed-title">DIAL_PAD</h1>
+            <p class="feed-subtitle">// 选择一条线索,拨打那个号码</p>
+        </header>
+        <div class="feed-list">
+            <!-- JS 从 registry 渲染 -->
+        </div>
+    </main>
+
+    <!-- 场景数据 -->
+    <script src="../../../assets/data/scenes/_registry.js"></script>
+    <script src="../../../assets/js/scene-dial.js"></script>
+
+    <!-- 汉堡菜单 -->
+    <script>
+        const burger = document.getElementById('navBurger');
+        const menu = document.getElementById('mobileMenu');
+        if (burger && menu) {
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                menu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

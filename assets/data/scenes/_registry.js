@@ -169,18 +169,46 @@ window.SCENES_REGISTRY = {
          number:      string  必填  '138-0001-0001' 格式（11位，含分隔符）
          name:        string  必填  接通后显示的名字 | null=空号
          reachable:   boolean 必填  true=能打通, false=空号/关机/忙音
-         file:        string  必填时  reachable=true 时必填，指向对话详情页
+         file:        string  必填时  rhachable=true 时必填，指向对话详情页
          unreachableType: string 可选  'empty'|'busy'|'off' 三选一，默认 'empty'
          hint:        string  可选  拨号盘"?"按钮里显示的提示，例 '试试这个号码'
        }
        ------------------------------------------------------------ */
+        /* ------------------------------------------------------------
+       拨号盘 · dial
+       ------------------------------------------------------------ */
     dial: {
+        /* 信息流(主界面卡片) */
+        feeds: [
+            {
+                id:         'feed-demo-line',
+                type:       'msg',
+                title:      '一条没有来源的短信',
+                preview:    '"试着打这个号码,有人会接。"凌晨三点收到,发送者未知。',
+                time:       '2024-08-15 03:12',
+                phonePage:  'demo-line.html'
+            }
+        ],
+
+        /* 号码本 */
         contacts: [
-            // 示例（Phase 2 拨号盘完成后填真数据）
-            // { number: '138-0001-0001', name: '隼', reachable: true, file: 'hayabusa-talk-01.html', hint: '深夜可能会有人接' },
-            // { number: '138-9999-9999', name: null, reachable: false, unreachableType: 'empty' }
+            {
+                number:     '138-0815',
+                name:       '???',
+                reachable:  true,
+                file:       'demo-talk-01.html',
+                feedId:     'feed-demo-line'
+            },
+            {
+                number:     '666-6666',
+                name:       null,
+                reachable:  false,
+                unreachableType: 'empty',
+                feedId:     'feed-demo-line'
+            }
         ]
     }
+
 };
 
 /* 冻结防止误改（可选，若 AI 需要动态修改就注释掉）
