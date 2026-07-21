@@ -243,8 +243,15 @@ window.SCENES_REGISTRY = {
     preview:    '"他们来了……穿黑衣服的人。我的手在变成玻璃……"',
     time:       '2024-10-14 02:23',
     phonePage:  'aether-line.html'
+},
+{
+    id:         'feed-truth-01',
+    type:       'news',
+    title:      '被强行中断的播客上传',
+    preview:    '"我终于找到了那根线头，只要拉一下……整个谎言都会散架。"',
+    time:       '2024-11-05 03:42',
+    phonePage:  'truth-line.html'
 }
-
         ],
         
 
@@ -305,6 +312,20 @@ window.SCENES_REGISTRY = {
     reachable:  false,
     unreachableType: 'busy',
     feedId:     'feed-aether-01'
+},
+{
+    number:     '303-0101',
+    name:       '本·卡特 (The Stringer)',
+    reachable:  true,
+    file:       'truth-talk-01.html',
+    feedId:     'feed-truth-01'
+},
+{
+    number:     '303-0000',
+    name:       null,
+    reachable:  false,
+    unreachableType: 'busy',
+    feedId:     'feed-truth-01'
 }
 
 

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - Call</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../assets/css/global.css">
+    <link rel="stylesheet" href="../../../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../../../assets/css/scene-common.css">
+    <link rel="stylesheet" href="../../../../assets/css/scene-dial-base.css">
+
+    <style>
+        .this-scene .talk-caller-name {
+            color: #00ff00;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .this-scene .talk-status {
+            color: #00aa00;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .this-scene .talk-bubble {
+            border-radius: 0; /* 强硬的终端方角 */
+        }
+        .this-scene .talk-message.from-them .talk-bubble {
+            background-color: #021a02;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+        }
+        .this-scene .talk-option-btn {
+            border-color: #00ff00;
+            color: #00ff00;
+            border-radius: 0;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .this-scene .talk-option-btn:hover {
+            background: #00ff00;
+            color: #000;
+        }
+        /* 突然的红色警告字 */
+        .this-scene .panic-text .talk-bubble {
+            color: #ff3333;
+            border-color: #ff3333;
+        }
+    </style>
+</head>
+<body class="talk-page scene-page">
+
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <nav class="ghost-nav" id="ghostNav">
+        <!-- 导航略 -->
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <!-- 导航略 -->
+    </div>
+
+    <a href="../phones/truth-line.html" class="back-btn">← 拔下插头</a>
+
+    <main class="talk-container this-scene">
+        <header class="talk-header">
+            <h1 class="talk-caller-name">本·卡特 (The Stringer)</h1>
+            <p class="talk-status">正在通过 7 个代理节点路由...</p>
+        </header>
+
+        <div class="talk-messages">
+            <!-- 对方开场(自动) -->
+            <div class="talk-message from-them" data-delay="500" data-typewriter="true">
+                <div class="talk-bubble">听着，我没时间废话。你拿到 Aether-Core 的财务报表了吗？</div>
+            </div>
+            <div class="talk-message from-them" data-delay="3000" data-typewriter="true">
+                <div class="talk-bubble">弗洛雷斯市长在撒谎！“老镇区”的开发案根本不是为了建什么精英社区。</div>
+            </div>
+            <div class="talk-message from-them" data-delay="5500" data-typewriter="true">
+                <div class="talk-bubble">他们在地下挖到了东西！这绝对跟“火花”有关。</div>
+            </div>
+
+            <!-- 用户选 opt1 后 -->
+            <div class="talk-message from-user" data-option-id="opt1" style="display:none;">
+                <div class="talk-bubble">你在说什么？我不是你的线人。</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt1" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">……等等，你是谁？</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt1" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">你怎么可能接入这个频段？我用了军用级的加密墙！</div>
+            </div>
+
+            <!-- 用户选 opt2 后 -->
+            <div class="talk-message from-user" data-option-id="opt2" style="display:none;">
+                <div class="talk-bubble">别在电话里说，线路可能不安全。</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt2" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">不安全？你开什么玩笑，这线路比五角大楼还——</div>
+            </div>
+            <div class="talk-message from-them" data-reply-to="opt2" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">该死！我的端口指示灯亮了，有人在暴力破解！</div>
+            </div>
+
+            <!-- 第二轮合并出口(无论选什么都会被反向追踪) -->
+            <div class="talk-message from-user" data-option-id="opt-final" style="display:none;">
+                <div class="talk-bubble">你被盯上了，本。快切断连接。</div>
+            </div>
+            <div class="talk-message from-them panic-text" data-reply-to="opt-final" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">是“幽灵信号”……他们在反向追踪这通电话！</div>
+            </div>
+            <div class="talk-message from-them panic-text" data-reply-to="opt-final" style="display:none;" data-typewriter="true">
+                <div class="talk-bubble">这不是你该拨的号码！忘掉刚才听到的一切！</div>
+            </div>
+        </div>
+
+        <!-- 第一轮选项 -->
+        <div class="talk-options" data-round="1">
+            <button class="talk-option-btn" data-option-id="opt1">你在说什么？我不是你的线人。</button>
+            <button class="talk-option-btn" data-option-id="opt2">别在电话里说，线路可能不安全。</button>
+        </div>
+
+        <!-- 第二轮选项(无论上轮选什么，都出这一个) -->
+        <div class="talk-options" data-after="opt1" style="display:none;">
+            <button class="talk-option-btn" data-option-id="opt-final">你被盯上了，本。快切断连接。</button>
+        </div>
+        <div class="talk-options" data-after="opt2" style="display:none;">
+            <button class="talk-option-btn" data-option-id="opt-final">你被盯上了，本。快切断连接。</button>
+        </div>
+
+        <!-- 通话结束 -->
+        <div class="talk-end" style="display:none;">
+            <p class="talk-end-text">// 对方已硬拔网线</p>
+            <p class="talk-end-time">代理节点崩溃，追踪失败。</p>
+        </div>
+    </main>
+
+    <script src="../../../../assets/data/scenes/_registry.js"></script>
+    <script src="../../../../assets/js/scene-dial.js"></script>
+    <script>
+        const burger = document.getElementById('navBurger');
+        const menu = document.getElementById('mobileMenu');
+        if (burger && menu) {
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                menu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

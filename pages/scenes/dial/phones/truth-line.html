@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - Phone</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../assets/css/global.css">
+    <link rel="stylesheet" href="../../../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../../../assets/css/scene-common.css">
+    <link rel="stylesheet" href="../../../../assets/css/scene-dial-base.css">
+
+    <!-- ★ 详情页个性化样式: 复古极客终端/窃听器风格 -->
+    <style>
+        /* 手机外框变方正 */
+        .this-scene .phone-screen {
+            background-color: #020a02;
+            border: 2px solid #00ff00;
+            border-radius: 0;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .this-scene .phone-status-bar {
+            color: #00ff00;
+            border-bottom: 1px dashed #005500;
+        }
+        .this-scene .phone-display {
+            color: #00ff00;
+            border-bottom-color: #00ff00;
+            text-shadow: 0 0 5px #0f0;
+        }
+        /* 键盘变成方块终端风格 */
+        .this-scene .key {
+            background: transparent;
+            border: 1px solid #005500;
+            border-radius: 0;
+            color: #00ff00;
+            transition: all 0.1s;
+        }
+        .this-scene .key:hover {
+            background: #00ff00;
+            color: #000;
+            box-shadow: 0 0 8px #0f0;
+        }
+        .this-scene .key-call {
+            background: #00ff00;
+            color: #000;
+            font-weight: bold;
+            border-radius: 0;
+        }
+        .this-scene .key-delete {
+            color: #00ff00;
+        }
+        /* 右侧线索面板也要跟上黑客风格 */
+        .this-scene .clue-panel {
+            background: #020a02;
+            border: 1px solid #00ff00;
+            border-left: 4px solid #00ff00;
+        }
+        .this-scene .clue-panel-title {
+            color: #00ff00;
+            font-family: 'Share Tech Mono', monospace;
+            text-transform: uppercase;
+        }
+        .this-scene .clue-panel-desc {
+            color: #aaffaa;
+        }
+        .this-scene .clue-hints-label {
+            color: #00ff00;
+            border-bottom: 1px dotted #00ff00;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        .this-scene .audio-waveform {
+            color: #00ff00;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            animation: pulse 1s infinite alternate;
+        }
+        @keyframes pulse { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body class="phone-page scene-page" data-feed-id="feed-truth-01">
+
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <nav class="ghost-nav" id="ghostNav">
+        <!-- 导航略 (同模板) -->
+        <div class="nav-brand">
+            <a href="../../../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../../../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../../../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="../../../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="../../../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="../../../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="../../../links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../../../home.html" class="mobile-link">HOME</a>
+        <a href="../../../about.html" class="mobile-link">ABOUT</a>
+        <a href="../../../characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="../../../gallery.html" class="mobile-link">GALLERY</a>
+        <a href="../../../presets.html" class="mobile-link">PRESETS</a>
+        <a href="../../../plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="../../../links.html" class="mobile-link">LINKS</a>
+    </div>
+
+    <a href="../index.html" class="back-btn">← BACK TO DIAL</a>
+
+    <main class="phone-layout this-scene">
+        <div class="phone-device">
+            <div class="phone-screen">
+                <div class="phone-status-bar">
+                    <span>PROXY: 7/7</span>
+                    <span>SEC: OK</span>
+                </div>
+                <div class="phone-display">
+                    <span class="phone-number empty">_</span>
+                </div>
+                <div class="phone-call-status idle"></div>
+                <div class="phone-keypad">
+                    <button class="key" data-digit="1"><span class="key-digit">1</span><span class="key-letters">&nbsp;</span></button>
+                    <button class="key" data-digit="2"><span class="key-digit">2</span><span class="key-letters">ABC</span></button>
+                    <button class="key" data-digit="3"><span class="key-digit">3</span><span class="key-letters">DEF</span></button>
+                    <button class="key" data-digit="4"><span class="key-digit">4</span><span class="key-letters">GHI</span></button>
+                    <button class="key" data-digit="5"><span class="key-digit">5</span><span class="key-letters">JKL</span></button>
+                    <button class="key" data-digit="6"><span class="key-digit">6</span><span class="key-letters">MNO</span></button>
+                    <button class="key" data-digit="7"><span class="key-digit">7</span><span class="key-letters">PQRS</span></button>
+                    <button class="key" data-digit="8"><span class="key-digit">8</span><span class="key-letters">TUV</span></button>
+                    <button class="key" data-digit="9"><span class="key-digit">9</span><span class="key-letters">WXYZ</span></button>
+                    <button class="key" data-digit="*"><span class="key-digit">*</span><span class="key-letters">&nbsp;</span></button>
+                    <button class="key" data-digit="0"><span class="key-digit">0</span><span class="key-letters">+</span></button>
+                    <button class="key" data-digit="#"><span class="key-digit">#</span><span class="key-letters">&nbsp;</span></button>
+                </div>
+                <div class="phone-actions">
+                    <button class="key-delete">DEL</button>
+                    <button class="key-call">EXE</button>
+                    <div class="key-placeholder"></div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="clue-panel">
+            <h2 class="clue-panel-title">/ROOT/TRUTH/DRAFT.WAV</h2>
+            <div class="audio-waveform">[ ||||ılıı||ılı||||ıı|||ılı ]</div>
+            <p class="clue-panel-desc">
+                一段没有成功上传的播客音频草稿。伴随着狂敲键盘的声音，一个人在麦克风前自言自语，周围散落着带有《绞索角纪事报》旧Logo的稿纸。
+            </p>
+            <div class="clue-hints">
+                <p class="clue-hints-label">// DECRYPTED HINTS</p>
+                <p class="clue-hint-item">"稿纸角落写着：市长办公室市政规划防线 303..."</p>
+                <p class="clue-hint-item">"不要相信弗洛雷斯市长的财政赤字。真相隐藏在二进制的伪装里：0101。"</p>
+            </div>
+        </aside>
+    </main>
+
+    <script src="../../../../assets/data/scenes/_registry.js"></script>
+    <script src="../../../../assets/js/scene-dial.js"></script>
+    <script>
+        const burger = document.getElementById('navBurger');
+        const menu = document.getElementById('mobileMenu');
+        if (burger && menu) {
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                menu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
