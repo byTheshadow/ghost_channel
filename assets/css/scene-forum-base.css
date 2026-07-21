@@ -602,3 +602,38 @@
     .floor-body { padding: 12px 16px 16px; }
     .floor-content { font-size: 14px; }
 }
+/* ==================== 楼层内图片 ==================== */
+.floor-images {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.floor-images a {
+    display: block;
+    line-height: 0;
+}
+.floor-images img {
+    max-width: 320px;
+    max-height: 260px;
+    width: auto;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid var(--red-dark);
+    background: #000;
+    cursor: zoom-in;
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+    filter: contrast(1.05) brightness(0.95);
+}
+.floor-images img:hover {
+    transform: scale(1.02);
+    border-color: var(--red-neon);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 12px rgba(255, 0, 60, 0.2);
+}
+
+@media (max-width: 700px) {
+    .floor-images img {
+        max-width: 100%;
+        max-height: 200px;
+    }
+}

@@ -182,3 +182,35 @@
     box-shadow: 0 0 15px rgba(255, 0, 60, 0.2);
     background: rgba(255, 0, 60, 0.05);
 }
+/* ============================================================
+   ==================== 修复：SCENES 区域返回按钮 ====================
+   全局 .back-btn 在 characters.css 里定义，但没有预留 fixed nav
+   的高度。所有 SCENES 相关页面里的 .back-btn 在这里统一压下来。
+   ============================================================ */
+body.scenes-hub-page .back-btn,
+body.surveillance-page .back-btn,
+body.forum-page .back-btn,
+body.social-page .back-btn,
+body.calls-page .back-btn,
+body.dial-page .back-btn,
+body.scene-page .back-btn {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 90px;
+    margin-left: 30px;
+    position: relative;
+    z-index: 50;
+}
+
+@media (max-width: 700px) {
+    body.scenes-hub-page .back-btn,
+    body.surveillance-page .back-btn,
+    body.forum-page .back-btn,
+    body.social-page .back-btn,
+    body.calls-page .back-btn,
+    body.dial-page .back-btn,
+    body.scene-page .back-btn {
+        margin-top: 80px;
+        margin-left: 16px;
+    }
+}
