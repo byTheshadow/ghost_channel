@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Channel - 沈九音</title>
+
+    <!-- 导航栏字体必须保留，全站统一 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- 引入本页专属字体：思源宋体（标题）与思源黑体（正文） -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- 三层 CSS，顺序不能变 -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/characters.css">
+    <link rel="stylesheet" href="../../assets/css/char-detail-shenjiuyin.css">
+
+    <style>
+        /* 必须：覆盖 global.css 的 overflow:hidden */
+        body, html { overflow: visible !important; height: auto !important; }
+    </style>
+</head>
+<body class="detail-page-custom">
+
+    <!-- CRT 效果层保留，增添一点年代感和幻觉感 -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+
+    <!-- ===== 导航栏（原样复制，不要改样式，只改 active 标记） ===== -->
+    <nav class="ghost-nav" id="ghostNav">
+        <div class="nav-brand">
+            <a href="../../home.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                <span class="nav-ghost-icon"></span>
+                <span class="nav-title">GHOST_CHANNEL</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../home.html" class="nav-link" data-text="HOME">HOME</a>
+            <a href="../about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+            <a href="../characters.html" class="nav-link active" data-text="CHARACTERS">CHARACTERS</a>
+            <a href="../gallery.html" class="nav-link" data-text="GALLERY">GALLERY</a>
+            <a href="../presets.html" class="nav-link" data-text="PRESETS">PRESETS</a>
+            <a href="../plugins.html" class="nav-link" data-text="PLUGINS">PLUGINS</a>
+            <a href="../links.html" class="nav-link" data-text="LINKS">LINKS</a>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../home.html" class="mobile-link">HOME</a>
+        <a href="../about.html" class="mobile-link">ABOUT</a>
+        <a href="../characters.html" class="mobile-link active">CHARACTERS</a>
+        <a href="../gallery.html" class="mobile-link">GALLERY</a>
+        <a href="../presets.html" class="mobile-link">PRESETS</a>
+        <a href="../plugins.html" class="mobile-link">PLUGINS</a>
+        <a href="../links.html" class="mobile-link">LINKS</a>
+    </div>
+    <!-- ===== 导航栏结束 ===== -->
+
+    <a href="../characters.html" class="back-btn-custom">← BACK</a>
+
+    <!-- ========== 本页专属自由发挥区 ========== -->
+    
+    <!-- 1. 背景层 (月白光晕与装饰排版) -->
+    <div class="bg-layer">
+        <div class="top-meta">
+            <span>HEHUAN SECT</span>
+            <span>VOL. 09 — SHEN JIUYIN</span>
+            <span>VOID & ILLUSION</span>
+        </div>
+
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-3"></div>
+        
+        <!-- 背景穿插文字 -->
+        <h1 class="bg-typography">S<span>&</span>J</h1>
+
+        <div class="glow-orb orb-4"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <!-- 2. 内容层 -->
+    <main class="custom-main content-layer">
+        
+        <!-- 左侧：角色主立绘（使用比例为816x1456的竖版图） -->
+        <div class="portrait-box">
+            <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260721/9GpB/816X1456/721_%284%29.png/webp" alt="沈九音"> 
+        </div>
+
+        <!-- 右侧：角色文案介绍 -->
+        <div class="info-box">
+            <h2 class="char-title">沈九音</h2>
+            <div class="char-subtitle">字：善渊 | Shen Jiuyin</div>
+            
+            <!-- 角色属性条目 -->
+            <div class="char-attributes">
+                <div class="attr-item">
+                    <span class="attr-label">FACTION</span>
+                    <span class="attr-val">修真界 · 合欢宗</span>
+                </div>
+                <div class="attr-item">
+                    <span class="attr-label">ORIENTATION</span>
+                    <span class="attr-val">BG / BL (1)</span>
+                </div>
+                <div class="attr-item">
+                    <span class="attr-label">ALIAS</span>
+                    <span class="attr-val">九音公子 / 采花贼</span>
+                </div>
+            </div>
+
+            <!-- 避雷项警示 -->
+            <div class="warning-banner">
+                <span class="warning-icon">⚠</span>
+                <span>表面温柔内在空洞 ✧ 情感隔离型人格 · 间歇性失联症候群</span>
+            </div>
+
+            <!-- 详细背景故事/介绍 -->
+            <div class="char-desc">
+                <p>他是修真界最让人摸不透的存在。</p>
+                <p>合欢宗弟子，修的是情丝诀，心里却空得像一口枯井。墨发半束玉冠，眉目生得极好，浅褐瞳孔在光下像融化的琥珀，天生一张含笑的脸，不笑也像在笑。常着月白或藕荷色广袖长袍，手里总有一壶酒或一把折扇，浑身上下写满了“随意”两个字。</p>
+                
+                <p style="color: var(--my-gold); margin-top: 30px;"><strong>【坊间传闻录】</strong></p>
+                <div class="dialogue-box">
+                    <p><strong>传闻1：</strong>“我跟你说，沈九音‘采花贼’这名字怎么来的——早年间他在某个秘境里救了个女修，那女修醒过来非要报答他，他说不用，女修说不行，他一烦，翻窗跑了。结果第二天全修真界都在传‘沈九音半夜翻女修窗户’。他自己还不知道，过了半年才从通草纸上看到。然后你猜他怎么样？”</p>
+                    <p>“怎么样？”</p>
+                </div>
+
+                <!-- 插入一张横版氛围图 -->
+                <div class="inline-gallery">
+                    <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260721/Z7CR/1456X816/721_%282%29.png/webp" alt="沈九音横版图1">
+                </div>
+
+                <div class="dialogue-box">
+                    <p><strong>传闻2：</strong>“你们有没有觉得，沈九音那个人根本就不像合欢宗的。合欢宗的人多多少少都会动感情，他像是完全没有。我听说他在合欢宗几十年，从来没跟任何人好过。他该不会是无情道派去偷功法的吧？”</p>
+                    <p>“无情道派一个长得那么好看的去合欢宗偷功法？那你不如说他是去偷人的。”</p>
+                    <p>“可他也从来没偷到人啊！”</p>
+                    <p>“…………你说得对，那他到底是去偷什么的？”</p>
+                    <p>“去偷懒的吧。”</p>
+                </div>
+
+                <!-- 插入另一张横竖版补充图 -->
+                <div class="inline-gallery split-gallery">
+                    <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260721/PAPv/1456X816/721_%283%29.png/webp" alt="沈九音横版图2">
+                    <img src="https://img3.tofaka.com/autoupload/1N2_UJVYUo2KjM-_22IFnCfNcKcqEnRmcljopnyJoMs/20260721/mAWA/816X1456/721_%281%29.png/webp" alt="沈九音竖版图2">
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- ========== 自由发挥区结束 ========== -->
+
+    <!-- 汉堡菜单交互 -->
+    <script>
+        const burger = document.getElementById('navBurger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        burger?.addEventListener('click', () => {
+            burger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // 专属水波纹交互 (藕荷色/月白光晕版)
+        document.addEventListener('click', (e) => {
+            // 避免在点击导航栏时产生太突兀的波纹遮挡
+            if (e.target.closest('.ghost-nav')) return;
+
+            const ripple = document.createElement('div');
+            ripple.classList.add('water-ripple-custom');
+            ripple.style.left = `${e.clientX}px`;
+            ripple.style.top = `${e.clientY}px`;
+            document.body.appendChild(ripple);
+            
+            ripple.addEventListener('animationend', () => {
+                ripple.remove();
+            });
+        });
+    </script>
+</body>
+</html>

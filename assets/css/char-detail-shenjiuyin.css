@@ -1,0 +1,276 @@
+@charset "UTF-8";
+
+/* ========================================================
+   沈九音 (Shen Jiuyin) 专属页面样式
+   作用域：body.detail-page-custom
+   禁止污染全局或 .ghost-nav 等导航栏组件！
+======================================================== */
+
+body.detail-page-custom {
+    /* 色彩系统 - 藕荷、月白与琥珀的修真配色 */
+    --my-bg: #07070a;         /* 极暗的渊黑底色 */
+    --my-orb-dark: #201a2c;   /* 暗紫 */
+    --my-orb-mid: #4a3e59;    /* 藕荷色中间调 */
+    --my-orb-bright: #9b8cba; /* 明亮藕荷 */
+    --my-orb-light: #e0e5ea;  /* 月白色 */
+    --my-gold: #c89b53;       /* 琥珀金 (瞳色) */
+    --my-text: #e8e8e8;       /* 默认文字色 */
+    
+    /* 字体系统 */
+    --my-font-title: 'Noto Serif SC', 'Playfair Display', serif;
+    --my-font-body: 'Noto Sans SC', sans-serif;
+
+    background-color: var(--my-bg);
+    color: var(--my-text);
+    font-family: var(--my-font-body);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* --- 返回按钮 --- */
+.detail-page-custom .back-btn-custom {
+    position: fixed;
+    top: 80px; /* 避开导航栏 */
+    left: 40px;
+    color: var(--my-text);
+    font-family: var(--my-font-title);
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 2px;
+    z-index: 100;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+.detail-page-custom .back-btn-custom:hover {
+    opacity: 1;
+    color: var(--my-gold);
+}
+
+/* ---------------- 背景层 (光晕取代叶片) ---------------- */
+.detail-page-custom .bg-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.detail-page-custom .top-meta {
+    position: absolute;
+    top: 80px;
+    width: 100%;
+    padding: 20px 50px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 5;
+    font-family: 'Playfair Display', serif;
+}
+
+/* 柔和的光晕圆球，替代了参考的生硬叶片，更有“内在空洞、修为深不可测”的气质 */
+.detail-page-custom .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+}
+
+.detail-page-custom .orb-1 { width: 50vw; height: 50vw; background-color: var(--my-orb-mid); top: -20vw; left: -15vw; z-index: 2; }
+.detail-page-custom .orb-2 { width: 45vw; height: 45vw; background-color: var(--my-orb-light); bottom: -15vw; right: -10vw; z-index: 1; opacity: 0.2;}
+.detail-page-custom .orb-3 { width: 35vw; height: 35vw; background-color: var(--my-orb-dark); top: 30vh; right: 15vw; z-index: 3; }
+.detail-page-custom .orb-4 { width: 65vw; height: 65vw; background-color: var(--my-orb-bright); bottom: -30vw; left: 10vw; z-index: 4; opacity: 0.3;}
+
+/* 背景大字 */
+.detail-page-custom .bg-typography {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 18vw;
+    color: rgba(255,255,255, 0.02);
+    white-space: nowrap;
+    z-index: 3;
+    margin: 0;
+}
+.detail-page-custom .bg-typography span {
+    color: rgba(200, 155, 83, 0.05); /* 极暗的金色 */
+    font-style: italic;
+    font-size: 15vw;
+}
+
+/* ---------------- 内容层 (主体布局) ---------------- */
+.detail-page-custom .content-layer {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4%;
+    min-height: 100vh;
+    padding: 140px 5vw 80px;
+    box-sizing: border-box;
+    background: linear-gradient(to right, rgba(7,7,10,0.8) 0%, rgba(7,7,10,0.4) 50%, rgba(7,7,10,0.8) 100%);
+    backdrop-filter: blur(8px);
+}
+
+/* 左侧：立绘容器 */
+.detail-page-custom .portrait-box {
+    width: 38%;
+    height: 80vh;
+    position: sticky;
+    top: 100px; /* 随页面滚动但停留 */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+}
+.detail-page-custom .portrait-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+}
+
+/* 右侧：文本信息区 */
+.detail-page-custom .info-box {
+    width: 48%;
+    padding: 50px;
+    background: rgba(20, 18, 25, 0.6);
+    backdrop-filter: blur(15px);
+    border-left: 2px solid var(--my-gold);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    border-radius: 0 8px 8px 0;
+}
+
+.detail-page-custom .char-title {
+    font-family: var(--my-font-title);
+    font-size: 4rem;
+    margin: 0 0 10px 0;
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.detail-page-custom .char-subtitle {
+    font-size: 14px;
+    color: var(--my-gold);
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+    font-family: var(--my-font-title);
+}
+
+.detail-page-custom .char-attributes {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 25px;
+}
+.detail-page-custom .attr-item {
+    display: flex;
+    flex-direction: column;
+}
+.detail-page-custom .attr-label { font-size: 11px; color: #888; letter-spacing: 2px; }
+.detail-page-custom .attr-val { font-size: 15px; font-weight: 500; margin-top: 8px; }
+
+/* 避雷项警告框 */
+.detail-page-custom .warning-banner {
+    background: rgba(200, 155, 83, 0.1);
+    border: 1px dashed var(--my-gold);
+    padding: 15px 20px;
+    border-radius: 4px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 13px;
+    color: #e0d0b0;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+
+.detail-page-custom .char-desc {
+    font-size: 15px;
+    line-height: 2;
+    color: #c4c4cc;
+    text-align: justify;
+}
+.detail-page-custom .char-desc p {
+    margin-bottom: 18px;
+}
+
+/* 传闻录对话框 */
+.detail-page-custom .dialogue-box {
+    background: rgba(255,255,255,0.02);
+    border-left: 3px solid var(--my-orb-mid);
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 4px 4px 0;
+    font-size: 14px;
+    color: #b0b0bb;
+}
+.detail-page-custom .dialogue-box p {
+    margin-bottom: 10px;
+}
+.detail-page-custom .dialogue-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* 内嵌图库排版 */
+.detail-page-custom .inline-gallery {
+    width: 100%;
+    margin: 30px 0;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+.detail-page-custom .inline-gallery img {
+    width: 100%;
+    display: block;
+}
+.detail-page-custom .split-gallery {
+    display: flex;
+    gap: 10px;
+    box-shadow: none;
+    overflow: visible;
+}
+.detail-page-custom .split-gallery img {
+    width: calc(50% - 5px);
+    border-radius: 6px;
+    object-fit: cover;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+/* ---------------- 水波纹动画 (月白/藕荷色版) ---------------- */
+.detail-page-custom .water-ripple-custom {
+    position: fixed;
+    border: 1px solid rgba(224, 229, 234, 0.4); /* 月白边 */
+    background: radial-gradient(circle, rgba(155, 140, 186, 0.15) 0%, transparent 70%); /* 藕荷心 */
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple-out-custom 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    z-index: 9999;
+}
+@keyframes ripple-out-custom {
+    0% { width: 0; height: 0; opacity: 0.8; }
+    100% { width: 400px; height: 400px; opacity: 0; }
+}
+
+/* ---------------- 响应式：适配移动端 ---------------- */
+@media (max-width: 900px) {
+    .detail-page-custom .content-layer { flex-direction: column; padding-top: 120px; align-items: center; }
+    .detail-page-custom .portrait-box { width: 90%; height: 60vh; position: relative; top: 0; margin-bottom: 30px; }
+    .detail-page-custom .info-box { width: 90%; padding: 30px 20px; }
+    .detail-page-custom .top-meta { font-size: 8px; padding: 15px 20px; top: 60px; }
+    .detail-page-custom .bg-typography { font-size: 25vw; }
+    .detail-page-custom .back-btn-custom { top: 70px; left: 20px; }
+    .detail-page-custom .split-gallery { flex-direction: column; }
+    .detail-page-custom .split-gallery img { width: 100%; }
+}
