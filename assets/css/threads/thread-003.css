@@ -1,0 +1,148 @@
+/* 移除所有恐怖/压抑元素，注入白粉色甜美滤镜 */
+
+.this-scene.scene-page {
+    background-color: #fffafb !important;
+    background-image: radial-gradient(#ffc0cb 1px, transparent 1px) !important;
+    background-size: 24px 24px !important;
+    color: #5d4037 !important;
+    font-family: 'Noto Serif SC', sans-serif !important;
+}
+
+/* 隐藏 CRT 扫描线和暗角 */
+.this-scene .crt-overlay {
+    display: none !important;
+}
+.this-scene .vignette {
+    box-shadow: inset 0 0 100px rgba(255, 182, 193, 0.15) !important;
+    pointer-events: none;
+}
+
+/* 导航栏变白粉系 */
+.this-scene .ghost-nav {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-bottom: 2px solid #ffb6c1 !important;
+}
+.this-scene .nav-title, 
+.this-scene .nav-link {
+    color: #ff80ab !important;
+    font-weight: bold;
+    text-shadow: none !important;
+}
+.this-scene .nav-link:hover::before,
+.this-scene .nav-link.active::before {
+    color: #ff4081 !important;
+}
+
+/* 按钮及返回 */
+.this-scene .back-btn {
+    color: #ff80ab !important;
+    border: 1px solid #ffb6c1 !important;
+    background: #fff !important;
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+.this-scene .back-btn:hover {
+    background: #ffe4e1 !important;
+}
+
+/* 帖子外框与发光 */
+.this-scene .thread-detail-wrap {
+    max-width: 750px;
+}
+
+/* 表头重绘 */
+.this-scene .thread-header {
+    background: #ffffff !important;
+    border: 2px dashed #ffb6c1 !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 20px rgba(255, 182, 193, 0.2) !important;
+}
+.this-scene .th-title {
+    color: #ff4081 !important;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px #ffe4e1 !important;
+}
+.this-scene .th-section {
+    background: #ffe4e1 !important;
+    color: #ff4081 !important;
+    border: none !important;
+    border-radius: 12px;
+}
+
+/* 楼层重绘 */
+.this-scene .floor {
+    background: #ffffff !important;
+    border: 2px solid #fff0f5 !important;
+    border-radius: 16px !important;
+    margin-bottom: 24px !important;
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.15) !important;
+    transition: transform 0.2s;
+}
+.this-scene .floor:hover {
+    transform: translateY(-2px);
+    border-color: #ffb6c1 !important;
+}
+
+/* 左侧用户信息区 */
+.this-scene .floor-user {
+    background: #fffafb !important;
+    border-right: 2px dashed #ffe4e1 !important;
+}
+.this-scene .user-name {
+    color: #ff80ab !important;
+    font-weight: bold;
+    text-shadow: none !important;
+}
+.this-scene .avatar-fallback {
+    background: #ffb6c1 !important;
+    color: #fff !important;
+    border-radius: 50% !important; /* 圆形头像 */
+    border: 3px solid #ffe4e1 !important;
+}
+.this-scene .user-level {
+    color: #ffa07a !important;
+    background: #fff5ee !important;
+    border: 1px solid #ffdab9 !important;
+    border-radius: 8px;
+}
+
+/* 楼主徽章 */
+.this-scene .op-badge {
+    background: #ff4081 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 10px;
+    padding: 2px 8px;
+}
+.this-scene .op-badge::before {
+    content: "❤ ";
+}
+
+/* 楼层正文 */
+.this-scene .floor-content {
+    color: #5d4037 !important;
+    line-height: 1.8;
+}
+
+/* 引用框 */
+.this-scene .floor-quote {
+    background: #fff0f5 !important;
+    border-left: 4px solid #ff80ab !important;
+    border-radius: 0 8px 8px 0;
+    color: #8d6e63 !important;
+}
+.this-scene .quote-author {
+    color: #ff4081 !important;
+}
+
+/* 分页按钮 */
+.this-scene .page-btn {
+    border-color: #ffb6c1 !important;
+    color: #ff80ab !important;
+    background: #fff !important;
+    border-radius: 20px;
+}
+.this-scene .page-btn.active {
+    background: #ffb6c1 !important;
+    color: #fff !important;
+}

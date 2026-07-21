@@ -3,14 +3,14 @@
    拨号盘系统:主界面 + 手机页 + 对话页
    ============================================================ */
 
-/* ==================== 主界面:弹窗风暴 ==================== */
+/* ==================== 主界面 ==================== */
 .dial-page {
     background: var(--bg-darker);
     min-height: 100vh;
     overflow-x: hidden;
 }
 
-/* 弹窗容器 */
+/* ==================== 弹窗风暴(黑红色系) ==================== */
 .popup-storm {
     position: fixed;
     top: 0;
@@ -19,7 +19,7 @@
     height: 100%;
     z-index: 500;
     pointer-events: auto;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(5, 0, 0, 0.92);
 }
 
 .popup-storm.cleared {
@@ -28,97 +28,128 @@
     transition: opacity 0.5s;
 }
 
-/* 单个弹窗(Win95 风) */
+/* 单个弹窗(黑红霓虹风) */
 .error-popup {
     position: absolute;
-    width: 340px;
-    background: #c0c0c0;
-    border: 2px solid;
-    border-color: #ffffff #808080 #808080 #ffffff;
-    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+    width: 320px;
+    background: linear-gradient(145deg, #1a0a0a, #0a0505);
+    border: 1px solid var(--red-mid);
+    box-shadow:
+        0 0 20px rgba(255, 0, 60, 0.3),
+        inset 0 1px 0 rgba(255, 60, 80, 0.1);
     font-family: 'Share Tech Mono', monospace;
-    animation: popupShake 0.3s ease-out;
+    animation: popupSlam 0.15s ease-out;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
-@keyframes popupShake {
-    0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(-4px, 2px); }
-    50% { transform: translate(4px, -2px); }
-    75% { transform: translate(-2px, 4px); }
+.error-popup.closing {
+    animation: popupClose 0.2s ease-out forwards;
+}
+
+@keyframes popupSlam {
+    0% { 
+        transform: scale(0.3) rotate(-5deg); 
+        opacity: 0; 
+    }
+    60% { 
+        transform: scale(1.05) rotate(1deg); 
+    }
+    100% { 
+        transform: scale(1) rotate(0); 
+        opacity: 1; 
+    }
+}
+
+@keyframes popupClose {
+    to {
+        transform: scale(0.8);
+        opacity: 0;
+    }
 }
 
 .error-popup-header {
-    background: linear-gradient(90deg, #000080, #1084d0);
-    color: white;
-    padding: 4px 6px;
-    font-size: 12px;
+    background: linear-gradient(90deg, var(--red-dark), #2a0810);
+    color: var(--red-neon);
+    padding: 8px 12px;
+    font-size: 11px;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255, 0, 60, 0.5);
 }
 
 .error-popup-close {
-    width: 18px;
-    height: 18px;
-    background: #c0c0c0;
-    border: 2px solid;
-    border-color: #ffffff #808080 #808080 #ffffff;
-    font-size: 12px;
-    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: 1px solid var(--red-mid);
+    font-size: 14px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--red-neon);
+    transition: all 0.2s;
+    border-radius: 2px;
+}
+
+.error-popup-close:hover {
+    background: var(--red-neon);
     color: #000;
 }
 
-.error-popup-close:active {
-    border-color: #808080 #ffffff #ffffff #808080;
-}
-
 .error-popup-body {
-    padding: 20px 16px;
+    padding: 18px 14px;
     display: flex;
-    gap: 16px;
+    gap: 14px;
     align-items: flex-start;
 }
 
 .error-popup-icon {
-    font-size: 32px;
+    font-size: 28px;
     flex-shrink: 0;
+    filter: drop-shadow(0 0 8px rgba(255, 0, 60, 0.5));
 }
 
 .error-popup-text {
     font-size: 12px;
-    color: #000;
-    line-height: 1.6;
+    color: #aaa;
+    line-height: 1.7;
 }
 
 .error-popup-text .path {
-    color: #000080;
+    color: var(--red-bright);
     word-break: break-all;
 }
 
 .error-popup-text .hint {
-    color: #800000;
+    color: var(--red-neon);
     font-style: italic;
+    text-shadow: 0 0 8px rgba(255, 0, 60, 0.4);
 }
 
 .error-popup-btn {
     display: block;
-    margin: 0 auto 16px;
-    padding: 4px 24px;
-    background: #c0c0c0;
-    border: 2px solid;
-    border-color: #ffffff #808080 #808080 #ffffff;
+    margin: 0 14px 14px auto;
+    padding: 6px 20px;
+    background: transparent;
+    border: 1px solid var(--red-mid);
+    color: #888;
     font-family: 'Share Tech Mono', monospace;
-    font-size: 12px;
+    font-size: 11px;
     cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
 }
 
-.error-popup-btn:active {
-    border-color: #808080 #ffffff #ffffff #808080;
+.error-popup-btn:hover {
+    border-color: var(--red-neon);
+    color: var(--red-neon);
+    box-shadow: 0 0 10px rgba(255, 0, 60, 0.3);
 }
 
 /* 关闭全部按钮 */
@@ -126,79 +157,225 @@
     position: fixed;
     bottom: 30px;
     right: 30px;
-    padding: 10px 20px;
-    background: #c0c0c0;
-    border: 2px solid;
-    border-color: #ffffff #808080 #808080 #ffffff;
+    padding: 12px 24px;
+    background: rgba(20, 5, 8, 0.9);
+    border: 1px solid var(--red-neon);
+    color: var(--red-neon);
     font-family: 'Share Tech Mono', monospace;
     font-size: 12px;
     cursor: pointer;
-    z-index: 501;
+    z-index: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    box-shadow: 0 0 20px rgba(255, 0, 60, 0.3);
 }
 
-/* ==================== 主界面:信息流 ==================== */
-.feed-container {
-    max-width: 900px;
+.close-all-btn:hover {
+    background: var(--red-neon);
+    color: #000;
+}
+
+/* ==================== 信息流区域(带左侧图片) ==================== */
+.feed-section {
+    display: flex;
+    gap: 40px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 120px 20px 80px;
+    padding: 120px 30px 80px;
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
     transition: opacity 0.8s, transform 0.8s;
 }
 
-.feed-container.visible {
+.feed-section.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
+@media (max-width: 900px) {
+    .feed-section {
+        flex-direction: column;
+        padding: 100px 20px 60px;
+        gap: 30px;
+    }
+}
+
+/* 左侧:氛围图 + 提示 */
+.feed-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.feed-sidebar-image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(145deg, #1a0a0a, #0a0505);
+    border: 1px solid var(--red-dark);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    filter: grayscale(0.3);
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.feed-sidebar-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 0, 60, 0.03) 2px,
+            rgba(255, 0, 60, 0.03) 4px
+        );
+    pointer-events: none;
+}
+
+.feed-sidebar-hint {
+    padding: 16px;
+    background: rgba(10, 2, 2, 0.8);
+    border: 1px dashed var(--red-dark);
+    border-radius: 4px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.8;
+}
+
+.feed-sidebar-hint .highlight {
+    color: var(--red-neon);
+}
+
+@media (max-width: 900px) {
+    .feed-sidebar {
+        width: 100%;
+        display: flex;
+        gap: 20px;
+    }
+    .feed-sidebar-image {
+        width: 120px;
+        height: 160px;
+        margin-bottom: 0;
+    }
+    .feed-sidebar-hint {
+        flex: 1;
+    }
+}
+
+/* 右侧:信息流滚动区 */
+.feed-main {
+    flex: 1;
+    min-width: 0;
+}
+
 .feed-header {
-    text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .feed-title {
     font-family: 'Press Start 2P', cursive;
-    font-size: 18px;
+    font-size: 16px;
     color: var(--red-neon);
     text-shadow: 0 0 20px rgba(255, 0, 60, 0.5);
-    margin-bottom: 16px;
+    margin-bottom: 10px;
     letter-spacing: 2px;
 }
 
 .feed-subtitle {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 13px;
-    color: #666;
+    font-size: 12px;
+    color: #555;
 }
 
-/* 信息流列表 */
-.feed-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.feed-card {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-    background: rgba(10, 2, 2, 0.7);
+/* 信息流滚动容器 */
+.feed-scroll-wrapper {
+    height: 420px;
+    overflow: hidden;
+    position: relative;
     border: 1px solid var(--red-dark);
     border-radius: 8px;
+    background: rgba(5, 0, 0, 0.5);
+}
+
+.feed-scroll-wrapper::before,
+.feed-scroll-wrapper::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.feed-scroll-wrapper::before {
+    top: 0;
+    background: linear-gradient(to bottom, rgba(5, 0, 0, 0.9), transparent);
+}
+
+.feed-scroll-wrapper::after {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(5, 0, 0, 0.9), transparent);
+}
+
+/* 滚动轨道 */
+.feed-track {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+}
+
+.feed-track.scrolling {
+    animation: feedScroll 25s linear infinite;
+}
+
+@keyframes feedScroll {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+/* 悬停暂停 */
+.feed-scroll-wrapper:hover .feed-track {
+    animation-play-state: paused;
+}
+
+/* 信息流卡片 */
+.feed-card {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(15, 5, 8, 0.8);
+    border: 1px solid rgba(115, 12, 30, 0.3);
+    border-radius: 6px;
     text-decoration: none;
     color: inherit;
     transition: all 0.3s;
+    flex-shrink: 0;
 }
 
 .feed-card:hover {
     border-color: var(--red-neon);
-    box-shadow: 0 0 25px rgba(255, 0, 60, 0.2);
-    transform: translateX(8px);
+    box-shadow: 0 0 20px rgba(255, 0, 60, 0.2);
+    background: rgba(25, 8, 12, 0.9);
 }
 
-.feed-card-image {
-    width: 80px;
-    height: 80px;
+.feed-card-icon {
+    width: 50px;
+    height: 50px;
     flex-shrink: 0;
     background: var(--bg-main);
     border: 1px solid var(--red-dark);
@@ -206,8 +383,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px;
-    filter: grayscale(0.3);
+    font-size: 24px;
 }
 
 .feed-card-content {
@@ -220,41 +396,40 @@
     padding: 2px 8px;
     font-family: 'Share Tech Mono', monospace;
     font-size: 10px;
-    color: var(--red-neon);
-    border: 1px solid var(--red-mid);
+    color: var(--red-bright);
+    border: 1px solid var(--red-dark);
     border-radius: 2px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .feed-card-title {
     font-family: 'Noto Serif SC', serif;
-    font-size: 16px;
-    color: #ddd;
-    margin-bottom: 8px;
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 6px;
     line-height: 1.4;
 }
 
 .feed-card-preview {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 12px;
-    color: #888;
-    line-height: 1.6;
+    font-size: 11px;
+    color: #666;
+    line-height: 1.5;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    white-space: nowrap;
 }
 
 .feed-card-time {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    color: #555;
-    margin-top: 10px;
+    font-size: 10px;
+    color: #444;
+    margin-top: 8px;
 }
 
-/* ==================== 手机页 ==================== */
+/* ==================== 手机页(保持不变,略作微调) ==================== */
 .phone-page {
     background: var(--bg-darker);
     min-height: 100vh;
@@ -355,6 +530,8 @@
 
 .phone-number.empty {
     color: #444;
+    font-size: 18px;
+    letter-spacing: 2px;
 }
 
 .phone-number.calling {
@@ -363,37 +540,41 @@
 
 @keyframes numberPulse {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+    50% { opacity: 0.4; }
 }
 
 /* 呼叫状态提示 */
 .phone-call-status {
-    padding: 15px;
+    padding: 12px;
     text-align: center;
     font-family: 'Share Tech Mono', monospace;
-    font-size: 13px;
-    min-height: 50px;
+    font-size: 12px;
+    min-height: 40px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
 }
 
 .phone-call-status.idle {
-    color: #555;
+    color: #444;
 }
 
 .phone-call-status.calling {
     color: var(--red-neon);
+    animation: statusBlink 0.8s ease-in-out infinite;
+}
+
+@keyframes statusBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
 }
 
 .phone-call-status.connected {
-    color: #4a4;
+    color: #5a5;
 }
 
 .phone-call-status.failed {
-    color: #a44;
+    color: #a55;
 }
 
 /* 拨号键盘 */
@@ -415,14 +596,20 @@
     border: 1px solid #2a2a2a;
     border-radius: 50%;
     cursor: pointer;
-    transition: all 0.15s;
+    transition: all 0.1s;
     user-select: none;
 }
 
-.key:active {
-    transform: scale(0.95);
+.key:hover {
+    border-color: var(--red-mid);
+}
+
+.key:active,
+.key.pressed {
+    transform: scale(0.93);
     background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
-    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+    border-color: var(--red-neon);
 }
 
 .key-digit {
@@ -449,15 +636,22 @@
 }
 
 .key-delete {
+    aspect-ratio: 1;
     background: transparent;
-    border: none;
+    border: 1px solid #2a2a2a;
+    border-radius: 50%;
     color: #888;
     font-size: 20px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
 }
 
 .key-delete:hover {
     color: #fff;
+    border-color: #555;
 }
 
 .key-call {
@@ -475,6 +669,7 @@
 
 .key-call:hover {
     box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    border-color: #4a8a4a;
 }
 
 .key-call:active {
@@ -501,6 +696,7 @@
     color: var(--red-neon);
     margin-bottom: 20px;
     letter-spacing: 1px;
+    text-shadow: 0 0 15px rgba(255, 0, 60, 0.4);
 }
 
 .clue-panel-desc {
@@ -519,7 +715,7 @@
 .clue-hints-label {
     font-family: 'Share Tech Mono', monospace;
     font-size: 11px;
-    color: #666;
+    color: #555;
     margin-bottom: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -528,8 +724,8 @@
 .clue-hint-item {
     font-family: 'Share Tech Mono', monospace;
     font-size: 13px;
-    color: #888;
-    padding: 8px 0;
+    color: #777;
+    padding: 10px 0;
     border-bottom: 1px dotted #222;
     line-height: 1.6;
 }
@@ -563,12 +759,13 @@
     color: var(--red-neon);
     margin-bottom: 8px;
     letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(255, 0, 60, 0.5);
 }
 
 .talk-status {
     font-family: 'Share Tech Mono', monospace;
     font-size: 12px;
-    color: #4a4;
+    color: #5a5;
 }
 
 /* 对话区域 */
@@ -581,15 +778,8 @@
 .talk-message {
     max-width: 85%;
     opacity: 0;
-    transform: translateY(10px);
-    animation: messageAppear 0.5s ease-out forwards;
-}
-
-@keyframes messageAppear {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    transform: translateY(15px);
+    transition: opacity 0.5s, transform 0.5s;
 }
 
 .talk-message.from-them {
@@ -616,7 +806,7 @@
 }
 
 .talk-message.from-user .talk-bubble {
-    background: rgba(255, 0, 60, 0.15);
+    background: rgba(255, 0, 60, 0.12);
     border: 1px solid var(--red-mid);
     color: #ddd;
     border-bottom-right-radius: 4px;
@@ -629,7 +819,8 @@
     height: 1em;
     background: var(--red-neon);
     margin-left: 2px;
-    animation: cursorBlink 0.8s infinite;
+    vertical-align: text-bottom;
+    animation: cursorBlink 0.7s infinite;
 }
 
 @keyframes cursorBlink {
@@ -648,13 +839,13 @@
 }
 
 .talk-option-btn {
-    padding: 12px 20px;
+    padding: 14px 20px;
     background: rgba(10, 2, 2, 0.8);
     border: 1px solid var(--red-dark);
     border-radius: 20px;
     font-family: 'Noto Serif SC', serif;
     font-size: 13px;
-    color: #aaa;
+    color: #999;
     cursor: pointer;
     text-align: left;
     transition: all 0.3s;
@@ -664,6 +855,7 @@
     border-color: var(--red-neon);
     color: #fff;
     box-shadow: 0 0 15px rgba(255, 0, 60, 0.2);
+    background: rgba(255, 0, 60, 0.05);
 }
 
 .talk-option-btn.selected {
@@ -689,7 +881,7 @@
     font-family: 'Share Tech Mono', monospace;
     font-size: 12px;
     color: #555;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .talk-end-time {
@@ -712,13 +904,7 @@
         padding: 20px;
     }
     
-    .feed-card {
-        flex-direction: column;
-        gap: 12px;
-    }
-    
-    .feed-card-image {
-        width: 60px;
-        height: 60px;
+    .feed-scroll-wrapper {
+        height: 350px;
     }
 }

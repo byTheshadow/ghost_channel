@@ -6,46 +6,50 @@
 (function () {
     'use strict';
 
-    /* ==================== 弹窗风暴(主界面用) ==================== */
+    /* ==================== 弹窗风暴(黑红色系 · 高频连续弹出) ==================== */
     const POPUP_MESSAGES = [
-        { title: 'ERROR', icon: '⚠️', text: '无法访问路径<br><span class="path">C:\\Users\\Shadow\\AppData\\Local\\ghost_channel\\mem_dump.log</span><br>权限被拒绝。' },
-        { title: 'SYSTEM FAILURE', icon: '❌', text: '内存溢出<br>0x0000007E<br>SYSTEM_THREAD_EXCEPTION_NOT_HANDLED' },
-        { title: 'WARNING', icon: '⚠️', text: '检测到异常进程<br>PID: 6667<br>进程名: listener.exe' },
-        { title: 'ACCESS DENIED', icon: '🔒', text: '您没有权限查看此文件夹<br><span class="path">D:\\ARCHIVE\\calls\\</span>' },
         { title: 'FATAL ERROR', icon: '💀', text: '未知错误<br>错误代码: GHOST_0x3C<br><span class="hint">有人在听。</span>' },
-        { title: 'CONNECTION LOST', icon: '📡', text: '与服务器的连接已断开<br>正在尝试重新连接...<br>失败。' },
-        { title: 'FILE CORRUPTED', icon: '📁', text: '文件已损坏或不完整<br><span class="path">voice_record_03AM.wav</span><br>无法读取。' },
-        { title: 'ALERT', icon: '🔔', text: '检测到未知来电记录<br>来源: [REDACTED]<br><span class="hint">号码以 138 开头...</span>' }
+        { title: 'ACCESS DENIED', icon: '🔒', text: '您没有权限查看此文件夹<br><span class="path">D:\\ARCHIVE\\calls\\</span>' },
+        { title: 'SYSTEM FAILURE', icon: '❌', text: '内存溢出 0x0000007E<br>SYSTEM_THREAD_EXCEPTION' },
+        { title: 'WARNING', icon: '⚠️', text: '检测到异常进程<br>PID: 6667<br>进程名: listener.exe' },
+        { title: 'CONNECTION LOST', icon: '📡', text: '与服务器的连接已断开<br>正在尝试重新连接...' },
+        { title: 'FILE CORRUPTED', icon: '📁', text: '文件已损坏<br><span class="path">voice_record_03AM.wav</span>' },
+        { title: 'ALERT', icon: '🔔', text: '检测到未知来电记录<br>来源: [REDACTED]<br><span class="hint">号码以 138 开头...</span>' },
+        { title: 'MEMORY LEAK', icon: '🧠', text: '内存泄漏警告<br>剩余: 13%<br>建议立即重启' },
+        { title: 'INTRUSION', icon: '👁️', text: '检测到外部访问尝试<br>IP: 192.168.█.███<br><span class="hint">来自本地网络</span>' },
+        { title: 'DECRYPT FAILED', icon: '🔐', text: '解密失败<br>密钥不匹配<br><span class="path">msg_backup.enc</span>' }
     ];
+
+    let popupIndex = 0;
+    let popupTimer = null;
 
     function initPopupStorm() {
         const container = document.querySelector('.popup-storm');
         if (!container) return;
 
-        const feedContainer = document.querySelector('.feed-container');
+        const feedSection = document.querySelector('.feed-section');
         const closeAllBtn = document.querySelector('.close-all-btn');
 
-        // 随机选 5-7 个弹窗
-        const count = 5 + Math.floor(Math.random() * 3);
-        const selected = [];
-        const used = new Set();
-
-        while (selected.length < count && selected.length < POPUP_MESSAGES.length) {
-            const idx = Math.floor(Math.random() * POPUP_MESSAGES.length);
-            if (!used.has(idx)) {
-                used.add(idx);
-                selected.push(POPUP_MESSAGES[idx]);
+        // 高频连续弹出
+        function spawnPopup() {
+            if (popupIndex >= POPUP_MESSAGES.length) {
+                // 全部弹完,停止
+                clearInterval(popupTimer);
+                return;
             }
-        }
 
-        // 创建弹窗
-        selected.forEach((msg, i) => {
+            const msg = POPUP_MESSAGES[popupIndex];
+            popupIndex++;
+
             const popup = document.createElement('div');
             popup.className = 'error-popup';
-            popup.style.top = (80 + Math.random() * 300) + 'px';
-            popup.style.left = (50 + Math.random() * (window.innerWidth - 450)) + 'px';
-            popup.style.animationDelay = (i * 0.15) + 's';
-            popup.style.zIndex = 500 + i;
+            
+            // 随机位置
+            const maxTop = Math.min(window.innerHeight - 220, 400);
+            const maxLeft = Math.max(window.innerWidth - 380, 100);
+            popup.style.top = (60 + Math.random() * maxTop) + 'px';
+            popup.style.left = (30 + Math.random() * maxLeft) + 'px';
+            popup.style.zIndex = 500 + popupIndex;
 
             popup.innerHTML = `
                 <div class="error-popup-header">
@@ -60,17 +64,20 @@
             `;
 
             // 关闭单个
-            popup.querySelector('.error-popup-close').addEventListener('click', () => {
-                popup.remove();
+            const closeThis = () => {
+                popup.classList.add('closing');
+                setTimeout(() => popup.remove(), 200);
                 checkAllClosed();
-            });
-            popup.querySelector('.error-popup-btn').addEventListener('click', () => {
-                popup.remove();
-                checkAllClosed();
-            });
+            };
+            popup.querySelector('.error-popup-close').addEventListener('click', closeThis);
+            popup.querySelector('.error-popup-btn').addEventListener('click', closeThis);
 
             container.appendChild(popup);
-        });
+        }
+
+        // 每 180ms 弹一个(高频)
+        popupTimer = setInterval(spawnPopup, 180);
+        spawnPopup(); // 立即弹第一个
 
         // 关闭全部
         if (closeAllBtn) {
@@ -78,32 +85,35 @@
         }
 
         function checkAllClosed() {
-            if (container.querySelectorAll('.error-popup').length === 0) {
+            const remaining = container.querySelectorAll('.error-popup:not(.closing)');
+            if (remaining.length === 0 && popupIndex >= POPUP_MESSAGES.length) {
                 clearAll();
             }
         }
 
         function clearAll() {
-            container.classList.add('cleared');
-            if (closeAllBtn) closeAllBtn.style.display = 'none';
-            if (feedContainer) {
-                setTimeout(() => {
-                    feedContainer.classList.add('visible');
-                }, 300);
-            }
+            clearInterval(popupTimer);
+            container.querySelectorAll('.error-popup').forEach(p => {
+                p.classList.add('closing');
+            });
+            setTimeout(() => {
+                container.classList.add('cleared');
+                if (closeAllBtn) closeAllBtn.style.display = 'none';
+                if (feedSection) {
+                    feedSection.classList.add('visible');
+                    initFeedScroll(); // 启动滚动
+                }
+            }, 300);
         }
     }
 
-    /* ==================== 信息流渲染(主界面用) ==================== */
+    /* ==================== 信息流(自动扶梯式无限滚动) ==================== */
     function initFeedList() {
-        const list = document.querySelector('.feed-list');
-        if (!list || !window.SCENES_REGISTRY?.dial?.feeds) return;
+        const track = document.querySelector('.feed-track');
+        if (!track || !window.SCENES_REGISTRY?.dial?.feeds) return;
 
         const feeds = window.SCENES_REGISTRY.dial.feeds;
-        if (feeds.length === 0) {
-            list.innerHTML = '<p style="color:#555;text-align:center;font-family:Share Tech Mono,monospace;">// NO SIGNALS DETECTED</p>';
-            return;
-        }
+        if (feeds.length === 0) return;
 
         const typeIcons = {
             'news': '📰',
@@ -112,26 +122,41 @@
             'error': '⚠️'
         };
 
-        feeds.forEach(feed => {
-            const card = document.createElement('a');
-            card.className = 'feed-card';
-            card.href = `phones/${feed.phonePage}`;
+        // 渲染卡片(重复多份以实现无缝滚动)
+        const renderCards = () => {
+            let html = '';
+            feeds.forEach(feed => {
+                html += `
+                    <a class="feed-card" href="phones/${feed.phonePage}">
+                        <div class="feed-card-icon">${typeIcons[feed.type] || '📄'}</div>
+                        <div class="feed-card-content">
+                            <span class="feed-card-type">${feed.type}</span>
+                            <div class="feed-card-title">${feed.title}</div>
+                            <div class="feed-card-preview">${feed.preview}</div>
+                            <div class="feed-card-time">${feed.time}</div>
+                        </div>
+                    </a>
+                `;
+            });
+            return html;
+        };
 
-            card.innerHTML = `
-                <div class="feed-card-image">${typeIcons[feed.type] || '📄'}</div>
-                <div class="feed-card-content">
-                    <span class="feed-card-type">${feed.type}</span>
-                    <div class="feed-card-title">${feed.title}</div>
-                    <div class="feed-card-preview">${feed.preview}</div>
-                    <div class="feed-card-time">${feed.time}</div>
-                </div>
-            `;
-
-            list.appendChild(card);
-        });
+        // 复制多份保证无缝
+        const copies = Math.max(Math.ceil(8 / feeds.length), 3);
+        for (let i = 0; i < copies; i++) {
+            track.innerHTML += renderCards();
+        }
     }
 
-    /* ==================== 手机拨号逻辑(手机页用) ==================== */
+    function initFeedScroll() {
+        const track = document.querySelector('.feed-track');
+        if (!track) return;
+
+        // CSS animation 已在样式里定义,这里只需确保 track 有内容
+        track.classList.add('scrolling');
+    }
+
+    /* ==================== 手机拨号逻辑 ==================== */
     function initDialPad() {
         const display = document.querySelector('.phone-number');
         const statusEl = document.querySelector('.phone-call-status');
@@ -144,7 +169,6 @@
         let currentNumber = '';
         const maxDigits = 7;
 
-        // 获取当前 feed 的 contacts
         const feedId = document.body.dataset.feedId || '';
         const allContacts = window.SCENES_REGISTRY?.dial?.contacts || [];
         const contacts = feedId
@@ -152,7 +176,6 @@
             : allContacts;
 
         function formatNumber(num) {
-            // 格式: xxx-xxxx
             if (num.length <= 3) return num;
             return num.slice(0, 3) + '-' + num.slice(3);
         }
@@ -163,7 +186,7 @@
                 display.classList.add('empty');
                 display.classList.remove('calling');
             } else {
-                                display.textContent = formatNumber(currentNumber);
+                display.textContent = formatNumber(currentNumber);
                 display.classList.remove('empty');
             }
         }
@@ -176,13 +199,17 @@
         // 按键点击
         keypad.addEventListener('click', (e) => {
             const key = e.target.closest('.key');
-            if (!key || key.classList.contains('key-delete') || key.classList.contains('key-call')) return;
+            if (!key) return;
 
             const digit = key.dataset.digit;
             if (digit && currentNumber.length < maxDigits) {
                 currentNumber += digit;
                 updateDisplay();
                 setStatus('idle', '');
+                
+                // 按键反馈动画
+                key.classList.add('pressed');
+                setTimeout(() => key.classList.remove('pressed'), 150);
             }
         });
 
@@ -196,7 +223,6 @@
                 }
             });
 
-            // 长按清空
             let holdTimer;
             deleteBtn.addEventListener('mousedown', () => {
                 holdTimer = setTimeout(() => {
@@ -222,11 +248,9 @@
                     return;
                 }
 
-                // 开始拨号动画
                 display.classList.add('calling');
                 setStatus('calling', '正在呼叫...');
 
-                // 匹配号码
                 const formatted = formatNumber(currentNumber);
                 const match = contacts.find(c => c.number === formatted);
 
@@ -234,13 +258,11 @@
                     display.classList.remove('calling');
 
                     if (match && match.reachable) {
-                        // 打通
                         setStatus('connected', `${match.name || '未知'} 已接听`);
                         setTimeout(() => {
                             window.location.href = `../talks/${match.file}`;
                         }, 800);
                     } else if (match && !match.reachable) {
-                        // 打不通
                         const msgs = {
                             'empty': '您拨打的号码是空号',
                             'busy': '对方正在通话中',
@@ -248,7 +270,6 @@
                         };
                         setStatus('failed', msgs[match.unreachableType] || '无法接通');
                     } else {
-                        // 未知号码
                         setStatus('failed', '您拨打的号码是空号');
                     }
                 }, 1500);
@@ -264,21 +285,23 @@
         const messages = document.querySelectorAll('.talk-message[data-delay]');
         if (messages.length === 0) return;
 
-        messages.forEach((msg, index) => {
-            const delay = parseInt(msg.dataset.delay) || (index * 2000);
-            msg.style.animationDelay = delay + 'ms';
+        messages.forEach((msg) => {
+            const delay = parseInt(msg.dataset.delay) || 0;
 
-            // 打字机效果(可选)
-            if (msg.dataset.typewriter === 'true') {
-                const bubble = msg.querySelector('.talk-bubble');
-                if (bubble) {
-                    const text = bubble.textContent;
-                    bubble.textContent = '';
-                    bubble.innerHTML = '<span class="typing-cursor"></span>';
+            setTimeout(() => {
+                msg.style.opacity = '1';
+                msg.style.transform = 'translateY(0)';
 
-                    setTimeout(() => {
+                if (msg.dataset.typewriter === 'true') {
+                    const bubble = msg.querySelector('.talk-bubble');
+                    if (bubble) {
+                        const text = bubble.textContent;
+                        bubble.textContent = '';
+                        const cursor = document.createElement('span');
+                        cursor.className = 'typing-cursor';
+                        bubble.appendChild(cursor);
+
                         let i = 0;
-                        const cursor = bubble.querySelector('.typing-cursor');
                         const interval = setInterval(() => {
                             if (i < text.length) {
                                 bubble.insertBefore(document.createTextNode(text[i]), cursor);
@@ -287,10 +310,10 @@
                                 clearInterval(interval);
                                 setTimeout(() => cursor.remove(), 1000);
                             }
-                        }, 50);
-                    }, delay);
+                        }, 60);
+                    }
                 }
-            }
+            }, delay);
         });
     }
 
@@ -301,33 +324,63 @@
 
         options.forEach(btn => {
             btn.addEventListener('click', () => {
-                // 标记选中
-                options.forEach(b => b.classList.add('hidden'));
-                btn.classList.remove('hidden');
+                const optionId = btn.dataset.optionId;
+
+                // 隐藏所有同轮选项,只显示选中的
+                const parentOptions = btn.closest('.talk-options');
+                parentOptions.querySelectorAll('.talk-option-btn').forEach(b => {
+                    if (b !== btn) b.classList.add('hidden');
+                });
                 btn.classList.add('selected');
 
-                // 显示用户发送的消息
-                const userMsg = document.querySelector(`.talk-message[data-option-id="${btn.dataset.optionId}"]`);
-                if (userMsg) {
-                    userMsg.style.display = 'block';
-                    userMsg.style.animationDelay = '0.3s';
-                }
+                // 显示用户消息
+                document.querySelectorAll(`.talk-message[data-option-id="${optionId}"]`).forEach(m => {
+                    m.style.display = 'block';
+                    setTimeout(() => {
+                        m.style.opacity = '1';
+                        m.style.transform = 'translateY(0)';
+                    }, 100);
+                });
 
                 // 显示对方回复
-                const replyMsg = document.querySelector(`.talk-message[data-reply-to="${btn.dataset.optionId}"]`);
-                if (replyMsg) {
-                    setTimeout(() => {
-                        replyMsg.style.display = 'block';
-                        replyMsg.style.animationDelay = '0s';
-                    }, 1500);
-                }
+                setTimeout(() => {
+                    document.querySelectorAll(`.talk-message[data-reply-to="${optionId}"]`).forEach(m => {
+                        m.style.display = 'block';
+                        setTimeout(() => {
+                            m.style.opacity = '1';
+                            m.style.transform = 'translateY(0)';
+
+                            if (m.dataset.typewriter === 'true') {
+                                const bubble = m.querySelector('.talk-bubble');
+                                if (bubble) {
+                                    const text = bubble.textContent;
+                                    bubble.textContent = '';
+                                    const cursor = document.createElement('span');
+                                    cursor.className = 'typing-cursor';
+                                    bubble.appendChild(cursor);
+
+                                    let i = 0;
+                                    const interval = setInterval(() => {
+                                        if (i < text.length) {
+                                            bubble.insertBefore(document.createTextNode(text[i]), cursor);
+                                            i++;
+                                        } else {
+                                            clearInterval(interval);
+                                            setTimeout(() => cursor.remove(), 1000);
+                                        }
+                                    }, 60);
+                                }
+                            }
+                        }, 100);
+                    });
+                }, 1200);
 
                 // 显示下一轮选项
-                const nextOptions = document.querySelector(`.talk-options[data-after="${btn.dataset.optionId}"]`);
+                const nextOptions = document.querySelector(`.talk-options[data-after="${optionId}"]`);
                 if (nextOptions) {
                     setTimeout(() => {
                         nextOptions.style.display = 'flex';
-                    }, 3000);
+                    }, 3500);
                 }
             });
         });
@@ -335,18 +388,15 @@
 
     /* ==================== 初始化 ==================== */
     document.addEventListener('DOMContentLoaded', () => {
-        // 主界面
         if (document.body.classList.contains('dial-page')) {
-            initPopupStorm();
             initFeedList();
+            initPopupStorm();
         }
 
-        // 手机页
         if (document.body.classList.contains('phone-page')) {
             initDialPad();
         }
 
-        // 对话页
         if (document.body.classList.contains('talk-page')) {
             initTalkPage();
             initTalkOptions();

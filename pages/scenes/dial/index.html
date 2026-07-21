@@ -53,27 +53,43 @@
 
     <!-- 弹窗风暴层 -->
     <div class="popup-storm"></div>
-    <button class="close-all-btn">关闭全部</button>
+    <button class="close-all-btn">关闭全部 [ESC]</button>
 
     <!-- 返回按钮 -->
     <a href="../index.html" class="back-btn">← BACK TO SCENES</a>
 
-    <!-- 信息流 -->
-    <main class="feed-container">
-        <header class="feed-header">
-            <h1 class="feed-title">DIAL_PAD</h1>
-            <p class="feed-subtitle">// 选择一条线索,拨打那个号码</p>
-        </header>
-        <div class="feed-list">
-            <!-- JS 从 registry 渲染 -->
-        </div>
-    </main>
+    <!-- 信息流区域(弹窗清空后显示) -->
+    <section class="feed-section">
+        <!-- 左侧:氛围图 + 提示 -->
+        <aside class="feed-sidebar">
+            <div class="feed-sidebar-image">📞</div>
+            <div class="feed-sidebar-hint">
+                <p>// SYSTEM MESSAGE</p>
+                <p style="margin-top:10px;">这里收集了一些<span class="highlight">来历不明的信号</span>。</p>
+                <p style="margin-top:8px;">每条线索都指向一个号码。</p>
+                <p style="margin-top:8px;">选择一条,<span class="highlight">拨过去</span>。</p>
+            </div>
+        </aside>
+
+        <!-- 右侧:信息流 -->
+        <main class="feed-main">
+            <header class="feed-header">
+                <h1 class="feed-title">INCOMING_SIGNALS</h1>
+                <p class="feed-subtitle">// 选择一条线索进入拨号</p>
+            </header>
+            <div class="feed-scroll-wrapper">
+                <div class="feed-track">
+                    <!-- JS 从 registry 渲染并复制多份 -->
+                </div>
+            </div>
+        </main>
+    </section>
 
     <!-- 场景数据 -->
     <script src="../../../assets/data/scenes/_registry.js"></script>
     <script src="../../../assets/js/scene-dial.js"></script>
 
-    <!-- 汉堡菜单 -->
+    <!-- 汉堡菜单 + ESC 关闭弹窗 -->
     <script>
         const burger = document.getElementById('navBurger');
         const menu = document.getElementById('mobileMenu');
@@ -83,6 +99,17 @@
                 menu.classList.toggle('active');
             });
         }
+
+        // ESC 键关闭全部弹窗
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const closeBtn = document.querySelector('.close-all-btn');
+                if (closeBtn && closeBtn.style.display !== 'none') {
+                    closeBtn.click();
+                }
+            }
+        });
     </script>
 </body>
 </html>
+

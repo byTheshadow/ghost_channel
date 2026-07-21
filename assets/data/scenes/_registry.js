@@ -152,7 +152,20 @@ window.SCENES_REGISTRY = {
       lastReply:    '2026-10-16 04:00',
       pinned:       false,
       hot:          true
-    }
+    },
+      {
+    id:           'thread-003',
+    file:         'thread-003.html',
+    title:        '[绞索角校园日常] 捞人！北校区图书馆，那个穿“乌鸦队”复古夹克的男生！',
+    author:       '草莓波波冰',
+    authorAvatar: '',
+    section:      '阿卡迪亚校园墙',
+    replies:      7,
+    views:        452,
+    lastReply:    '2023-10-24 20:12',
+    pinned:       false,
+    hot:          true
+  }
 
 
     ],
