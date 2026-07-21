@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghost Channel - Forum Thread</title>
+  <link rel="stylesheet" href="../../../../assets/css/scene-forum-base.css">
+  <style>
+    /* 
+     * 轻改造：灵异/能量污染的视觉失真
+     * 严格使用黑、深红、霓虹红、米白等色系 
+     */
+    .this-scene {
+      background-color: #050505; /* 比纯黑更深邃一点的底色 */
+    }
+
+    /* 9楼（第10层）：异象初始，轻微电流闪烁 */
+    .this-scene .floor:nth-child(10) .floor-content {
+      color: #b0b0b0;
+      text-shadow: 1px 0px 2px rgba(255, 255, 255, 0.2);
+      animation: tc-flicker 3s infinite alternate;
+    }
+
+    /* 10楼（第11层）：噪点与污染加剧，红色重影 */
+    .this-scene .floor:nth-child(11) .floor-content {
+      color: #999;
+      text-shadow: 2px 0px 0px rgba(255, 0, 60, 0.6), -2px 0px 0px rgba(74, 0, 0, 0.8);
+      letter-spacing: 1px;
+      animation: tc-glitch-1 2s infinite linear alternate-reverse;
+    }
+
+    /* 11楼（第12层）：彻底崩坏，扭曲反相 */
+    .this-scene .floor:nth-child(12) .floor-body {
+      background-color: rgba(74, 0, 0, 0.15);
+      border-left: 2px solid #ff003c;
+    }
+    .this-scene .floor:nth-child(12) .floor-content {
+      color: #ff003c;
+      font-weight: bold;
+      text-shadow: 3px 2px 0 #000, -2px -2px 0 rgba(224, 224, 224, 0.4);
+      animation: tc-glitch-2 0.15s infinite;
+    }
+    .this-scene .floor:nth-child(12) .user-name {
+      color: #4a0000;
+      text-decoration: line-through;
+      animation: tc-flicker 0.1s infinite;
+    }
+    .this-scene .floor:nth-child(12) .floor-time {
+      color: #ff003c;
+    }
+
+    /* 动画定义 */
+    @keyframes tc-flicker {
+      0% { opacity: 1; }
+      5% { opacity: 0.8; }
+      10% { opacity: 1; }
+      50% { opacity: 0.9; }
+      55% { opacity: 0.3; }
+      60% { opacity: 1; }
+      100% { opacity: 1; }
+    }
+    @keyframes tc-glitch-1 {
+      0% { transform: translate(0) }
+      20% { transform: translate(-1px, 1px) }
+      40% { transform: translate(-1px, -1px) }
+      60% { transform: translate(2px, 0px) }
+      80% { transform: translate(1px, -1px) }
+      100% { transform: translate(0) }
+    }
+    @keyframes tc-glitch-2 {
+      0% { transform: skew(0deg) translate(0px, 0px); }
+      20% { transform: skew(-4deg) translate(-2px, 1px); }
+      40% { transform: skew(4deg) translate(1px, -1px); }
+      60% { transform: skew(-2deg) translate(-1px, -1px); opacity: 0.8; }
+      80% { transform: skew(2deg) translate(2px, 1px); filter: invert(0.8); }
+      100% { transform: skew(0deg) translate(0px, 0px); }
+    }
+  </style>
+</head>
+<body class="this-scene">
+
+  <div class="thread-detail-wrap">
+    <div class="thread-nav">
+      <a href="../index.html" class="back-btn">← 返回板块</a>
+    </div>
+
+    <!-- 骨架 DOM -->
+    <div id="threadHeader" class="thread-header"></div>
+    <div id="threadFloors" class="thread-floors"></div>
+  </div>
+
+  <!-- 帖子数据 -->
+  <script>
+    const THREAD_DATA = {
+      title: "【求证】布莱尔区蓝线地铁，凌晨2点半那班车的最后一节车厢…",
+      section: "灵异discuss",
+      op: {
+        name: "夜班行尸走肉",
+        avatar: "",
+        level: 2
+      },
+      floors: [
+        {
+          isOP: true,
+          name: "夜班行尸走肉",
+          avatar: "",
+          level: 2,
+          time: "2026-10-15 03:15",
+          content: "每天凌晨2点半在钻石区那家24小时 Diner 下班，坐布莱尔区蓝线地铁回家。\n昨晚实在太累，就去了平时没人的最后一节车厢。结果角落里站着个穿旧式西装的男人，面壁一动不动。车厢里冷得刺骨，还有股电线烧焦的臭氧味。\n\n我以为是哪个喝醉的，偷拍了一张想发给朋友看，但刚才翻相册一看……照片里根本没有那个人，只有墙上有一团人形的焦黑轮廓。\n是我太累出幻觉了吗？"
+        },
+        {
+          isOP: false,
+          name: "铁鸦一生推",
+          avatar: "",
+          level: 3,
+          time: "2026-10-15 03:22",
+          content: "绝对是幻觉。你连续上几个夜班了？多半是睡眠不足眼花了。\n要么就是那人穿了 Aether-Core 刚出的什么光学迷彩衣服，不过讲道理，买得起那玩意的人也不会来挤午夜地铁。"
+        },
+        {
+          isOP: false,
+          name: "冥河钓鱼佬",
+          avatar: "",
+          level: 5,
+          time: "2026-10-15 03:45",
+          content: "暗网“幽灵信号”看多了吧哥们？别一天到晚神神叨叨的，洗个热水澡赶紧补觉。"
+        },
+        {
+          isOP: false,
+          name: "阿卡迪亚学术混子",
+          avatar: "",
+          level: 4,
+          time: "2026-10-15 08:10",
+          content: "等等，楼主，你说的那个西装男……他手里是不是提着一个边缘有蓝光的金属公文包？"
+        },
+        {
+          isOP: true,
+          name: "夜班行尸走肉",
+          avatar: "",
+          level: 2,
+          time: "2026-10-15 14:20",
+          quote: {
+            name: "阿卡迪亚学术混子",
+            excerpt: "他手里是不是提着一个边缘有蓝光的金属公文包？"
+          },
+          content: "卧槽你怎么知道？！他确实提着，那个蓝光还在一闪一闪的，把车厢角落照得泛绿。你见过他？！"
+        },
+        {
+          isOP: false,
+          name: "阿卡迪亚学术混子",
+          avatar: "",
+          level: 4,
+          time: "2026-10-15 14:35",
+          content: "……我导以前在 Aether-Core 的 ASTRD 部门接过外包项目。\n三年前蓝线地铁出过一次所谓的“瓦斯爆炸”，其实是一个带走不稳定能量样本的研究员，在车厢里直接发生了“相位蒸发”。\n据说那个时段的最后一节车厢，偶尔会发生空间和时间的重叠。你最好别再坐那班车了，哪怕辞职也行。"
+        },
+        {
+          isOP: false,
+          name: "铁鸦一生推",
+          avatar: "",
+          level: 3,
+          time: "2026-10-15 15:00",
+          content: "越编越离谱了，阿卡迪亚的大学生就是闲啊，作业写完了吗就开始写科幻小说？"
+        },
+        {
+          isOP: true,
+          name: "夜班行尸走肉",
+          avatar: "",
+          level: 2,
+          time: "2026-10-16 02:40",
+          content: "别吓我，我这几天实在请不到假，房租还欠着呢。\n不过今天我学乖了，我已经上车了，特意避开了最后一节。现在坐在第二节车厢，周围还有两三个同样下夜班的普通人，有人陪着安全得很。"
+        },
+        {
+          isOP: false,
+          name: "阿卡迪亚学术混子",
+          avatar: "",
+          level: 4,
+          time: "2026-10-16 02:42",
+          content: "那就好。尽量坐在有监控、有别人的地方。下了地铁直接跑回家，别回头。"
+        },
+        {
+          isOP: true,
+          name: "夜班行尸走肉",
+          avatar: "",
+          level: 2,
+          time: "2026-10-16 02:48",
+          content: "等等，地铁在过冥河底下的隧道时突然停了。灯全灭了。\n好浓的臭氧味……我手机屏幕都在闪。"
+        },
+        {
+          isOP: true,
+          name: "夜班行尸走肉",
+          avatar: "",
+          level: 2,
+          time: "2026-10-16 02:51",
+          content: "不对劲……另外几个乘客不对劲。借着他们手机屏幕的反光，我才发现他们根本没有脸。\n他们脸上的五官像坏掉的老式电视机一样，全是雪花噪点在跳动。"
+        },
+        {
+          isOP: true,
+          name: "夜班行尸走肉",
+          avatar: "",
+          level: 2,
+          time: "2026-10-16 02:53",
+          content: "那个穿西装的男人不在最后一节车厢。\n他今天坐在我对面。\n\n他抬头看我了。"
+        },
+        {
+          isOP: false,
+          name: "冥河钓鱼佬",
+          avatar: "",
+          level: 5,
+          time: "2026-10-16 03:05",
+          content: "楼主？？你没事吧？"
+        },
+        {
+          isOP: false,
+          name: "阿卡迪亚学术混子",
+          avatar: "",
+          level: 4,
+          time: "2026-10-16 03:10",
+          content: "草，快打111报警！你在哪一站之间停的？！"
+        },
+        {
+          isOP: false,
+          name: "铁鸦一生推",
+          avatar: "",
+          level: 3,
+          time: "2026-10-16 04:00",
+          content: "喂？别玩失踪啊，这恶作剧不好笑，快出来冒个泡！"
+        }
+      ]
+    };
+  </script>
+
+  <!-- 引入渲染 JS -->
+  <script src="../../../../assets/js/scene-forum-thread.js"></script>
+</body>
+</html>

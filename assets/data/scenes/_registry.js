@@ -139,7 +139,21 @@ window.SCENES_REGISTRY = {
       lastReply:    '2024-09-11 02:35',
       pinned:       false,
       hot:          true
+    },
+        {
+      id:           'thread-002',
+      file:         'thread-002.html',
+      title:        '【求证】布莱尔区蓝线地铁，凌晨2点半那班车的最后一节车厢…',
+      author:       '夜班行尸走肉',
+      authorAvatar: '',
+      section:      '灵异discuss',
+      replies:      14,
+      views:        1304,
+      lastReply:    '2026-10-16 04:00',
+      pinned:       false,
+      hot:          true
     }
+
 
     ],
 
