@@ -126,7 +126,22 @@ window.SCENES_REGISTRY = {
          hot:           boolean 可选  是否加"热"标签
        }
        ------------------------------------------------------------ */
-    forum: [],
+        forum: [
+        {
+            id:           'thread-001',
+            file:         'thread-001.html',
+            title:        '有人见过南三环那个弹贝斯的男的吗？',
+            author:       '路人甲',
+            authorAvatar: '',                    // 头像路径待补充，留空自动用首字母
+            section:      '灵异discuss',
+            replies:      18,
+            views:        2103,
+            lastReply:    '2024-08-16 08:22',
+            pinned:       false,
+            hot:          true
+        }
+    ],
+
 
     /* ------------------------------------------------------------
        拨号盘 · dial

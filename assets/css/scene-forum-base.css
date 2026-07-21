@@ -1,0 +1,604 @@
+/* ============================================================
+   GHOST CHANNEL — SCENE FORUM BASE
+   早期贴吧/天涯风移植 · 暗色黑红版
+   ============================================================ */
+
+/* ==================== 页面底色 ==================== */
+.forum-page {
+    background-color: var(--bg-darker);
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(rgba(139, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.forum-main {
+    padding-top: 20px;
+    padding-bottom: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* ==================== 顶部论坛"横幅" ==================== */
+.forum-banner {
+    max-width: 1100px;
+    margin: 30px auto 24px;
+    padding: 22px 28px;
+    background: linear-gradient(135deg,
+        rgba(72, 4, 21, 0.55) 0%,
+        rgba(10, 2, 2, 0.75) 100%);
+    border: 1px solid var(--red-dark);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    animation: fadeSlideUp 0.8s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+.forum-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 60, 0.06), transparent);
+    animation: headerScan 6s linear infinite;
+    pointer-events: none;
+}
+
+.forum-banner .fb-left {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 1;
+}
+.forum-banner .fb-logo {
+    font-family: 'UnifrakturCook', 'Press Start 2P', serif;
+    font-size: 34px;
+    color: var(--red-neon);
+    text-shadow: 0 0 12px rgba(255, 0, 60, 0.5);
+    letter-spacing: 3px;
+    line-height: 1.1;
+}
+.forum-banner .fb-slogan {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: #888;
+    letter-spacing: 1.5px;
+}
+.forum-banner .fb-cn {
+    font-family: 'ZCOOL QingKe HuangYou', 'Noto Serif SC', serif;
+    font-size: 15px;
+    color: #d0d0d0;
+    letter-spacing: 2px;
+    margin-top: 4px;
+}
+
+.forum-banner .fb-right {
+    text-align: right;
+    z-index: 1;
+}
+.forum-banner .fb-stats {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #777;
+    line-height: 1.8;
+    letter-spacing: 1px;
+}
+.forum-banner .fb-stats b {
+    color: var(--red-bright);
+    font-weight: 700;
+}
+
+/* ==================== 板块 Tab ==================== */
+.forum-tabs {
+    max-width: 1100px;
+    margin: 0 auto 20px;
+    padding: 0 28px;
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--red-dark);
+    flex-wrap: wrap;
+}
+
+.forum-tab {
+    padding: 10px 22px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: #888;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: color .2s, background .2s, border-color .2s;
+    position: relative;
+    bottom: -1px;
+}
+
+.forum-tab:hover {
+    color: #ccc;
+}
+
+.forum-tab.active {
+    color: var(--red-neon);
+    background: rgba(10, 2, 2, 0.7);
+    border-color: var(--red-dark);
+    border-bottom-color: var(--bg-darker);
+    text-shadow: 0 0 8px rgba(255, 0, 60, 0.4);
+}
+
+.forum-tab .tab-count {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 6px;
+    font-size: 10px;
+    color: #666;
+    background: rgba(115, 12, 30, 0.2);
+    border-radius: 8px;
+}
+.forum-tab.active .tab-count {
+    color: var(--red-bright);
+    background: rgba(255, 0, 60, 0.15);
+}
+
+/* ==================== 帖子列表表格 ==================== */
+.forum-list {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 28px;
+    background: rgba(10, 2, 2, 0.5);
+    border: 1px solid var(--red-dark);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+}
+
+.forum-list-head {
+    display: grid;
+    grid-template-columns: 60px 1fr 180px 130px 150px;
+    gap: 12px;
+    padding: 10px 18px;
+    background: rgba(115, 12, 30, 0.15);
+    border-bottom: 1px solid rgba(115, 12, 30, 0.35);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 2px;
+}
+
+.forum-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 180px 130px 150px;
+    gap: 12px;
+    padding: 14px 18px;
+    align-items: center;
+    border-bottom: 1px solid rgba(115, 12, 30, 0.2);
+    text-decoration: none;
+    color: inherit;
+    transition: background .2s;
+}
+
+.forum-row:last-child {
+    border-bottom: none;
+}
+
+.forum-row:hover {
+    background: rgba(255, 0, 60, 0.05);
+}
+
+.forum-row:hover .row-title {
+    color: var(--red-neon);
+    text-shadow: 0 0 6px rgba(255, 0, 60, 0.3);
+}
+
+/* 单元格 · 状态标记 */
+.row-badges {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+.badge-pin, .badge-hot {
+    display: inline-block;
+    padding: 2px 6px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-radius: 2px;
+    line-height: 1;
+}
+.badge-pin {
+    color: #ffd93d;
+    background: rgba(255, 217, 61, 0.12);
+    border: 1px solid rgba(255, 217, 61, 0.4);
+}
+.badge-hot {
+    color: var(--red-neon);
+    background: rgba(255, 0, 60, 0.12);
+    border: 1px solid rgba(255, 0, 60, 0.5);
+    animation: tagPulseF 2s ease-in-out infinite;
+}
+@keyframes tagPulseF {
+    0%, 100% { box-shadow: 0 0 0 rgba(255, 0, 60, 0); }
+    50%      { box-shadow: 0 0 8px rgba(255, 0, 60, 0.5); }
+}
+
+/* 单元格 · 标题 */
+.row-title-wrap {
+    min-width: 0;
+}
+.row-title {
+    font-family: 'Noto Serif SC', 'Share Tech Mono', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #e0e0e0;
+    letter-spacing: 0.3px;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: color .2s;
+}
+.row-section {
+    display: inline-block;
+    margin-right: 6px;
+    padding: 1px 6px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: #999;
+    background: rgba(115, 12, 30, 0.2);
+    border: 1px solid rgba(115, 12, 30, 0.4);
+    border-radius: 2px;
+    letter-spacing: 1px;
+}
+
+/* 单元格 · 楼主 */
+.row-author {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+.row-author img,
+.row-author .avatar-fallback {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #480415, #210207);
+    flex-shrink: 0;
+    object-fit: cover;
+    border: 1px solid rgba(115, 12, 30, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: var(--red-bright);
+}
+.row-author .author-name {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: #aaa;
+    letter-spacing: 0.5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 单元格 · 数字 */
+.row-stats {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: #999;
+    letter-spacing: 1px;
+    display: flex;
+    gap: 12px;
+}
+.row-stats .stat-replies {
+    color: var(--red-bright);
+    font-weight: 700;
+}
+.row-stats .stat-sep {
+    color: #555;
+}
+
+/* 单元格 · 最后回复 */
+.row-last {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #777;
+    letter-spacing: 0.5px;
+    text-align: right;
+}
+
+/* 空态 */
+.forum-empty {
+    padding: 60px 20px;
+    text-align: center;
+    font-family: 'Share Tech Mono', monospace;
+    color: #555;
+}
+.forum-empty .empty-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    color: var(--red-mid);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+/* ==================== 响应式 · 列表页 ==================== */
+@media (max-width: 900px) {
+    .forum-list-head { display: none; }
+    .forum-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 14px 16px;
+    }
+    .row-title { white-space: normal; }
+    .row-stats, .row-last { font-size: 11px; }
+}
+
+/* ============================================================
+   ==================== 详情页 · 帖子楼层 ====================
+   ============================================================ */
+
+.thread-detail-wrap {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* 帖子标题栏 */
+.thread-header {
+    margin: 20px 0 20px;
+    padding: 22px 26px;
+    background: rgba(10, 2, 2, 0.6);
+    border: 1px solid var(--red-dark);
+    border-radius: 6px;
+    position: relative;
+}
+
+.thread-header .th-section {
+    display: inline-block;
+    padding: 3px 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--red-neon);
+    background: rgba(255, 0, 60, 0.08);
+    border: 1px solid rgba(255, 0, 60, 0.4);
+    border-radius: 3px;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+}
+
+.thread-header .th-title {
+    font-family: 'ZCOOL QingKe HuangYou', 'Noto Serif SC', serif;
+    font-size: 26px;
+    color: var(--white);
+    line-height: 1.4;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+}
+
+.thread-header .th-op {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: #888;
+    letter-spacing: 0.5px;
+}
+.thread-header .th-op .op-name {
+    color: var(--red-bright);
+    font-weight: 700;
+}
+.thread-header .th-op .op-sep { color: #444; }
+
+/* 楼层列表 */
+.thread-floors {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 30px;
+}
+
+.floor {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 20px;
+    background: rgba(10, 2, 2, 0.5);
+    border: 1px solid var(--red-dark);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: border-color .3s, box-shadow .3s;
+}
+.floor:hover {
+    border-color: rgba(255, 0, 60, 0.35);
+}
+
+/* 楼层左侧 · 用户信息 */
+.floor-user {
+    padding: 18px 12px;
+    background: rgba(5, 1, 1, 0.7);
+    border-right: 1px solid rgba(115, 12, 30, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+}
+
+.floor-user .user-avatar,
+.floor-user .avatar-fallback {
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #480415, #210207);
+    border: 1px solid rgba(115, 12, 30, 0.5);
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    color: var(--red-bright);
+}
+
+.floor-user .user-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #d0d0d0;
+    letter-spacing: 0.5px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.floor-user .op-badge {
+    display: inline-block;
+    padding: 1px 6px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    color: #ffd93d;
+    background: rgba(255, 217, 61, 0.1);
+    border: 1px solid rgba(255, 217, 61, 0.5);
+    border-radius: 2px;
+    letter-spacing: 1px;
+}
+
+.floor-user .user-level {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: #888;
+    letter-spacing: 0.5px;
+}
+.floor-user .user-level::before {
+    content: '★ ';
+    color: var(--red-bright);
+}
+
+/* 楼层右侧 · 内容 */
+.floor-body {
+    padding: 16px 22px 18px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.floor-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    border-bottom: 1px dashed rgba(115, 12, 30, 0.3);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #777;
+    letter-spacing: 1px;
+}
+.floor-meta .floor-num {
+    color: var(--red-bright);
+    font-weight: 700;
+}
+.floor-meta .floor-time {
+    color: #666;
+}
+
+.floor-content {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: #cccccc;
+    letter-spacing: 0.3px;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+/* 楼层内引用块 */
+.floor-quote {
+    margin: 0 0 12px;
+    padding: 10px 14px;
+    background: rgba(5, 1, 1, 0.6);
+    border-left: 3px solid var(--red-mid);
+    border-radius: 0 4px 4px 0;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12.5px;
+    color: #888;
+    line-height: 1.7;
+}
+.floor-quote .quote-author {
+    color: var(--red-bright);
+    font-weight: 700;
+    margin-right: 6px;
+}
+.floor-quote .quote-author::after {
+    content: '：';
+    color: #666;
+}
+
+/* 帖子底部 · 分页占位（静态装饰） */
+.thread-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 20px 0 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: #666;
+    letter-spacing: 1px;
+}
+.thread-footer .page-btn {
+    padding: 4px 10px;
+    border: 1px solid rgba(115, 12, 30, 0.4);
+    border-radius: 3px;
+    color: #999;
+    background: rgba(10, 2, 2, 0.4);
+}
+.thread-footer .page-btn.active {
+    color: var(--red-neon);
+    border-color: var(--red-neon);
+    background: rgba(255, 0, 60, 0.08);
+}
+.thread-footer .page-btn.disabled {
+    color: #444;
+    border-color: rgba(115, 12, 30, 0.2);
+}
+
+/* ==================== 响应式 · 详情页 ==================== */
+@media (max-width: 700px) {
+    .thread-header .th-title { font-size: 20px; }
+    .floor {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    .floor-user {
+        flex-direction: row;
+        justify-content: flex-start;
+        text-align: left;
+        gap: 12px;
+        padding: 12px 16px;
+        border-right: none;
+        border-bottom: 1px solid rgba(115, 12, 30, 0.3);
+    }
+    .floor-user .user-avatar,
+    .floor-user .avatar-fallback {
+        width: 40px;
+        height: 40px;
+    }
+    .floor-body { padding: 12px 16px 16px; }
+    .floor-content { font-size: 14px; }
+}
